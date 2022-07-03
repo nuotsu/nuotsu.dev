@@ -15,4 +15,14 @@
 
 		@apply underline hover:decoration-2;
 	}
+
+	.demo {
+		outline: 1px dashed #0004;
+		outline-offset: 2px;
+		max-width: max-content;
+	}
+
+	.demo:empty {
+		display: none;
+	}
 }
