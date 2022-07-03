@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		padding: 1rem;
+		font-family: initial;
+	}
+}
+
+@layer components {
+	.link {
+		color: initial;
+
+		@apply underline hover:decoration-2;
+	}
+}

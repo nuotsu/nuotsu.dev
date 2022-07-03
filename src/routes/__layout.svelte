@@ -1,0 +1,36 @@
+<header>
+	<a href="/">nuotsu</a>
+</header>
+
+<main>
+	<nav>
+		<About/>
+		<Works/>
+		<Snippets/>
+	</nav>
+
+	<section>
+		<slot></slot>
+	</section>
+</main>
+
+<style>
+	main {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	nav {
+		display: grid;
+		gap: 1rem;
+	}
+</style>
+
+<script>
+	import '../app.css'
+	import About from '$lib/About.svelte'
+	import Works from '$lib/Works.svelte'
+	import Snippets from '$lib/Snippets.svelte'
+</script>
