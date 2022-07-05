@@ -7,6 +7,10 @@
 		padding: 1rem;
 		font-family: initial;
 	}
+
+	canvas {
+		max-width: 100%;
+	}
 }
 
 @layer components {
@@ -24,5 +28,18 @@
 
 	.demo:empty {
 		display: none;
+	}
+}
+
+@layer utilities {
+	.vertical {
+		writing-mode: vertical-rl;
+	}
+
+	@supports (writing-mode: sideways-lr) {
+		.vertical {
+			writing-mode: sideways-lr;
+			text-align: right;
+		}
 	}
 }

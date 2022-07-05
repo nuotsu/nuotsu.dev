@@ -8,8 +8,8 @@
 </script>
 
 <script context="module">
-	import snippets from '$lib/snippets'
-	import Snippet from '$lib/Snippet.svelte'
+	import snippets from '$lib/snippets/all-snippets.js'
+	import Snippet from '$lib/snippets/Snippet.svelte'
 
 	export async function load({ params }) {
 		const snippet = snippets.find(({ id }) => id === params.id)

@@ -17,8 +17,9 @@
 <style>
 	main {
 		display: flex;
+		align-items: flex-start;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 2rem;
 		margin-top: 1rem;
 	}
 

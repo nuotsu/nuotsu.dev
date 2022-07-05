@@ -1,6 +1,4 @@
-<section>
-	<h2>Works</h2>
-
+<Section title="Works">
 	<ul>
 		{#each works as { title, url, date }}
 			<li>
@@ -10,11 +8,13 @@
 			</li>
 		{/each}
 	</ul>
-</section>
+</Section>
 
 <script>
+	import Section from './Section.svelte'
+
 	const works = [
-		{ url: 'https://dj-viz.netlify.app', date: '2022-07-03' },
+		{ url: 'https://djviz.netlify.app', date: '2022-07-03' },
 		{
 			title: 'react-custom-hubspot-form',
 			url: 'https://npmjs.com/package/react-custom-hubspot-form',
