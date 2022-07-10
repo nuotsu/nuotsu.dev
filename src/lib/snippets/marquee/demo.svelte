@@ -4,7 +4,7 @@
 
 <style>
 	p {
-		margin-right: 1em;
+		margin-right: 1ch;
 	}
 </style>
 

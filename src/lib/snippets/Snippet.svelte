@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>{snippet.title} | nuotsu</title>
+</svelte:head>
+
 <Article title={snippet.title}>
 	<div>
 		<figure class="demo">

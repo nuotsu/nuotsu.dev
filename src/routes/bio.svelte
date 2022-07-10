@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Bio | nuotsu</title>
+</svelte:head>
+
 <Article title="Bio">
 	<p>Mitchell <ruby>Kazumaru<rt>和丸</rt></ruby> Christ is the name.</p>
 	<p>I'm a frontend web dev based in SoCal.</p>

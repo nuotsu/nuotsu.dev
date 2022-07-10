@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+	::selection {
+		background-color: #000;
+		color: #fff;
+	}
+
 	body {
 		padding: 1rem;
-		font-family: initial;
+		font-family: 'Times New Roman', Times, serif;
 	}
 
 	canvas {
