@@ -9,4 +9,4 @@ npm i nuotsu.dev
 ```
 
 - [Marquee.svelte](https://nuotsu.dev/snippets/marquee)
-- [Pipewrite.svelte](https://nuotsu.dev/snippets/pipewriter)
+- [Pipewriter.svelte](https://nuotsu.dev/snippets/pipewriter)
