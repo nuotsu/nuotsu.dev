@@ -2,20 +2,20 @@
 	<a href="/">nuotsu</a>
 </header>
 
-<main>
+<div>
 	<nav>
 		<About/>
 		<Works/>
 		<Snippets/>
 	</nav>
 
-	<section>
+	<main>
 		<slot></slot>
-	</section>
-</main>
+	</main>
+</div>
 
 <style>
-	main {
+	div {
 		display: flex;
 		align-items: flex-start;
 		flex-wrap: wrap;

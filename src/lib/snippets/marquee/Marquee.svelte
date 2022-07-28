@@ -12,10 +12,12 @@
 		overflow: hidden;
 		max-width: var(--width);
 	}
+
 	div {
 		flex-shrink: 0;
 		animation: marquee linear infinite;
 	}
+
 	@keyframes marquee {
 		to {
 			transform: translateX(-100%)

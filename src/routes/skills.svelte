@@ -6,10 +6,10 @@
 	<ul>
 		<li>CSS / Tailwind</li>
 		<li>React / Next.js / Gatsby</li>
-		<li>Sanity</li>
-		<li>Shopify / Liquid</li>
-		<li>SEO</li>
 		<li>Svelte / SvelteKit</li>
+		<li>Sanity</li>
+		<li>SEO</li>
+		<li>Shopify / Liquid</li>
 		<li>Vue / Nuxt</li>
 	</ul>
 </Article>

@@ -1,7 +1,8 @@
-{displayedText.slice(0, progress)}<span />
+{displayedText.slice(0, progress)}<span class="caret" />
+<span hidden>{text}</span>
 
 <style>
-	span {
+	.caret {
 		pointer-events: none;
 		user-select: none;
 		display: inline-block;

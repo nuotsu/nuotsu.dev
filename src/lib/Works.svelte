@@ -14,6 +14,11 @@
 	import Section from './Section.svelte'
 
 	const works = [
+		{
+			title: 'nuotsu.dev',
+			url: 'https://npmjs.com/package/nuotsu.dev',
+			date: '2022-07-27'
+		},
 		{ url: 'https://shoheihomeground.netlify.app', date: '2022-07-26' },
 		{ url: 'https://vj-midi.netlify.app', date: '2022-07-18' },
 		{ url: 'https://djviz.netlify.app', date: '2022-07-03' },
