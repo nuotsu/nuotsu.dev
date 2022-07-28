@@ -6,7 +6,7 @@
 	<p>Mitchell <ruby>Kazumaru<rt>和丸</rt></ruby> Christ is the name.</p>
 	<p>I'm a frontend web dev based in SoCal.</p>
 	<p>I have a strong passion for architecting websites in modern CSS and JS.</p>
-	<p>Svelte-lover, Supra-driver.</p>
+	<p>Svelte-lover. Supra-driver.</p>
 
 	<Marquee>
 		<p class="emojis">

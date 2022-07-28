@@ -14,6 +14,8 @@
 	import Section from './Section.svelte'
 
 	const works = [
+		{ url: 'https://shoheihomeground.netlify.app', date: '2022-07-26' },
+		{ url: 'https://vj-midi.netlify.app', date: '2022-07-18' },
 		{ url: 'https://djviz.netlify.app', date: '2022-07-03' },
 		{
 			title: 'react-custom-hubspot-form',
