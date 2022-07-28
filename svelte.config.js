@@ -2,6 +2,7 @@ import adapter from '@sveltejs/adapter-netlify'
 import preprocess from 'svelte-preprocess'
 
 const packages = [
+	'index.js',
 	'snippets/marquee/Marquee.svelte',
 	'snippets/pipewriter/Pipewriter.svelte',
 ]
