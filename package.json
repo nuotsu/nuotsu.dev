@@ -1,6 +1,6 @@
 {
 	"name": "nuotsu.dev",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"repository": "https://github.com/nuotsu/nuotsu.dev.git",
 	"scripts": {
 		"dev": "vite dev",
