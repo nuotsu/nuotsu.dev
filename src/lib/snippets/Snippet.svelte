@@ -24,6 +24,12 @@
 	</div>
 </Article>
 
+<style>
+	div > :global(* + *) {
+		margin-top: 0.5em;
+	}
+</style>
+
 <script>
 	import Article from '$lib/Article.svelte'
 

@@ -21,6 +21,18 @@
 }
 
 @layer components {
+	.section {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1ch;
+	}
+
+	.section :is(h1, h2) {
+		padding-inline: 0.5ch;
+		text-transform: uppercase;
+		@apply bg-ink text-cream text-xs;
+	}
+
 	.link {
 		color: initial;
 
@@ -46,7 +58,7 @@
 	.demo {
 		max-width: max-content;
 
-		@apply outline-dashed outline-1 outline-ink/20;
+		@apply outline-dashed outline-1 outline-ink/20 empty:hidden;
 	}
 }
 

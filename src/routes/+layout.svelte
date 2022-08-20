@@ -30,6 +30,13 @@
 		display: grid;
 		gap: 1rem;
 	}
+
+	@screen <md {
+		main {
+			padding-top: 2rem;
+			@apply border-t border-dashed border-ink/20;
+		}
+	}
 </style>
 
 <script>
