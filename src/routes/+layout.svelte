@@ -30,8 +30,8 @@
 </style>
 
 <script>
-	import '../app.css'
 	import About from '$lib/About.svelte'
 	import Works from '$lib/Works.svelte'
 	import Snippets from '$lib/Snippets.svelte'
+	import '../app.css'
 </script>
