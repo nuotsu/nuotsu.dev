@@ -12,9 +12,9 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		outDir: 'build',
-		package: {
-			files: filepath => packages.includes(filepath)
-		}
+	},
+	package: {
+		files: filepath => packages.includes(filepath),
 	},
 	preprocess: [
 		preprocess({

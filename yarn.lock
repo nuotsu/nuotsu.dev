@@ -101,6 +101,16 @@
     chokidar "^3.5.3"
     sade "^1.8.1"
 
+"@sveltejs/package@^1.0.0-next.1":
+  version "1.0.0-next.1"
+  resolved "https://registry.yarnpkg.com/@sveltejs/package/-/package-1.0.0-next.1.tgz#6a724bc42a218dcc024e105fe370939b1eab754f"
+  integrity sha512-U8XBk6Cfy8MjKG41Uyo+fqBpdhu7xUSnhiCNoODRaAtWV02RZoLh+McXrsxEvqi/ycgymctlhJhssqDnD+E+FA==
+  dependencies:
+    chokidar "^3.5.3"
+    kleur "^4.1.4"
+    sade "^1.8.1"
+    svelte2tsx "~0.5.10"
+
 "@sveltejs/vite-plugin-svelte@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-1.0.1.tgz#7f468f03c933fcdfc60d4773671c73f33b9ef4d6"
@@ -727,7 +737,7 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
-kleur@^4.1.5:
+kleur@^4.1.4, kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
@@ -1221,6 +1231,14 @@ svelte2tsx@^0.5.13:
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.5.13.tgz#5c36a6510d7121e38afbe0d8ec4610992c39ad87"
   integrity sha512-JAwln2Gd6gQk8q/Qz91rk8msSqe4M2ABrku8YeDMsFnrqjPTWLnHYvxlXLAlHE5el1Q8sfExTePHF3xAZPh/mw==
+  dependencies:
+    dedent-js "^1.0.1"
+    pascal-case "^3.1.1"
+
+svelte2tsx@~0.5.10:
+  version "0.5.14"
+  resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.5.14.tgz#f22cb8dd349266b4125876fbce0fa4a314b678a8"
+  integrity sha512-/9hGkIUMVwZDJoERS6k1x+y6Ir+PpkxbL/UWQ2+RhK/PwUoIaDTCfw79/H1bgYNUTr/7ZaYanJGPuaWARNbbyQ==
   dependencies:
     dedent-js "^1.0.1"
     pascal-case "^3.1.1"
