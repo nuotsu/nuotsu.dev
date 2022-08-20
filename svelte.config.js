@@ -1,4 +1,5 @@
-import adapter from '@sveltejs/adapter-netlify'
+// import adapter from '@sveltejs/adapter-netlify'
+import adapter from '@sveltejs/adapter-auto'
 import preprocess from 'svelte-preprocess'
 
 const packages = [
@@ -13,14 +14,14 @@ const config = {
 		adapter: adapter(),
 		outDir: 'build',
 	},
-	package: {
-		files: filepath => packages.includes(filepath),
-	},
 	preprocess: [
 		preprocess({
 			postcss: true,
 		})
 	],
+	package: {
+		files: filepath => packages.includes(filepath),
+	},
 }
 
 export default config
