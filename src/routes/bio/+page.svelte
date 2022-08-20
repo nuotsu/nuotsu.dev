@@ -10,7 +10,7 @@
 
 	<Marquee>
 		<p class="emojis">
-			{#each '⚾️,🏂,🏎,⌨️,💽'.split(',') as emoji}
+			{#each '⚾️,🏂,🏎,⌨️'.split(',') as emoji}
 				<span>{emoji}</span>
 			{/each}
 		</p>

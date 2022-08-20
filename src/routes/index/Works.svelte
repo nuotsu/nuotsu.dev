@@ -2,7 +2,7 @@
 	<ul>
 		{#each works as { title, url, date }}
 			<li>
-				<a class="link" href={url} target="_blank" rel="noreferrer noopener">
+				<a class="link" href={url} target="_blank">
 					{title || url.replace(/^https?:\/\//, '')}
 				</a>
 			</li>
@@ -11,7 +11,7 @@
 </Section>
 
 <script>
-	import Section from './Section.svelte'
+	import Section from '$lib/Section.svelte'
 
 	const works = [
 		{

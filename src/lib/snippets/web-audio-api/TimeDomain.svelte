@@ -18,7 +18,7 @@
 		$analyzer.getByteTimeDomainData(dataArray)
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height)
-		ctx.fillStyle = '#fff'
+		ctx.fillStyle = 'transparent'
 		ctx.fillRect(0, 0, canvas.width, canvas.height)
 		ctx.lineWidth = 1
 		ctx.strokeStyle = '#000'

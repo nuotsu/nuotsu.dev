@@ -1,5 +1,8 @@
 <header>
-	<a href="/">nuotsu</a>
+	<a href="/">
+		nuotsu
+		<span class="text-ink/30">// Mitchell Kazumaru Christ</span>
+	</a>
 </header>
 
 <div>
@@ -30,8 +33,8 @@
 </style>
 
 <script>
-	import About from '$lib/About.svelte'
-	import Works from '$lib/Works.svelte'
-	import Snippets from '$lib/Snippets.svelte'
+	import About from './index/About.svelte'
+	import Works from './index/Works.svelte'
+	import Snippets from './index/Snippets.svelte'
 	import '../app.css'
 </script>

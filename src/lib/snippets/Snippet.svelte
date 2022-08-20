@@ -10,7 +10,8 @@
 
 		<slot></slot>
 
-		<p>
+		<p class="flex items-center">
+			<small>{'<'}</small>
 			<a
 				class="link"
 				href="https://github.com/nuotsu/nuotsu.dev/tree/master/src/lib/snippets/{ snippet.id }"
@@ -18,6 +19,7 @@
 			>
 				Source code
 			</a>
+			<small>{'/>'}</small>
 		</p>
 	</div>
 </Article>

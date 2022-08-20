@@ -4,22 +4,17 @@
 			{@const active = id === $page.params.id}
 
 			<li>
-				<a class="link" class:active href="/snippets/{id}">
+				<a class="link" href="/snippets/{id}">
 					{title}
 				</a>
+				{#if active}<span class="is-active" />{/if}
 			</li>
 		{/each}
 	</ul>
 </Section>
 
-<style>
-	.active {
-		font-weight: bold;
-	}
-</style>
-
 <script>
+	import Section from '$lib/Section.svelte'
+	import snippets from '$lib/snippets/all-snippets'
 	import { page } from '$app/stores'
-	import Section from './Section.svelte'
-	import snippets from './snippets/all-snippets'
 </script>

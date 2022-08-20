@@ -8,6 +8,7 @@
 	section {
 		display: grid;
 		grid-template-columns: auto 1fr;
+		gap: 0.5ch;
 	}
 </style>
 
