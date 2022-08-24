@@ -1,4 +1,4 @@
-{displayedText.slice(0, progress)}<span class="caret" />
+{displayedText.slice(0, progress)}<span class="caret {caretClass}" />
 <span hidden>{text}</span>
 
 <style>
@@ -6,9 +6,10 @@
 		pointer-events: none;
 		user-select: none;
 		display: inline-block;
+		height: 1em;
 		vertical-align: text-bottom;
-		height: 1.2em;
 		border-right: 1px solid;
+		translate: 0 -0.3ch;
 		animation: cursor 1s infinite;
 	}
 
@@ -20,6 +21,7 @@
 <script>
 	export let
 		text,
+		caretClass = '',
 		typeSpeed = 100,
 		backspaceSpeed = 50,
 		duration = 2000
