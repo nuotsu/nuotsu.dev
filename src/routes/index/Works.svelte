@@ -1,6 +1,6 @@
 <Section title="Works">
 	<ul>
-		{#each works as { title, url, date }}
+		{#each works as { title, url }}
 			<li>
 				<a class="link" href={url} target="_blank">
 					{title || url.replace(/^https?:\/\//, '')}
@@ -19,7 +19,9 @@
 			url: 'https://npmjs.com/package/nuotsu.dev',
 			date: '2022-07-27'
 		},
+		{ url: 'https://onepiece-api.netlify.app', date: '2022-09-25' },
 		{ url: 'https://shoheihomeground.com', date: '2022-07-26' },
+		{ url: 'https://website-insights.netlify.app', date: '2022-09-05' },
 		{ url: 'https://vj-midi.netlify.app', date: '2022-07-18' },
 		{ url: 'https://djviz.netlify.app', date: '2022-07-03' },
 		{
