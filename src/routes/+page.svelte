@@ -3,13 +3,27 @@
 <ul>
 	{#each works as work}
 		<li>
-			<LicensePlate {work} />
+			{#if work.plate}
+				<LicensePlate {work} />
+			{/if}
+
+			<a href={work.url} target="_blank" rel="noreferrer">
+				{work.title}
+			</a>
 		</li>
 	{/each}
 </ul>
 
+<style>
+	ul {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+		text-align: center;
+	}
+</style>
+
 <script>
-	import LicensePlate from '$lib/LicensePlate.svelte'
+	import LicensePlate from '$lib/LicensePlate/LicensePlate.svelte'
 
 	export let data
 

@@ -18,7 +18,7 @@ export default defineType({
 					{ title: '🇯🇵 Japan', value: 'jp' },
 				],
 			},
-			initialValue: 'us',
+			validation: Rule => Rule.required(),
 		}),
 		defineField({
 			name: 'region',
@@ -44,7 +44,7 @@ export default defineType({
 		defineField({
 			name: 'number',
 			type: 'string',
-			placeholder: '1ABC234 or 1234',
+			placeholder: '1ABC123 or 1234',
 			validation: Rule => Rule.min(2).max(7),
 		}),
 	],

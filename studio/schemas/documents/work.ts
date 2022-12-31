@@ -31,6 +31,7 @@ export default defineType({
 		defineField({
 			name: 'plate',
 			type: 'plate',
+			validation: Rule => Rule.required(),
 		})
 	],
 	orderings: [
