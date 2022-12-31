@@ -16,5 +16,9 @@
 		"tailwindcss": "^3.2.4",
 		"vite": "^4.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@sanity/client": "^3.4.1",
+		"groq": "^2.33.2"
+	}
 }

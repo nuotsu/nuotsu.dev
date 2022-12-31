@@ -23,6 +23,11 @@ export default defineType({
 			name: 'date',
 			type: 'date',
 		}),
+		defineField({
+			name: 'metaInfo',
+			type: 'metaInfo',
+			validation: Rule => Rule.required(),
+		}),
 	],
 	orderings: [
 		{
