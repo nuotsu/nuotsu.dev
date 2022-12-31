@@ -28,6 +28,10 @@ export default defineType({
 			type: 'metaInfo',
 			validation: Rule => Rule.required(),
 		}),
+		defineField({
+			name: 'plate',
+			type: 'plate',
+		})
 	],
 	orderings: [
 		{

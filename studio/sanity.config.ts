@@ -10,7 +10,17 @@ export default defineConfig({
 	projectId: 'bydcdjmg',
 	dataset: 'production',
 
-	plugins: [deskTool(), visionTool()],
+	plugins: [
+		deskTool({
+			structure: (S, context) =>
+				S.list()
+					.title('Content')
+					.items([
+						S.documentTypeListItem('work').title('Works').icon(() => '💼'),
+					])
+		}),
+		visionTool(),
+	],
 
 	schema: {
 		types: schemaTypes,

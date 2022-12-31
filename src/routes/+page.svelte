@@ -3,14 +3,14 @@
 <ul>
 	{#each works as work}
 		<li>
-			<a href={work.url} target="_blank" rel="noreferrer">
-				{work.title}
-			</a>
+			<LicensePlate {work} />
 		</li>
 	{/each}
 </ul>
 
 <script>
+	import LicensePlate from '$lib/LicensePlate.svelte'
+
 	export let data
 
 	const { works } = data

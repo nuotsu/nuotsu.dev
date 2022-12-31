@@ -1,8 +1,9 @@
 // documents
 import work from './documents/work'
-import metaInfo from './objects/metaInfo'
 
 // objects
+import metaInfo from './objects/metaInfo'
+import plate from './objects/plate'
 
 export const schemaTypes = [
 	// documents
@@ -10,4 +11,5 @@ export const schemaTypes = [
 
 	// objects
 	metaInfo,
+	plate,
 ]
