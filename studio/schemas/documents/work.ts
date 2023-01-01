@@ -4,6 +4,7 @@ export default defineType({
 	name: 'work',
 	title: 'Work',
 	type: 'document',
+	liveEdit: true,
 	fields: [
 		defineField({
 			name: 'title',

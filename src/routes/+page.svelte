@@ -18,12 +18,14 @@
 	ul {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+		gap: 1rem;
+		padding-inline: 1rem;
 		text-align: center;
 	}
 </style>
 
 <script>
-	import LicensePlate from '$lib/LicensePlate/LicensePlate.svelte'
+	import LicensePlate from '$lib/LicensePlate/Plate.svelte'
 
 	export let data
 

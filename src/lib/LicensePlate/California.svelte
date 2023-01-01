@@ -1,24 +1,49 @@
-<div>
-	<i>California</i>
+<div class="relative" data-type={plate.type}>
+	<em>California</em>
+
+	<Stickers {date} />
 </div>
 
-<div class="m-auto">
+<code data-type={plate.type}>
 	{number}
-</div>
+</code>
 
 <style>
-	i {
-		color: #fe0d00;
-		font-family: cursive;
+	em {
+		pointer-events: none;
+		position: absolute;
+		inset: 0 0 auto;
 	}
 
-	div {
+	code {
+		flex-grow: 1;
+		display: grid;
+		place-content: center;
 		color: #1f2a64;
+		font-size: 3.8em;
+		@apply font-dealerplate;
+	}
+
+	[data-type="ca"] em {
+		color: #fe0d00;
+		font-size: 1.6em;
+		@apply font-california;
+	}
+
+	[data-type="ca-legacy"] {
+		background-color: #000;
+		color: #f1c839;
+	}
+
+	[data-type="ca-legacy"] em {
+		text-transform: uppercase;
+		@apply not-italic;
 	}
 </style>
 
 <script>
 	import moment from 'moment'
+	import Stickers from './Stickers.svelte'
 
 	export let work
 

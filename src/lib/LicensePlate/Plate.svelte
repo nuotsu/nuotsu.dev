@@ -1,4 +1,4 @@
-<figure data-plate={work.plate.type}>
+<figure>
 	{#if work.plate.type.includes('jp')}
 		<Japan {work} />
 	{:else}
@@ -10,11 +10,12 @@
 	figure {
 		display: flex;
 		flex-direction: column;
-		aspect-ratio: 2;
-		max-width: 12em;
+		aspect-ratio: 1.8;
+		margin: auto;
 		text-align: center;
+		overflow: hidden;
 
-		@apply rounded shadow;
+		@apply bg-white rounded-lg shadow-lg;
 	}
 </style>
 

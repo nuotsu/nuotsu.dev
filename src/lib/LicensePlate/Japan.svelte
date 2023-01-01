@@ -1,12 +1,18 @@
-<div>{plate.region || '横浜'} {plate.class || 100}</div>
+<code>
+	<span class="font-mplus">{plate.region || '横浜'}</span>
+	<span class="font-trm mt-[.3ch]">{plate.class || 100}</span>
+</code>
 
-<div class="m-auto">
-	<small>{plate.prefix || 'あ'}</small>
-	{number}
-</div>
+<code class="m-auto">
+	<small class="font-shippori text-[1.2em]">{plate.prefix || 'あ'}</small>
+	<span class="font-trm text-[4em] leading-[0]">{number}</span>
+</code>
 
 <style>
-	div {
+	code {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		color: #094500;
 	}
 </style>
