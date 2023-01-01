@@ -6,6 +6,22 @@
 
 @layer base {
 	html {
-		background-color: #f7f7f7;
+		@apply bg-paper;
+	}
+}
+
+@layer components {
+	._h {
+		font-weight: bold;
+	}
+	.h2 { @apply _h text-xl; }
+
+	.link {
+		text-decoration: dashed underline;
+		@apply hover:decoration-solid;
+	}
+
+	.section {
+		@apply max-w-screen-xl mx-auto px-4 my-4;
 	}
 }

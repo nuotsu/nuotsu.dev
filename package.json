@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@sanity/client": "^3.4.1",
 		"groq": "^2.33.2",
-		"moment": "^2.29.4"
+		"moment": "^2.29.4",
+		"vanilla-tilt": "^1.8.0"
 	}
 }

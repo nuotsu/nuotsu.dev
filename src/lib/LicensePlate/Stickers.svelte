@@ -1,6 +1,6 @@
 <time datetime={date}>
 	<span class="sticker month">{moment(date).format('MMM')}</span>
-	<span class="sticker year">{moment(date).format('Y')}</span>
+	<span class="sticker year" data-year={year}>{year}</span>
 </time>
 
 <style>
@@ -24,13 +24,18 @@
 	}
 
 	.year {
-		background-color: #40b997;
 		@apply text-black/70;
 	}
+
+	[data-year="2023"] { background-color: #e45a02; }
+	[data-year="2022"] { background-color: #40b997; }
+	[data-year="2021"] { background-color: #bb3d28; }
 </style>
 
 <script>
 	import moment from 'moment'
 
 	export let date
+
+	const year = moment(date).format('YYYY')
 </script>

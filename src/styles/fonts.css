@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Shippori+Antique+B1&display=swap');
 
 @font-face {
+	font-family: 'Dealerplate';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/Dealerplate.ttf') format('truetype');
+}
+
+@font-face {
 	font-family: 'Rage Italic';
 	font-style: normal;
 	font-weight: 400;
@@ -9,11 +17,11 @@
 }
 
 @font-face {
-	font-family: 'Dealerplate';
+	font-family: 'Plat Nomor';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url('/fonts/Dealerplate.ttf') format('truetype');
+	src: url('/fonts/PlatNomor.ttf') format('truetype');
 }
 
 @font-face {
