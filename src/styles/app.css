@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		@apply bg-ink text-white;
+	}
+}
+
+@layer components {
+	.action {
+		padding: .25em 1em;
+		leading-trim: both;
+		@apply bg-accent rounded-full;
+	}
+	.action:hover:not(:active) {
+		filter: brightness(1.25);
+	}
+}
