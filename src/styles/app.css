@@ -10,6 +10,7 @@
 
 @layer components {
 	.action {
+		user-select: none;
 		padding: .25em 1em;
 		leading-trim: both;
 		@apply bg-accent rounded-full;
