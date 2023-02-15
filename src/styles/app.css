@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+	::selection {
+		@apply bg-accent text-white;
+	}
+
 	body {
 		@apply bg-ink text-white;
 	}
