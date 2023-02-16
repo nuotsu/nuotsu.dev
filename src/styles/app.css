@@ -20,6 +20,6 @@
 		@apply bg-accent rounded-full;
 	}
 	.action:hover:not(:active) {
-		filter: brightness(1.25);
+		filter: brightness(1.1);
 	}
 }

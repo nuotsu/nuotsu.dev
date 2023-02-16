@@ -1,38 +1,13 @@
 <section class="grid gap-4 place-content-center">
 	<span class="text-7xl select-none">🧢</span>
 	<h1>I make websites.</h1>
-	<p>
-		<button class="action" on:click={onclick}>Nice 👍</button>
-		<output>x{$reactions.count}</output>
+	<p class="bg-accent/50 rounded-full max-w-max flex items-center">
+		<NiceButton/>
+		<NiceCount/>
 	</p>
 </section>
 
 <script>
-	import supabase from '@/lib/supabase'
-	import { onMount } from 'svelte'
-	import { reactions } from '@/lib/store'
-
-	async function onclick() {
-		await supabase
-			.from('reactions')
-			.update({ count: $reactions.count + 1 })
-			.eq('name', $reactions.name)
-	}
-
-	onMount(() => {
-		const subscription = supabase
-			.channel('any')
-			.on(
-				'postgres_changes',
-				{ event: 'UPDATE', schema: 'public', table: 'reactions' },
-				payload => {
-					$reactions = payload.new
-				}
-			)
-			.subscribe()
-
-		return () => {
-			subscription.unsubscribe()
-		}
-	})
+	import NiceButton from '@/lib/NiceButton.svelte'
+	import NiceCount from '@/lib/NiceCount.svelte'
 </script>

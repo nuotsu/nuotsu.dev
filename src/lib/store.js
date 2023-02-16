@@ -6,4 +6,7 @@ const { data } = await supabase
 	.select('name, count')
 	.eq('name', 'website')
 
-export const reactions = writable(data[0])
+export const reactions = writable({
+	loading: false,
+	...data[0]
+})
