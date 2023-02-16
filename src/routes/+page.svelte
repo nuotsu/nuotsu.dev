@@ -3,23 +3,20 @@
 	<h1>I make websites.</h1>
 	<p>
 		<button class="action" on:click={onclick}>Nice 👍</button>
-		<output>x{reactions.count}</output>
+		<output>x{$reactions.count}</output>
 	</p>
 </section>
 
 <script>
 	import supabase from '@/lib/supabase'
 	import { onMount } from 'svelte'
-
-	export let data
-
-	$: ({ reactions } = data)
+	import { reactions } from '@/lib/store'
 
 	async function onclick() {
 		await supabase
 			.from('reactions')
-			.update({ count: reactions.count + 1 })
-			.eq('name', reactions.name)
+			.update({ count: $reactions.count + 1 })
+			.eq('name', $reactions.name)
 	}
 
 	onMount(() => {
@@ -29,7 +26,7 @@
 				'postgres_changes',
 				{ event: 'UPDATE', schema: 'public', table: 'reactions' },
 				payload => {
-					reactions = payload.new
+					$reactions = payload.new
 				}
 			)
 			.subscribe()
