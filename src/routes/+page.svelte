@@ -1,7 +1,8 @@
 <section class="grid gap-4 place-content-center">
 	<span class="text-7xl select-none">🧢</span>
 	<h1>I make websites.</h1>
-	<p class="bg-accent/50 rounded-full max-w-max flex items-center">
+
+	<p class="bg-accent/50 rounded-full max-w-max mx-auto flex items-center">
 		<NiceButton/>
 		<NiceCount/>
 	</p>

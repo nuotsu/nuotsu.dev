@@ -1,12 +1,13 @@
 import { writable } from 'svelte/store'
 import supabase from './supabase'
 
-const { data } = await supabase
-	.from('reactions')
-	.select('name, count')
-	.eq('name', 'website')
+export async function getReactions() {
+	const { data } = await supabase
+		.from('reactions')
+		.select('name, count')
+		.eq('name', 'website')
 
-export const reactions = writable({
-	loading: false,
-	...data[0]
-})
+	reactions.set({ loading: false, ...data[0] })
+}
+
+export const reactions = writable({ loading: false })

@@ -1,16 +1,23 @@
-<button
-	class="action disabled:cursor-wait"
-	on:click={onclick}
-	disabled={$reactions.loading}
->
-	Nice
-	{#key $reactions.count}
-		<span class="inline-block">👍</span>
-	{/key}
-</button>
+{#await getReactions()}
+	<span class="action">
+		Nice 👍
+	</span>
+{:then}
+	<button
+		class="relative z-[1] action disabled:cursor-wait"
+		on:click={onclick}
+		disabled={$reactions.loading}
+	>
+		Nice
+		{#key $reactions.count}
+			<span class="emoji">👍</span>
+		{/key}
+	</button>
+{/await}
 
 <style>
-	span {
+	.emoji {
+		display: inline-block;
 		transform-origin: bottom left;
 		animation: nice .2s ease-in-out forwards;
 	}
@@ -25,7 +32,7 @@
 
 <script>
 	import supabase from '@/lib/supabase'
-	import { reactions } from '@/lib/store'
+	import { getReactions, reactions } from '@/lib/store'
 
 	async function onclick() {
 		$reactions.loading = true

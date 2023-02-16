@@ -1,10 +1,16 @@
-<output class="select-none px-[1em]">
-	{#each count.split('') as digit, i ([i,digit].join(','))}
-		<span class="inline-block">{digit}</span>
-	{/each}
+<output class="select-none">
+	{#await getReactions() then}
+		{#each count.split('') as digit, i ([i,digit].join(','))}
+			<span class="inline-block">{digit}</span>
+		{/each}
+	{/await}
 </output>
 
 <style>
+	output {
+		padding-inline: .75em 1em;
+	}
+
 	span {
 		animation: count .2s ease-in-out forwards;
 	}
@@ -19,7 +25,7 @@
 
 <script>
 	import supabase from '@/lib/supabase'
-	import { reactions } from '@/lib/store'
+	import { getReactions, reactions } from '@/lib/store'
 	import { onMount } from 'svelte'
 
 	const { format } = new Intl.NumberFormat('en-US', {})
