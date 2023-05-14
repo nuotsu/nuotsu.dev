@@ -1,25 +1,18 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
 	::selection {
-		@apply bg-accent text-white;
+		background-color: var(--accent);
 	}
 
 	body {
-		@apply bg-ink text-white;
-	}
-}
+		accent-color: var(--accent);
+		caret-color: var(--accent);
 
-@layer components {
-	.action {
-		user-select: none;
-		padding: .25em 1em;
-		leading-trim: both;
-		@apply bg-accent rounded-full;
-	}
-	.action:hover:not(:active) {
-		filter: brightness(1.1);
+		@apply dark:bg-black dark:text-white;
 	}
 }

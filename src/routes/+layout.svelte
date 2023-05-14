@@ -1,16 +1,13 @@
-<main class="grid grid-rows-[1fr,auto] gap-4 text-center">
-	<slot></slot>
+<svelte:head>
+	<title>Mitchell Christ — Web Developer</title>
+	<meta
+		name="description"
+		content="A fullstack web developer with focus on building scalable websites using modern technologies including Next.js, SvelteKit, and Tailwind CSS."
+	>
+</svelte:head>
 
-	<ExternalLinks/>
-</main>
+<slot></slot>
 
-<style>
-	main {
-		min-height: 100svh;
-	}
-</style>
-
-<script>
-	import ExternalLinks from '@/lib/ExternalLinks.svelte'
-	import '@/styles/app.css'
+<script lang="ts">
+	import '../styles/app.css'
 </script>

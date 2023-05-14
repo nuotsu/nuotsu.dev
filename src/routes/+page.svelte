@@ -1,14 +1,12 @@
-<section class="grid gap-4 place-content-center">
-	<span class="text-7xl select-none">🧢</span>
-	<h1>I make websites.</h1>
+<header class="sticky top-0 z-[1] flex flex-wrap items-center justify-center gap-[1ch] p-4">
+	<Color/>
 
-	<p class="bg-accent/50 rounded-full max-w-max mx-auto flex items-center">
-		<NiceButton/>
-		<NiceCount/>
-	</p>
-</section>
+	<h1>Mitchell Kazumaru Christ / nuotsu</h1>
+</header>
 
-<script>
-	import NiceButton from '@/lib/NiceButton.svelte'
-	import NiceCount from '@/lib/NiceCount.svelte'
+<Skills/>
+
+<script lang="ts">
+	import Color from '$lib/Color.svelte'
+	import Skills from '$lib/Skills.svelte'
 </script>
