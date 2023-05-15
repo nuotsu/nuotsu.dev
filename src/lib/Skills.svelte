@@ -1,5 +1,5 @@
 <section class="p-4">
-	<ul class="flex flex-wrap gap-4 justify-center">
+	<ul class="flex flex-wrap gap-x-4 gap-y-2 justify-center">
 		{#each skills as skill}
 			<li class="transition-all">{skill}</li>
 		{/each}
