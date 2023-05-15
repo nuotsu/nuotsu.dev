@@ -1,4 +1,4 @@
-<section class="p-4">
+<section class="p-4 my-auto">
 	<ul class="flex flex-wrap gap-x-4 gap-y-2 justify-center">
 		{#each skills as skill}
 			<li class="transition-all">{skill}</li>
@@ -21,7 +21,7 @@
 		'Tailwind',
 		'Sanity',
 		'Shopify',
-		'Netlify',
 		'Vercel',
+		'Netlify',
 	]
 </script>

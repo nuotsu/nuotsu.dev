@@ -6,7 +6,9 @@
 	>
 </svelte:head>
 
-<slot></slot>
+<main class="grid min-h-[100dvh]">
+	<slot></slot>
+</main>
 
 <script lang="ts">
 	import '../styles/app.css'
