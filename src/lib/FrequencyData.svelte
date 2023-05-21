@@ -18,6 +18,7 @@
 <Fader label="Max (dB)" min={-150} max={0} bind:value={maxDecibels} />
 <Fader label="Min (dB)" min={-1000} max={0} bind:value={minDecibels} />
 <Fader label="offset" min={height * -1} max={height} bind:value={offset} />
+<Fader label="height" max={400} bind:value={height} />
 
 <script lang="ts">
 	import { analyzer } from '$lib/AudioAnalyzer.svelte'
@@ -26,14 +27,15 @@
 	import Fader from './Fader.svelte'
 
 	let bars: number[] = []
-	const height = 255
 
-	let smoothingTimeConstant = 0.8
-	let fftSizeIndex = 5
+	export let smoothingTimeConstant = 0.8,
+		fftSizeIndex = 6,
+		maxDecibels = -30,
+		minDecibels = -100,
+		offset = 0,
+		height = 255
+
 	$: fftSize = fftSizes[fftSizeIndex]
-	let maxDecibels = -30
-	let minDecibels = -350
-	let offset = 0
 
 	let interval = setInterval(() => {
 		if (!$analyzer) return []

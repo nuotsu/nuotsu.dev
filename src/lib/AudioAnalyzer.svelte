@@ -1,19 +1,33 @@
 {#if typeof navigator !== 'undefined' && ('mediaDevices' in navigator)}
-	{#await navigator.mediaDevices.getUserMedia({ audio: true })}
-		Getting audio permissions...
+	{#if !autoRequest && !stream?.active}
+		<button on:click={() => requesting = true}>
+			Start visualizer
+		</button>
+	{/if}
 
-	{:then stream}
-		<audio use:setStream={stream} autoplay crossorigin="anonymous" hidden />
-
+	{#await requestAudio()}
+		Requesting audio permissions...
+	{:then}
+		<audio use:setStream autoplay muted crossorigin="anonymous" hidden />
 		<slot></slot>
-
 	{/await}
 {:else}
-	<p>Audio not supported</p>
+	<slot name="unsupported"></slot>
 {/if}
 
 <script lang="ts">
-	function setStream(node: HTMLAudioElement, stream: MediaStream) {
+	export let autoRequest = false
+
+	$: requesting = autoRequest
+
+	let stream: MediaStream | null = null
+
+	$: requestAudio = async () => {
+		if (!requesting) return
+		stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+	}
+
+	function setStream(node: HTMLAudioElement) {
 		if (!node || !stream) return
 
 		node.srcObject = stream

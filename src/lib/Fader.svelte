@@ -1,5 +1,6 @@
-<label for={label} on:dblclick={dblclick}>
+<label class="grid items-center px-2 gap-2" for={label} on:dblclick={dblclick}>
 	<input
+		class="w-full"
 		id={label}
 		{min} {max}
 		bind:value
@@ -7,7 +8,7 @@
 		{...$$props}
 	/>
 
-	<span class="grid grid-cols-[1fr,auto]">
+	<span class="grid grid-cols-[1fr,auto] gap-2">
 		{label}
 		<output>{output || value}</output>
 	</span>
@@ -15,13 +16,7 @@
 
 <style>
 	label {
-		display: grid;
 		grid-template-columns: 1fr 8em;
-		align-items: center;
-	}
-
-	input {
-		width: 100%;
 	}
 </style>
 
