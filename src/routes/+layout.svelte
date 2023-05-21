@@ -6,7 +6,7 @@
 	>
 </svelte:head>
 
-<main class="grid min-h-[100dvh]">
+<main>
 	<slot></slot>
 </main>
 

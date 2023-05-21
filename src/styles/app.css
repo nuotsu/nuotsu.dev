@@ -1,29 +1,5 @@
-@import './fonts.css';
+/* @import './fonts.css'; */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-	::selection {
-		background-color: var(--accent);
-	}
-
-	body {
-		accent-color: var(--accent);
-		caret-color: var(--accent);
-
-		@apply dark:bg-black dark:text-white;
-	}
-}
-
-@layer components {
-	.link {
-		@apply transition-all;
-	}
-
-	.link:hover {
-		font-weight: 900;
-		color: var(--accent);
-	}
-}
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
