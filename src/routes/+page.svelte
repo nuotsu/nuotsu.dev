@@ -1,5 +1,14 @@
 <h1>Mitchell Kazumaru Christ / nuotsu</h1>
 
+<AudioAnalyzer>
+	<FrequencyData
+		fftSizeIndex={6}
+		minDecibels={-250}
+		offset={-45}
+		height={200}
+	/>
+</AudioAnalyzer>
+
 <ul>
 	{#each skills as skill}
 		<li>{skill}</li>
@@ -13,6 +22,9 @@
 </ul>
 
 <script>
+	import AudioAnalyzer from "$lib/AudioAnalyzer.svelte"
+	import FrequencyData from "$lib/FrequencyData.svelte"
+
 	const skills = [
 		'Next.js',
 		'SvelteKit',

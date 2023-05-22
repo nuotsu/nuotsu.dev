@@ -1,19 +1,21 @@
-{#if typeof navigator !== 'undefined' && ('mediaDevices' in navigator)}
-	{#if !autoRequest && !stream?.active}
-		<button on:click={() => requesting = true}>
-			Start visualizer
-		</button>
-	{/if}
+<figure class="relative">
+	{#if typeof navigator !== 'undefined' && ('mediaDevices' in navigator)}
+		{#if !autoRequest && !stream?.active}
+			<button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" on:click={() => requesting = true}>
+				Start visualizer
+			</button>
+		{/if}
 
-	{#await requestAudio()}
-		Requesting audio permissions...
-	{:then}
-		<audio use:setStream autoplay muted crossorigin="anonymous" hidden />
-		<slot></slot>
-	{/await}
-{:else}
-	<slot name="unsupported"></slot>
-{/if}
+		{#await requestAudio()}
+			Requesting audio permissions...
+		{:then}
+			<audio use:setStream autoplay muted crossorigin="anonymous" hidden />
+			<slot></slot>
+		{/await}
+	{:else}
+		<slot name="unsupported"></slot>
+	{/if}
+</figure>
 
 <script lang="ts">
 	export let autoRequest = false
