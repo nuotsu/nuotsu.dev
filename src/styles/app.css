@@ -3,7 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		accent-color: #000;
+	summary {
+		display: block;
+	}
+
+	::-webkit-details-marker {
+		display: none;
+	}
+}
+
+@layer components {
+	._btn {
+		padding: .25em 1em;
+	}
+
+	.action {
+		@apply _btn bg-black text-white dark:bg-white dark:text-black;
 	}
 }
