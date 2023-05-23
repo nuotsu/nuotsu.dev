@@ -1,26 +1,23 @@
-<AudioAnalyzer {analyzer} {autoRequest}>
-	<details open={controls}>
-		<summary class="overflow-x-auto">
-			<svg
-				class={svgClassName}
-				style:min-width={fftSize / 2}
-				width={fftSize / 2}
-				height={height}
-				viewBox="0 0 {fftSize / 2} {height}"
-				preserveAspectRatio={scale ? 'xMidYMin slice' : null}
-			>
-				<polyline points={points} fill="none" stroke="currentColor" />
-			</svg>
-		</summary>
+<AudioAnalyzer {analyzer} {open}>
+	<svg
+		slot="visualizer"
+		class={svgClassName}
+		style:min-width={fftSize / 2}
+		width={fftSize / 2}
+		height={height}
+		viewBox="0 0 {fftSize / 2} {height}"
+		preserveAspectRatio={scale ? 'xMidYMin slice' : null}
+	>
+		<polyline points={points} fill="none" stroke="currentColor" />
+	</svg>
 
-		<Toggle label="Scale" bind:checked={scale} />
-		<Fader label="FFT" max={fftSizes.length - 1} bind:value={fftSizeIndex} output={fftSize} />
-		{#if scale}
-			<Fader label="Offset" min={height * -1} max={height} bind:value={offset} />
-		{/if}
-		<Fader label="Height" max={1000} bind:value={height} />
-		<Fader label="Factor" min={0.05} max={10} bind:value={factor} step={0.05} />
-	</details>
+	<Toggle label="Scale" bind:checked={scale} />
+	<Fader label="FFT" max={fftSizes.length - 1} bind:value={fftSizeIndex} output={fftSize} />
+	{#if scale}
+		<Fader label="Offset" min={height * -1} max={height} bind:value={offset} />
+	{/if}
+	<Fader label="Height" max={1000} bind:value={height} />
+	<Fader label="Factor" min={0.05} max={10} bind:value={factor} step={0.05} />
 </AudioAnalyzer>
 
 <script lang="ts">
@@ -33,11 +30,8 @@
 
 	export let
 		analyzer: AudioAnalysis.Analyzer = writable(null),
-		autoRequest: boolean = false
-
-	export let
 		svgClassName: string | null = null,
-		controls: boolean = false,
+		open: boolean = false,
 		scale: boolean = false,
 		fftSizeIndex = 6,
 		height = 255,

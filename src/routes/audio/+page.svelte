@@ -1,14 +1,10 @@
 <FrequencyData
-	autoRequest
-	controls
-	fftSizeIndex={5}
 	minDecibels={-350}
+	offset={-100}
+	open
 />
 
-<TimeDomainData
-	autoRequest
-	controls
-/>
+<TimeDomainData open />
 
 <script lang="ts">
 	import FrequencyData from '$lib/FrequencyData.svelte'

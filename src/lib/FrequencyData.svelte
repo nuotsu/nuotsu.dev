@@ -1,25 +1,22 @@
-<AudioAnalyzer {analyzer} {autoRequest}>
-	<details open={controls}>
-		<summary class="overflow-x-auto">
-			<svg
-				class={svgClassName}
-				style:min-width={fftSize / 2}
-				width={fftSize/2}
-				height={height}
-				viewBox="0 0 {fftSize / 2} {height}"
-				preserveAspectRatio="xMidYMin slice"
-			>
-				<polyline points={points} fill="none" stroke="currentColor" />
-			</svg>
-		</summary>
+<AudioAnalyzer {analyzer} {open}>
+	<svg
+		slot="visualizer"
+		class={svgClassName}
+		style:min-width={fftSize / 2}
+		width={fftSize/2}
+		height={height}
+		viewBox="0 0 {fftSize / 2} {height}"
+		preserveAspectRatio="xMidYMin slice"
+	>
+		<polyline points={points} fill="none" stroke="currentColor" />
+	</svg>
 
-		<Fader label="Smoothing" max={1} bind:value={smoothingTimeConstant} step={0.01} />
-		<Fader label="FFT" max={fftSizes.length - 1} bind:value={fftSizeIndex} output={fftSize} />
-		<Fader label="Max (dB)" min={-150} max={0} bind:value={maxDecibels} />
-		<Fader label="Min (dB)" min={-1000} max={0} bind:value={minDecibels} />
-		<Fader label="Offset" min={height * -1} max={height} bind:value={offset} />
-		<Fader label="Height" max={400} bind:value={height} />
-	</details>
+	<Fader label="Smoothing" max={1} bind:value={smoothingTimeConstant} step={0.01} />
+	<Fader label="FFT" max={fftSizes.length - 1} bind:value={fftSizeIndex} output={fftSize} />
+	<Fader label="Max (dB)" min={-150} max={0} bind:value={maxDecibels} />
+	<Fader label="Min (dB)" min={-1000} max={0} bind:value={minDecibels} />
+	<Fader label="Offset" min={height * -1} max={height} bind:value={offset} />
+	<Fader label="Height" max={400} bind:value={height} />
 </AudioAnalyzer>
 
 <script lang="ts">
@@ -31,11 +28,8 @@
 
 	export let
 		analyzer: AudioAnalysis.Analyzer = writable(null),
-		autoRequest: boolean = false
-
-	export let
 		svgClassName: string | null = null,
-		controls = false,
+		open = false,
 		smoothingTimeConstant = 0.8,
 		fftSizeIndex = 6,
 		maxDecibels = -30,
