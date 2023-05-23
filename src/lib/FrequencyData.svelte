@@ -1,46 +1,49 @@
-<details open={controls}>
-	<summary class="block overflow-x-auto">
-		<svg
-			class="w-full"
-			style:min-width={fftSize / 2}
-			width={fftSize/2}
-			height={height}
-			viewBox="0 0 {fftSize / 2} {height}"
-			preserveAspectRatio="xMidYMin slice"
-		>
-			<polyline points={points} fill="none" stroke="currentColor" />
-		</svg>
-	</summary>
+<AudioAnalyzer {analyzer} {autoRequest}>
+	<details open={controls}>
+		<summary class="overflow-x-auto">
+			<svg
+				class={svgClassName}
+				style:min-width={fftSize / 2}
+				width={fftSize/2}
+				height={height}
+				viewBox="0 0 {fftSize / 2} {height}"
+				preserveAspectRatio="xMidYMin slice"
+			>
+				<polyline points={points} fill="none" stroke="currentColor" />
+			</svg>
+		</summary>
 
-	<Fader label="Smoothing" max={1} bind:value={smoothingTimeConstant} step={0.01} />
-	<Fader label="FFT" max={fftSizes.length - 1} bind:value={fftSizeIndex} output={fftSize} />
-	<Fader label="Max (dB)" min={-150} max={0} bind:value={maxDecibels} />
-	<Fader label="Min (dB)" min={-1000} max={0} bind:value={minDecibels} />
-	<Fader label="Offset" min={height * -1} max={height} bind:value={offset} />
-	<Fader label="Height" max={400} bind:value={height} />
-</details>
-
-<style>
-	summary::-webkit-details-marker {
-		display: none;
-	}
-</style>
+		<Fader label="Smoothing" max={1} bind:value={smoothingTimeConstant} step={0.01} />
+		<Fader label="FFT" max={fftSizes.length - 1} bind:value={fftSizeIndex} output={fftSize} />
+		<Fader label="Max (dB)" min={-150} max={0} bind:value={maxDecibels} />
+		<Fader label="Min (dB)" min={-1000} max={0} bind:value={minDecibels} />
+		<Fader label="Offset" min={height * -1} max={height} bind:value={offset} />
+		<Fader label="Height" max={400} bind:value={height} />
+	</details>
+</AudioAnalyzer>
 
 <script lang="ts">
-	import { analyzer } from './AudioAnalyzer.svelte'
+	import AudioAnalyzer from './AudioAnalyzer.svelte'
+	import Fader from './Fader.svelte'
 	import { fftSizes } from '$types/AudioAnalysis'
 	import { onMount } from 'svelte'
-	import Fader from './Fader.svelte'
+	import { writable } from 'svelte/store'
 
-	let data: number[] = []
+	export let
+		analyzer: AudioAnalysis.Analyzer = writable(null),
+		autoRequest: boolean = false
 
-	export let smoothingTimeConstant = 0.8,
+	export let
+		svgClassName: string | null = null,
+		controls = false,
+		smoothingTimeConstant = 0.8,
 		fftSizeIndex = 6,
 		maxDecibels = -30,
 		minDecibels = -100,
 		offset = 0,
-		height = 255,
-		controls = false
+		height = 255
+
+	let data: number[] = []
 
 	$: fftSize = fftSizes[fftSizeIndex]
 

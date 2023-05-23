@@ -1,7 +1,10 @@
 <figure class="relative">
 	{#if typeof navigator !== 'undefined' && ('mediaDevices' in navigator)}
 		{#if !autoRequest && !stream?.active}
-			<button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" on:click={() => requesting = true}>
+			<button
+				class="action absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+				on:click={() => requesting = true}
+			>
 				Start visualizer
 			</button>
 		{/if}
@@ -12,13 +15,18 @@
 			<audio use:setStream autoplay muted crossorigin="anonymous" hidden />
 			<slot></slot>
 		{/await}
+
 	{:else}
-		<slot name="unsupported"></slot>
+		<slot name="unsupported">
+			<p>Audio not supported</p>
+		</slot>
 	{/if}
 </figure>
 
 <script lang="ts">
-	export let autoRequest = false
+	export let
+		autoRequest = false,
+		analyzer: AudioAnalysis.Analyzer
 
 	$: requesting = autoRequest
 
@@ -54,10 +62,4 @@
 			},
 		}
 	}
-</script>
-
-<script context="module" lang="ts">
-	import { writable } from 'svelte/store'
-
-	export const analyzer = writable<AnalyserNode | null>(null)
 </script>
