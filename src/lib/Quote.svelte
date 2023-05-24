@@ -24,6 +24,10 @@
 </figure>
 
 <style>
+	p {
+		text-wrap: balance;
+	}
+
 	q {
 		quotes: "“" "”" "‘" "’";
 	}
