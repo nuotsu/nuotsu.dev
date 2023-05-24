@@ -1,4 +1,4 @@
-<AudioAnalyzer {analyzer} {open}>
+<AudioAnalyzer {analyzer} {open} {controls}>
 	<svg
 		slot="visualizer"
 		class={svgClassName}
@@ -32,6 +32,7 @@
 		analyzer: AudioAnalysis.Analyzer = writable(null),
 		svgClassName: string | null = null,
 		open: boolean = false,
+		controls: boolean = true,
 		scale: boolean = false,
 		fftSizeIndex = 6,
 		height = 255,

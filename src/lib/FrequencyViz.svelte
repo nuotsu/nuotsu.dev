@@ -1,4 +1,4 @@
-<AudioAnalyzer {analyzer} {open}>
+<AudioAnalyzer {analyzer} {open} {controls}>
 	<svg
 		slot="visualizer"
 		class={svgClassName}
@@ -28,8 +28,9 @@
 
 	export let
 		analyzer: AudioAnalysis.Analyzer = writable(null),
-		svgClassName: string | null = null,
+		svgClassName: string | undefined = undefined,
 		open = false,
+		controls = true,
 		smoothingTimeConstant = 0.8,
 		fftSizeIndex = 6,
 		maxDecibels = -30,

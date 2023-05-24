@@ -5,15 +5,23 @@
 		{:then stream}
 			<audio use:setStream={stream} autoplay muted crossorigin="anonymous" hidden />
 
-			<details {open}>
-				<summary class="overflow-x-auto">
-					<slot name="visualizer"></slot>
-				</summary>
+			{#if controls}
+				<details {open}>
+					<summary class="overflow-x-auto">
+						<slot name="visualizer"></slot>
+					</summary>
 
-				<div class="py-2 mx-4 border-[2.5px] border-dotted">
-					<slot></slot>
+					<div class="controls max-w-screen-xl mx-auto px-4">
+						<div class="py-2 border border-accent border-dotted">
+							<slot></slot>
+						</div>
+					</div>
+				</details>
+			{:else}
+				<div class="overflow-x-auto">
+					<slot name="visualizer"></slot>
 				</div>
-			</details>
+			{/if}
 		{/await}
 
 	{:else}
@@ -21,10 +29,28 @@
 	{/if}
 </figure>
 
+<style>
+	.controls::before {
+		content: '';
+		pointer-events: none;
+		position: relative;
+		display: block;
+		margin: 0 auto -.5em;
+		width: 1em;
+		aspect-ratio: 1;
+		border: 1px dotted turquoise;
+		border-right: none;
+		border-bottom: none;
+		background: black;
+		rotate: 45deg;
+	}
+</style>
+
 <script lang="ts">
 	export let
 		analyzer: AudioAnalysis.Analyzer,
-		open: boolean = false
+		open = false,
+		controls = true
 
 	function setStream(node: HTMLAudioElement, stream: MediaStream | null) {
 		if (!node || !stream) return

@@ -3,8 +3,11 @@ export default {
 	content: ['./src/**/*.{html,svelte}'],
 	theme: {
 		extend: {
+			colors: {
+				accent: 'turquoise',
+			},
 			fontFamily: {
-				sans: `"Wix", sans-serif`,
+				sans: `"Space Grotesk", sans-serif`,
 			}
 		},
 	},

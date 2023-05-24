@@ -7,7 +7,7 @@
 </svelte:head>
 
 <header class="p-4 text-center">
-	<h1>Mitchell Kazumaru Christ / nuotsu</h1>
+	<h1>Mitchell Kazumaru Christ <span class="OR">||</span> nuotsu</h1>
 </header>
 
 <main>

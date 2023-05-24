@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,11 +28,16 @@
 		text-decoration: underline;
 		text-decoration-style: wavy;
 		text-decoration-thickness: .5px;
+		text-decoration-color: turquoise;
 		text-underline-offset: .4ch;
 		transition: text-underline-offset .2s ease-in-out;
 	}
 	.link:hover {
 		text-decoration-style: solid;
 		text-underline-offset: .3ch;
+	}
+
+	.OR {
+		@apply text-accent text-opacity-60;
 	}
 }
