@@ -30,7 +30,7 @@
 		{/await}
 
 	{:else}
-		<p>Audio not supported</p>
+		<p class="text-xs">Audio not supported</p>
 	{/if}
 </figure>
 
