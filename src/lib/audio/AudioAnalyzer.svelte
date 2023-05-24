@@ -22,6 +22,11 @@
 					<slot name="visualizer"></slot>
 				</div>
 			{/if}
+
+		{:catch error}
+			<slot name="error">
+				<p class="text-xs">You missed out on a cool opportunity... 🤷‍♂️</p>
+			</slot>
 		{/await}
 
 	{:else}

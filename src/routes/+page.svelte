@@ -16,7 +16,7 @@
 
 <div class="grid">
 	<Section title="Skills">
-		<ul class="flex flex-wrap items-center justify-center gap-[.5ch]">
+		<ul class="flex flex-wrap items-center md:justify-center gap-[.5ch]">
 			{#each skills as skill, i}
 				{#if i > 0}
 					<span class="OR">||</span>
@@ -26,7 +26,7 @@
 		</ul>
 	</Section>
 
-	<Section title="Contact" className="text-center">
+	<Section title="Contact" className="<md:w-full md:text-center">
 		<nav>
 			<a class="link" href="https://github.com/nuotsu">GitHub</a>
 			<span class="OR">||</span>
