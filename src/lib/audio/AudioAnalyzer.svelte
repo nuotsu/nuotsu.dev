@@ -11,7 +11,7 @@
 						<slot name="visualizer"></slot>
 					</summary>
 
-					<div class="controls max-w-screen-xl mx-auto px-4">
+					<div class="section my-0 controls">
 						<div class="py-2 border border-accent border-dotted">
 							<slot></slot>
 						</div>

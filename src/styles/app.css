@@ -15,13 +15,8 @@
 }
 
 @layer components {
-	._btn {
-		display: inline-block;
-		padding: .25em 1em;
-	}
-
-	.action {
-		@apply _btn bg-black text-white dark:bg-white dark:text-black;
+	.section {
+		@apply max-w-screen-md mx-auto py-8 px-4;
 	}
 
 	.link {
