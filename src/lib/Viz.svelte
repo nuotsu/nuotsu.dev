@@ -1,4 +1,4 @@
-<div class="grid place-content-center]" style:height="{height}px">
+<div class="grid place-content-center]" style:min-height="{height}px">
 	{#if enabled}
 		<div class="flex flex-wrap items-center justify-center gap-8" transition:fade>
 			<FrequencyViz controls={false}
