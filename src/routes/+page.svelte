@@ -12,7 +12,7 @@
 		</ul>
 	</Section>
 
-	<Section title="Contact" className="<sm:w-full sm:text-center">
+	<Section title="Links" className="<sm:w-full sm:text-center">
 		<nav>
 			<a class="link" href="https://github.com/nuotsu">GitHub</a>
 			<span class="OR">||</span>
@@ -22,7 +22,7 @@
 		</nav>
 	</Section>
 
-	<Section title="Motivation" className="grid gap-6 text-center">
+	<Section title="Motivation" className="text-center">
 		<Quote>A day without failure is a day without learning.</Quote>
 	</Section>
 </div>

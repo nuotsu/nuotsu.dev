@@ -34,7 +34,7 @@
 	{/if}
 </figure>
 
-<style>
+<style lang="postcss">
 	.controls::before {
 		content: '';
 		pointer-events: none;
@@ -43,11 +43,10 @@
 		margin: 0 auto -.5em;
 		width: 1em;
 		aspect-ratio: 1;
-		border: 1px dotted turquoise;
-		border-right: none;
-		border-bottom: none;
 		background: black;
 		rotate: 45deg;
+
+		@apply border-t border-l border-dotted border-accent;
 	}
 </style>
 

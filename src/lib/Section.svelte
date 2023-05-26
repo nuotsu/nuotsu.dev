@@ -1,8 +1,8 @@
 <section class="section {className}">
 	<header class="relative text-left">
-		<h2 class="absolute left-0 top-0">{title}</h2>
+		<h2 class="absolute left-0 top-0 invisible">{title}</h2>
 		<pre
-			class="relative bg-black text-accent/50"
+			class="relative text-accent/50"
 			aria-hidden="true"
 		>{jsdoc(title)}</pre>
 	</header>
