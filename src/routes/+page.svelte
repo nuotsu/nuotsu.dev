@@ -25,6 +25,15 @@
 	<Section title="Motivation" className="text-center">
 		<Quote>A day without failure is a day without learning.</Quote>
 	</Section>
+
+	<figure class="mt-12">
+		<img
+			src="/images/edo-macbook.webp"
+			alt="Citizens of Edo typing on a MacBook, traditional Japanese wood block print by Hokusai"
+			loading="lazy"
+			draggable={false}
+		>
+	</figure>
 </div>
 
 <script>
