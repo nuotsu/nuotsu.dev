@@ -22,14 +22,17 @@
 		</nav>
 	</Section>
 
-	<Section title="Motivation" className="text-center">
+	<Section title="Motivation" className="text-center [&>*]:mx-auto">
+		<Quote author="">Think different.</Quote>
 		<Quote>A day without failure is a day without learning.</Quote>
+		<Quote code>const goodCode = "self-documenting"</Quote>
 	</Section>
 
-	<figure class="mt-12">
+	<figure class="max-w-screen-xl mx-auto mt-12">
 		<img
 			src="/images/edo-macbook.webp"
 			alt="Citizens of Edo typing on a MacBook, traditional Japanese wood block print by Hokusai"
+			width={1600} height={686}
 			loading="lazy"
 			draggable={false}
 		>

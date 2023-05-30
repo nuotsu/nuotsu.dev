@@ -1,10 +1,20 @@
-<figure class="mb-4">
+<figure class="max-w-max mb-4">
 	<blockquote>
-		<p>
-			<q>
-				<slot></slot>
-			</q>
-		</p>
+		{#if code}
+			<div bind:this={slot} hidden><slot></slot></div>
+
+			{#await highlight(slot?.innerHTML)}
+				<p class="text-accent/50">Loading...</p>
+			{:then code}
+				{@html code}
+			{/await}
+		{:else}
+			<p>
+				<q>
+					<slot></slot>
+				</q>
+			</p>
+		{/if}
 	</blockquote>
 
 	{#if author}
@@ -23,7 +33,11 @@
 	{/if}
 </figure>
 
-<style>
+<style lang="postcss">
+	blockquote :global(pre) {
+		background-color: initial !important;
+	}
+
 	p {
 		text-wrap: balance;
 	}
@@ -34,7 +48,12 @@
 </style>
 
 <script lang="ts">
+	import highlight from '../utils/highlight'
+
 	export let
 		author: string | undefined = undefined,
-		cite: string | undefined = undefined
+		cite: string | undefined = undefined,
+		code = false
+
+	let slot: HTMLDivElement
 </script>

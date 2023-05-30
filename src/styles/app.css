@@ -16,6 +16,10 @@
 	label {
 		cursor: pointer;
 	}
+
+	code {
+		@apply font-sans;
+	}
 }
 
 @layer components {
