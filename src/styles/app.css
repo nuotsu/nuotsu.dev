@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	body {
+		background-color: #429cff;
+	}
+
+	body::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: url('/assets/texture.webp') center/500px repeat;
+		mix-blend-mode: multiply;
+	}
+}

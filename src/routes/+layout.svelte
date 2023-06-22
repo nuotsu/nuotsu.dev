@@ -1,3 +1,7 @@
+<header class="text-center">
+	<h1>Marutchell</h1>
+</header>
+
 <slot></slot>
 
 <script>
