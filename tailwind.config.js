@@ -4,6 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
+				text: `'Space Grotesk', sans-serif`,
 				tuscan: `'Hessian', serif`,
 			},
 			colors: {

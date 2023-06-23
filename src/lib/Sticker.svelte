@@ -65,12 +65,12 @@
 	}
 </style>
 
-<script>
+<script lang="ts">
 	// @ts-ignore
 	import { toWords } from 'number-to-words'
 
 	let now = new Date()
-	$: words = toWords(now.getMinutes()).split('-')[0]
+	$: words = (toWords(now.getMinutes()) as string).split('-')[0]
 
 	const sizes = ['', '⅛', '¼', '⅜', '½', '⅝', '¾', '⅞']
 	$: size = sizes[now.getSeconds() / 60 * 8 | 0]
