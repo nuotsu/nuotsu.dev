@@ -1,9 +1,12 @@
-<section class="bg-white /60 backdrop-blur shadow-real rounded overflow-hidden">
-	<h2 class="bg-black text-white first-letter:font-extrabold font-extralight uppercase text-xl px-2">
+<section
+	class="bg-white/70 backdrop-blur shadow-real rounded overflow-hidden"
+	style:rotate="{Math.random() * 2 - 1}deg"
+>
+	<h2 class="new-era block text-xl px-4">
 		{title}
 	</h2>
 
-	<div class="p-2 font-text">
+	<div class="p-4">
 		<slot></slot>
 	</div>
 </section>

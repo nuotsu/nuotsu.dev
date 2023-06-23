@@ -1,4 +1,4 @@
-<div class="w-32 rounded-full overflow-hidden mx-auto" draggable={true}>
+<div class="w-32 rounded-full overflow-hidden mx-auto drop-shadow-real" draggable={true}>
 	<figure
 		class="relative aspect-square overflow-hidden"
 		style:rotate="{Math.random() * 30 - 15}deg"
@@ -14,7 +14,8 @@
 
 			<div
 				class="center flex justify-center bg-black text-gold uppercase text-2xl mt-1 leading-none whitespace-nowrap"
-				class:text-xl={words.length >= 8}
+				class:text-xl={words.length >= 8 || words === 'twenty'}
+				class:text-lg={words.length >= 9}
 			>
 				<b class="font-bold">{now.getHours()}</b>
 				<span class="font-extralight">
@@ -67,10 +68,10 @@
 
 <script lang="ts">
 	// @ts-ignore
-	import { toWords } from 'number-to-words'
+	import n2w from 'number-to-words'
 
 	let now = new Date()
-	$: words = (toWords(now.getMinutes()) as string).split('-')[0]
+	$: words = (n2w.toWords(now.getMinutes()) as string).split('-')[0]
 
 	const sizes = ['', '⅛', '¼', '⅜', '½', '⅝', '¾', '⅞']
 	$: size = sizes[now.getSeconds() / 60 * 8 | 0]

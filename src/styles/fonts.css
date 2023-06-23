@@ -1,15 +1,15 @@
 @font-face {
-	font-family: 'Space Grotesk';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url(/fonts/SpaceGrotesk.woff2) format('woff2');
-}
-
-@font-face {
 	font-family: 'Hessian';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
 	src: url(/fonts/Hessian.otf) format('otf');
+}
+
+@font-face {
+	font-family: 'MLB Tusca';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(/fonts/MLBTusca.ttf) format('truetype');
 }

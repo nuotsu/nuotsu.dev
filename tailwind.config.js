@@ -4,8 +4,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				text: `'Space Grotesk', sans-serif`,
-				tuscan: `'Hessian', serif`,
+				mets: `'Hessian', serif`,
+				boston: `'MLB Tusca', serif`,
 			},
 			colors: {
 				gold: '#b89f5e',

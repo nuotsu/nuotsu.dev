@@ -1,14 +1,18 @@
-<header class="text-center p-4 pb-0">
-	<h1 class="font-tuscan text-orange-400 text-7xl drop-shadow-real">
+<header class="text-center p-4">
+	<h1 class="font-mets text-orange-400 text-7xl drop-shadow-real">
 		<a href="/">M</a>
 	</h1>
+
+	<p class="font-mets text-orange-400 uppercase drop-shadow-real text-xs">
+		Mitchell Kazumaru Christ
+	</p>
 </header>
 
 <main class="max-w-screen-lg mx-auto px-4 grid gap-4">
 	<slot></slot>
 </main>
 
-<footer class="p-4">
+<footer class="py-8 px-4">
 	<Sticker/>
 </footer>
 
