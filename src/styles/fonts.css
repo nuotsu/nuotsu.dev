@@ -1,4 +1,11 @@
-/* latin */
+@font-face {
+	font-family: 'Hessian';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(/fonts/Hessian.otf) format('otf');
+}
+
 @font-face {
 	font-family: 'Space Grotesk';
 	font-style: normal;

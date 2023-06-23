@@ -3,6 +3,12 @@ export default {
 	content: ['./src/**/*.{html,svelte}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				tuscan: `'Hessian', serif`,
+			},
+			colors: {
+				gold: '#b89f5e',
+			},
 			screens: {
 				'<sm': { max: '640px' },
 				'<md': { max: '768px' },
