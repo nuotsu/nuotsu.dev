@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		background-color: #429cff;
+		@apply bg-[#429cff] dark:bg-[#222];
 	}
 
 	body::after {

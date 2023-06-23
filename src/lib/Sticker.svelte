@@ -1,24 +1,61 @@
-<time
-	class="flex flex-col gap-1 justify-center bg-gold aspect-square rounded-full overflow-hidden w-32 mx-auto text-center border-[6px] border-black"
-	style:rotate="{Math.random() * 30 - 15}deg"
->
-	<div class="self-center grid grid-cols-2 items-center bg-black text-gold leading-none">
-		<span class="grayscale text-xl">🇺🇸</span>
-		<b class="font-mono font-extrabold text-[8px] bg-gold text-black leading-none border-2 border-black p-1">NUO<br>TSU</b>
-	</div>
+<div class="w-32 rounded-full overflow-hidden mx-auto" draggable={true}>
+	<figure
+		class="relative aspect-square overflow-hidden"
+		style:rotate="{Math.random() * 30 - 15}deg"
+	>
+		<time
+			class="h-full flex flex-col gap-1 justify-center bg-gold text-center"
+			datetime={now.toISOString()}
+		>
+			<div class="self-center grid grid-cols-2 items-center bg-black text-gold leading-none">
+				<span class="grayscale text-xl">🇺🇸</span>
+				<b class="font-mono font-extrabold text-[8px] bg-gold text-black leading-none border-2 border-current p-1">NUO<br>TSU</b>
+			</div>
 
-	<div class="center flex justify-center bg-black text-gold uppercase text-2xl mt-1 leading-none whitespace-nowrap">
-		<b class="font-bold">{now.getHours()}</b>
-		<span class="font-extralight">{toWords(now.getMinutes()).split('-')[0]}</span>
-	</div>
+			<div
+				class="center flex justify-center bg-black text-gold uppercase text-2xl mt-1 leading-none whitespace-nowrap"
+				class:text-xl={words.length >= 8}
+			>
+				<b class="font-bold">{now.getHours()}</b>
+				<span class="font-extralight">
+					{#if now.getMinutes() < 10}
+						zero
+					{:else}
+						{words}
+					{/if}
+				</span>
+			</div>
 
-	<div class="flex justify-center text-2xl">
-		<b>{String(now.getMinutes()).split('').pop()}</b>
-		<span>{size}</span>
-	</div>
-</time>
+			<div class="flex justify-center text-2xl">
+				<b>{String(now.getMinutes()).split('').pop()}</b>
+				<span>{size}</span>
+			</div>
+		</time>
+	</figure>
+</div>
 
-<style>
+<style lang="postcss">
+	figure::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 100%;
+		border: 6px solid;
+	}
+
+	figure::after {
+		content: '';
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 3rem;
+		transition: translate .2s ease-in-out;
+		mix-blend-mode: plus-lighter;
+		@apply bg-gradient-to-r from-transparent via-white/20 to-transparent;
+	}
+	figure:hover::after {
+		translate: 5rem 0;
+	}
+
 	.center {
 		box-shadow:
 			0 0 0 1px currentColor,
@@ -33,6 +70,7 @@
 	import { toWords } from 'number-to-words'
 
 	let now = new Date()
+	$: words = toWords(now.getMinutes()).split('-')[0]
 
 	const sizes = ['', '⅛', '¼', '⅜', '½', '⅝', '¾', '⅞']
 	$: size = sizes[now.getSeconds() / 60 * 8 | 0]
