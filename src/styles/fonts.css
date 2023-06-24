@@ -1,15 +1,13 @@
 @font-face {
 	font-family: 'Hessian';
+	font-weight: normal;
 	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url(/fonts/Hessian.otf) format('otf');
+	src: url(/fonts/Hessian.otf) format('opentype');
 }
 
 @font-face {
 	font-family: 'MLB Tusca';
+	font-weight: normal;
 	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
 	src: url(/fonts/MLBTusca.ttf) format('truetype');
 }

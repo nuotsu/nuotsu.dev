@@ -3,7 +3,7 @@
 		<a href="/">M</a>
 	</h1>
 
-	<p class="font-mets text-orange-400 uppercase drop-shadow-real text-xs">
+	<p class="font-boston text-orange-400 uppercase drop-shadow-real text-xs">
 		Mitchell Kazumaru Christ
 	</p>
 </header>

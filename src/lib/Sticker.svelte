@@ -1,4 +1,4 @@
-<div class="w-32 rounded-full overflow-hidden mx-auto drop-shadow-real" draggable={true}>
+<div class="w-32 rounded-full overflow-hidden mx-auto shadow-real" draggable={true}>
 	<figure
 		class="relative aspect-square overflow-hidden"
 		style:rotate="{Math.random() * 30 - 15}deg"
