@@ -8,6 +8,7 @@ export default {
 				boston: `'MLB Tusca', serif`,
 			},
 			colors: {
+				accent: '#fb923c',
 				gold: '#b89f5e',
 			},
 			screens: {

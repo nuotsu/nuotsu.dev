@@ -1,5 +1,5 @@
 <header class="text-center p-4">
-	<h1 class="font-mets text-orange-400 text-7xl text-shadow-real">
+	<h1 class="font-mets text-accent text-7xl text-shadow-real">
 		<a class="relative" href="/">
 			<span class="absolute text-4xl text-shadow-real origin-right">
 				🧢
@@ -8,7 +8,7 @@
 		</a>
 	</h1>
 
-	<p class="font-boston text-orange-400 uppercase text-shadow-real text-xs">
+	<p class="font-boston text-accent uppercase text-shadow-real text-xs">
 		Mitchell Kazumaru Christ
 	</p>
 </header>

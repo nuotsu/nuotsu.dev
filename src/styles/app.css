@@ -6,11 +6,11 @@
 
 @layer base {
 	::selection {
-		@apply bg-orange-400;
+		@apply bg-accent;
 	}
 
 	body {
-		@apply bg-[#429cff] dark:bg-[#222];
+		@apply bg-gradient-to-br from-blue-500 to-pink-300 dark:bg-[#222];
 	}
 
 	body::after {
