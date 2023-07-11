@@ -10,7 +10,8 @@
 	}
 
 	body {
-		@apply bg-gradient-to-br from-blue-500 to-pink-300 dark:bg-[#222];
+		min-height: 100dvh;
+		@apply bg-gradient-to-br from-blue-700 to-pink-300 dark:bg-[#222];
 	}
 
 	body::after {
