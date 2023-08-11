@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	::selection {
+		@apply bg-highlight text-accent;
+	}
+
+	html {
+		@apply bg-accent text-ink;
+	}
+}
+
+@layer components {
+	.link {
+		text-decoration: .5px wavy underline;
+		text-underline-offset: .25ch;
+		@apply hover:decoration-1;
+	}
+}
