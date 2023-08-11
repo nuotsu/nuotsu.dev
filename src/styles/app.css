@@ -14,8 +14,9 @@
 
 @layer components {
 	.link {
-		text-decoration: .5px wavy underline;
+		text-decoration: underline wavy;
+		text-decoration-thickness: .5px;
 		text-underline-offset: .25ch;
-		@apply hover:decoration-1;
+		@apply hover:decoration-1 hover:text-highlight;
 	}
 }
