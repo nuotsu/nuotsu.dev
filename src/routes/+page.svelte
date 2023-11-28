@@ -1,4 +1,4 @@
-<main class="grid gap-4 p-4">
+<main class="grid gap-4 p-4 [&_a]:link">
 	<header>
 		<h1>nuotsu.dev</h1>
 		<h2>Mitchell Kazumaru Christ</h2>
@@ -13,11 +13,13 @@
 			<li>Tailwind CSS</li>
 			<li>
 				Shopify
-				<a
-					href="https://www.credly.com/badges/714964a0-6bbb-4da8-9c02-e91b005fc967/linked_in_profile"
-				>
-					🎖️ <sup>Certified</sup>
-				</a>
+				<sup>
+					<a
+						href="https://www.credly.com/badges/714964a0-6bbb-4da8-9c02-e91b005fc967/linked_in_profile"
+					>
+						🎖️ Certified
+					</a>
+				</sup>
 			</li>
 		</ul>
 	</section>
