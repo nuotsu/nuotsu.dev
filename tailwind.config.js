@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss';
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,svelte}'],
@@ -5,8 +7,9 @@ export default {
 		extend: {
 			colors: {
 				accent: '#c0bafe',
-				canvas: '#000',
-				ink: '#fff',
+				highlight: '#f1c455',
+				canvas: '#020202',
+				ink: '#aaa',
 			},
 			screens: {
 				'<sm': { max: '639px' },

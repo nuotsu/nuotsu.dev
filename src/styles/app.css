@@ -5,10 +5,7 @@
 @layer base {
   ::selection {
     background-color: lch(32.79 130 300);
-  }
-
-  html {
-    scroll-behavior: smooth;
+    @apply text-ink;
   }
 }
 
@@ -16,5 +13,13 @@
   .link {
     text-decoration: .5px underline wavy theme('colors.accent');
     text-underline-offset: .25ch;
+
+    @apply hover:text-gradient hover:decoration-highlight;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-highlight;
   }
 }
