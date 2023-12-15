@@ -1,4 +1,4 @@
-<article class="max-w-md mx-auto space-y-4 px-4 py-12 leading-relaxed">
+<article class="max-w-md mx-auto space-y-6 px-4 leading-loose">
 	<p class="text-center">
 		👋 <ruby lang="ja">こんにちは<rt lang="en">Hello</rt></ruby>!
 	</p>
@@ -41,10 +41,10 @@
 			>an HVAC solutions business</a
 		>,
 		<a href="https://www.brdaelectric.com/" class="text-[#186bb8]"
-			>commercial and residential electrician website</a
+			>a commercial and residential electrician website</a
 		>,
 		<a href="https://cuscousainc.com" class="text-[#ed3137]"
-			>performance car parts site</a
+			>a performance car parts site</a
 		>
 		and more. Go check out my
 		<a href="https://github.com/mitchuman" class="github">professional GitHub</a
@@ -66,8 +66,8 @@
 	</p>
 	<p>
 		When I'm not coding, I watch <ruby>MLB<rt>⚾️</rt></ruby>, and play
-		<ruby>golf<rt>⛳️</rt></ruby> or <ruby>badminton<rt>🏸</rt></ruby>, and
-		driving my <ruby>Cayman<rt>🏎️</rt></ruby>.
+		<ruby>golf<rt>⛳️</rt></ruby> or <ruby>badminton<rt>🏸</rt></ruby>, and take
+		my <ruby>Cayman<rt>🏎️</rt></ruby> for a drive.
 	</p>
 	<p>
 		You can reach out to me on <a href="https://instagram.com/marutchell"
@@ -77,17 +77,9 @@
 	</p>
 </article>
 
-<style lang="postcss">
+<style>
 	.text-gradient {
 		@apply bg-clip-text bg-gradient-to-r text-transparent;
-	}
-
-	a {
-		text-decoration: 1px underline dashed;
-		text-underline-offset: 2px;
-	}
-	a:hover {
-		text-decoration-style: solid;
 	}
 
 	.webdev {
