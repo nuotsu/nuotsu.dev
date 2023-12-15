@@ -9,12 +9,16 @@
 	}
 
 	a {
-		text-decoration: 1px underline wavy;
+		text-decoration: 1px underline dashed;
 		text-underline-offset: 2px;
 		transition: text-underline-offset 0.2s ease-in-out;
 
 		&:hover {
 			text-underline-offset: .3em;
+		}
+
+		@supports (text-decoration-style: wavy) {
+			text-decoration-style: wavy;
 		}
 	}
 }

@@ -20,15 +20,22 @@
 		@apply bg-gradient-to-t;
 	}
 
-	:global(html) {
-		scroll-timeline: --scroll-timeline y;
-		scroll-timeline: --scroll-timeline vertical;
+	footer {
+		display: none;
 	}
 
-	footer {
-		animation-name: animate;
-		animation-duration: 1ms;
-		animation-timeline: --scroll-timeline;
+	@supports (scroll-timeline: --scroll-timeline) {
+		:global(html) {
+			scroll-timeline: --scroll-timeline y;
+			scroll-timeline: --scroll-timeline vertical;
+		}
+
+		footer {
+			display: block;
+			animation-name: animate;
+			animation-duration: 1ms;
+			animation-timeline: --scroll-timeline;
+		}
 	}
 
 	@keyframes animate {

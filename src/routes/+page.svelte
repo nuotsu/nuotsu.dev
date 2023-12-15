@@ -47,8 +47,7 @@
 			>a performance car parts site</a
 		>
 		and more. Go check out my
-		<a href="https://github.com/mitchuman" class="github">professional GitHub</a
-		>.
+		<a href="https://github.com/mitchuman" class="github">work GitHub</a>.
 	</p>
 	<p>
 		Some of my personal works include:
