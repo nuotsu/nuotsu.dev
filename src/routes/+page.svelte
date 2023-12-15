@@ -75,6 +75,8 @@
 		>, <a href="https://linkedin.com/in/nuotsu">LinkedIn</a>, or feel free to
 		<a href="mailto:xzmaru@gmail.com">email me</a>.
 	</p>
+
+	<Portrait />
 </article>
 
 <style>
@@ -98,3 +100,7 @@
 		color: #848d97;
 	}
 </style>
+
+<script>
+	import Portrait from './Portrait.svelte'
+</script>

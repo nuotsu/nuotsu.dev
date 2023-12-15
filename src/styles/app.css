@@ -18,3 +18,10 @@
 		}
 	}
 }
+
+@layer utilities {
+	.full-bleed {
+		width: 100vw;
+		margin-inline: calc(50% - 50vw);
+	}
+}

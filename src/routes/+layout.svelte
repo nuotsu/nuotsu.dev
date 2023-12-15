@@ -1,4 +1,4 @@
-<main class="before:block after:block">
+<main class="before:top-0 after:bottom-0">
 	<slot />
 </main>
 
@@ -9,15 +9,15 @@
 <style>
 	main::before,
 	main::after {
-		@apply pointer-events-none sticky h-24 from-black to-transparent;
+		@apply pointer-events-none block sticky h-24 from-black to-transparent;
 	}
 
 	main::before {
-		@apply top-0 bg-gradient-to-b;
+		@apply bg-gradient-to-b;
 	}
 
 	main::after {
-		@apply bottom-0 bg-gradient-to-t;
+		@apply bg-gradient-to-t;
 	}
 
 	:global(html) {
