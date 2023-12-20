@@ -1,4 +1,4 @@
-<main class="before:top-0 after:bottom-0">
+<main class="before:top-0 after:bottom-0 overflow-x-clip">
 	<slot />
 </main>
 

@@ -1,4 +1,4 @@
-<figure class="relative !mt-12 max-sm:full-bleed">
+<figure class="!mt-12 max-sm:full-bleed">
 	<enhanced:img
 		src="./me.jpg"
 		sizes="min(400px, 100vw)"
@@ -9,7 +9,7 @@
 
 <style>
 	figure {
-		rotate: 4deg;
+		@apply rotate-[4deg] max-md:rotate-[6deg];
 	}
 
 	@supports (scroll-timeline: --scroll-timeline) {
