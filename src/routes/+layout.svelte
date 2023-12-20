@@ -32,8 +32,7 @@
 
 		footer {
 			display: block;
-			animation-name: animate;
-			animation-duration: 1ms;
+			animation: animate 1ms linear;
 			animation-timeline: --scroll-timeline;
 		}
 	}

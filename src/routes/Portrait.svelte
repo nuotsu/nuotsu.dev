@@ -1,4 +1,4 @@
-<figure class="relative !mt-12 before:top-0 after:bottom-0 max-sm:full-bleed">
+<figure class="relative !mt-12 max-sm:full-bleed">
 	<enhanced:img
 		src="./me.jpg"
 		sizes="min(400px, 100vw)"
@@ -8,16 +8,20 @@
 </figure>
 
 <style>
-	figure::before,
-	figure::after {
-		@apply absolute inset-x-0 block h-16 from-black to-transparent;
+	figure {
+		rotate: 4deg;
 	}
 
-	figure::before {
-		@apply bg-gradient-to-b;
+	@supports (scroll-timeline: --scroll-timeline) {
+		figure {
+			animation: animate 1ms ease-in-out;
+			animation-timeline: --scroll-timeline;
+		}
 	}
 
-	figure::after {
-		@apply bg-gradient-to-t;
+	@keyframes animate {
+		from {
+			rotate: -0.1turn;
+		}
 	}
 </style>

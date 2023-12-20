@@ -1,11 +1,9 @@
-<article class="max-w-md mx-auto space-y-6 px-4 leading-loose">
-	<p class="text-center">
-		👋 <ruby lang="ja">こんにちは<rt lang="en">Hello</rt></ruby>!
-	</p>
+<article class="max-w-md mx-auto space-y-6 px-4 leading-loose text-lg">
+	<p class="text-center text-4xl">Hello!</p>
 	<h1>
 		My name is <span class="webdev">Mitchell Kazumaru Christ</span>, and I go by
 		the handle
-		<code class="text-[#2a7cde]">nuotsu</code> on the Internet.
+		<code class="font-sans text-[#2a7cde]">nuotsu</code> on the Internet.
 	</h1>
 	<p>
 		I am a <span class="webdev">frontend web developer</span>, currently working
