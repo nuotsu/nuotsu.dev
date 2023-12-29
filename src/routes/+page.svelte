@@ -31,6 +31,9 @@
 	</p>
 	<p>
 		Some of my professional works include:
+		<a href="https://attentionmonsters.com" class="attention-monsters"
+			>a neo-rock band discography website</a
+		>,
 		<a href="https://rwfine.com" class="text-[#dfd6c5]">a fine jewelry store</a
 		>,
 		<a
@@ -67,9 +70,10 @@
 		my <ruby>Cayman<rt>🏎️</rt></ruby> for a drive.
 	</p>
 	<p>
-		You can reach out to me on <a href="https://instagram.com/marutchell"
-			>Instagram</a
-		>, <a href="https://linkedin.com/in/nuotsu">LinkedIn</a>, or feel free to
+		You can reach out to me on
+		<a href="https://instagram.com/marutchell">Instagram</a>,
+		<a href="https://linkedin.com/in/nuotsu">LinkedIn</a>,
+		<a href="https://fiverr.com/nuotsu">Fiverr</a>, or feel free to
 		<a href="mailto:xzmaru@gmail.com">email me</a>.
 	</p>
 
@@ -85,12 +89,16 @@
 		@apply text-gradient from-[#c0bafe] to-[#f1c455];
 	}
 
+	.attention-monsters {
+		@apply text-gradient from-[#32909c] to-[#d7723e] decoration-[#32909c];
+	}
+
 	.svelte {
 		color: #ff3e00;
 	}
 
 	.shopify {
-		@apply text-gradient from-[#15c064] to-[#00d1ff];
+		@apply text-gradient from-[#15c064] to-[#00d1ff] decoration-[#15c064];
 	}
 
 	.github {
