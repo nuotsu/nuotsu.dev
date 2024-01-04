@@ -60,7 +60,8 @@
 		>,
 		<a href="https://ohtani.fun" class="text-[#e00101]"
 			>The Faces of Shohei Ohtani</a
-		>
+		>,
+		<a href="https://theohtani.com" class="text-[#005596]">TheOhtani.com</a>
 		and more. Go check out my
 		<a href="https://github.com/nuotsu" class="github">personal GitHub</a>.
 	</p>
