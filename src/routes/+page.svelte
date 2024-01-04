@@ -75,7 +75,7 @@
 		<a href="https://instagram.com/marutchell">Instagram</a>,
 		<a href="https://linkedin.com/in/nuotsu">LinkedIn</a>,
 		<a href="https://fiverr.com/nuotsu">Fiverr</a>, or feel free to
-		<a href="mailto:xzmaru@gmail.com">email me</a>.
+		<a href="mailto:mitchell@nuotsu.dev">email me</a>.
 	</p>
 
 	<Portrait />
