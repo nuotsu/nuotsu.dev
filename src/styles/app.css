@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	/* layout */
+
+	.section {
+		@apply mx-auto max-w-md;
+	}
+}
