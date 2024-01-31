@@ -1,12 +1,12 @@
-<section class="section mt-2 space-y-2">
+<section class="section space-y-2">
 	{#each works as work, i}
 		<a
 			href={work.url}
-			class="sticky block border border-white/20 bg-black p-2 transition-[rotate] hover:![rotate:0deg] {work.className}"
-			style:top="{i * 0.25 + 1}rem"
-			style:rotate="{Math.random() * 3 - 1.5}deg"
+			class="entity bg-black/20 backdrop-blur-sm {work.className}"
+			style:top="{i * 0.25 + 2}rem"
+			style:rotate={rotate()}
 		>
-			<dl class="flex items-center gap-1">
+			<dl class="flex items-center gap-2">
 				<dt class="line-clamp-1 grow">{work.title}</dt>
 				<dd class="shrink-0 text-xs">
 					<time datetime={work.date}>
@@ -19,7 +19,16 @@
 </section>
 
 <script lang="ts">
-	const works: Nuotsu.Work[] = [
+	import rotate from './rotate'
+
+	type Work = {
+		title: string
+		url: string
+		date: string
+		className: string
+	}
+
+	const works: Work[] = [
 		{
 			title: '⛵️ Midjourney Prompter',
 			url: 'https://midjourney-prompter.vercel.app',

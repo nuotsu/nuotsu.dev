@@ -8,15 +8,6 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
-
-	namespace Nuotsu {
-		type Work = {
-			title: string
-			url: string
-			date: string
-			className: string
-		}
-	}
 }
 
 export {}

@@ -1,8 +1,8 @@
-<header class="section w-full">
+<header class="section">
 	<h1><em>nuotsu</em></h1>
 </header>
 
-<main>
+<main class="grid gap-4">
 	<slot />
 </main>
 
