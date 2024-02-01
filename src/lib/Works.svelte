@@ -30,6 +30,12 @@
 
 	const works: Work[] = [
 		{
+			title: '🗓️ VertiCal',
+			url: 'https://verti-cal.vercel.app',
+			date: '2024-01-31',
+			className: 'hover:bg-gradient-to-r from-transparent to-rose-600',
+		},
+		{
 			title: '⛵️ Midjourney Prompter',
 			url: 'https://midjourney-prompter.vercel.app',
 			date: '2024-01-22',
