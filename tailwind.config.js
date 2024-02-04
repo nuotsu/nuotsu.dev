@@ -2,11 +2,7 @@
 export default {
 	content: ['./src/**/*.{html,svelte}'],
 	theme: {
-		extend: {
-			fontFamily: {
-				serif: `'Instrument', serif`,
-			},
-		},
+		extend: {},
 	},
 	plugins: [],
 }
