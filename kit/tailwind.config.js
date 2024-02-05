@@ -6,10 +6,33 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				white: '#fffbff',
+				white: {
+					DEFAULT: '#fffbff',
+					shadow: '#695973',
+				},
+				black: {
+					DEFAULT: '#010101',
+					shadow: '#d5d2cc',
+				},
 				ink: {
 					DEFAULT: '#636164',
 					shadow: '#d5d2cc',
+				},
+				red: {
+					DEFAULT: '#fe8983',
+					shadow: '#fa3218',
+				},
+				green: {
+					DEFAULT: '#1f9b08',
+					shadow: '#92f193',
+				},
+				blue: {
+					DEFAULT: '#3250cd',
+					shadow: '#a3c1fa',
+				},
+				yellow: {
+					DEFAULT: '#fdb052',
+					shadow: '#c57903',
 				},
 			},
 			fontFamily: {
@@ -19,7 +42,7 @@ export default {
 	},
 	plugins: [
 		/** @type {import('tailwindcss').PluginAPI} */
-		plugin(function ({ matchComponents, theme }) {
+		plugin(function ({ matchComponents, matchUtilities, theme }) {
 			matchComponents(
 				{
 					'font-shadow': ({ shadow }) => ({

@@ -1,1 +1,1 @@
-<h1 class="font-shadow-ink">nuotsu.dev</h1>
+<h1 class="font-ink">nuotsu.dev</h1>

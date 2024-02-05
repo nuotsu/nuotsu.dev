@@ -3,3 +3,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.font-white {
+		@apply text-white font-shadow-white;
+	}
+
+	.font-black {
+		@apply text-black font-shadow-black;
+	}
+
+	.font-ink {
+		@apply text-ink font-shadow-ink;
+	}
+
+	.font-red {
+		@apply text-red font-shadow-red;
+	}
+
+	.font-green {
+		@apply text-green font-shadow-green;
+	}
+
+	.font-blue {
+		@apply text-blue font-shadow-blue;
+	}
+
+	.font-yellow {
+		@apply text-yellow font-shadow-yellow;
+	}
+}
