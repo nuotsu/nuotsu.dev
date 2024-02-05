@@ -12,11 +12,11 @@ export default {
 				},
 				black: {
 					DEFAULT: '#010101',
-					shadow: '#d5d2cc',
+					shadow: '#e2ddd8',
 				},
 				ink: {
-					DEFAULT: '#636164',
-					shadow: '#d5d2cc',
+					DEFAULT: '#686668',
+					shadow: '#e2ddd8',
 				},
 				red: {
 					DEFAULT: '#fe8983',
@@ -34,6 +34,8 @@ export default {
 					DEFAULT: '#fdb052',
 					shadow: '#c57903',
 				},
+
+				menu: '#8c92ff',
 			},
 			fontFamily: {
 				sans: ['Pokemon RS', 'sans-serif'],
@@ -42,7 +44,7 @@ export default {
 	},
 	plugins: [
 		/** @type {import('tailwindcss').PluginAPI} */
-		plugin(function ({ matchComponents, matchUtilities, theme }) {
+		plugin(function ({ matchComponents, theme }) {
 			matchComponents(
 				{
 					'font-shadow': ({ shadow }) => ({

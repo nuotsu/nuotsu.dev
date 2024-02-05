@@ -18,6 +18,15 @@ export default defineType({
 			fieldset: 'name',
 		}),
 		defineField({
+			name: 'id',
+			type: 'slug',
+			options: {
+				source: 'title',
+			},
+			fieldset: 'name',
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
 			name: 'url',
 			title: 'URL',
 			type: 'url',

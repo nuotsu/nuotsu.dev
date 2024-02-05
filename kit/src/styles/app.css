@@ -4,32 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-	.font-white {
-		@apply text-white font-shadow-white;
+@layer components {
+	html {
+		image-rendering: pixelated;
 	}
 
-	.font-black {
-		@apply text-black font-shadow-black;
+	._panel {
+		min-height: 3.5em;
+		@apply m-1 bg-white;
 	}
 
-	.font-ink {
-		@apply text-ink font-shadow-ink;
+	.panel-white {
+		@apply _panel rounded;
+		padding: 7px 14px;
+		border-image: url(/img/panel-white.png) 6 / 7px;
 	}
 
-	.font-red {
-		@apply text-red font-shadow-red;
-	}
-
-	.font-green {
-		@apply text-green font-shadow-green;
-	}
-
-	.font-blue {
-		@apply text-blue font-shadow-blue;
-	}
-
-	.font-yellow {
-		@apply text-yellow font-shadow-yellow;
+	.panel-green {
+		@apply _panel rounded-full;
+		padding: 12px 22px;
+		border-image: url(/img/panel-green.png) 11 21 / 12px 22px;
 	}
 }
