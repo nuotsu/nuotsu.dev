@@ -4,25 +4,53 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer base {
 	html {
 		image-rendering: pixelated;
 	}
+}
 
-	._panel {
-		min-height: 3.5em;
-		@apply m-1 bg-white;
-	}
+@layer components {
+	/* panels */
 
 	.panel-white {
-		@apply _panel rounded;
+		@apply m-1 bg-white rounded;
+		min-height: 3em;
 		padding: 7px 14px;
 		border-image: url(/img/panel-white.png) 6 / 7px;
 	}
 
 	.panel-green {
-		@apply _panel rounded-full;
+		@apply m-1 bg-white rounded-full;
+		min-height: 3.5em;
 		padding: 12px 22px;
 		border-image: url(/img/panel-green.png) 11 21 / 12px 22px;
+	}
+
+	/* actions */
+
+	.arrow-link {
+		&::before {
+			content: '▶';
+			margin-right: 1px;
+		}
+
+		&:not(:hover)::before {
+			visibility: hidden;
+		}
+
+		&.has-arrow::before {
+			visibility: visible;
+		}
+	}
+
+	.has-arrow-links {
+		&:has(.arrow-link:hover) .arrow-link:not(:hover)::before {
+			visibility: hidden;
+		}
+
+		&:has(.has-arrow) .arrow-link:not(.has-arrow):not(:hover)::before {
+			visibility: hidden;
+		}
 	}
 }
