@@ -8,7 +8,6 @@
 			position: sticky;
 			top: 0;
 			height: 3rem;
-			display: block;
 			background-image: linear-gradient(
 				to bottom,
 				#c6fbcf calc(100% / 8),

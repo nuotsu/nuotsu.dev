@@ -1,11 +1,13 @@
-<main class="mx-auto grid min-h-svh" data-route={$page.url.pathname}>
+<main class="mx-auto min-h-svh" data-route={$page.url.pathname}>
 	<Header />
 
 	<slot />
 </main>
 
 <style>
-	main {
+	main,
+	:global(.content-grid) {
+		display: grid;
 		grid-template-columns: [bleed-start] auto [content-start] theme(width.96) [content-end] auto [bleed-end];
 
 		& > :global(*) {
