@@ -30,7 +30,8 @@ export default {
 					DEFAULT: '#3250cd',
 					shadow: '#a3c1fa',
 				},
-				yellow: {
+				yellow: '#eef239',
+				orange: {
 					DEFAULT: '#fdb052',
 					shadow: '#c57903',
 				},

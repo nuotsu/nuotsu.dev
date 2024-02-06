@@ -10,6 +10,7 @@
 
 - SEO metadata
 - Sanity dashboard widgets
+- buy me coffee
 
 ## Panels
 

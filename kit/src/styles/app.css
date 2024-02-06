@@ -27,6 +27,18 @@
 		border-image: url(/img/panel-green.png) 11 21 / 12px 22px;
 	}
 
+	.panel-yellow {
+		@apply bg-yellow rounded;
+		padding: 8px;
+		border-image: url(/img/panel-yellow.png) 3 / 4px;
+	}
+
+	.panel-dex {
+		@apply bg-white rounded;
+		border: 3px solid;
+		border-image: url(/img/panel-dex.png) 3 / 4px;
+	}
+
 	/* actions */
 
 	.arrow-link {

@@ -1,4 +1,4 @@
-<header class="order-1 flex w-full flex-col-reverse">
+<header class="sticky bottom-0 order-1 flex w-full flex-col-reverse">
 	<h1 class="panel-green text-ink font-shadow-ink text-xl">
 		Welcome to nuotsu.dev!
 	</h1>
