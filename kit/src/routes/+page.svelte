@@ -1,3 +1,31 @@
+<svelte:head>
+	<title>Mitchell Kazumaru Christ | nuotsu</title>
+</svelte:head>
+
+<h1
+	class="panel-white text-ink font-shadow-ink my-auto py-2 text-center text-xl uppercase"
+>
+	Mitchell Kazumaru Christ
+</h1>
+
+<ul class="font-shadow-white text-center text-white">
+	<li>Web Development</li>
+	<li>Next.js</li>
+	<li>SvelteKit</li>
+	<li>TypeScript</li>
+	<li>Tailwind CSS</li>
+	<li>Sanity.io</li>
+	<li>
+		<a
+			href="https://www.credly.com/badges/714964a0-6bbb-4da8-9c02-e91b005fc967/linked_in_profile"
+			target="_blank"
+		>
+			Shopify Certified
+		</a>
+	</li>
+	<li>Midjourney</li>
+</ul>
+
 <style>
 	:global(body:has([data-route='/'])) {
 		background: #000;

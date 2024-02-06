@@ -1,4 +1,8 @@
-<section class="my-auto grid gap-2">
+<svelte:head>
+	<title>Projects | nuotsu</title>
+</svelte:head>
+
+<section class="mt-auto grid gap-2">
 	<h1
 		class="font-shadow-black mr-4 rounded bg-white px-2 text-3xl uppercase leading-none"
 	>
@@ -10,12 +14,13 @@
 			{#each data.projects as project, i}
 				<li>
 					<a
-						class="arrow-link rounded-md px-1 hover:bg-white"
+						class="arrow-link break-all rounded-md px-1 hover:bg-white"
 						href="/projects/{project.id.current}"
 						on:mouseover={() => onHover(project, 150)}
 						on:mouseleave={() => clearTimeout(timeout)}
 						on:touchstart={() => onHover(project)}
 						on:touchend={() => clearTimeout(timeout)}
+						on:focus={() => onHover(project)}
 					>
 						<div class="line-clamp-1">
 							No{(data.projects.length - i).toString().padStart(3, '0')}

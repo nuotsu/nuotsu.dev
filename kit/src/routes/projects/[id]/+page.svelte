@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>{project.title} | nuotsu</title>
+</svelte:head>
+
 <nav class="bg-blue self-start" style:grid-column="bleed">
 	<div class="content-grid">
 		<a class="font-shadow-white text-xl uppercase text-white" href="/projects">

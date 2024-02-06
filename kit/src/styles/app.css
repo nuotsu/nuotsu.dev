@@ -19,7 +19,6 @@
 
 	.panel-white {
 		@apply m-1 bg-white rounded;
-		min-height: 3em;
 		padding: 7px 14px;
 		border-image: url(/img/panel-white.png) 6 / 7px;
 	}
@@ -67,6 +66,10 @@
 		&.has-arrow::before {
 			visibility: visible;
 		}
+
+		&:focus::before {
+			visibility: visible !important;
+		}
 	}
 
 	.has-arrow-links {
@@ -74,7 +77,8 @@
 			visibility: hidden;
 		}
 
-		&:has(.has-arrow) .arrow-link:not(.has-arrow):not(:hover)::before {
+		&:has(.has-arrow) .arrow-link:not(.has-arrow):not(:hover)::before,
+		&:has(:focus) .arrow-link:not(:focus)::before {
 			visibility: hidden;
 		}
 	}
