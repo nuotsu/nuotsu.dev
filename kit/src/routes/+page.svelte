@@ -6,14 +6,13 @@
 		</h2>
 	</header>
 
-	<section class="p-2">
-		<h2><T text="Skills" delay={total(text[0])} hideCursor="beforeStart" /></h2>
+	<Section text={text[1] as string} delay={total(text[0])}>
 		<ul>
 			{#each skills as skill, i}
-				<li class="before:invisible before:content-['▶️']">
+				<li class="before:invisible before:content-['▶']">
 					<T
 						text={skill}
-						delay={total(text[0], text[1][0], i)}
+						delay={total(text[0], text[1], i)}
 						hideCursor={['beforeStart', 'afterEnd']}
 					/>
 				</li>
@@ -26,18 +25,15 @@
 				>
 					<T
 						text="Shopify Certified*"
-						delay={total(text[0], text[1][0], skills.length)}
+						delay={total(text[0], text[1], skills.length)}
 						hideCursor={['beforeStart', 'afterEnd']}
 					/>
 				</a>
 			</li>
 		</ul>
-	</section>
+	</Section>
 
-	<section class="p-2">
-		<h2>
-			<T text={text[2][0]} delay={total(text[0])} hideCursor="beforeStart" />
-		</h2>
+	<Section text={text[2] as string} delay={total(text[0])}>
 		<ul>
 			{#each $page.data.projects as project, i}
 				<li>
@@ -45,7 +41,7 @@
 						><span class="line-clamp-1 block grow text-ellipsis">
 							<T
 								text={project.title}
-								delay={total(text[0], text[2][0], i)}
+								delay={total(text[0], text[2], i)}
 								hideCursor={['beforeStart', 'afterEnd']}
 							/>
 						</span>
@@ -53,7 +49,7 @@
 						<time class="tabular-nums" datetime={project.startDate}>
 							<T
 								text={project.startDate}
-								delay={total(text[0], text[2][0], i)}
+								delay={total(text[0], text[2], i)}
 								hideCursor={['beforeStart', 'afterEnd']}
 							/>
 						</time>
@@ -61,12 +57,9 @@
 				</li>
 			{/each}
 		</ul>
-	</section>
+	</Section>
 
-	<section class="p-2">
-		<h2>
-			<T text={text[3][0]} delay={total(text[0])} hideCursor="beforeStart" />
-		</h2>
+	<Section text={text[3] as string} delay={total(text[0])}>
 		<ul>
 			{#each links as link, i}
 				<li>
@@ -76,17 +69,21 @@
 					>
 						<T
 							text={link.title}
-							delay={total(text[0], text[3][0], i)}
+							delay={total(text[0], text[3], i)}
 							hideCursor={['beforeStart', 'afterEnd']}
 						/>
 					</a>
 				</li>
 			{/each}
 		</ul>
-	</section>
+	</Section>
 </article>
 
 <style>
+	article {
+		text-shadow: 0 0 10px currentColor;
+	}
+
 	a::before {
 		content: '▶';
 	}
@@ -98,6 +95,7 @@
 
 <script lang="ts">
 	import T from '$lib/Typewriter.svelte'
+	import Section from '$lib/Section.svelte'
 	import { page } from '$app/stores'
 
 	const skills = [
@@ -111,9 +109,9 @@
 
 	const text = [
 		['nuotsu / Mitchell Kazumaru Christ', 'Web Dev && Midjourney'],
-		['Skills'],
-		['Projects'],
-		['External'],
+		'Skills',
+		'Projects',
+		'External',
 	]
 
 	const links = [
