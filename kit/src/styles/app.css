@@ -1,0 +1,19 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	::selection {
+		@apply bg-accent text-black;
+	}
+
+	body {
+		text-shadow: 0 0 10px theme('colors.accent');
+	}
+
+	typewriter-cursor {
+		@apply text-accent;
+	}
+}
