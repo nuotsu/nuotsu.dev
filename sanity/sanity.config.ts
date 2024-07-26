@@ -13,10 +13,17 @@ export default defineConfig({
 
 	plugins: [
 		structureTool({
+			title: 'Content',
 			structure,
 		}),
-		visionTool(),
+		visionTool({
+			title: 'GROQ',
+		}),
 	],
+
+	scheduledPublishing: {
+		enabled: false,
+	},
 
 	schema: {
 		types: schemaTypes,

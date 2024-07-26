@@ -4,8 +4,14 @@ export default defineType({
 	name: 'project',
 	title: 'Project',
 	type: 'document',
-	fieldsets: [{ title: 'name', name: 'name', options: { columns: 2 } }],
+	liveEdit: true,
+	fieldsets: [{ name: 'name', options: { columns: 2 } }],
 	fields: [
+		defineField({
+			name: 'featured',
+			type: 'boolean',
+			initialValue: false,
+		}),
 		defineField({
 			name: 'title',
 			type: 'string',
@@ -40,12 +46,13 @@ export default defineType({
 	],
 	preview: {
 		select: {
+			featured: 'featured',
 			title: 'title',
 			subtitle: 'startDate',
 			emoji: 'emoji',
 		},
-		prepare: ({ title, subtitle, emoji }) => ({
-			title,
+		prepare: ({ featured, title, subtitle, emoji }) => ({
+			title: [title, featured && '🌟'].filter(Boolean).join(' '),
 			subtitle,
 			media: <>{emoji}</>,
 		}),

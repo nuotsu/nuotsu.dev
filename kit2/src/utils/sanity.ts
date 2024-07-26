@@ -6,7 +6,7 @@ export { default as groq } from 'groq'
 export const client = createClient({
 	projectId: '6puot771',
 	dataset: 'production',
-	apiVersion: '2024-02-26',
+	apiVersion: '2024-07-25',
 	useCdn: !dev,
 	perspective: dev ? 'previewDrafts' : 'published',
 })
