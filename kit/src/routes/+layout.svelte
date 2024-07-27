@@ -17,5 +17,8 @@
 </style>
 
 <script lang="ts">
+	import { inject } from '@vercel/analytics'
 	import '../styles/app.css'
+
+	inject()
 </script>
