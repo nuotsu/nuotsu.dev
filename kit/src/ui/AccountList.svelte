@@ -1,6 +1,6 @@
 <ul class="sticky bottom-0 flex gap-3 items-start">
 	<li><a href="https://github.com/nuotsu">GitHub</a></li>
-	<li><a href="https://linked.com/in/nuotsu">LinkedIn</a></li>
+	<li><a href="https://linkedin.com/in/nuotsu">LinkedIn</a></li>
 	<li><a href="mailto:mitchell@nuotsu.dev">Email</a></li>
 </ul>
 
