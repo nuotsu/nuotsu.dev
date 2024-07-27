@@ -1,4 +1,4 @@
-<main>
+<main class="min-h-dvh flex flex-col">
 	<slot></slot>
 </main>
 

@@ -8,6 +8,17 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	namespace Sanity {
+		type Project = {
+			featured: boolean
+			title: string
+			emoji: string
+			id: { current: string }
+			url: string
+			startDate: string
+		}
+	}
 }
 
 export {}
