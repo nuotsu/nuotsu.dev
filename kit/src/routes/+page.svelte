@@ -1,3 +1,11 @@
+<svelte:head>
+	<title>Mitchell Kazumaru Christ | nuotsu | Web Dev</title>
+	<meta
+		name="description"
+		content="I make websites. I generate images with Midjourney, too."
+	/>
+</svelte:head>
+
 <Header />
 
 <section

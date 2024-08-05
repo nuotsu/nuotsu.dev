@@ -1,3 +1,11 @@
+<svelte:head>
+	<title>Midjourney Image Generation | nuotsu</title>
+	<meta
+		name="description"
+		content="I generate images with Midjourney. I make websites, too."
+	/>
+</svelte:head>
+
 <Header title="I generate images.">
 	I make <a href="/">websites</a>, too.
 </Header>
