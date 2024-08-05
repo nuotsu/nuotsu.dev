@@ -1,5 +1,7 @@
 import { createClient } from '@sanity/client'
 import { dev } from '$app/environment'
+import imageUrlBuilder from '@sanity/image-url'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 export { default as groq } from 'groq'
 
@@ -10,3 +12,7 @@ export const client = createClient({
 	useCdn: !dev,
 	perspective: dev ? 'previewDrafts' : 'published',
 })
+
+const builder = imageUrlBuilder(client)
+
+export const urlFor = (source: SanityImageSource) => builder.image(source)

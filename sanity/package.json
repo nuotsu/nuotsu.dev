@@ -16,9 +16,11 @@
   ],
   "dependencies": {
     "@sanity/icons": "^3.3.1",
+    "@sanity/orderable-document-list": "^1.2.1",
     "@sanity/vision": "^3.52.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
     "react-is": "^18.3.1",
     "sanity": "^3.52.4",
     "styled-components": "^6.1.12"
