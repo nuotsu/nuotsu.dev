@@ -11,9 +11,9 @@
 </Header>
 
 <article class="max-w-5xl mx-auto py-24 space-y-24">
-	{#each data.midjourney as image}
+	{#each data.midjourney as image, i}
 		<figure class="odd:pr-[10vw] even:pl-[10vw]">
-			<Img {image} />
+			<Img {image} loading={i < 2 ? 'eager' : 'lazy'} />
 		</figure>
 	{/each}
 </article>
