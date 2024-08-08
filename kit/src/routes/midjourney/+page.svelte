@@ -12,8 +12,14 @@
 
 <article class="max-w-5xl mx-auto py-24 space-y-24">
 	{#each data.midjourney as image, i}
-		<figure class="odd:pr-[10vw] even:pl-[10vw]">
-			<Img {image} loading={i < 2 ? 'eager' : 'lazy'} />
+		<figure
+			class="odd:pr-[10vw] even:pl-[10vw] max-w-max even:ml-auto odd:mr-auto"
+		>
+			<Img
+				class="max-h-[80svh] w-auto"
+				{image}
+				loading={i < 2 ? 'eager' : 'lazy'}
+			/>
 		</figure>
 	{/each}
 </article>
