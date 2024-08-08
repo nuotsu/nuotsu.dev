@@ -1,7 +1,14 @@
 <ul class="grid gap-1">
 	{#each $page.data.projects as project}
 		<li>
-			<a class="inline-flex gap-1 visited:text-neutral-400" href={project.url}>
+			<a
+				class="inline-flex items-center gap-2 visited:text-neutral-400"
+				href={project.url}
+			>
+				{#if project.repo}
+					<StarCount repo={project.repo} />
+				{/if}
+
 				{project.title}
 			</a>
 		</li>
@@ -22,4 +29,5 @@
 
 <script lang="ts">
 	import { page } from '$app/stores'
+	import StarCount from './StarCount.svelte'
 </script>

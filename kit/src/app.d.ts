@@ -19,6 +19,7 @@ declare global {
 			emoji: string
 			id: { current: string }
 			url: string
+			repo?: string
 			startDate: string
 		}
 

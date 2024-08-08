@@ -39,6 +39,10 @@ export default defineType({
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
+			name: 'repo',
+			type: 'string',
+		}),
+		defineField({
 			name: 'startDate',
 			type: 'date',
 			validation: (Rule) => Rule.required(),
@@ -52,7 +56,7 @@ export default defineType({
 			emoji: 'emoji',
 		},
 		prepare: ({ featured, title, subtitle, emoji }) => ({
-			title: [title, featured && '🌟'].filter(Boolean).join(' '),
+			title: [featured && '★', title].filter(Boolean).join(' '),
 			subtitle,
 			media: <>{emoji}</>,
 		}),
