@@ -16,7 +16,7 @@
 			class="odd:pr-[10vw] even:pl-[10vw] max-w-max even:ml-auto odd:mr-auto"
 		>
 			<Img
-				class="max-h-[80svh] w-auto"
+				class="max-h-svh w-auto"
 				{image}
 				loading={i < 2 ? 'eager' : 'lazy'}
 			/>
