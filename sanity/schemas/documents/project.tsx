@@ -8,6 +8,11 @@ export default defineType({
 	fieldsets: [{ name: 'name', options: { columns: 2 } }],
 	fields: [
 		defineField({
+			name: 'hidden',
+			type: 'boolean',
+			initialValue: false,
+		}),
+		defineField({
 			name: 'featured',
 			type: 'boolean',
 			initialValue: false,
@@ -20,6 +25,11 @@ export default defineType({
 		}),
 		defineField({
 			name: 'emoji',
+			type: 'string',
+			fieldset: 'name',
+		}),
+		defineField({
+			name: 'japanese',
 			type: 'string',
 			fieldset: 'name',
 		}),
@@ -52,12 +62,13 @@ export default defineType({
 		select: {
 			featured: 'featured',
 			title: 'title',
-			subtitle: 'startDate',
+			japanese: 'japanese',
+			startDate: 'startDate',
 			emoji: 'emoji',
 		},
-		prepare: ({ featured, title, subtitle, emoji }) => ({
+		prepare: ({ featured, title, japanese, startDate, emoji }) => ({
 			title: [featured && '★', title].filter(Boolean).join(' '),
-			subtitle,
+			subtitle: [startDate, japanese].filter(Boolean).join(' | '),
 			media: <>{emoji}</>,
 		}),
 	},

@@ -1,7 +1,11 @@
 <ul class="sticky bottom-0 flex gap-3 items-start">
-	<li><a href="https://github.com/nuotsu">GitHub</a></li>
-	<li><a href="https://linkedin.com/in/nuotsu">LinkedIn</a></li>
-	<li><a href="mailto:mitchell@nuotsu.dev">Email</a></li>
+	{#each links as link}
+		<li>
+			<a href={link.href}>
+				{link.text}
+			</a>
+		</li>
+	{/each}
 </ul>
 
 <style>
@@ -23,12 +27,21 @@
 		align-items: center;
 		gap: 0.25em;
 
-		&::after {
-			content: '☝️';
-		}
-
-		&:not(:hover)::after {
-			visibility: hidden;
+		&:hover {
+			font-style: italic;
 		}
 	}
 </style>
+
+<script lang="ts">
+	import Japanese from './Japanese.svelte'
+
+	const links: {
+		href: string
+		text: string
+	}[] = [
+		{ href: 'https://github.com/nuotsu', text: 'GitHub' },
+		{ href: 'https://linkedin.com/in/nuotsu', text: 'LinkedIn' },
+		{ href: 'mailto:mitchell@nuotsu.dev', text: 'Email' },
+	]
+</script>

@@ -4,7 +4,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Anton', 'sans-serif'],
+				sans: "'Maru Monica', sans-serif",
+				cursive: "'Ounen-mouhitsu', cursive",
 			},
 			colors: {
 				canvas: '#000',

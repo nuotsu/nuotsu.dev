@@ -14,9 +14,11 @@ declare global {
 
 	namespace Sanity {
 		type Project = {
+			hidden: boolean
 			featured: boolean
 			title: string
 			emoji: string
+			japanese?: string
 			id: { current: string }
 			url: string
 			repo?: string

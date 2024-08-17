@@ -1,19 +1,16 @@
 <header class="sticky top-0">
 	<div
-		class="relative flex flex-col items-start overflow-x-auto overflow-y-clip no-scrollbar"
+		class="flex flex-col items-start overflow-x-auto overflow-y-clip no-scrollbar"
 	>
-		<h1 class="relative text-9xl whitespace-nowrap shrink-0 overflow-hidden">
+		<h1
+			class="relative text-9xl leading-[1.1] whitespace-nowrap shrink-0 overflow-hidden font-cursive"
+		>
 			{title}
 			<BaseballCap />
 		</h1>
 
-		<nav class="sticky left-0">
-			<a
-				class="inline-block absolute left-0 bottom-0 bg-canvas p-[.5ch]"
-				href="/"
-			>
-				nuotsu
-			</a>
+		<nav class="sticky left-0 -mt-[2ch]">
+			<a href="/"> nuotsu </a>
 		</nav>
 	</div>
 </header>
@@ -35,11 +32,10 @@
 
 <style>
 	header {
-		margin-bottom: -1.5ch;
+		margin-bottom: -0.75ch;
 	}
 
 	header > div {
-		margin-left: -0.5ch;
 		padding-bottom: 2ch;
 	}
 
@@ -53,8 +49,7 @@
 		position: relative;
 
 		&:hover {
-			text-decoration: underline;
-			text-decoration-thickness: 0.25ch;
+			font-style: italic;
 		}
 	}
 </style>

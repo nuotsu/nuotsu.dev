@@ -6,8 +6,8 @@
 
 <style>
 	span {
-		top: -0.15ch;
-		right: -0.2ch;
-		rotate: 24deg;
+		top: 0.2ch;
+		right: 0.5ch;
+		rotate: -16deg;
 	}
 </style>
