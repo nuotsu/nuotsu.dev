@@ -1,0 +1,43 @@
+{
+	"name": "nuotsu.dev",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"host": "vite dev --host",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"dependencies": {
+		"@sanity/client": "^6.24.1",
+		"@sanity/orderable-document-list": "^1.2.2",
+		"@sanity/vision": "^3.67.1",
+		"@tailwindcss/postcss": "^4.0.0-beta.7",
+		"groq": "^3.67.1",
+		"octokit": "^4.0.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"sanity": "^3.67.1",
+		"styled-components": "^6.1.8"
+	},
+	"devDependencies": {
+		"@sanity/eslint-config-studio": "^5.0.0",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.9.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@types/react": "^18.0.25",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9.9.0",
+		"prettier": "^3.3.2",
+		"prettier-plugin-svelte": "^3.2.6",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"tailwindcss": "^4.0.0-beta.7",
+		"typescript": "^5.1.6",
+		"vite": "^6.0.0"
+	}
+}
