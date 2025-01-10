@@ -1,3 +1,5 @@
+import type { SanityAssetDocument } from '@sanity/client'
+
 // See https://svelte.dev/docs/kit/types#app.d.ts
 declare global {
 	namespace App {
@@ -13,9 +15,8 @@ declare global {
 			hidden: boolean
 			featured: boolean
 			title: string
-			emoji: string
-			japanese?: string
 			id: { current: string }
+			emoji: string
 			url: string
 			repo?: string
 			startDate: string
@@ -23,8 +24,10 @@ declare global {
 
 		interface Midjourney {
 			title: string
-			image: SanityAssetDocument
+			image: Image
 		}
+
+		interface Image extends SanityAssetDocument {}
 	}
 }
 

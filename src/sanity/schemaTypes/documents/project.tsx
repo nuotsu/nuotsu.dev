@@ -6,33 +6,29 @@ export default defineType({
 	title: 'Project',
 	type: 'document',
 	liveEdit: true,
-	fieldsets: [{ name: 'name', options: { columns: 2 } }],
+	fieldsets: [
+		{ name: 'meta', options: { columns: 2 } },
+		{ name: 'name', options: { columns: 2 } },
+		{ name: 'url', options: { columns: 2 } },
+	],
 	fields: [
 		defineField({
 			name: 'hidden',
 			type: 'boolean',
 			initialValue: false,
+			fieldset: 'meta',
 		}),
 		defineField({
 			name: 'featured',
 			type: 'boolean',
 			initialValue: false,
+			fieldset: 'meta',
 		}),
 		defineField({
 			name: 'title',
 			type: 'string',
 			fieldset: 'name',
 			validation: (Rule) => Rule.required(),
-		}),
-		defineField({
-			name: 'emoji',
-			type: 'string',
-			fieldset: 'name',
-		}),
-		defineField({
-			name: 'japanese',
-			type: 'string',
-			fieldset: 'name',
 		}),
 		defineField({
 			name: 'id',
@@ -44,14 +40,21 @@ export default defineType({
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
+			name: 'emoji',
+			type: 'string',
+			fieldset: 'name',
+		}),
+		defineField({
 			name: 'url',
 			title: 'URL',
 			type: 'url',
 			validation: (Rule) => Rule.required(),
+			fieldset: 'url',
 		}),
 		defineField({
 			name: 'repo',
 			type: 'string',
+			fieldset: 'url',
 		}),
 		defineField({
 			name: 'startDate',
@@ -63,13 +66,12 @@ export default defineType({
 		select: {
 			featured: 'featured',
 			title: 'title',
-			japanese: 'japanese',
 			startDate: 'startDate',
 			emoji: 'emoji',
 		},
-		prepare: ({ featured, title, japanese, startDate, emoji }) => ({
+		prepare: ({ featured, title, startDate, emoji }) => ({
 			title: [featured && '★', title].filter(Boolean).join(' '),
-			subtitle: [startDate, japanese].filter(Boolean).join(' | '),
+			subtitle: startDate,
 			media: <>{emoji}</>,
 		}),
 	},
