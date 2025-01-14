@@ -1,5 +1,5 @@
 {#if image}
-	{@const { w, h } = getDimensions()}
+	{@const { w, h } = getDimensions(image)}
 
 	<img
 		class={className}
@@ -42,11 +42,7 @@
 		options?: ImageUrlBuilderOptions
 	} & Partial<HTMLImageElement> = $props()
 
-	function getDimensions() {
-		if (!image) {
-			return { w: undefined, h: undefined }
-		}
-
+	function getDimensions(image: Sanity.Image) {
 		const { width: w, height: h } = getImageDimensions(image)
 
 		return {

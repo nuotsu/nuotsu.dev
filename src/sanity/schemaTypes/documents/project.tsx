@@ -1,9 +1,11 @@
 import React from 'react'
 import { defineField, defineType } from 'sanity'
+import { VscBriefcase } from 'react-icons/vsc'
 
 export default defineType({
 	name: 'project',
 	title: 'Project',
+	icon: VscBriefcase,
 	type: 'document',
 	liveEdit: true,
 	fieldsets: [

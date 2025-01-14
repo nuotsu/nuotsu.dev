@@ -11,6 +11,13 @@ declare global {
 	}
 
 	namespace Sanity {
+		interface Site {
+			hero: {
+				desktop: Image
+				mobile: Image
+			}
+		}
+
 		interface Project {
 			hidden: boolean
 			featured: boolean
@@ -20,11 +27,9 @@ declare global {
 			url: string
 			repo?: string
 			startDate: string
-		}
 
-		interface Midjourney {
-			title: string
-			image: Image
+			stargazers?: number
+			forks?: number
 		}
 
 		interface Image extends SanityAssetDocument {}

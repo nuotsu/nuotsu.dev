@@ -4,6 +4,8 @@ import { structure } from './structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 
+const singletonTypes = ['site']
+
 export default defineConfig({
 	projectId,
 	dataset,
@@ -13,6 +15,21 @@ export default defineConfig({
 
 	schema: {
 		types: schemaTypes,
+		templates: (templates) =>
+			templates.filter(
+				({ schemaType }) => !singletonTypes.includes(schemaType),
+			),
+	},
+
+	document: {
+		actions: (input, { schemaType }) =>
+			singletonTypes.includes(schemaType)
+				? input.filter(
+						({ action }) =>
+							action &&
+							['publish', 'discardChanges', 'restore'].includes(action),
+					)
+				: input,
 	},
 
 	tasks: { enabled: false },

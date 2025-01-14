@@ -1,9 +1,9 @@
 // documents
+import site from './documents/site'
 import project from './documents/project'
-import midjourney from './documents/midjourney'
 
 export const schemaTypes = [
 	// documents
+	site,
 	project,
-	midjourney,
 ]
