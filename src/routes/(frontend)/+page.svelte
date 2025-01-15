@@ -1,11 +1,7 @@
-<section class="text-shadow flex min-h-svh flex-col justify-between gap-4 p-3">
+<section
+	class="landscape:pr-[env(safe-area-inset-right)] landscape:pl-[env(safe-area-inset-left)]"
+>
 	<ProjectList projects={data.projects} />
-
-	<h2
-		class="mr-[env(safe-area-inset-right)] ml-auto max-w-48 text-right text-2xl"
-	>
-		I build websites & gnerate images.
-	</h2>
 </section>
 
 <script lang="ts">

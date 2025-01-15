@@ -3,23 +3,27 @@
 	<meta name="description" content="I build websites & generate images." />
 </svelte:head>
 
-<Hero hero={data.site.hero} />
+<Header />
 
-<main class="relative z-1">
+<main class="grow">
 	{@render children()}
 </main>
 
+<footer class="sticky bottom-0">
+	<!-- svelte-ignore a11y_distracting_elements -->
+	<marquee>
+		<h1>I build websites & generate images.</h1>
+	</marquee>
+</footer>
+
 <script lang="ts">
-	import '@/styles/app.css'
+	import Header from '@/lib/Header.svelte'
 	import type { Snippet } from 'svelte'
-	import type { LayoutData } from './$types'
-	import Hero from '@/lib/Hero.svelte'
+	import '@/styles/app.css'
 
 	let {
-		data,
 		children,
 	}: {
-		data: LayoutData
 		children: Snippet
 	} = $props()
 </script>

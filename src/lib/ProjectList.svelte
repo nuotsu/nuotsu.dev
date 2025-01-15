@@ -1,28 +1,34 @@
-<ul class="text-ink/90 space-y-2 landscape:pl-[env(safe-area-inset-left)]">
-	{#each projects as project}
-		<li>
-			<a href={project.url} class="inline-flex items-center gap-3">
-				<span>{project.title}</span>
+<table>
+	<thead>
+		<tr>
+			<th class="w-full text-left">Project</th>
+			<th class="px-[1ch]">Stars</th>
+			<th>Forks</th>
+		</tr>
+	</thead>
 
-				{#if project.repo}
-					{@const { stargazers, forks } = project}
+	<tbody>
+		{#each projects as project}
+			{@const { stargazers, forks } = project}
 
-					{#if stargazers || forks}
-						<small class="text-[x-small]">
-							{#if stargazers}
-								<span>★{stargazers}</span>
-							{/if}
+			<tr class="hover:bg-ink hover:text-canvas">
+				<td class="line-clamp-1">
+					<a href={project.url}>
+						{project.title}
+					</a>
+				</td>
 
-							{#if forks}
-								<span>⑂{forks}</span>
-							{/if}
-						</small>
-					{/if}
-				{/if}
-			</a>
-		</li>
-	{/each}
-</ul>
+				<td class="px-[1ch] text-right">
+					{#if stargazers}{stargazers}{/if}
+				</td>
+
+				<td class="text-right">
+					{#if forks}{forks}{/if}
+				</td>
+			</tr>
+		{/each}
+	</tbody>
+</table>
 
 <script lang="ts">
 	let { projects }: { projects: Sanity.Project[] } = $props()
