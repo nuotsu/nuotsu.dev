@@ -33,7 +33,25 @@
 		font-weight: 700;
 	}
 
+	thead th:first-child {
+		width: 100%;
+		text-align: left;
+	}
+
+	tbody tr:hover {
+		background-color: var(--color-ink);
+		color: var(--color-canvas);
+	}
+
 	th {
 		font-weight: normal;
+	}
+
+	:is(th, td) {
+		padding-left: 1ch;
+
+		&:last-child {
+			padding-right: 1ch;
+		}
 	}
 }

@@ -19,8 +19,9 @@ declare global {
 		}
 
 		interface Project {
-			hidden: boolean
 			featured: boolean
+			client: boolean
+			hidden: boolean
 			title: string
 			id: { current: string }
 			emoji: string

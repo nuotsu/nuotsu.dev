@@ -3,12 +3,12 @@ import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ url }) => {
 	const projects = await fetchSanity<Sanity.Project[]>({
-		query: groq`*[_type == 'project' && !hidden]|order(featured desc, startDate desc)`,
+		query: groq`*[_type == 'project']|order(featured desc, startDate desc)`,
 	})
 
 	const processedProjects = await Promise.all(
 		projects.map(async (project) => {
-			if (!project.repo) {
+			if (!project.repo || project.hidden) {
 				return project
 			}
 

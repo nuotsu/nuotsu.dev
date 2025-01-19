@@ -1,17 +1,17 @@
 <table>
 	<thead>
 		<tr>
-			<th class="w-full text-left">Project</th>
+			<th>Project</th>
 			<th>Stars</th>
 			<th>Forks</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		{#each projects as project}
+		{#each projects.filter((p) => !p.hidden) as project}
 			{@const { stargazers, forks } = project}
 
-			<tr class="hover:bg-ink hover:text-canvas">
+			<tr>
 				<td class="line-clamp-1">
 					<a href={project.url}>
 						{project.title}
@@ -29,16 +29,6 @@
 		{/each}
 	</tbody>
 </table>
-
-<style>
-	table :is(th, td) {
-		padding-left: 1ch;
-
-		&:last-child {
-			padding-right: 1ch;
-		}
-	}
-</style>
 
 <script lang="ts">
 	let { projects }: { projects: Sanity.Project[] } = $props()
