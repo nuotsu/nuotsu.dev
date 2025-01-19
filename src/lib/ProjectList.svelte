@@ -19,7 +19,7 @@
 						</a>
 					</td>
 
-					<td class="px-[1ch] text-right">
+					<td class="text-right">
 						{#if stargazers}{stargazers}{/if}
 					</td>
 
