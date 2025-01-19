@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ url }) => {
 	const projects = await fetchSanity<Sanity.Project[]>({
-		query: groq`*[_type == 'project']|order(featured desc, startDate desc)`,
+		query: groq`*[_type == 'project']|order(startDate desc)`,
 	})
 
 	const processedProjects = await Promise.all(
@@ -23,6 +23,6 @@ export const load: PageServerLoad = async ({ url }) => {
 	)
 
 	return {
-		projects: processedProjects.sort((a, b) => b.stargazers - a.stargazers),
+		projects: processedProjects,
 	}
 }

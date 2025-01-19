@@ -11,7 +11,7 @@
 
 	h1::before {
 		content: '|';
-		color: orangered;
+		color: var(--color-accent);
 		font-size: large;
 		margin-left: -0.25ch;
 	}

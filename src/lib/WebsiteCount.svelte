@@ -8,7 +8,7 @@
 		</thead>
 		<tbody>
 			{#each sortByYear as [year, count]}
-				<tr>
+				<tr data-year={year} {onmouseenter}>
 					<td>{year}</td>
 					<td class="text-right">{count}</td>
 				</tr>
@@ -22,6 +22,18 @@
 	</table>
 </article>
 
+<style>
+	:global(body:has(tr[data-year='2024']:hover) #archive li:not([data-year='2024'])),
+	:global(body:has(tr[data-year='2023']:hover) #archive li:not([data-year='2023'])),
+	:global(body:has(tr[data-year='2022']:hover) #archive li:not([data-year='2022'])),
+	:global(body:has(tr[data-year='2021']:hover) #archive li:not([data-year='2021'])),
+	:global(body:has(tr[data-year='2020']:hover) #archive li:not([data-year='2020'])),
+	:global(body:has(tr[data-year='2017']:hover) #archive li:not([data-year='2017'])),
+	:global(body:has(tr[data-year='1995']:hover) #archive li:not([data-year='1995'])) {
+		opacity: 0.3;
+	}
+</style>
+
 <script lang="ts">
 	let { projects }: { projects: Sanity.Project[] } = $props()
 
@@ -32,4 +44,11 @@
 	}, {})
 
 	const sortByYear = Object.entries(byYear).reverse()
+
+	function onmouseenter(e: MouseEvent) {
+		const year = (e.target as HTMLElement)?.closest('tr')?.dataset.year
+		document.querySelector(`#archive li[data-year="${year}"]`)?.scrollIntoView({
+			behavior: 'smooth',
+		})
+	}
 </script>

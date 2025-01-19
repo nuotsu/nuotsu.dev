@@ -4,14 +4,15 @@
 @theme {
 	--color-ink: #fff;
 	--color-canvas: #000;
+	--color-accent: orangered;
 
 	--font-sans: 'Doto', font-serif;
 }
 
 @layer base {
 	::selection {
-		background-color: var(--color-ink);
-		color: var(--color-canvas);
+		background-color: var(--color-accent);
+		color: var(--color-ink);
 	}
 
 	* {
@@ -21,6 +22,7 @@
 	html {
 		scroll-behavior: smooth;
 		accent-color: var(--color-ink);
+		cursor: crosshair;
 	}
 
 	body {
