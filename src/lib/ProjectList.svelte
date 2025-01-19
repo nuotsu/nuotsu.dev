@@ -2,7 +2,7 @@
 	<thead>
 		<tr>
 			<th class="w-full text-left">Project</th>
-			<th class="px-[1ch]">Stars</th>
+			<th>Stars</th>
 			<th>Forks</th>
 		</tr>
 	</thead>
@@ -29,6 +29,16 @@
 		{/each}
 	</tbody>
 </table>
+
+<style>
+	table :is(th, td) {
+		padding-left: 1ch;
+
+		&:last-child {
+			padding-right: 1ch;
+		}
+	}
+</style>
 
 <script lang="ts">
 	let { projects }: { projects: Sanity.Project[] } = $props()

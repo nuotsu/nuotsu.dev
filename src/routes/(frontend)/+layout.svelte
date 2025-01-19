@@ -9,7 +9,7 @@
 	{@render children()}
 </main>
 
-<footer class="sticky bottom-0">
+<footer class="sticky bottom-0 mb-[env(safe-area-inset-bottom)]">
 	<!-- svelte-ignore a11y_distracting_elements -->
 	<marquee>
 		<h1>I build websites & generate images.</h1>

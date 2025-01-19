@@ -9,19 +9,28 @@ export default defineType({
 	type: 'document',
 	liveEdit: true,
 	fieldsets: [
-		{ name: 'meta', options: { columns: 2 } },
+		{ name: 'meta', options: { columns: 3 } },
 		{ name: 'name', options: { columns: 2 } },
 		{ name: 'url', options: { columns: 2 } },
 	],
 	fields: [
 		defineField({
-			name: 'hidden',
+			name: 'featured',
+			title: '⭐ Featured',
 			type: 'boolean',
 			initialValue: false,
 			fieldset: 'meta',
 		}),
 		defineField({
-			name: 'featured',
+			name: 'client',
+			title: '💼 Client work',
+			type: 'boolean',
+			initialValue: false,
+			fieldset: 'meta',
+		}),
+		defineField({
+			name: 'hidden',
+			title: '🚫 Hidden',
 			type: 'boolean',
 			initialValue: false,
 			fieldset: 'meta',
@@ -66,15 +75,38 @@ export default defineType({
 	],
 	preview: {
 		select: {
-			featured: 'featured',
 			title: 'title',
-			startDate: 'startDate',
 			emoji: 'emoji',
+			featured: 'featured',
+			client: 'client',
+			hidden: 'hidden',
 		},
-		prepare: ({ featured, title, startDate, emoji }) => ({
-			title: [featured && '★', title].filter(Boolean).join(' '),
-			subtitle: startDate,
-			media: <>{emoji}</>,
+		prepare: ({ title, emoji, featured, client, hidden }) => ({
+			title: [title, client && '💼'].filter(Boolean).join(' '),
+			media: (
+				<span
+					style={{
+						position: 'relative',
+						display: 'grid',
+						placeContent: 'center',
+					}}
+				>
+					{emoji}
+					{(featured || hidden) && (
+						<span
+							style={{
+								position: 'absolute',
+								bottom: 0,
+								right: 0,
+								translate: '50% 25%',
+								fontSize: '.5em',
+							}}
+						>
+							{featured ? '⭐' : hidden ? '🚫' : null}
+						</span>
+					)}
+				</span>
+			),
 		}),
 	},
 	orderings: [
