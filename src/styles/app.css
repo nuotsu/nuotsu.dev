@@ -55,3 +55,27 @@
 		}
 	}
 }
+
+@utility full-bleed {
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
+}
+
+@utility no-scrollbar {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+@utility sticky-header {
+	position: sticky;
+	top: 0.5ch;
+	font-weight: normal;
+
+	@media (orientation: portrait) {
+		top: 2.5ch;
+	}
+}

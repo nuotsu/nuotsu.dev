@@ -1,35 +1,54 @@
-<table>
-	<thead>
-		<tr>
-			<th>Project</th>
-			<th>Stars</th>
-			<th>Forks</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		{#each projects.filter((p) => !p.hidden) as project}
-			{@const { stargazers, forks } = project}
-
+<section>
+	<table>
+		<thead>
 			<tr>
-				<td class="line-clamp-1">
-					<a href={project.url}>
-						{project.title}
-					</a>
-				</td>
-
-				<td class="px-[1ch] text-right">
-					{#if stargazers}{stargazers}{/if}
-				</td>
-
-				<td class="text-right">
-					{#if forks}{forks}{/if}
-				</td>
+				<th>Project</th>
+				<th>Stars</th>
+				<th>Forks</th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+
+		<tbody>
+			{#each processedProjects as project}
+				{@const { stargazers, forks } = project}
+
+				<tr>
+					<td class="line-clamp-1">
+						<a href={project.url}>
+							{project.title}
+						</a>
+					</td>
+
+					<td class="px-[1ch] text-right">
+						{#if stargazers}{stargazers}{/if}
+					</td>
+
+					<td class="text-right">
+						{#if forks}{forks}{/if}
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</section>
+
+<style>
+	th {
+		position: sticky;
+		top: 0.5ch;
+
+		@media (orientation: portrait) {
+			&:first-child {
+				top: 2.5ch;
+			}
+		}
+	}
+</style>
 
 <script lang="ts">
 	let { projects }: { projects: Sanity.Project[] } = $props()
+
+	const processedProjects = projects
+		.filter((p) => p.featured)
+		.sort((a, b) => (b?.stargazers || 0) - (a?.stargazers || 0))
 </script>

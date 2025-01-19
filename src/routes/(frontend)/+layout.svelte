@@ -5,19 +5,17 @@
 
 <Header />
 
-<main class="grow">
+<main
+	class="grow space-y-[1ch] landscape:pr-[env(safe-area-inset-right)] landscape:pl-[env(safe-area-inset-left)]"
+>
 	{@render children()}
 </main>
 
-<footer class="sticky bottom-0 mb-[env(safe-area-inset-bottom)]">
-	<!-- svelte-ignore a11y_distracting_elements -->
-	<marquee>
-		<h1>I build websites & generate images.</h1>
-	</marquee>
-</footer>
+<Footer />
 
 <script lang="ts">
 	import Header from '@/lib/Header.svelte'
+	import Footer from '@/lib/Footer.svelte'
 	import type { Snippet } from 'svelte'
 	import '@/styles/app.css'
 

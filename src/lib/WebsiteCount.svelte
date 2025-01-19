@@ -1,24 +1,26 @@
-<table>
-	<thead>
-		<tr>
-			<th>Year</th>
-			<th>Websites</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each sortByYear as [year, count]}
+<article class="sticky top-0 z-1 ml-auto">
+	<table>
+		<thead>
 			<tr>
-				<td>{year}</td>
-				<td class="text-right">{count}</td>
+				<th>Year</th>
+				<th>Websites</th>
 			</tr>
-		{/each}
+		</thead>
+		<tbody>
+			{#each sortByYear as [year, count]}
+				<tr>
+					<td>{year}</td>
+					<td class="text-right">{count}</td>
+				</tr>
+			{/each}
 
-		<tr>
-			<td>Total</td>
-			<td class="text-right">{projects.length}</td>
-		</tr>
-	</tbody>
-</table>
+			<tr>
+				<td>Total</td>
+				<td class="text-right">{projects.length}+</td>
+			</tr>
+		</tbody>
+	</table>
+</article>
 
 <script lang="ts">
 	let { projects }: { projects: Sanity.Project[] } = $props()

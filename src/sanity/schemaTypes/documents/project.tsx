@@ -9,7 +9,7 @@ export default defineType({
 	type: 'document',
 	liveEdit: true,
 	fieldsets: [
-		{ name: 'meta', options: { columns: 3 } },
+		{ name: 'meta', options: { columns: 2 } },
 		{ name: 'name', options: { columns: 2 } },
 		{ name: 'url', options: { columns: 2 } },
 	],
@@ -24,13 +24,6 @@ export default defineType({
 		defineField({
 			name: 'client',
 			title: '💼 Client work',
-			type: 'boolean',
-			initialValue: false,
-			fieldset: 'meta',
-		}),
-		defineField({
-			name: 'hidden',
-			title: '🚫 Hidden',
 			type: 'boolean',
 			initialValue: false,
 			fieldset: 'meta',
@@ -79,9 +72,8 @@ export default defineType({
 			emoji: 'emoji',
 			featured: 'featured',
 			client: 'client',
-			hidden: 'hidden',
 		},
-		prepare: ({ title, emoji, featured, client, hidden }) => ({
+		prepare: ({ title, emoji, featured, client }) => ({
 			title: [title, client && '💼'].filter(Boolean).join(' '),
 			media: (
 				<span
@@ -92,7 +84,7 @@ export default defineType({
 					}}
 				>
 					{emoji}
-					{(featured || hidden) && (
+					{!featured && (
 						<span
 							style={{
 								position: 'absolute',
@@ -102,7 +94,7 @@ export default defineType({
 								fontSize: '.5em',
 							}}
 						>
-							{featured ? '⭐' : hidden ? '🚫' : null}
+							🚫
 						</span>
 					)}
 				</span>
