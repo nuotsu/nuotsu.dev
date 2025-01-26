@@ -37,14 +37,14 @@
 		flex-shrink: 0;
 		scroll-margin-left: calc(0.5ch + env(safe-area-inset-left));
 
-		@media (width >= 30rem) {
+		@media (width >= 64rem) {
 			&:hover {
 				background-color: var(--color-ink);
 				color: var(--color-canvas);
 			}
 		}
 
-		@media (width < 30rem) {
+		@media (width < 64rem) {
 			&:has(span:hover) {
 				background-color: var(--color-ink);
 				color: var(--color-canvas);
