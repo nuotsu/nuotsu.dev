@@ -4,9 +4,16 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<link rel="icon" href="https://fav.farm/🔰" />
-		%sveltekit.head%
+		<title>%sveltekit.error.message%</title>
+		<style>
+			body {
+				background-color: #000;
+				color: #fff;
+			}
+		</style>
 	</head>
 	<body class="flex min-h-svh flex-col gap-[1ch]" data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+		<p>%sveltekit.status%</p>
+		<p>%sveltekit.error.message%</p>
 	</body>
 </html>
