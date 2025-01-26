@@ -83,7 +83,7 @@
 
 @utility sticky-header {
 	position: sticky;
-	top: 0.5ch;
+	top: 1lh;
 	font-weight: normal;
 
 	@media (orientation: portrait) {
