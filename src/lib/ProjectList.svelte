@@ -37,7 +37,7 @@
 		position: sticky;
 		top: 0;
 
-		@media (orientation: portrait) {
+		@media (orientation: landscape) {
 			&:first-child {
 				top: 1lh;
 			}
