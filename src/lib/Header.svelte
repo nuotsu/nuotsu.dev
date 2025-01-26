@@ -5,9 +5,11 @@
 </header>
 
 <style>
-	@media (orientation: landscape) {
+	@media (width < 64rem) and (orientation: landscape) {
 		header {
 			top: calc(100dvh - 100svh);
+			height: 0;
+			margin-bottom: -1ch;
 		}
 	}
 
@@ -15,6 +17,7 @@
 		content: '|';
 		color: var(--color-accent);
 		font-size: large;
+		line-height: 0;
 		margin-left: -0.25ch;
 	}
 </style>

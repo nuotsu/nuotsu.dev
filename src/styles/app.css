@@ -87,6 +87,10 @@
 	font-weight: normal;
 
 	@media (orientation: portrait) {
-		top: 2.5ch;
+		top: 2ch;
+	}
+
+	@media (width < 64rem) and (orientation: landscape) {
+		top: 0;
 	}
 }

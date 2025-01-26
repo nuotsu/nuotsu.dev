@@ -35,9 +35,9 @@
 <style>
 	th {
 		position: sticky;
-		top: 0.5ch;
+		top: 0;
 
-		@media not (orientation: portrait) {
+		@media (orientation: portrait) {
 			&:first-child {
 				top: 1lh;
 			}
@@ -45,7 +45,7 @@
 
 		@media (orientation: portrait) {
 			&:first-child {
-				top: 2.5ch;
+				top: 2ch;
 			}
 		}
 	}
