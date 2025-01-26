@@ -6,11 +6,13 @@
 			{@const url = project.url.replace(/^https?:\/\/(www\.)?/, '')}
 
 			<li data-year={new Date(project.startDate).getFullYear()}>
-				{#if project.redacted}
-					{url.replace(/(?<=\b[A-Za-z]+)[a-z]/g, '*')}
-				{:else}
-					{url}
-				{/if}
+				<span>
+					{#if project.redacted}
+						{url.replace(/(?<=\b[A-Za-z]+)[a-z]/g, '*')}
+					{:else}
+						{url}
+					{/if}
+				</span>
 			</li>
 		{/each}
 	</ul>
@@ -24,7 +26,7 @@
 		:global(body:not(:has(tr[data-year]:hover))) & {
 			mask: linear-gradient(to right, black var(--via, 50%), transparent);
 
-			@media (width < 480px) {
+			@media (width < 30rem) {
 				--via: 0;
 			}
 		}
@@ -35,9 +37,18 @@
 		flex-shrink: 0;
 		scroll-margin-left: calc(0.5ch + env(safe-area-inset-left));
 
-		&:hover {
-			background-color: var(--color-ink);
-			color: var(--color-canvas);
+		@media (width >= 30rem) {
+			&:hover {
+				background-color: var(--color-ink);
+				color: var(--color-canvas);
+			}
+		}
+
+		@media (width < 30rem) {
+			&:has(span:hover) {
+				background-color: var(--color-ink);
+				color: var(--color-canvas);
+			}
 		}
 	}
 </style>
