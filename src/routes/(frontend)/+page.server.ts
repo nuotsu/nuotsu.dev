@@ -2,8 +2,11 @@ import { fetchSanity, groq } from '@/sanity/lib/fetch'
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ url }) => {
-	const projects = await fetchSanity<Sanity.Project[]>({
-		query: groq`*[_type == 'project']|order(startDate desc)`,
+	const { site, projects } = await fetchSanity<{ site: Sanity.Site; projects: Sanity.Project[] }>({
+		query: groq`{
+			'site': *[_type == 'site'][0],
+			'projects': *[_type == 'project']|order(startDate desc)
+		}`,
 	})
 
 	const processedProjects = await Promise.all(
@@ -23,6 +26,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	)
 
 	return {
+		site,
 		projects: processedProjects,
 	}
 }

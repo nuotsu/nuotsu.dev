@@ -1,4 +1,5 @@
 import type { SanityAssetDocument } from '@sanity/client'
+import type { InputValue } from '@portabletext/svelte'
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
 declare global {
@@ -12,10 +13,7 @@ declare global {
 
 	namespace Sanity {
 		interface Site {
-			hero: {
-				desktop: Image
-				mobile: Image
-			}
+			about?: InputValue
 		}
 
 		interface Project {

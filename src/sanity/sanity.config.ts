@@ -7,6 +7,7 @@ import { schemaTypes } from './schemaTypes'
 const singletonTypes = ['site']
 
 export default defineConfig({
+	title: 'nuotsu',
 	projectId,
 	dataset,
 	basePath: '/admin',
@@ -16,18 +17,14 @@ export default defineConfig({
 	schema: {
 		types: schemaTypes,
 		templates: (templates) =>
-			templates.filter(
-				({ schemaType }) => !singletonTypes.includes(schemaType),
-			),
+			templates.filter(({ schemaType }) => !singletonTypes.includes(schemaType)),
 	},
 
 	document: {
 		actions: (input, { schemaType }) =>
 			singletonTypes.includes(schemaType)
 				? input.filter(
-						({ action }) =>
-							action &&
-							['publish', 'discardChanges', 'restore'].includes(action),
+						({ action }) => action && ['publish', 'discardChanges', 'restore'].includes(action),
 					)
 				: input,
 	},

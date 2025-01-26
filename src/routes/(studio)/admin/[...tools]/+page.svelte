@@ -5,8 +5,8 @@
 <div bind:this={studioEl}></div>
 
 <style>
-	:global(body) {
-		margin: 0;
+	:global(html, body) {
+		all: unset;
 	}
 
 	div {

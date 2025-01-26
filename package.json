@@ -27,6 +27,7 @@
 		"styled-components": "^6.1.14"
 	},
 	"devDependencies": {
+		"@portabletext/svelte": "^2.1.11",
 		"@sanity/eslint-config-studio": "^5.0.1",
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.1",
