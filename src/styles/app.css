@@ -35,6 +35,15 @@
 		font-weight: 700;
 	}
 
+	main {
+		flex-grow: 1;
+
+		@media (orientation: landscape) {
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
+	}
+
 	thead th:first-child {
 		width: 100%;
 		text-align: left;

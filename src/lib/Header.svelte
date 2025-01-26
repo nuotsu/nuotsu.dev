@@ -1,5 +1,7 @@
 <header class="sticky top-0">
-	<h1 class="flex items-center">nuotsu</h1>
+	<h1 class="flex items-center">
+		<a href="/">nuotsu</a>
+	</h1>
 </header>
 
 <style>

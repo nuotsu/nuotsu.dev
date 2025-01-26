@@ -23,6 +23,7 @@
 </article>
 
 <style>
+	:global(body:has(tr[data-year='2025']:hover) #archive li:not([data-year='2025'])),
 	:global(body:has(tr[data-year='2024']:hover) #archive li:not([data-year='2024'])),
 	:global(body:has(tr[data-year='2023']:hover) #archive li:not([data-year='2023'])),
 	:global(body:has(tr[data-year='2022']:hover) #archive li:not([data-year='2022'])),

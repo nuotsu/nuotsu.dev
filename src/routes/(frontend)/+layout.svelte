@@ -5,9 +5,7 @@
 
 <Header />
 
-<main
-	class="grow space-y-[1ch] landscape:pr-[env(safe-area-inset-right)] landscape:pl-[env(safe-area-inset-left)]"
->
+<main class="space-y-[1ch]">
 	{@render children()}
 </main>
 

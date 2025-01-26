@@ -3,10 +3,14 @@
 
 	<ul class="full-bleed no-scrollbar flex max-w-max overflow-x-auto px-[0.5ch] whitespace-nowrap">
 		{#each projects as project, i}
-			{@const year = new Date(project.startDate).getFullYear()}
+			{@const url = project.url.replace(/^https?:\/\/(www\.)?/, '')}
 
-			<li data-year={year}>
-				{project.url.replace(/^https?:\/\/(www\.)?/, '')}
+			<li data-year={new Date(project.startDate).getFullYear()}>
+				{#if project.redacted}
+					{url.replace(/(?<=\b[A-Za-z]+)[a-z]/g, '*')}
+				{:else}
+					{url}
+				{/if}
 			</li>
 		{/each}
 	</ul>
@@ -14,7 +18,7 @@
 
 <style>
 	ul {
-		padding-left: calc(env(safe-area-inset-left) + 0.5ch);
+		padding-left: calc(0.5ch + env(safe-area-inset-left));
 		padding-right: calc(18ch + env(safe-area-inset-right));
 
 		:global(body:not(:has(tr[data-year]:hover))) & {

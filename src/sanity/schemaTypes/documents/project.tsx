@@ -22,8 +22,8 @@ export default defineType({
 			fieldset: 'meta',
 		}),
 		defineField({
-			name: 'client',
-			title: '💼 Client work',
+			name: 'redacted',
+			title: '🔒 Redacted',
 			type: 'boolean',
 			initialValue: false,
 			fieldset: 'meta',
@@ -71,10 +71,10 @@ export default defineType({
 			title: 'title',
 			emoji: 'emoji',
 			featured: 'featured',
-			client: 'client',
+			redacted: 'redacted',
 		},
-		prepare: ({ title, emoji, featured, client }) => ({
-			title: [title, client && '💼'].filter(Boolean).join(' '),
+		prepare: ({ title, emoji, featured, redacted }) => ({
+			title: [title, featured && '⭐'].filter(Boolean).join(' '),
 			media: (
 				<span
 					style={{
@@ -84,7 +84,7 @@ export default defineType({
 					}}
 				>
 					{emoji}
-					{!featured && (
+					{redacted && (
 						<span
 							style={{
 								position: 'absolute',
@@ -94,7 +94,7 @@ export default defineType({
 								fontSize: '.5em',
 							}}
 						>
-							🚫
+							🔒
 						</span>
 					)}
 				</span>

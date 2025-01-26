@@ -20,7 +20,7 @@ declare global {
 
 		interface Project {
 			featured: boolean
-			client: boolean
+			redacted: boolean
 			hidden: boolean
 			title: string
 			id: { current: string }
