@@ -35,18 +35,10 @@
 <style>
 	th {
 		position: sticky;
-		top: 0;
+		top: 1lh;
 
-		@media (orientation: landscape) {
-			&:first-child {
-				top: 1lh;
-			}
-		}
-
-		@media (orientation: portrait) {
-			&:first-child {
-				top: 2ch;
-			}
+		@media (orientation: landscape) and (hover: none) and (width < 64rem) {
+			top: 0;
 		}
 	}
 </style>

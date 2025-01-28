@@ -5,7 +5,7 @@
 </header>
 
 <style>
-	@media (width < 64rem) and (orientation: landscape) {
+	@media (orientation: landscape) and (hover: none) and (width < 64rem) {
 		header {
 			top: calc(100dvh - 100svh);
 			height: 0;
