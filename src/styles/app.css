@@ -90,7 +90,7 @@
 		top: 2ch;
 	}
 
-	@media (width < 64rem) and (orientation: landscape) {
+	@media (orientation: landscape) and (hover: none) and (width < 64rem) {
 		top: 0;
 	}
 }
