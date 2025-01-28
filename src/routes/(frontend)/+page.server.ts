@@ -2,10 +2,15 @@ import { fetchSanity, groq } from '@/sanity/lib/fetch'
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ url }) => {
-	const { site, projects } = await fetchSanity<{ site: Sanity.Site; projects: Sanity.Project[] }>({
+	const { site, projects, writings } = await fetchSanity<{
+		site: Sanity.Site
+		projects: Sanity.Project[]
+		writings: Sanity.Writing[]
+	}>({
 		query: groq`{
 			'site': *[_type == 'site'][0],
-			'projects': *[_type == 'project']|order(startDate desc)
+			'projects': *[_type == 'project']|order(startDate desc),
+			'writings': *[_type == 'writing']|order(date desc)
 		}`,
 	})
 
@@ -28,5 +33,6 @@ export const load: PageServerLoad = async ({ url }) => {
 	return {
 		site,
 		projects: processedProjects,
+		writings,
 	}
 }

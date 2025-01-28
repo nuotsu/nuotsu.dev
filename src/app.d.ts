@@ -31,6 +31,12 @@ declare global {
 			forks?: number
 		}
 
+		interface Writing {
+			title: string
+			date: string
+			url: string
+		}
+
 		interface Image extends SanityAssetDocument {}
 	}
 }

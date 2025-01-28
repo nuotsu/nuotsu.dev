@@ -1,4 +1,5 @@
-<ProjectList {projects} />
+<Projects {projects} />
+<Writings {writings} />
 <Contact />
 
 <section class="grid items-start gap-[1ch] *:col-span-full *:row-span-full">
@@ -9,7 +10,8 @@
 <About {site} />
 
 <script lang="ts">
-	import ProjectList from '@/lib/ProjectList.svelte'
+	import Projects from '@/lib/Projects.svelte'
+	import Writings from '@/lib/Writings.svelte'
 	import Contact from '@/lib/Contact.svelte'
 	import WebsiteCount from '@/lib/WebsiteCount.svelte'
 	import Archive from '@/lib/Archive.svelte'
@@ -17,5 +19,5 @@
 	import type { PageData } from './$types'
 
 	let { data }: { data: PageData } = $props()
-	let { site, projects } = data
+	let { site, projects, writings } = data
 </script>

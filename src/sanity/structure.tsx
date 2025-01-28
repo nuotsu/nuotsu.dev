@@ -1,3 +1,4 @@
+import React from 'react'
 import { structureTool } from 'sanity/structure'
 import { singleton } from './lib/utils'
 import { VscCodeOss } from 'react-icons/vsc'
@@ -9,6 +10,9 @@ export const structure = structureTool({
 			.items([
 				singleton(S, 'site', 'Site settings').icon(VscCodeOss),
 				S.divider(),
-				S.documentTypeListItem('project'),
+				S.documentTypeListItem('project').title('Projects'),
+				S.documentTypeListItem('writing').title('Writings'),
 			]),
 })
+
+export const icon = () => <img src="/icon.png" alt="" />

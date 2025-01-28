@@ -1,6 +1,6 @@
 import { defineConfig } from 'sanity'
 import { projectId, dataset } from './lib/env'
-import { structure } from './structure'
+import { structure, icon } from './structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 
@@ -8,6 +8,8 @@ const singletonTypes = ['site']
 
 export default defineConfig({
 	title: 'nuotsu',
+	icon,
+
 	projectId,
 	dataset,
 	basePath: '/admin',
