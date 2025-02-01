@@ -12,6 +12,8 @@
 		text-decoration-style: dotted;
 
 		&:hover {
+			margin-inline: -0.5ch;
+			padding-inline: 0.5ch;
 			text-decoration: none;
 			background: var(--color-ink);
 			color: var(--color-canvas);

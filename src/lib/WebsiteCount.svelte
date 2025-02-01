@@ -31,7 +31,8 @@
 	:global(body:has(tr[data-year='2020']:hover) #archive li:not([data-year='2020'])),
 	:global(body:has(tr[data-year='2017']:hover) #archive li:not([data-year='2017'])),
 	:global(body:has(tr[data-year='1995']:hover) #archive li:not([data-year='1995'])) {
-		opacity: 0.3;
+		font-weight: normal;
+		opacity: 0.5;
 	}
 </style>
 

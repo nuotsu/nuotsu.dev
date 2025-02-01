@@ -1,5 +1,5 @@
 <section>
-	<h2 class="sticky-header px-[1ch]">Writings</h2>
+	<h2 class="sticky-header px-[1ch]">Writing</h2>
 
 	<ul>
 		{#each writings as writing}

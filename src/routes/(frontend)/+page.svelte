@@ -1,5 +1,5 @@
 <Projects {projects} />
-<Writings {writings} />
+<Writing {writings} />
 <Contact />
 
 <section class="grid items-start gap-[1ch] *:col-span-full *:row-span-full">
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import Projects from '@/lib/Projects.svelte'
-	import Writings from '@/lib/Writings.svelte'
+	import Writing from '@/lib/Writing.svelte'
 	import Contact from '@/lib/Contact.svelte'
 	import WebsiteCount from '@/lib/WebsiteCount.svelte'
 	import Archive from '@/lib/Archive.svelte'

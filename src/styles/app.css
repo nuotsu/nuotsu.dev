@@ -1,4 +1,4 @@
-@import 'fonts.css';
+@import './fonts.css';
 @import 'tailwindcss';
 
 @theme {
@@ -13,6 +13,13 @@
 	::selection {
 		background-color: var(--color-accent);
 		color: var(--color-ink);
+	}
+
+	:focus-visible {
+		outline: none;
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-decoration-style: dotted;
 	}
 
 	* {

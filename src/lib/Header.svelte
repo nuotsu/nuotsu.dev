@@ -1,4 +1,4 @@
-<header class="sticky top-0 max-w-max">
+<header class="sticky top-0 max-w-max gap-[.5ch]">
 	<h1 class="flex items-center">
 		<a href="/">nuotsu</a>
 	</h1>

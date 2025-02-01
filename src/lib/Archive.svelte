@@ -1,16 +1,16 @@
-<article id="archive" class="space-y-[.5ch] px-[1ch]">
+<article id="archive" class="px-[1ch]">
 	<h2 class="sticky-header">Archive</h2>
 
 	<ul class="full-bleed no-scrollbar flex max-w-max overflow-x-auto px-[0.5ch] whitespace-nowrap">
-		{#each projects as project, i}
-			{@const url = project.url.replace(/^https?:\/\/(www\.)?/, '')}
+		{#each projects as project}
+			{@const domain = project.url.replace(/^https?:\/\/(www\.)?/, '')}
 
 			<li data-year={new Date(project.startDate).getFullYear()}>
 				<span>
 					{#if project.redacted}
-						{url.replace(/(?<=\b[A-Za-z]+)[a-z]/g, '*')}
+						{domain.replace(/(?<=\b[A-Za-z]+)[a-z]/g, '*')}
 					{:else}
-						{url}
+						{domain}
 					{/if}
 				</span>
 			</li>
@@ -29,6 +29,18 @@
 			@media (width < 30rem) {
 				--via: 0;
 			}
+
+			@media (width >= 64rem) {
+				&:has(li:hover) {
+					mask: none;
+				}
+			}
+
+			@media (width < 64rem) {
+				&:has(li span:hover) {
+					mask: none;
+				}
+			}
 		}
 	}
 
@@ -36,11 +48,17 @@
 		writing-mode: vertical-lr;
 		flex-shrink: 0;
 		scroll-margin-left: calc(0.5ch + env(safe-area-inset-left));
+		padding-inline: 0.5ch;
 
 		@media (width >= 64rem) {
 			&:hover {
 				background-color: var(--color-ink);
 				color: var(--color-canvas);
+			}
+
+			ul:has(li:hover) > &:not(:hover) {
+				font-weight: normal;
+				opacity: 0.5;
 			}
 		}
 
@@ -48,6 +66,11 @@
 			&:has(span:hover) {
 				background-color: var(--color-ink);
 				color: var(--color-canvas);
+			}
+
+			ul:has(li span:hover) > &:not(:hover) {
+				font-weight: normal;
+				opacity: 0.5;
 			}
 		}
 	}
