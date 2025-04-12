@@ -1,4 +1,4 @@
-import type { SanityAssetDocument } from '@sanity/client'
+import type { SanityDocument, SanityAssetDocument } from '@sanity/client'
 import type { InputValue } from '@portabletext/svelte'
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
@@ -12,11 +12,15 @@ declare global {
 	}
 
 	namespace Sanity {
-		interface Site {
+		interface Site extends SanityDocument {
 			about?: InputValue
 		}
 
-		interface Project {
+		interface Domain extends SanityDocument {
+			name: string
+		}
+
+		interface Project extends SanityDocument {
 			featured: boolean
 			redacted: boolean
 			hidden: boolean
@@ -31,7 +35,7 @@ declare global {
 			forks?: number
 		}
 
-		interface Writing {
+		interface Writing extends SanityDocument {
 			title: string
 			date: string
 			url: string

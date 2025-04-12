@@ -1,3 +1,7 @@
+<script lang="ts">
+	const { writings }: { writings: Sanity.Writing[] } = $props()
+</script>
+
 <section>
 	<h2 class="sticky-header px-[1ch]">Writing</h2>
 
@@ -28,7 +32,3 @@
 		}
 	}
 </style>
-
-<script lang="ts">
-	const { writings }: { writings: Sanity.Writing[] } = $props()
-</script>

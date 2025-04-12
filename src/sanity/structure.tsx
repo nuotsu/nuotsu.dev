@@ -8,8 +8,10 @@ export const structure = structureTool({
 		S.list()
 			.title('Content')
 			.items([
-				singleton(S, 'site', 'Site settings').icon(VscCodeOss),
+				singleton(S, 'site').title('Site settings').icon(VscCodeOss),
 				S.divider(),
+
+				S.documentTypeListItem('domain').title('Domains'),
 				S.documentTypeListItem('project').title('Projects'),
 				S.documentTypeListItem('writing').title('Writings'),
 			]),

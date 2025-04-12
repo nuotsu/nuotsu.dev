@@ -1,3 +1,7 @@
+<script lang="ts">
+	let { projects }: { projects: Sanity.Project[] } = $props()
+</script>
+
 <article id="archive" class="px-[1ch]">
 	<h2 class="sticky-header">Archive</h2>
 
@@ -6,13 +10,11 @@
 			{@const domain = project.url.replace(/^https?:\/\/(www\.)?/, '')}
 
 			<li data-year={new Date(project.startDate).getFullYear()}>
-				<span>
-					{#if project.redacted}
-						{domain.replace(/(?<=\b[A-Za-z]+)[a-z]/g, '*')}
-					{:else}
-						{domain}
-					{/if}
-				</span>
+				{#if project.redacted}
+					<span>{domain.replace(/(?<=\b[a-zA-Z0-9]+)[a-z0-9]/g, '*')}</span>
+				{:else}
+					<a href={project.url}>{domain}</a>
+				{/if}
 			</li>
 		{/each}
 	</ul>
@@ -75,7 +77,3 @@
 		}
 	}
 </style>
-
-<script lang="ts">
-	let { projects }: { projects: Sanity.Project[] } = $props()
-</script>
