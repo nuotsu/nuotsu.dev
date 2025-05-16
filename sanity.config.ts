@@ -1,8 +1,7 @@
 import { defineConfig } from 'sanity'
-import { projectId, dataset } from './lib/env'
-import { structure, icon } from './structure'
+import { structure, icon } from '@/sanity/structure'
 import { visionTool } from '@sanity/vision'
-import { schemaTypes } from './schemaTypes'
+import { schemaTypes } from '@/sanity/schemaTypes'
 
 const singletonTypes = ['site']
 
@@ -10,8 +9,8 @@ export default defineConfig({
 	title: 'nuotsu',
 	icon,
 
-	projectId,
-	dataset,
+	projectId: '6puot771',
+	dataset: 'production',
 	basePath: '/admin',
 
 	plugins: [structure, visionTool()],
@@ -32,5 +31,5 @@ export default defineConfig({
 	},
 
 	tasks: { enabled: false },
-	scheduledPublishing: { enabled: false },
+	// scheduledPublishing: { enabled: false },
 })

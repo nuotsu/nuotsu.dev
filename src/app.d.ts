@@ -10,39 +10,6 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
-
-	namespace Sanity {
-		interface Site extends SanityDocument {
-			about?: InputValue
-		}
-
-		interface Domain extends SanityDocument {
-			name: string
-		}
-
-		interface Project extends SanityDocument {
-			featured: boolean
-			redacted: boolean
-			hidden: boolean
-			title: string
-			id: { current: string }
-			emoji: string
-			url: string
-			repo?: string
-			startDate: string
-
-			stargazers?: number
-			forks?: number
-		}
-
-		interface Writing extends SanityDocument {
-			title: string
-			date: string
-			url: string
-		}
-
-		interface Image extends SanityAssetDocument {}
-	}
 }
 
 export {}

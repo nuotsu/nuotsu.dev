@@ -1,30 +1,6 @@
-{#if image}
-	{@const { w, h } = getDimensions(image)}
-
-	<img
-		class={className}
-		src={urlFor(image)
-			.withOptions({
-				width,
-				height,
-				...options,
-			})
-			.auto('format')
-			.url()}
-		width={w}
-		height={h}
-		{loading}
-		{alt}
-		{draggable}
-	/>
-{/if}
-
 <script lang="ts">
 	import { urlFor } from '@/sanity/lib/image'
-	import {
-		getImageDimensions,
-		type SanityImageSource,
-	} from '@sanity/asset-utils'
+	import { getImageDimensions } from '@sanity/asset-utils'
 	import type { ImageUrlBuilderOptions } from '@sanity/image-url/lib/types/types'
 
 	const {
@@ -51,3 +27,24 @@
 		}
 	}
 </script>
+
+{#if image}
+	{@const { w, h } = getDimensions(image)}
+
+	<img
+		class={className}
+		src={urlFor(image)
+			.withOptions({
+				width,
+				height,
+				...options,
+			})
+			.auto('format')
+			.url()}
+		width={w}
+		height={h}
+		{loading}
+		{alt}
+		{draggable}
+	/>
+{/if}
