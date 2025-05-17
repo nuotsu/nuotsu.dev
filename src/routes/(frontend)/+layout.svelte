@@ -1,7 +1,7 @@
 <script lang="ts">
 	import SkipToContent from '@/ui/SkipToContent.svelte'
 	import type { Snippet } from 'svelte'
-	import '@/styles/app.css'
+	import '@/app.css'
 
 	let {
 		children,
@@ -17,6 +17,6 @@
 
 <SkipToContent />
 
-<main id="main">
+<main id="main" class="grid min-h-svh place-items-center">
 	{@render children()}
 </main>
