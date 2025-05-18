@@ -11,6 +11,10 @@ export default defineType({
 			type: 'array',
 			of: [{ type: 'block' }],
 		}),
+		defineField({
+			name: 'portrait',
+			type: 'image',
+		}),
 	],
 	preview: {
 		select: {},

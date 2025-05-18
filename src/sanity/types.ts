@@ -88,6 +88,93 @@ export type Metadata = {
 	noIndex?: boolean
 }
 
+export type Slug = {
+	_type: 'slug'
+	current?: string
+	source?: string
+}
+
+export type Writing = {
+	_id: string
+	_type: 'writing'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	title?: string
+	url?: string
+	date?: string
+}
+
+export type Work = {
+	_id: string
+	_type: 'work'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	url?: string
+}
+
+export type Project = {
+	_id: string
+	_type: 'project'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	title?: string
+	url?: string
+	repo?: string
+	thumbnail?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		_type: 'image'
+	}
+}
+
+export type Site = {
+	_id: string
+	_type: 'site'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	about?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	portrait?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		_type: 'image'
+	}
+}
+
 export type SanityImageCrop = {
 	_type: 'sanity.imageCrop'
 	top?: number
@@ -145,74 +232,6 @@ export type SanityImageMetadata = {
 	isOpaque?: boolean
 }
 
-export type Writing = {
-	_id: string
-	_type: 'writing'
-	_createdAt: string
-	_updatedAt: string
-	_rev: string
-	title?: string
-	url?: string
-	date?: string
-}
-
-export type Project = {
-	_id: string
-	_type: 'project'
-	_createdAt: string
-	_updatedAt: string
-	_rev: string
-	featured?: boolean
-	redacted?: boolean
-	title?: string
-	id?: Slug
-	emoji?: string
-	url?: string
-	repo?: string
-	startDate?: string
-}
-
-export type Slug = {
-	_type: 'slug'
-	current?: string
-	source?: string
-}
-
-export type Domain = {
-	_id: string
-	_type: 'domain'
-	_createdAt: string
-	_updatedAt: string
-	_rev: string
-	name?: string
-}
-
-export type Site = {
-	_id: string
-	_type: 'site'
-	_createdAt: string
-	_updatedAt: string
-	_rev: string
-	about?: Array<{
-		children?: Array<{
-			marks?: Array<string>
-			text?: string
-			_type: 'span'
-			_key: string
-		}>
-		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-		listItem?: 'bullet' | 'number'
-		markDefs?: Array<{
-			href?: string
-			_type: 'link'
-			_key: string
-		}>
-		level?: number
-		_type: 'block'
-		_key: string
-	}>
-}
-
 export type AllSanitySchemaTypes =
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
@@ -220,20 +239,20 @@ export type AllSanitySchemaTypes =
 	| SanityFileAsset
 	| Geopoint
 	| Metadata
+	| Slug
+	| Writing
+	| Work
+	| Project
+	| Site
 	| SanityImageCrop
 	| SanityImageHotspot
 	| SanityImageAsset
 	| SanityAssetSourceData
 	| SanityImageMetadata
-	| Writing
-	| Project
-	| Slug
-	| Domain
-	| Site
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/routes/(frontend)/+page.server.ts
 // Variable: PAGE_QUERY
-// Query: {		'site': *[_type == 'site'][0],		'projects': *[_type == 'project']|order(startDate desc),		'writings': *[_type == 'writing']|order(date desc),		'domains': *[_type == 'domain']|order(name asc)	}
+// Query: {		'site': *[_type == 'site'][0],		'projects': *[_type == 'project']|order(startDate desc),	}
 export type PAGE_QUERYResult = {
 	site: {
 		_id: string
@@ -259,6 +278,18 @@ export type PAGE_QUERYResult = {
 			_type: 'block'
 			_key: string
 		}>
+		portrait?: {
+			asset?: {
+				_ref: string
+				_type: 'reference'
+				_weak?: boolean
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+			}
+			media?: unknown
+			hotspot?: SanityImageHotspot
+			crop?: SanityImageCrop
+			_type: 'image'
+		}
 	} | null
 	projects: Array<{
 		_id: string
@@ -266,32 +297,21 @@ export type PAGE_QUERYResult = {
 		_createdAt: string
 		_updatedAt: string
 		_rev: string
-		featured?: boolean
-		redacted?: boolean
 		title?: string
-		id?: Slug
-		emoji?: string
 		url?: string
 		repo?: string
-		startDate?: string
-	}>
-	writings: Array<{
-		_id: string
-		_type: 'writing'
-		_createdAt: string
-		_updatedAt: string
-		_rev: string
-		title?: string
-		url?: string
-		date?: string
-	}>
-	domains: Array<{
-		_id: string
-		_type: 'domain'
-		_createdAt: string
-		_updatedAt: string
-		_rev: string
-		name?: string
+		thumbnail?: {
+			asset?: {
+				_ref: string
+				_type: 'reference'
+				_weak?: boolean
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+			}
+			media?: unknown
+			hotspot?: SanityImageHotspot
+			crop?: SanityImageCrop
+			_type: 'image'
+		}
 	}>
 }
 
@@ -299,6 +319,6 @@ export type PAGE_QUERYResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
-		"{\n\t\t'site': *[_type == 'site'][0],\n\t\t'projects': *[_type == 'project']|order(startDate desc),\n\t\t'writings': *[_type == 'writing']|order(date desc),\n\t\t'domains': *[_type == 'domain']|order(name asc)\n\t}": PAGE_QUERYResult
+		"{\n\t\t'site': *[_type == 'site'][0],\n\t\t'projects': *[_type == 'project']|order(startDate desc),\n\t}": PAGE_QUERYResult
 	}
 }

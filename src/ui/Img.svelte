@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { urlFor } from '@/sanity/lib/image'
-	import { getImageDimensions } from '@sanity/asset-utils'
+	import { urlFor } from '$lib/sanity/image'
+	import { getImageDimensions, type SanityImageSource } from '@sanity/asset-utils'
 	import type { ImageUrlBuilderOptions } from '@sanity/image-url/lib/types/types'
 
 	const {
@@ -14,11 +14,11 @@
 		options = {},
 	}: {
 		class?: string
-		image?: Sanity.Image
+		image?: any
 		options?: ImageUrlBuilderOptions
 	} & Partial<HTMLImageElement> = $props()
 
-	function getDimensions(image: Sanity.Image) {
+	function getDimensions(image: SanityImageSource) {
 		const { width: w, height: h } = getImageDimensions(image)
 
 		return {

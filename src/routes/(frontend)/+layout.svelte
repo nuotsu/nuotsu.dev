@@ -19,10 +19,12 @@
 
 <SkipToContent />
 
-<Header />
+<div class="grid gap-2 p-4">
+	<Header />
 
-<main id="main" class="grow">
-	{@render children()}
-</main>
+	<main id="main" class="grid gap-4">
+		{@render children()}
+	</main>
 
-<Footer />
+	<Footer />
+</div>
