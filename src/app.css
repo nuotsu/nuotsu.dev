@@ -1,45 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Doto:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap&text=ヌ乙');
+/* @import 'tailwindcss'; */
 
-@import 'tailwindcss';
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 @theme {
-	--font-sans: 'Doto', sans-serif;
-	--font-ja: 'Kosugi Maru', sans-serif;
-
-	--color-bg: #000;
-	--color-fg: #fff;
+	--color-bg: #fff;
+	--color-fg: #000;
 }
 
 @layer base {
-	[lang='ja'] {
-		font-family: var(--font-ja);
-	}
-
 	* {
 		min-width: 0;
 	}
 
 	html {
 		scroll-behavior: smooth;
-		font-weight: 300;
-	}
-
-	b,
-	strong {
-		font-weight: 700;
-	}
-}
-
-@utility full-bleed {
-	width: 100vw;
-	margin-inline: calc(50% - 50vw);
-}
-
-@utility no-scrollbar {
-	scrollbar-width: none;
-
-	&::-webkit-scrollbar {
-		display: none;
 	}
 }

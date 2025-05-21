@@ -68,50 +68,10 @@ export type Geopoint = {
 	alt?: number
 }
 
-export type Metadata = {
-	_type: 'metadata'
-	slug?: Slug
-	title?: string
-	description?: string
-	image?: {
-		asset?: {
-			_ref: string
-			_type: 'reference'
-			_weak?: boolean
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-		}
-		media?: unknown
-		hotspot?: SanityImageHotspot
-		crop?: SanityImageCrop
-		_type: 'image'
-	}
-	noIndex?: boolean
-}
-
 export type Slug = {
 	_type: 'slug'
 	current?: string
 	source?: string
-}
-
-export type Writing = {
-	_id: string
-	_type: 'writing'
-	_createdAt: string
-	_updatedAt: string
-	_rev: string
-	title?: string
-	url?: string
-	date?: string
-}
-
-export type Work = {
-	_id: string
-	_type: 'work'
-	_createdAt: string
-	_updatedAt: string
-	_rev: string
-	url?: string
 }
 
 export type Project = {
@@ -120,10 +80,10 @@ export type Project = {
 	_createdAt: string
 	_updatedAt: string
 	_rev: string
-	title?: string
+	orderRank?: string
 	url?: string
 	repo?: string
-	thumbnail?: {
+	screenshot?: {
 		asset?: {
 			_ref: string
 			_type: 'reference'
@@ -135,6 +95,14 @@ export type Project = {
 		crop?: SanityImageCrop
 		_type: 'image'
 	}
+	metadata?: Metadata
+}
+
+export type Metadata = {
+	_type: 'metadata'
+	title?: string
+	description?: string
+	slug?: Slug
 }
 
 export type Site = {
@@ -143,6 +111,24 @@ export type Site = {
 	_createdAt: string
 	_updatedAt: string
 	_rev: string
+	headline?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
 	about?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -238,11 +224,9 @@ export type AllSanitySchemaTypes =
 	| SanityImageDimensions
 	| SanityFileAsset
 	| Geopoint
-	| Metadata
 	| Slug
-	| Writing
-	| Work
 	| Project
+	| Metadata
 	| Site
 	| SanityImageCrop
 	| SanityImageHotspot
@@ -250,16 +234,34 @@ export type AllSanitySchemaTypes =
 	| SanityAssetSourceData
 	| SanityImageMetadata
 export declare const internalGroqTypeReferenceTo: unique symbol
-// Source: ./src/routes/(frontend)/+page.server.ts
-// Variable: PAGE_QUERY
-// Query: {		'site': *[_type == 'site'][0],		'projects': *[_type == 'project']|order(startDate desc),	}
-export type PAGE_QUERYResult = {
+// Source: ./src/routes/(frontend)/+layout.server.ts
+// Variable: LAYOUT_QUERY
+// Query: {		'site': *[_type == 'site'][0],		'projects': *[_type == 'project']|order(orderRank),	}
+export type LAYOUT_QUERYResult = {
 	site: {
 		_id: string
 		_type: 'site'
 		_createdAt: string
 		_updatedAt: string
 		_rev: string
+		headline?: Array<{
+			children?: Array<{
+				marks?: Array<string>
+				text?: string
+				_type: 'span'
+				_key: string
+			}>
+			style?: 'h1' | 'normal'
+			listItem?: 'bullet' | 'number'
+			markDefs?: Array<{
+				href?: string
+				_type: 'link'
+				_key: string
+			}>
+			level?: number
+			_type: 'block'
+			_key: string
+		}>
 		about?: Array<{
 			children?: Array<{
 				marks?: Array<string>
@@ -297,10 +299,10 @@ export type PAGE_QUERYResult = {
 		_createdAt: string
 		_updatedAt: string
 		_rev: string
-		title?: string
+		orderRank?: string
 		url?: string
 		repo?: string
-		thumbnail?: {
+		screenshot?: {
 			asset?: {
 				_ref: string
 				_type: 'reference'
@@ -312,6 +314,7 @@ export type PAGE_QUERYResult = {
 			crop?: SanityImageCrop
 			_type: 'image'
 		}
+		metadata?: Metadata
 	}>
 }
 
@@ -319,6 +322,6 @@ export type PAGE_QUERYResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
-		"{\n\t\t'site': *[_type == 'site'][0],\n\t\t'projects': *[_type == 'project']|order(startDate desc),\n\t}": PAGE_QUERYResult
+		"{\n\t\t'site': *[_type == 'site'][0],\n\t\t'projects': *[_type == 'project']|order(orderRank),\n\t}": LAYOUT_QUERYResult
 	}
 }

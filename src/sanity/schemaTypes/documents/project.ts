@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { orderRankField } from '@sanity/orderable-document-list'
 import { VscVariableGroup } from 'react-icons/vsc'
 
 export default defineType({
@@ -9,11 +10,7 @@ export default defineType({
 	liveEdit: true,
 	fieldsets: [{ name: 'links', options: { columns: 2 } }],
 	fields: [
-		defineField({
-			name: 'title',
-			type: 'string',
-			validation: (Rule) => Rule.required(),
-		}),
+		orderRankField({ type: 'project' }),
 		defineField({
 			name: 'url',
 			title: 'URL',
@@ -27,14 +24,25 @@ export default defineType({
 			fieldset: 'links',
 		}),
 		defineField({
-			name: 'thumbnail',
+			name: 'screenshot',
 			type: 'image',
+		}),
+		defineField({
+			name: 'metadata',
+			type: 'metadata',
+			validation: (Rule) => Rule.required(),
 		}),
 	],
 	preview: {
 		select: {
-			title: 'title',
-			media: 'thumbnail',
+			title: 'metadata.title',
+			slug: 'metadata.slug.current',
+			media: 'screenshot',
 		},
+		prepare: ({ title, media, slug }) => ({
+			title,
+			subtitle: slug && `/${slug}`,
+			media,
+		}),
 	},
 })

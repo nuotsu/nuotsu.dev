@@ -3,42 +3,26 @@ import { defineField, defineType } from 'sanity'
 export default defineType({
 	name: 'metadata',
 	title: 'Metadata',
-	description: 'For search engines',
 	type: 'object',
 	fields: [
 		defineField({
-			name: 'slug',
-			type: 'slug',
-			description: 'URL path or permalink',
-			options: {
-				source: (doc: any) => doc.title || doc.metadata.title,
-			},
-			validation: (Rule) => Rule.required(),
-		}),
-		defineField({
 			name: 'title',
 			type: 'string',
-			validation: (Rule) => Rule.max(60).warning(),
+			validation: (Rule) => Rule.max(60).warning().required(),
 		}),
 		defineField({
 			name: 'description',
 			type: 'text',
 			rows: 3,
-			validation: (Rule) => Rule.max(160).warning(),
+			validation: (Rule) => Rule.max(160).warning().required(),
 		}),
 		defineField({
-			name: 'image',
-			description: 'Used for social sharing previews',
-			type: 'image',
+			name: 'slug',
+			type: 'slug',
 			options: {
-				hotspot: true,
+				source: (doc: any) => doc.title || doc.metadata.title,
 			},
-		}),
-		defineField({
-			name: 'noIndex',
-			description: 'Prevent search engines from indexing this page',
-			type: 'boolean',
-			initialValue: false,
+			validation: (Rule) => Rule.required(),
 		}),
 	],
 })

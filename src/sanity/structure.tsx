@@ -1,19 +1,25 @@
 import React from 'react'
 import { structureTool } from 'sanity/structure'
 import { singleton } from './utils'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import { VscCodeOss } from 'react-icons/vsc'
+import { VscVariableGroup } from 'react-icons/vsc'
 
 export const structure = structureTool({
-	structure: (S) =>
+	structure: (S, context) =>
 		S.list()
 			.title('Content')
 			.items([
 				singleton(S, 'site').title('Site settings').icon(VscCodeOss),
 				S.divider(),
 
-				S.documentTypeListItem('project').title('Projects'),
-				S.documentTypeListItem('work').title('Work'),
-				S.documentTypeListItem('writing').title('Writings'),
+				orderableDocumentListDeskItem({
+					type: 'project',
+					title: 'Projects',
+					icon: VscVariableGroup,
+					S,
+					context,
+				}),
 			]),
 })
 

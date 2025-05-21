@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
 	name: 'site',
@@ -6,6 +6,12 @@ export default defineType({
 	type: 'document',
 	liveEdit: true,
 	fields: [
+		defineField({
+			name: 'headline',
+			type: 'array',
+			of: [{ type: 'block', styles: [{ title: 'H1', value: 'h1' }] }],
+			validation: (Rule) => Rule.required(),
+		}),
 		defineField({
 			name: 'about',
 			type: 'array',
@@ -17,8 +23,7 @@ export default defineType({
 		}),
 	],
 	preview: {
-		select: {},
-		prepare: ({}) => ({
+		prepare: () => ({
 			title: 'Site',
 		}),
 	},
