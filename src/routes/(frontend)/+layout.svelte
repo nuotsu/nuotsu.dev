@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '@/app.css'
 	import { page } from '$app/state'
-	import { getBlockText } from '@@/src/sanity/utils'
 	import type { LayoutData } from './$types'
 	import type { Snippet } from 'svelte'
 
@@ -13,11 +12,6 @@
 		'font: 2rem "Comic Sans MS"; background-image: linear-gradient(135deg, red, violet, blue, turquoise, green, yellow, orange, red); color: black;',
 	)
 </script>
-
-<svelte:head>
-	<title>nuotsu | Mitchell Kazumaru Christ</title>
-	<meta name="description" content={getBlockText(data.site?.headline as any, ' ')} />
-</svelte:head>
 
 <header>
 	<a href="/">nuotsu</a>
