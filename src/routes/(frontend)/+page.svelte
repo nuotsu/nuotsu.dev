@@ -11,6 +11,6 @@
 	<meta name="description" content={getBlockText(data.site?.headline as any, ' ')} />
 </svelte:head>
 
-<header>
+<header class="m-auto max-w-prose p-[1ch] text-center text-balance [&_h1]:font-bold">
 	<PortableText value={data.site?.headline} />
 </header>

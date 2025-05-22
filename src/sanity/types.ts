@@ -82,6 +82,7 @@ export type Project = {
 	_rev: string
 	orderRank?: string
 	url?: string
+	date?: string
 	repo?: string
 	screenshot?: {
 		asset?: {
@@ -301,6 +302,7 @@ export type LAYOUT_QUERYResult = {
 		_rev: string
 		orderRank?: string
 		url?: string
+		date?: string
 		repo?: string
 		screenshot?: {
 			asset?: {
@@ -318,10 +320,39 @@ export type LAYOUT_QUERYResult = {
 	}>
 }
 
+// Source: ./src/routes/(frontend)/[slug]/+page.server.ts
+// Variable: PROJECT_PAGE_QUERY
+// Query: *[_type == 'project' && metadata.slug.current == $slug][0]
+export type PROJECT_PAGE_QUERYResult = {
+	_id: string
+	_type: 'project'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	orderRank?: string
+	url?: string
+	date?: string
+	repo?: string
+	screenshot?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		_type: 'image'
+	}
+	metadata?: Metadata
+} | null
+
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
 		"{\n\t\t'site': *[_type == 'site'][0],\n\t\t'projects': *[_type == 'project']|order(orderRank),\n\t}": LAYOUT_QUERYResult
+		"\n\t\t*[_type == 'project' && metadata.slug.current == $slug][0]\n\t": PROJECT_PAGE_QUERYResult
 	}
 }

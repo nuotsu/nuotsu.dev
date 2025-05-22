@@ -1,7 +1,7 @@
 import groq from 'groq'
 import { client } from '$lib/server/sanity/client'
 import type { LayoutServerLoad } from './$types'
-import type { LAYOUT_QUERYResult } from '@@/src/sanity/types'
+import type { LAYOUT_QUERYResult } from '@/sanity/types'
 
 export const load: LayoutServerLoad = async () => {
 	const LAYOUT_QUERY = groq`{

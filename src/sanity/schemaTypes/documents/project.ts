@@ -19,6 +19,10 @@ export default defineType({
 			fieldset: 'links',
 		}),
 		defineField({
+			name: 'date',
+			type: 'date',
+		}),
+		defineField({
 			name: 'repo',
 			type: 'string',
 			fieldset: 'links',

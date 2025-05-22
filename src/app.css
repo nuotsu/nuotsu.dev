@@ -1,21 +1,29 @@
-/* @import 'tailwindcss'; */
-
-@layer theme, base, components, utilities;
-
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/utilities.css' layer(utilities);
+@import 'tailwindcss';
 
 @theme {
+	--font-sans: serif;
+
 	--color-bg: #fff;
 	--color-fg: #000;
+
+	--spacing-ch: 1ch;
+	--spacing-lh: 1lh;
 }
 
 @layer base {
+	@view-transition {
+		navigation: auto;
+	}
+
 	* {
 		min-width: 0;
 	}
 
 	html {
 		scroll-behavior: smooth;
+	}
+
+	a {
+		all: revert;
 	}
 }

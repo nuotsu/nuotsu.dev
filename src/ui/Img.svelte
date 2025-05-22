@@ -3,13 +3,13 @@
 	import { getImageDimensions, type SanityImageSource } from '@sanity/asset-utils'
 	import type { ImageUrlBuilderOptions } from '@sanity/image-url/lib/types/types'
 
-	const {
+	let {
 		class: className,
 		image,
 		alt,
-		loading = 'lazy',
 		width,
 		height,
+		loading = 'lazy',
 		draggable,
 		options = {},
 	}: {
