@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation'
 	import SkipToContent from '@/ui/SkipToContent.svelte'
-	import ProjectList from '@/ui/ProjectList.svelte'
+	import Header from '@@/src/ui/Header.svelte'
+	import Footer from '@@/src/ui/Footer.svelte'
 	import '@/app.css'
 	import type { LayoutData } from './$types'
 	import type { Snippet } from 'svelte'
@@ -20,18 +21,16 @@
 	})
 </script>
 
+<svelte:head>
+	<meta name="theme-color" content="#000" />
+</svelte:head>
+
 <SkipToContent />
 
-<header class="from-fg sticky top-0 z-10 bg-linear-to-r">
-	<a class="text-bg" href="/">nuotsu</a>
-</header>
+<div class="gap-ch p-ch flex min-h-dvh flex-col">
+	<Header projects={data.projects} />
 
-<ProjectList projects={data.projects} />
+	<main class="gap-ch flex grow flex-col justify-center">{@render children()}</main>
 
-<main class="flex grow flex-col">{@render children()}</main>
-
-<footer class=" gap-ch flex items-baseline justify-center pb-[env(safe-area-inset-bottom)]">
-	<a href="https://github.com/nuotsu">GitHub</a>
-	<a href="https://x.com/marutchell">X</a>
-	<a href="/about">About</a>
-</footer>
+	<Footer />
+</div>

@@ -5,20 +5,24 @@
 	let { projects }: { projects: Project[] } = $props()
 </script>
 
-<nav>
-	<ol>
-		{#each projects as project}
-			<li>
-				<a
+<header>
+	<nav class="gap-ch grid items-start">
+		<div><a class="bg-bg px-[.5ch]" href="/">nuotsu</a></div>
+
+		<ol class="flex flex-col items-start">
+			{#each projects as project}
+				<li
+					class="bg-bg px-[.5ch]"
 					class:font-bold={page.params.slug === project.metadata?.slug?.current}
-					href={project.metadata?.slug?.current}
 				>
-					{project.metadata?.title}
-				</a>
-			</li>
-		{/each}
-	</ol>
-</nav>
+					<a href={project.metadata?.slug?.current}>
+						{project.metadata?.title}
+					</a>
+				</li>
+			{/each}
+		</ol>
+	</nav>
+</header>
 
 <style>
 	li {
@@ -27,8 +31,7 @@
 
 	@counter-style number {
 		system: extends decimal;
-		/* prefix: 'No.'; */
 		pad: 3 '0';
-		suffix: ' ';
+		suffix: '  ';
 	}
 </style>

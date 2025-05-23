@@ -13,8 +13,8 @@
 		"jsx": "react",
 		"paths": {
 			"$lib/*": ["./src/lib/*"],
-			"@@/*": ["./*"],
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"@@/*": ["./*"]
 		}
 	}
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias

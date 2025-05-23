@@ -5,7 +5,7 @@
 	let { data }: { data: PageData } = $props()
 </script>
 
-<article class="m-auto max-w-prose space-y-[.5lh] p-[1ch]">
+<article class="space-y-ch max-w-prose">
 	<PortableText value={data.site?.about} />
 </article>
 

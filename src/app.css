@@ -15,12 +15,35 @@
 		navigation: auto;
 	}
 
+	:root {
+		@media (prefers-color-scheme: dark) {
+			color-scheme: dark;
+
+			--color-bg: #000;
+			--color-fg: #fff;
+		}
+	}
+
+	::selection {
+		background-color: blue;
+		color: #fff;
+	}
+
 	* {
 		min-width: 0;
 	}
 
 	html {
 		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: var(--color-bg);
+		color: var(--color-fg);
+	}
+
+	h1 {
+		font-weight: bold;
 	}
 
 	a {
