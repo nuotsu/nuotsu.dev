@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Img from '@/ui/Img.svelte'
 	import type { PageData } from './$types'
+	import { urlFor } from '$lib/sanity/image'
 
 	let { data }: { data: PageData } = $props()
 </script>
@@ -8,6 +9,9 @@
 <svelte:head>
 	<title>{data.project.metadata?.title}</title>
 	<meta name="description" content={data.project.metadata?.description} />
+	{#if data.project.screenshot}
+		<link rel="preload" href={urlFor(data.project.screenshot).auto('format').url()} as="image" />
+	{/if}
 </svelte:head>
 
 <Img
@@ -15,6 +19,7 @@
 	image={data.project.screenshot}
 	loading="eager"
 	draggable={false}
+	alt={data.project.metadata?.title}
 />
 
 <article class="*:bg-bg flex max-w-prose flex-col items-start *:px-[.5ch]">
