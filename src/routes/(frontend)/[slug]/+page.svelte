@@ -15,7 +15,7 @@
 </svelte:head>
 
 <Img
-	class="fixed inset-0 -z-1 size-full object-cover dark:opacity-50"
+	class="fixed inset-0 -z-1 size-full object-cover text-[0px] dark:opacity-50"
 	image={data.project.screenshot}
 	loading="eager"
 	draggable={false}
