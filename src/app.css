@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
 @import 'tailwindcss';
 
 @theme {
-	--font-sans: serif;
+	--font-serif: 'EB Garamond', serif;
 
 	--color-bg: #fff;
 	--color-fg: #000;
@@ -10,15 +12,11 @@
 	--spacing-lh: 1lh;
 }
 
-@layer base {
-	@view-transition {
-		navigation: auto;
-	}
+@custom-variant hover (&:hover);
 
+@layer base {
 	:root {
 		@media (prefers-color-scheme: dark) {
-			color-scheme: dark;
-
 			--color-bg: #000;
 			--color-fg: #fff;
 		}
@@ -26,27 +24,39 @@
 
 	::selection {
 		background-color: blue;
-		color: #fff;
+		color: white;
 	}
 
 	* {
 		min-width: 0;
 	}
 
-	html {
-		scroll-behavior: smooth;
-	}
-
 	body {
+		display: grid;
+		grid-template:
+			'header	main' auto
+			'index	main' 1fr / 1fr 1fr 1fr;
+		gap: 2lh 1lh;
+		min-height: 100dvh;
+		padding: 1lh;
 		background-color: var(--color-bg);
 		color: var(--color-fg);
-	}
+		line-height: 1;
+		font-family: var(--font-serif);
 
-	h1 {
-		font-weight: bold;
+		@media (width < 40rem) {
+			grid-template:
+				'header' auto
+				'main' auto
+				'index' 1fr / auto;
+		}
 	}
+}
 
-	a {
-		all: revert;
-	}
+@utility prose {
+	@apply space-y-ch leading-tight;
+}
+
+@utility link {
+	color: dodgerblue;
 }

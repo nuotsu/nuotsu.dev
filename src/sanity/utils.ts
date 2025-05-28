@@ -20,6 +20,8 @@ export function getBlockText(
 	}[],
 	lineBreakChar: string = '↵ ',
 ) {
+	if (!block) return ''
+
 	return (
 		block?.reduce((a, c, i) => {
 			const text = c.children?.flatMap((c) => c.text).join('') || ''

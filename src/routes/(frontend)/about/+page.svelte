@@ -1,17 +1,19 @@
 <script lang="ts">
+	import { page } from '$app/state'
 	import { PortableText } from '@portabletext/svelte'
-	import type { PageData } from './$types'
-
-	let { data }: { data: PageData } = $props()
 </script>
 
-<article class="space-y-ch max-w-prose">
-	<PortableText value={data.site?.about} />
+<svelte:head>
+	<title>About // nuotsu</title>
+</svelte:head>
+
+<article class="space-y-ch leading-relaxed text-pretty">
+	<PortableText value={page.data.site?.about} />
 </article>
 
 <style>
-	article > :global(:first-child:first-letter) {
+	article > :global(:first-child::first-letter) {
 		font-size: xx-large;
-		line-height: 1;
+		line-height: 0;
 	}
 </style>

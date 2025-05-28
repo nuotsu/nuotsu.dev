@@ -84,7 +84,7 @@ export type Project = {
 	url?: string
 	date?: string
 	repo?: string
-	screenshot?: {
+	screenshots?: Array<{
 		asset?: {
 			_ref: string
 			_type: 'reference'
@@ -95,7 +95,8 @@ export type Project = {
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
 		_type: 'image'
-	}
+		_key: string
+	}>
 	metadata?: Metadata
 }
 
@@ -304,7 +305,7 @@ export type LAYOUT_QUERYResult = {
 		url?: string
 		date?: string
 		repo?: string
-		screenshot?: {
+		screenshots?: Array<{
 			asset?: {
 				_ref: string
 				_type: 'reference'
@@ -315,7 +316,8 @@ export type LAYOUT_QUERYResult = {
 			hotspot?: SanityImageHotspot
 			crop?: SanityImageCrop
 			_type: 'image'
-		}
+			_key: string
+		}>
 		metadata?: Metadata
 	}>
 }
@@ -333,7 +335,7 @@ export type PROJECT_PAGE_QUERYResult = {
 	url?: string
 	date?: string
 	repo?: string
-	screenshot?: {
+	screenshots?: Array<{
 		asset?: {
 			_ref: string
 			_type: 'reference'
@@ -344,7 +346,8 @@ export type PROJECT_PAGE_QUERYResult = {
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
 		_type: 'image'
-	}
+		_key: string
+	}>
 	metadata?: Metadata
 } | null
 

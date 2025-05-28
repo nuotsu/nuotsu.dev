@@ -1,37 +1,25 @@
 <script lang="ts">
-	import { page } from '$app/state'
-	import type { Project } from '@/sanity/types'
-
-	let { projects }: { projects: Project[] } = $props()
+	const aliases = ['nuotsu', 'ヌ乙', 'XZ', 'Kazumaru']
+	let aliasIndex = $state(0)
 </script>
 
-<header>
-	<nav class="gap-ch grid items-start">
-		<div><a class="bg-bg px-[.5ch]" href="/">nuotsu</a></div>
+<header style="grid-area: header" class="top-lh sticky z-10 dark:mix-blend-exclusion">
+	<div class="gap-ch flex flex-wrap">
+		<a href="/">Mitchell Christ</a>
 
-		<ol class="flex flex-col items-start">
-			{#each projects as project}
-				<li
-					class="bg-bg px-[.5ch]"
-					class:font-bold={page.params.slug === project.metadata?.slug?.current}
-				>
-					<a href={project.metadata?.slug?.current}>
-						{project.metadata?.title}
-					</a>
-				</li>
-			{/each}
-		</ol>
-	</nav>
+		<button
+			class="text-fg/30 cursor-pointer"
+			onclick={() => (aliasIndex = (aliasIndex + 1) % aliases.length)}
+		>
+			{aliases[aliasIndex]}
+		</button>
+	</div>
+
+	<p class="text-fg/30">Web Dev</p>
 </header>
 
 <style>
-	li {
-		list-style: inside number;
-	}
-
-	@counter-style number {
-		system: extends decimal;
-		pad: 3 '0';
-		suffix: '  ';
+	button::before {
+		content: '// ' / 'alias';
 	}
 </style>

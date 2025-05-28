@@ -1,50 +1,51 @@
 <script lang="ts">
 	import Img from '@/ui/Img.svelte'
 	import type { PageData } from './$types'
-	import { urlFor } from '$lib/sanity/image'
 
 	let { data }: { data: PageData } = $props()
+	let { url, date, screenshots, metadata } = $derived(data.project)
 </script>
 
 <svelte:head>
-	<title>{data.project.metadata?.title}</title>
-	<meta name="description" content={data.project.metadata?.description} />
-	{#if data.project.screenshot}
-		<link rel="preload" href={urlFor(data.project.screenshot).auto('format').url()} as="image" />
-	{/if}
+	<title>{metadata?.title} // nuotsu</title>
+	<meta name="description" content={metadata?.description} />
 </svelte:head>
 
-<Img
-	class="fixed inset-0 -z-1 size-full object-cover text-[0px] dark:opacity-50"
-	image={data.project.screenshot}
-	loading="eager"
-	draggable={false}
-	alt={data.project.metadata?.title}
-/>
+<header class="prose min-h-[8lh] flex-col justify-end max-sm:flex">
+	<h1>
+		<i>{metadata?.title}</i>
 
-<article class="*:bg-bg flex max-w-prose flex-col items-start *:px-[.5ch]">
-	<h1 class="font-normal">
-		<em class="font-bold">{data.project.metadata?.title}</em>
-
-		{#if data.project.date}
-			{@const { format } = new Intl.DateTimeFormat('en-US', {
-				year: 'numeric',
-				month: 'long',
-			})}
-
-			<time datetime={data.project.date}>({format(new Date(data.project.date + 'T00:00:00'))})</time
-			>
+		{#if date}
+			<time datetime={date}>
+				({new Date(date + 'T00:00:00').getFullYear()})
+			</time>
 		{/if}
 	</h1>
 
-	<p>{data.project.metadata?.description}</p>
+	<p>{metadata?.description}</p>
+</header>
 
-	<nav class="gap-x-ch flex flex-wrap">
-		{#if data.project.url}
-			<a href={data.project.url}>Visit {data.project.url.replace(/^https?:\/\//, '')}</a>
-		{/if}
-		{#if data.project.repo}
-			<a href="https://github.com/{data.project.repo}">View on GitHub</a>
-		{/if}
-	</nav>
-</article>
+<section class="space-y-lh mt-[2lh]">
+	{#if screenshots}
+		{#each screenshots as screenshot, i}
+			<figure class="bg-fg/5">
+				<Img
+					class="w-full text-transparent"
+					image={screenshot}
+					alt={metadata?.title}
+					draggable={false}
+					loading={i === 0 ? 'eager' : 'lazy'}
+				/>
+			</figure>
+		{/each}
+	{/if}
+
+	<a
+		class="bg-fg/5 p-ch not-hover:text-fg/30 relative grid aspect-video place-content-center overflow-hidden text-center text-balance transition-colors"
+		href={url}
+		target="_blank"
+	>
+		{url?.replace(/^https?:\/\/(www\.)?/, '')}
+		<span class="m-ch absolute top-0 right-0">↗</span>
+	</a>
+</section>

@@ -28,8 +28,12 @@ export default defineType({
 			fieldset: 'links',
 		}),
 		defineField({
-			name: 'screenshot',
-			type: 'image',
+			name: 'screenshots',
+			type: 'array',
+			of: [{ type: 'image' }],
+			options: {
+				layout: 'grid',
+			},
 		}),
 		defineField({
 			name: 'metadata',
