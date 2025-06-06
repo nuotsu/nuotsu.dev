@@ -22,5 +22,3 @@ export const structure = structureTool({
 				}),
 			]),
 })
-
-export const icon = () => <img src="/icon.png" alt="" />

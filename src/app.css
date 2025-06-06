@@ -1,62 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@layer theme, base, components, utilities;
 
-@import 'tailwindcss';
-
-@theme {
-	--font-serif: 'EB Garamond', serif;
-
-	--color-bg: #fff;
-	--color-fg: #000;
-
-	--spacing-ch: 1ch;
-	--spacing-lh: 1lh;
-}
-
-@custom-variant hover (&:hover);
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 @layer base {
-	:root {
-		@media (prefers-color-scheme: dark) {
-			--color-bg: #000;
-			--color-fg: #fff;
+	@media (prefers-color-scheme: dark) {
+		:root {
+			color-scheme: dark;
 		}
-	}
-
-	::selection {
-		background-color: blue;
-		color: white;
-	}
-
-	* {
-		min-width: 0;
 	}
 
 	body {
-		display: grid;
-		grid-template:
-			'header	main' auto
-			'index	main' 1fr / 1fr 1fr 1fr;
-		gap: 2lh 1lh;
-		min-height: 100dvh;
-		padding: 1lh;
-		background-color: var(--color-bg);
-		color: var(--color-fg);
-		line-height: 1;
-		font-family: var(--font-serif);
-
-		@media (width < 40rem) {
-			grid-template:
-				'header' auto
-				'main' auto
-				'index' 1fr / auto;
-		}
+		max-width: 48rem;
 	}
-}
 
-@utility prose {
-	@apply space-y-ch leading-tight;
-}
+	figure {
+		margin-inline: 0;
+	}
 
-@utility link {
-	color: dodgerblue;
+	img {
+		width: 100%;
+		height: auto;
+	}
 }
