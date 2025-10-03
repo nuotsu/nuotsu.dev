@@ -11,6 +11,7 @@ export default defineConfig({
 
 	projectId: '6puot771',
 	dataset: 'v2025-oct',
+	basePath: '/admin',
 
 	plugins: [structure, visionTool()],
 
@@ -32,4 +33,6 @@ export default defineConfig({
 					)
 				: input,
 	},
+
+	scheduledPublishing: { enabled: false },
 })
