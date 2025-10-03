@@ -1,1 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap');
+
 @import 'tailwindcss';
+
+@theme {
+	--font-sans: 'Geist', sans-serif;
+	--font-mono: 'Geist Mono', monospace;
+
+	--color-foreground: #fff;
+	--color-background: #000;
+}
+
+@custom-variant hover (&:hover);
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+}

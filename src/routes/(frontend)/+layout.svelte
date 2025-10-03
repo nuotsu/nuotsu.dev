@@ -5,12 +5,12 @@
 </script>
 
 <svelte:head>
-	<title>Mitchell Christ</title>
+	<title>Mitchell Christ / nuotsu</title>
 	<meta name="description" content={data.global?.tagline} />
 </svelte:head>
 
 <hgroup>
-	<h1>Mitchell Christ</h1>
+	<h1>Mitchell Christ / nuotsu</h1>
 	<h2 class="before:content-['//_']">{data.global?.tagline}</h2>
 </hgroup>
 
