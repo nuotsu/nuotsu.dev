@@ -162,3 +162,24 @@ export type AllSanitySchemaTypes =
 	| Slug
 	| SanityAssetSourceData
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: ./src/routes/(frontend)/+layout.server.ts
+// Variable: LAYOUT_QUERY
+// Query: {		'global': *[_type == 'global'][0],	}
+export type LAYOUT_QUERYResult = {
+	global: {
+		_id: string
+		_type: 'global'
+		_createdAt: string
+		_updatedAt: string
+		_rev: string
+		tagline?: string
+	} | null
+}
+
+// Query TypeMap
+import '@sanity/client'
+declare module '@sanity/client' {
+	interface SanityQueries {
+		"{\n\t\t'global': *[_type == 'global'][0],\n\t}": LAYOUT_QUERYResult
+	}
+}

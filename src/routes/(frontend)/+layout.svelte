@@ -1,11 +1,17 @@
 <script lang="ts">
 	import '@/app.css'
 
-	let { children } = $props()
+	let { data, children } = $props()
 </script>
 
 <svelte:head>
-	<link rel="icon" href="https://fav.farm/🏴‍☠️" />
+	<title>Mitchell Christ</title>
+	<meta name="description" content={data.global?.tagline} />
 </svelte:head>
+
+<hgroup>
+	<h1>Mitchell Christ</h1>
+	<h2 class="before:content-['//_']">{data.global?.tagline}</h2>
+</hgroup>
 
 {@render children?.()}

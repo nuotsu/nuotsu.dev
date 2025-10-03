@@ -16,6 +16,7 @@
 		"typegen": "sanity schema extract --path=./src/sanity/schema.json && sanity typegen generate"
 	},
 	"dependencies": {
+		"@sanity/asset-utils": "^2.3.0",
 		"@sanity/vision": "^4.10.2",
 		"react": "^19.1",
 		"react-dom": "^19.1",
