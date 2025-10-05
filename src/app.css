@@ -8,6 +8,9 @@
 
 	--color-foreground: #fff;
 	--color-background: #000;
+
+	--spacing-lh: 1lh;
+	--spacing-ch: 1ch;
 }
 
 @custom-variant hover (&:hover);
@@ -15,5 +18,9 @@
 @layer base {
 	html {
 		scroll-behavior: smooth;
+	}
+
+	address {
+		font-style: normal;
 	}
 }
