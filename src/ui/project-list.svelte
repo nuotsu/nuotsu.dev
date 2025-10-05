@@ -33,7 +33,9 @@
 	</ul>
 {/snippet}
 
-<section class="full-bleed flex overflow-x-auto px-ch whitespace-nowrap">
+<section
+	class="no-scrollbar full-bleed flex overflow-x-auto px-ch whitespace-nowrap"
+>
 	{@render list(
 		'My work',
 		projectsSorted.filter((p) => !p.isClient),

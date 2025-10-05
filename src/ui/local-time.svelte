@@ -4,7 +4,9 @@
 	let [hour, meridiem] = $derived(
 		time.toLocaleTimeString('en-US', { hour: 'numeric' }).split(' '),
 	)
-	let minute = $derived(time.toLocaleTimeString('en-US', { minute: '2-digit' }))
+	let minute = $derived(
+		time.toLocaleTimeString('en-US', { minute: '2-digit' }).padStart(2, '0'),
+	)
 
 	function getLocalTime() {
 		return new Date(
