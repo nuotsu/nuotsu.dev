@@ -20,6 +20,28 @@ export type Metadata = {
 	slug?: Slug
 }
 
+export type Domain = {
+	_id: string
+	_type: 'domain'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	name?: string
+	subdomains?: Array<string>
+}
+
+export type Project = {
+	_id: string
+	_type: 'project'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	url?: string
+	title?: string
+	isClient?: boolean
+	redacted?: boolean
+}
+
 export type Global = {
 	_id: string
 	_type: 'global'
@@ -27,6 +49,13 @@ export type Global = {
 	_updatedAt: string
 	_rev: string
 	tagline?: string
+	featuredProjects?: Array<{
+		_ref: string
+		_type: 'reference'
+		_weak?: boolean
+		_key: string
+		[internalGroqTypeReferenceTo]?: 'project'
+	}>
 }
 
 export type SanityImagePaletteSwatch = {
@@ -149,6 +178,8 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes =
 	| Metadata
+	| Domain
+	| Project
 	| Global
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
@@ -164,7 +195,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/routes/(frontend)/+layout.server.ts
 // Variable: LAYOUT_QUERY
-// Query: {		'global': *[_type == 'global'][0],	}
+// Query: {		'global': *[_type == 'global'][0]{			...,			featuredProjects[]->		},		'projects': *[_type == 'project'],		'domains': *[_type == 'domain'],	}
 export type LAYOUT_QUERYResult = {
 	global: {
 		_id: string
@@ -173,13 +204,44 @@ export type LAYOUT_QUERYResult = {
 		_updatedAt: string
 		_rev: string
 		tagline?: string
+		featuredProjects: Array<{
+			_id: string
+			_type: 'project'
+			_createdAt: string
+			_updatedAt: string
+			_rev: string
+			url?: string
+			title?: string
+			isClient?: boolean
+			redacted?: boolean
+		}> | null
 	} | null
+	projects: Array<{
+		_id: string
+		_type: 'project'
+		_createdAt: string
+		_updatedAt: string
+		_rev: string
+		url?: string
+		title?: string
+		isClient?: boolean
+		redacted?: boolean
+	}>
+	domains: Array<{
+		_id: string
+		_type: 'domain'
+		_createdAt: string
+		_updatedAt: string
+		_rev: string
+		name?: string
+		subdomains?: Array<string>
+	}>
 }
 
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
-		"{\n\t\t'global': *[_type == 'global'][0],\n\t}": LAYOUT_QUERYResult
+		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tfeaturedProjects[]->\n\t\t},\n\t\t'projects': *[_type == 'project'],\n\t\t'domains': *[_type == 'domain'],\n\t}": LAYOUT_QUERYResult
 	}
 }

@@ -13,6 +13,11 @@ export default defineType({
 			type: 'string',
 			validation: (Rule) => Rule.required(),
 		}),
+		defineField({
+			name: 'featuredProjects',
+			type: 'array',
+			of: [{ type: 'reference', to: [{ type: 'project' }] }],
+		}),
 	],
 	preview: {
 		prepare: () => ({
