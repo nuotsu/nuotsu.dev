@@ -16,11 +16,26 @@
 @custom-variant hover (&:hover);
 
 @layer base {
+	::selection {
+		background-color: var(--color-foreground);
+		color: var(--color-background);
+	}
+
 	html {
 		scroll-behavior: smooth;
+	}
+
+	body {
+		cursor: crosshair;
+		line-height: 1;
 	}
 
 	address {
 		font-style: normal;
 	}
+}
+
+@utility full-bleed {
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
 }

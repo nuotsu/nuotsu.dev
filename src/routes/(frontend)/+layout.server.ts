@@ -9,13 +9,11 @@ export const load: LayoutServerLoad = async () => {
 			...,
 			featuredProjects[]->
 		},
-		'projects': *[_type == 'project'],
+		'projects': *[_type == 'project' && defined(url)],
 		'domains': *[_type == 'domain'],
 	}`
 
-	const { global } = await client.fetch<LAYOUT_QUERYResult>(LAYOUT_QUERY)
+	const data = await client.fetch<LAYOUT_QUERYResult>(LAYOUT_QUERY)
 
-	return {
-		global,
-	}
+	return data
 }

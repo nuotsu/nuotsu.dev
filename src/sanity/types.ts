@@ -195,7 +195,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/routes/(frontend)/+layout.server.ts
 // Variable: LAYOUT_QUERY
-// Query: {		'global': *[_type == 'global'][0]{			...,			featuredProjects[]->		},		'projects': *[_type == 'project'],		'domains': *[_type == 'domain'],	}
+// Query: {		'global': *[_type == 'global'][0]{			...,			featuredProjects[]->		},		'projects': *[_type == 'project' && defined(url)],		'domains': *[_type == 'domain'],	}
 export type LAYOUT_QUERYResult = {
 	global: {
 		_id: string
@@ -242,6 +242,6 @@ export type LAYOUT_QUERYResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
-		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tfeaturedProjects[]->\n\t\t},\n\t\t'projects': *[_type == 'project'],\n\t\t'domains': *[_type == 'domain'],\n\t}": LAYOUT_QUERYResult
+		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tfeaturedProjects[]->\n\t\t},\n\t\t'projects': *[_type == 'project' && defined(url)],\n\t\t'domains': *[_type == 'domain'],\n\t}": LAYOUT_QUERYResult
 	}
 }

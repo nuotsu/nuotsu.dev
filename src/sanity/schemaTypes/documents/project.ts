@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { VscBriefcase, VscEyeClosed } from 'react-icons/vsc'
+import getUrl from '$lib/get-url'
 
 export default defineType({
 	name: 'project',
@@ -33,11 +34,13 @@ export default defineType({
 			title: 'title',
 			redacted: 'redacted',
 		},
-		prepare: ({ url, title, redacted }) => ({
-			title: url && new URL(url).hostname.replace('www.', ''),
-			subtitle: title,
-			media: redacted ? VscEyeClosed : VscBriefcase,
-		}),
+		prepare: ({ url, title, redacted }) => {
+			return {
+				title: getUrl(url),
+				subtitle: title,
+				media: redacted ? VscEyeClosed : VscBriefcase,
+			}
+		},
 	},
 	orderings: [
 		{

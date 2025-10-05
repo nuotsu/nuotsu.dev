@@ -33,7 +33,7 @@
 
 	@keyframes blink {
 		50% {
-			opacity: 0;
+			color: transparent;
 		}
 	}
 </style>
