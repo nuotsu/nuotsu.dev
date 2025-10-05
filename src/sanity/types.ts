@@ -56,6 +56,20 @@ export type Global = {
 		_key: string
 		[internalGroqTypeReferenceTo]?: 'project'
 	}>
+	cars?: Array<{
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		alt?: string
+		_type: 'image'
+		_key: string
+	}>
 }
 
 export type SanityImagePaletteSwatch = {
@@ -215,6 +229,20 @@ export type LAYOUT_QUERYResult = {
 			isClient?: boolean
 			redacted?: boolean
 		}> | null
+		cars?: Array<{
+			asset?: {
+				_ref: string
+				_type: 'reference'
+				_weak?: boolean
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+			}
+			media?: unknown
+			hotspot?: SanityImageHotspot
+			crop?: SanityImageCrop
+			alt?: string
+			_type: 'image'
+			_key: string
+		}>
 	} | null
 	projects: Array<{
 		_id: string

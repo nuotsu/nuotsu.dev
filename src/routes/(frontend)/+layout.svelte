@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProjectList from '@/ui/project-list.svelte'
+	import CarList from '@/ui/car-list.svelte'
 	import LocalTime from '@/ui/local-time.svelte'
 	import '@/app.css'
 
@@ -17,6 +18,7 @@
 		<h2 class="before:content-['//_']">{data.global?.tagline}</h2>
 	</hgroup>
 	<ProjectList projects={data.projects} />
+	<CarList cars={data.global?.cars} />
 	<LocalTime />
 </main>
 
