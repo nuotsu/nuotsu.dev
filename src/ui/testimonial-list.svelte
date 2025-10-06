@@ -6,7 +6,7 @@
 </script>
 
 <ul
-	class="carousel no-scrollbar items-stretch gap-ch pt-[.5ch] max-md:full-bleed md:mask-r-from-[calc(100%-1ch)]"
+	class="carousel no-scrollbar items-stretch gap-ch mask-r-from-[calc(100%-1ch)] pt-[.5ch] max-md:full-bleed max-md:px-ch"
 >
 	{#each testimonials as testimonial}
 		<li
