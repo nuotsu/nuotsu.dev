@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { VscBriefcase, VscEyeClosed } from 'react-icons/vsc'
+import { VscBriefcase, VscSparkle, VscEyeClosed } from 'react-icons/vsc'
 import getUrl from '$lib/get-url'
 
 export default defineType({
@@ -20,6 +20,10 @@ export default defineType({
 			type: 'string',
 		}),
 		defineField({
+			name: 'featured',
+			type: 'boolean',
+		}),
+		defineField({
 			name: 'isClient',
 			type: 'boolean',
 		}),
@@ -32,13 +36,14 @@ export default defineType({
 		select: {
 			url: 'url',
 			title: 'title',
+			featured: 'featured',
 			redacted: 'redacted',
 		},
-		prepare: ({ url, title, redacted }) => {
+		prepare: ({ url, title, featured, redacted }) => {
 			return {
 				title: getUrl(url),
 				subtitle: title,
-				media: redacted ? VscEyeClosed : VscBriefcase,
+				media: featured ? VscSparkle : redacted ? VscEyeClosed : VscBriefcase,
 			}
 		},
 	},

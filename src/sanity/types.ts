@@ -38,6 +38,7 @@ export type Project = {
 	_rev: string
 	url?: string
 	title?: string
+	featured?: boolean
 	isClient?: boolean
 	redacted?: boolean
 }
@@ -49,13 +50,6 @@ export type Global = {
 	_updatedAt: string
 	_rev: string
 	tagline?: string
-	featuredProjects?: Array<{
-		_ref: string
-		_type: 'reference'
-		_weak?: boolean
-		_key: string
-		[internalGroqTypeReferenceTo]?: 'project'
-	}>
 	cars?: Array<{
 		asset?: {
 			_ref: string
@@ -68,6 +62,25 @@ export type Global = {
 		crop?: SanityImageCrop
 		alt?: string
 		_type: 'image'
+		_key: string
+	}>
+	pokemonTeams?: Array<{
+		pokemon?: Array<{
+			asset?: {
+				_ref: string
+				_type: 'reference'
+				_weak?: boolean
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+			}
+			media?: unknown
+			hotspot?: SanityImageHotspot
+			crop?: SanityImageCrop
+			alt?: string
+			_type: 'pokemon'
+			_key: string
+		}>
+		hidden?: boolean
+		_type: 'team'
 		_key: string
 	}>
 }
@@ -209,7 +222,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/routes/(frontend)/+layout.server.ts
 // Variable: LAYOUT_QUERY
-// Query: {		'global': *[_type == 'global'][0]{			...,			featuredProjects[]->		},		'projects': *[_type == 'project' && defined(url)],		'domains': *[_type == 'domain'],	}
+// Query: {		'global': *[_type == 'global'][0]{			...,			pokemonTeams[!hidden],		},		'projects': *[_type == 'project' && defined(url)],		'domains': *[_type == 'domain'],	}
 export type LAYOUT_QUERYResult = {
 	global: {
 		_id: string
@@ -218,17 +231,6 @@ export type LAYOUT_QUERYResult = {
 		_updatedAt: string
 		_rev: string
 		tagline?: string
-		featuredProjects: Array<{
-			_id: string
-			_type: 'project'
-			_createdAt: string
-			_updatedAt: string
-			_rev: string
-			url?: string
-			title?: string
-			isClient?: boolean
-			redacted?: boolean
-		}> | null
 		cars?: Array<{
 			asset?: {
 				_ref: string
@@ -243,6 +245,25 @@ export type LAYOUT_QUERYResult = {
 			_type: 'image'
 			_key: string
 		}>
+		pokemonTeams: Array<{
+			pokemon?: Array<{
+				asset?: {
+					_ref: string
+					_type: 'reference'
+					_weak?: boolean
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+				}
+				media?: unknown
+				hotspot?: SanityImageHotspot
+				crop?: SanityImageCrop
+				alt?: string
+				_type: 'pokemon'
+				_key: string
+			}>
+			hidden?: boolean
+			_type: 'team'
+			_key: string
+		}> | null
 	} | null
 	projects: Array<{
 		_id: string
@@ -252,6 +273,7 @@ export type LAYOUT_QUERYResult = {
 		_rev: string
 		url?: string
 		title?: string
+		featured?: boolean
 		isClient?: boolean
 		redacted?: boolean
 	}>
@@ -270,6 +292,6 @@ export type LAYOUT_QUERYResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
-		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tfeaturedProjects[]->\n\t\t},\n\t\t'projects': *[_type == 'project' && defined(url)],\n\t\t'domains': *[_type == 'domain'],\n\t}": LAYOUT_QUERYResult
+		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tpokemonTeams[!hidden],\n\t\t},\n\t\t'projects': *[_type == 'project' && defined(url)],\n\t\t'domains': *[_type == 'domain'],\n\t}": LAYOUT_QUERYResult
 	}
 }

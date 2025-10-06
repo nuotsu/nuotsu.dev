@@ -20,24 +20,39 @@
 </script>
 
 {#snippet list(heading: string, projects: Project[])}
-	<h2 class="sticky -left-ch bg-foreground text-background not-first:ml-lh">
-		{heading}
-	</h2>
+	<article class="flex shrink-0">
+		<h2 class="sticky -left-ch bg-foreground text-background not-first:ml-lh">
+			{heading}
+		</h2>
 
-	<ul class="flex">
-		{#each projects as project}
-			<li class="shrink-0 overflow-hidden overflow-ellipsis">
-				{getProjectUrl(project)}
-			</li>
-		{/each}
-	</ul>
+		<ul class="flex">
+			{#each projects as project}
+				<li
+					class="shrink-0 overflow-hidden border-t overflow-ellipsis has-[a]:border-blue-300 has-[a:hover]:border-blue-500"
+				>
+					{#if project.featured}
+						<a
+							class="flex gap-ch bg-linear-to-t from-blue-500/25 not-hover:text-blue-300 hover:bg-blue-500"
+							href={project.url}
+						>
+							<span class="grow overflow-hidden overflow-ellipsis"
+								>{getProjectUrl(project)}</span
+							>
+						</a>
+					{:else}
+						{getProjectUrl(project)}
+					{/if}
+				</li>
+			{/each}
+		</ul>
+	</article>
 {/snippet}
 
 <section
-	class="no-scrollbar full-bleed flex overflow-x-auto px-ch whitespace-nowrap"
+	class="no-scrollbar flex gap-lh overflow-x-auto whitespace-nowrap max-md:full-bleed max-md:px-ch"
 >
 	{@render list(
-		'My work',
+		'Personal work',
 		projectsSorted.filter((p) => !p.isClient),
 	)}
 	{@render list(
@@ -47,10 +62,21 @@
 </section>
 
 <style>
+	li:not(:has(a)),
+	h2,
+	a {
+		padding-inline: 0.5ch;
+	}
+
 	li,
 	h2 {
-		padding-inline: 0.5ch;
 		writing-mode: vertical-rl;
 		max-height: 30ch;
+	}
+
+	a::after {
+		content: '+';
+		margin-left: auto;
+		flex-shrink: 0;
 	}
 </style>

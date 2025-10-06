@@ -7,7 +7,7 @@ export const load: LayoutServerLoad = async () => {
 	const LAYOUT_QUERY = groq`{
 		'global': *[_type == 'global'][0]{
 			...,
-			featuredProjects[]->
+			pokemonTeams[!hidden],
 		},
 		'projects': *[_type == 'project' && defined(url)],
 		'domains': *[_type == 'domain'],

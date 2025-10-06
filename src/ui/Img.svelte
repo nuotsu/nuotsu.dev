@@ -8,6 +8,7 @@
 
 	let {
 		class: className,
+		style,
 		image,
 		alt = '',
 		width,
@@ -36,6 +37,7 @@
 
 	<img
 		class={className}
+		{style}
 		src={urlFor(image)
 			.withOptions({
 				width,

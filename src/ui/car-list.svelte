@@ -6,14 +6,20 @@
 </script>
 
 <dl
-	class="full-bleed no-scrollbar flex gap-ch overflow-x-auto overflow-y-clip px-ch"
+	class="no-scrollbar flex gap-ch overflow-x-auto overflow-y-clip mask-r-from-[calc(100%-1ch)] max-md:full-bleed max-md:px-ch md:pr-ch"
 >
 	{#each cars as car}
 		<dt class="sticky left-0 shrink-0 bg-background text-right">
 			{@html car.alt?.replace(/\n/g, '<br>')}
 		</dt>
 		<dd class="relative shrink-0 bg-linear-to-l from-background to-transparent">
-			<Img class="h-[2lh] w-auto" image={car} height={100} alt={car.alt} />
+			<Img
+				class="h-[2lh] w-auto"
+				image={car}
+				height={100}
+				alt={car.alt}
+				draggable={false}
+			/>
 		</dd>
 	{/each}
 </dl>
