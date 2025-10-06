@@ -6,7 +6,7 @@
 </script>
 
 <ul
-	class="-mt-lh no-scrollbar flex overflow-x-auto max-md:full-bleed max-md:px-ch max-sm:justify-between"
+	class="-mt-lh no-scrollbar flex overflow-x-auto mask-r-from-[calc(100%-1ch)] max-md:full-bleed max-md:px-ch max-sm:justify-between"
 >
 	{#each teams as team}
 		<li class="ml-[-2ch] shrink-0">
@@ -34,5 +34,10 @@
 		image-rendering: -moz-crisp-edges;
 		image-rendering: -webkit-optimize-contrast;
 		image-rendering: pixelated;
+	}
+
+	li:has(:global(img:hover)) :global(img:not(:hover)) {
+		opacity: 0.5;
+		filter: blur(1px);
 	}
 </style>
