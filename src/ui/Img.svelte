@@ -8,14 +8,13 @@
 
 	let {
 		class: className,
-		style,
 		image,
 		alt = '',
 		width,
 		height,
 		loading = 'lazy',
-		draggable,
 		options = {},
+		...props
 	}: {
 		class?: string
 		image?: any
@@ -37,7 +36,6 @@
 
 	<img
 		class={className}
-		{style}
 		src={urlFor(image)
 			.withOptions({
 				width,
@@ -50,6 +48,6 @@
 		height={h}
 		{loading}
 		{alt}
-		{draggable}
+		{...props as any}
 	/>
 {/if}
