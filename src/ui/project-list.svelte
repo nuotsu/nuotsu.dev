@@ -1,5 +1,6 @@
 <script lang="ts">
 	import getUrl from '$lib/get-url'
+	import { cn } from '$lib/utils'
 	import type { LAYOUT_QUERYResult, Project } from '@/sanity/types'
 
 	let { projects }: { projects: LAYOUT_QUERYResult['projects'] } = $props()
@@ -22,17 +23,26 @@
 {#snippet list(heading: string, projects: Project[])}
 	<article class="flex shrink-0">
 		<h2 class="sticky -left-ch bg-foreground text-background not-first:ml-lh">
-			{heading}
+			{heading} ({projects.length})
 		</h2>
 
 		<ul class="flex">
-			{#each projects as project}
+			{#each projects as { featured, ...project }}
 				<li
-					class="shrink-0 overflow-hidden border-t overflow-ellipsis has-[a]:border-blue-300 has-[a:hover]:border-blue-500"
+					class={cn(
+						'shrink-0 overflow-hidden border-t overflow-ellipsis',
+						featured && 'has-[a]:border-blue-300 has-[a:hover]:border-blue-500',
+					)}
 				>
-					{#if project.featured}
+					{#if project.url && !project.redacted}
 						<a
-							class="flex gap-ch bg-linear-to-t from-blue-500/25 not-hover:text-blue-300 hover:bg-blue-500"
+							class={cn(
+								'flex',
+								featured
+									? 'gap-ch bg-linear-to-t from-blue-500/25 not-hover:text-blue-300 hover:bg-blue-500'
+									: 'hover:bg-foreground/20',
+							)}
+							class:featured
 							href={project.url}
 						>
 							<span class="grow overflow-hidden overflow-ellipsis"
@@ -49,7 +59,7 @@
 {/snippet}
 
 <section
-	class="no-scrollbar flex gap-lh overflow-x-auto mask-r-from-[calc(100%-1ch)] whitespace-nowrap max-md:full-bleed max-md:px-ch"
+	class="no-scrollbar flex gap-lh overflow-x-auto mask-r-from-[calc(100%-1ch)] pr-ch whitespace-nowrap max-md:full-bleed max-md:px-ch"
 >
 	{@render list(
 		'Personal projects',
@@ -74,7 +84,7 @@
 		max-height: 30ch;
 	}
 
-	a::after {
+	.featured::after {
 		content: '+';
 		margin-left: auto;
 		flex-shrink: 0;
