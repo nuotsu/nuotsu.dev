@@ -49,7 +49,7 @@
 {/snippet}
 
 <section
-	class="no-scrollbar flex gap-lh overflow-x-auto whitespace-nowrap max-md:full-bleed max-md:px-ch"
+	class="no-scrollbar flex gap-lh overflow-x-auto mask-r-from-[calc(100%-1ch)] whitespace-nowrap max-md:full-bleed max-md:px-ch"
 >
 	{@render list(
 		'Personal work',
