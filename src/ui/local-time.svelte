@@ -24,13 +24,12 @@
 		{hour}<span>:</span>{minute}
 		{meridiem}
 	</time>
-
-	<address>Irvine, CA, USA</address>
+	<address class="before:content-['@_']">Irvine, CA, USA</address>
 </div>
 
 <style>
 	span {
-		animation: blink 1s infinite steps(1, start);
+		animation: blink 1s infinite steps(1, start) reverse;
 	}
 
 	@keyframes blink {

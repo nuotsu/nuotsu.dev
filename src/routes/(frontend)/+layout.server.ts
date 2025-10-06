@@ -11,6 +11,7 @@ export const load: LayoutServerLoad = async () => {
 		},
 		'projects': *[_type == 'project' && defined(url)],
 		'domains': *[_type == 'domain'],
+		'testimonials': *[_type == 'testimonial'],
 	}`
 
 	const data = await client.fetch<LAYOUT_QUERYResult>(LAYOUT_QUERY)

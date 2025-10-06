@@ -21,6 +21,10 @@
 		color: var(--color-background);
 	}
 
+	* {
+		min-width: 0;
+	}
+
 	html {
 		scroll-behavior: smooth;
 	}
@@ -34,10 +38,29 @@
 		user-select: none;
 	}
 
+	cite,
 	address {
 		font-style: normal;
 	}
 }
+
+/* components */
+
+@utility carousel {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: min(30ch, 80vw);
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	& > * {
+		scroll-snap-align: center;
+	}
+}
+
+/* utilities */
 
 @utility full-bleed {
 	width: 100vw;

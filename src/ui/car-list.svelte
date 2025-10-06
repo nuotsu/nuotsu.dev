@@ -12,7 +12,9 @@
 		<dt class="sticky left-0 shrink-0 bg-background text-right">
 			{@html car.alt?.replace(/\n/g, '<br>')}
 		</dt>
-		<dd class="relative shrink-0 bg-linear-to-l from-background to-transparent">
+		<dd
+			class="relative ml-[-2ch] shrink-0 bg-linear-to-l from-background to-transparent"
+		>
 			<Img
 				class="h-[2lh] w-auto"
 				image={car}

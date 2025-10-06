@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from '@/ui/header.svelte'
 	import ProjectList from '@/ui/project-list.svelte'
+	import TestimonialList from '@/ui/testimonial-list.svelte'
 	import PokemonTeams from '@/ui/pokemon-teams.svelte'
 	import CarList from '@/ui/car-list.svelte'
 	import LocalTime from '@/ui/local-time.svelte'
@@ -17,6 +18,7 @@
 <main class="mx-auto flex max-w-2xl flex-col gap-lh">
 	<Header tagline={data.global?.tagline} />
 	<ProjectList projects={data.projects} />
+	<TestimonialList testimonials={data.testimonials} />
 	<PokemonTeams teams={data.global?.pokemonTeams ?? []} />
 	<CarList cars={data.global?.cars} />
 	<LocalTime />

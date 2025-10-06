@@ -13,11 +13,33 @@
  */
 
 // Source: schema.json
-export type Metadata = {
-	_type: 'metadata'
+export type Testimonial = {
+	_id: string
+	_type: 'testimonial'
+	_createdAt: string
+	_updatedAt: string
+	_rev: string
+	quote?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	author?: string
 	title?: string
-	description?: string
-	slug?: Slug
+	source?: string
 }
 
 export type Domain = {
@@ -204,7 +226,7 @@ export type SanityAssetSourceData = {
 }
 
 export type AllSanitySchemaTypes =
-	| Metadata
+	| Testimonial
 	| Domain
 	| Project
 	| Global
@@ -222,7 +244,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/routes/(frontend)/+layout.server.ts
 // Variable: LAYOUT_QUERY
-// Query: {		'global': *[_type == 'global'][0]{			...,			pokemonTeams[!hidden],		},		'projects': *[_type == 'project' && defined(url)],		'domains': *[_type == 'domain'],	}
+// Query: {		'global': *[_type == 'global'][0]{			...,			pokemonTeams[!hidden],		},		'projects': *[_type == 'project' && defined(url)],		'domains': *[_type == 'domain'],		'testimonials': *[_type == 'testimonial'],	}
 export type LAYOUT_QUERYResult = {
 	global: {
 		_id: string
@@ -286,12 +308,40 @@ export type LAYOUT_QUERYResult = {
 		name?: string
 		subdomains?: Array<string>
 	}>
+	testimonials: Array<{
+		_id: string
+		_type: 'testimonial'
+		_createdAt: string
+		_updatedAt: string
+		_rev: string
+		quote?: Array<{
+			children?: Array<{
+				marks?: Array<string>
+				text?: string
+				_type: 'span'
+				_key: string
+			}>
+			style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+			listItem?: 'bullet' | 'number'
+			markDefs?: Array<{
+				href?: string
+				_type: 'link'
+				_key: string
+			}>
+			level?: number
+			_type: 'block'
+			_key: string
+		}>
+		author?: string
+		title?: string
+		source?: string
+	}>
 }
 
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
 	interface SanityQueries {
-		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tpokemonTeams[!hidden],\n\t\t},\n\t\t'projects': *[_type == 'project' && defined(url)],\n\t\t'domains': *[_type == 'domain'],\n\t}": LAYOUT_QUERYResult
+		"{\n\t\t'global': *[_type == 'global'][0]{\n\t\t\t...,\n\t\t\tpokemonTeams[!hidden],\n\t\t},\n\t\t'projects': *[_type == 'project' && defined(url)],\n\t\t'domains': *[_type == 'domain'],\n\t\t'testimonials': *[_type == 'testimonial'],\n\t}": LAYOUT_QUERYResult
 	}
 }

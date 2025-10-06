@@ -1,5 +1,5 @@
 import { structureTool } from 'sanity/structure'
-import { VscChip, VscBriefcase, VscGlobe } from 'react-icons/vsc'
+import { VscChip, VscBriefcase, VscGlobe, VscQuote } from 'react-icons/vsc'
 import { singleton } from './lib/builders'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -14,5 +14,8 @@ export default structureTool({
 				S.divider().title('Archive'),
 				S.documentTypeListItem('project').title('Projects').icon(VscBriefcase),
 				S.documentTypeListItem('domain').title('Domains').icon(VscGlobe),
+
+				S.divider().title('Miscellaneous'),
+				S.documentTypeListItem('testimonial').title('Testimonials').icon(VscQuote),
 			]),
 })
