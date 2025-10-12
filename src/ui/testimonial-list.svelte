@@ -16,7 +16,7 @@
 				<PortableText value={testimonial.quote} />
 			</blockquote>
 			<cite class="mt-auto">
-				<div class="flex flex-wrap gap-x-ch">
+				<dl class="flex flex-wrap gap-x-ch">
 					<dt>{testimonial.author}</dt>
 
 					{#if testimonial.title}
@@ -33,7 +33,7 @@
 							</a>
 						</dd>
 					{/if}
-				</div>
+				</dl>
 			</cite>
 		</li>
 	{/each}
