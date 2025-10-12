@@ -2,8 +2,8 @@
 	import Header from '@/ui/header.svelte'
 	import ProjectList from '@/ui/project-list.svelte'
 	import TestimonialList from '@/ui/testimonial-list.svelte'
-	import PokemonTeams from '@/ui/pokemon-teams.svelte'
 	import CarList from '@/ui/car-list.svelte'
+	import PokemonTeams from '@/ui/pokemon-teams.svelte'
 	import LocalTime from '@/ui/local-time.svelte'
 	import '@/app.css'
 
@@ -19,9 +19,9 @@
 	<Header tagline={data.global?.tagline} />
 	<ProjectList projects={data.projects} />
 	<TestimonialList testimonials={data.testimonials} />
-	<PokemonTeams teams={data.global?.pokemonTeams ?? []} />
 	<CarList cars={data.global?.cars} />
+	<PokemonTeams teams={data.global?.pokemonTeams ?? []} />
 	<LocalTime />
 </main>
 
-{@render children?.()}
+{@render children()}

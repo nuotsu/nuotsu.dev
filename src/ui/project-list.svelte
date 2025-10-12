@@ -1,5 +1,6 @@
 <script lang="ts">
 	import getUrl from '$lib/get-url'
+	import Section from './section.svelte'
 	import { cn } from '$lib/utils'
 	import type { LAYOUT_QUERYResult, Project } from '@/sanity/types'
 
@@ -22,19 +23,24 @@
 
 {#snippet list(heading: string, projects: Project[])}
 	<article class="flex shrink-0">
-		<h2 class="sticky -left-ch bg-foreground text-background not-first:ml-lh">
+		<h2
+			class="sticky -left-ch bg-foreground text-background not-first:ml-lh md:left-0"
+		>
 			{heading} ({projects.length})
 		</h2>
 
 		<ul class="flex">
 			{#each projects as { featured, ...project }}
+				{@const hasLink = project.url && !project.redacted}
+
 				<li
 					class={cn(
 						'shrink-0 overflow-hidden border-t overflow-ellipsis',
 						featured && 'has-[a]:border-blue-300 has-[a:hover]:border-blue-500',
+						!hasLink && 'text-current/50',
 					)}
 				>
-					{#if project.url && !project.redacted}
+					{#if hasLink}
 						<a
 							class={cn(
 								'flex',
@@ -45,9 +51,9 @@
 							class:featured
 							href={project.url}
 						>
-							<span class="grow overflow-hidden overflow-ellipsis"
-								>{getProjectUrl(project)}</span
-							>
+							<span class="grow overflow-hidden overflow-ellipsis">
+								{getProjectUrl(project)}
+							</span>
 						</a>
 					{:else}
 						{getProjectUrl(project)}
@@ -58,18 +64,20 @@
 	</article>
 {/snippet}
 
-<section
-	class="no-scrollbar flex gap-lh overflow-x-auto mask-r-from-[calc(100%-1ch)] pr-ch whitespace-nowrap max-md:full-bleed max-md:px-ch"
->
-	{@render list(
-		'Personal projects',
-		projectsSorted.filter((p) => !p.isClient),
-	)}
-	{@render list(
-		'Client projects',
-		projectsSorted.filter((p) => p.isClient),
-	)}
-</section>
+<Section heading="Projects">
+	<div
+		class="no-scrollbar flex gap-lh overflow-x-auto mask-r-from-[calc(100%-1ch)] pr-ch whitespace-nowrap max-md:full-bleed max-md:px-ch"
+	>
+		{@render list(
+			'Personal',
+			projectsSorted.filter((p) => !p.isClient),
+		)}
+		{@render list(
+			'Client',
+			projectsSorted.filter((p) => p.isClient),
+		)}
+	</div>
+</Section>
 
 <style>
 	li:not(:has(a)),
