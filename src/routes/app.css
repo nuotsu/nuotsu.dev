@@ -11,8 +11,11 @@
 	--toc-width: var(--container-3xs);
 }
 
+@variant scrolled (body:has(main[data-is-intersecting]) &);
+
 @layer base {
 	:root {
+		interpolate-size: allow-keywords;
 		scroll-behavior: smooth;
 	}
 }
