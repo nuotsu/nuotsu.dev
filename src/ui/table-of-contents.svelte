@@ -1,11 +1,34 @@
+<script lang="ts">
+	import { goto } from '$app/navigation'
+
+	const sections = [
+		{ id: 'abstract', title: 'Abstract' },
+		{ id: 'notable-works', title: 'Notable Works' },
+		{ id: 'projects', title: 'Projects' },
+		{ id: 'writing', title: 'Writing' },
+		{ id: 'testimonials', title: 'Testimonials' },
+		{ id: 'domains', title: 'Domains' },
+		{ id: 'gear', title: 'Gear' },
+		{ id: 'about', title: 'About' },
+		{ id: 'contact', title: 'Contact' },
+	]
+</script>
+
+<svelte:window
+	on:keydown={(e) => {
+		if (!e.key.match(/^[0-9]$/)) return
+
+		if (e.key === '0') goto('/')
+
+		const section = sections[Number(e.key) - 1]
+		if (section) window.location.hash = `#${section.id}`
+	}}
+/>
+
 <ol class="[&_a]:transition-opacity">
-	<li><a href="#intro">Intro</a></li>
-	<li><a href="#notable-works">Notable Works</a></li>
-	<li><a href="#projects">Projects</a></li>
-	<li><a href="#testimonials">Testimonials</a></li>
-	<li><a href="#gear">Gear</a></li>
-	<li><a href="#about">About</a></li>
-	<li><a href="#contact">Contact</a></li>
+	{#each sections as section}
+		<li><a href={`#${section.id}`}>{section.title}</a></li>
+	{/each}
 </ol>
 
 <style>

@@ -2,9 +2,9 @@
 	import TableOfContents from '$ui/table-of-contents.svelte'
 </script>
 
-<header class="inset-0 grid min-h-dvh w-full md:fixed">
+<header class="top-0 grid min-h-dvh md:sticky">
 	<nav
-		class="my-auto flex w-full max-w-(--toc-width) flex-col gap-ch p-ch transition-[margin-left] duration-800 max-md:mx-auto md:not-scrolled:ml-(--distance)"
+		class="pointer-events-auto my-auto flex w-full max-w-(--toc-width) flex-col gap-ch p-ch transition-[margin-left] duration-800 max-md:mx-auto md:not-scrolled:ml-(--distance)"
 	>
 		<hgroup>
 			<h1 class="text-foreground-subdued italic"><a href="/">nuotsu</a></h1>

@@ -6,13 +6,13 @@
 		'CSS Nerd',
 		'Webmaster',
 		'Next.js expert',
-		'Svelte-enthusiast',
+		'Svelte enthusiast',
 		'Designer-turned-developer',
 	]
 </script>
 
-<Section id="intro">
-	<p class="sr-only">Introduction</p>
+<Section id="abstract">
+	<p class="sr-only">Abstract</p>
 
 	<h2 class="h1 text-balance">
 		{#each words as word, i}

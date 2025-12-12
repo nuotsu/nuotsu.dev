@@ -15,7 +15,7 @@
 	{@render testimonial(
 		'A really cool Sanity + Next.js starter template. Go check it out! 🔥 <strong>Really great work</strong>, Mitchell.',
 		'Kapehe',
-		'Head of Developer @ Vercel',
+		'Head of Developer Community @ Vercel',
 		'https://www.sanity.io/blog/community-digest-may-24-edition#84fd322ef040',
 	)}
 	{@render testimonial(

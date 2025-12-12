@@ -24,6 +24,10 @@
 	::selection {
 		@apply bg-foreground text-background;
 	}
+
+	rt {
+		ruby-align: center;
+	}
 }
 
 /* typography */
@@ -38,4 +42,27 @@
 
 @utility manuscript {
 	@apply first-letter:font-serif first-letter:italic;
+}
+
+/* components */
+
+@utility link {
+	@apply underline decoration-foreground-subdued hover:decoration-2;
+}
+
+@utility prose {
+	@apply space-y-rlh;
+
+	& a {
+		@apply link;
+	}
+
+	& ul {
+		list-style: disc;
+		padding-left: 1lh;
+	}
+
+	& ::marker {
+		color: var(--color-foreground-subdued);
+	}
 }

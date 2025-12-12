@@ -5,5 +5,5 @@
 <Section id="gear" class="space-y-rlh">
 	<h2 class="manuscript h1">Gear</h2>
 
-	<p>Coming soon...</p>
+	<p class="text-foreground-subdued">Coming soon...</p>
 </Section>

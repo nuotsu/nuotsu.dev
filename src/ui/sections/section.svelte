@@ -24,10 +24,6 @@
 	section {
 		--offset: calc(50svh - var(--section-height, 0px) / 2);
 
-		&:not(:last-child) {
-			margin-bottom: calc(100svh - 2lh);
-		}
-
 		&:last-child {
 			min-height: 100svh;
 		}

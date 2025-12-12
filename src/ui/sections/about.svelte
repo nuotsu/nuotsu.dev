@@ -5,14 +5,14 @@
 	const age = new Date().getFullYear() - new Date(dob).getFullYear()
 </script>
 
-<Section id="about" class="space-y-rlh">
+<Section id="about" class="prose">
 	<h2 class="manuscript h1">About</h2>
 
 	<dl
 		class="grid grid-cols-[auto_1fr] items-baseline gap-x-lh gap-y-2 leading-tight"
 	>
 		<dt>Name</dt>
-		<dd>Mitchell <ruby>Kazumaru<rt>和丸</rt></ruby> Christ</dd>
+		<dd>Mitchell <ruby>Kazumaru<rt lang="ja">和丸</rt></ruby> Christ</dd>
 
 		<dt>Born</dt>
 		<dd class="*:inline-block">
@@ -24,6 +24,13 @@
 		<dt>Residence</dt>
 		<dd>Irvine, California</dd>
 	</dl>
+
+	<p>
+		Outside of writing beautiful code, I enjoy watching baseball, playing
+		[pickleball, tennis, golf], and driving <a
+			href="https://www.instagram.com/24and95">my Supra</a
+		>.
+	</p>
 </Section>
 
 <style>
