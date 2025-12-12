@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-background: #ddddd1;
+	--color-foreground: #292919;
+	--color-foreground-subdued: #5c5c4e;
+
+	--spacing-ch: 1ch;
+	--spacing-lh: 1lh;
+
+	--toc-width: var(--container-3xs);
+}
+
+@layer base {
+	:root {
+		scroll-behavior: smooth;
+	}
+}
