@@ -27,7 +27,12 @@
 
 <ol class="[&_a]:transition-opacity">
 	{#each sections as section}
-		<li><a href={`#${section.id}`}>{section.title}</a></li>
+		<li>
+			<a
+				class="transition-colors after:text-foreground-subdued at-bottom:after:text-white/50"
+				href={`#${section.id}`}>{section.title}</a
+			>
+		</li>
 	{/each}
 </ol>
 
@@ -49,7 +54,6 @@
 
 		&::after {
 			content: counter(item, upper-roman);
-			color: var(--color-foreground-subdued);
 			font-family: var(--font-serif);
 		}
 	}

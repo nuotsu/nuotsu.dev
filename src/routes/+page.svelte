@@ -9,6 +9,7 @@
 	import Gear from '$ui/sections/gear.svelte'
 	import About from '$ui/sections/about.svelte'
 	import Contact from '$ui/sections/contact.svelte'
+	import Footer from '$ui/footer.svelte'
 
 	import { intersecting } from '$lib/intersection-observer'
 </script>
@@ -38,6 +39,8 @@
 	<About />
 	<Contact />
 </main>
+
+<Footer />
 
 <style>
 	main {

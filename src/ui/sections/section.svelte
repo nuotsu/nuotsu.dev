@@ -25,7 +25,7 @@
 		--offset: calc(50svh - var(--section-height, 0px) / 2);
 
 		&:last-child {
-			min-height: 100svh;
+			min-height: 50svh;
 		}
 	}
 </style>

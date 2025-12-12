@@ -13,7 +13,10 @@
 	--toc-width: var(--container-3xs);
 }
 
+@custom-variant hover (&:hover);
+
 @variant scrolled (body:has(main[data-is-intersecting]) &);
+@variant at-bottom (body:has(footer[data-is-intersecting]) &);
 
 @layer base {
 	:root {

@@ -26,7 +26,7 @@
 	</dl>
 
 	<p>
-		Outside of writing beautiful code, I enjoy watching baseball, playing
+		Outside of crafting beautiful websites, I enjoy watching baseball, playing
 		[pickleball, tennis, golf], and driving <a
 			href="https://www.instagram.com/24and95">my Supra</a
 		>.

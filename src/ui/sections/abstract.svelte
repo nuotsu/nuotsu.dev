@@ -5,8 +5,9 @@
 		'Frontend Web Dev',
 		'CSS Nerd',
 		'Webmaster',
-		'Next.js expert',
+		'Next.js Guru',
 		'Svelte enthusiast',
+		'Shopify expert',
 		'Designer-turned-developer',
 	]
 </script>
