@@ -3,6 +3,7 @@ import { type Attachment } from 'svelte/attachments'
 export function intersecting(
 	attributes: Record<string, string | boolean>,
 	options: IntersectionObserverInit = {},
+	callback: (entry: IntersectionObserverEntry) => void = () => {},
 ): Attachment {
 	return (element) => {
 		let observer: IntersectionObserver | null = null
@@ -25,6 +26,8 @@ export function intersecting(
 						element.removeAttribute(name)
 					}
 				}
+
+				callback(entry)
 			}
 		}
 

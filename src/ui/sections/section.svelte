@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { intersecting } from '$lib/intersection-observer'
+
 	let { id = '', class: className = '', children } = $props()
 
 	let clientHeight: number = $state(0)
@@ -9,6 +11,19 @@
 	$effect(() => {
 		windowHeight = window.innerHeight
 	})
+
+	function toggleTableOfContents(entry: IntersectionObserverEntry) {
+		const target = document.querySelector(
+			`#table-of-contents [href="#${entry.target.id}"]`,
+		) as HTMLElement | null
+
+		if (!target) return
+		if (entry.isIntersecting) {
+			target.classList.add('is-active')
+		} else {
+			target.classList.remove('is-active')
+		}
+	}
 </script>
 
 <section
@@ -16,6 +31,11 @@
 	style:--section-height="{clientHeight}px"
 	class="p-lh {isShort ? 'md:scroll-mt-(--offset)' : ''} {className}"
 	bind:clientHeight
+	{@attach intersecting(
+		{ 'data-is-intersecting': true },
+		{},
+		toggleTableOfContents,
+	)}
 >
 	{@render children()}
 </section>
@@ -25,7 +45,7 @@
 		--offset: calc(50svh - var(--section-height, 0px) / 2);
 
 		&:last-child {
-			min-height: 50svh;
+			margin-bottom: 50svh;
 		}
 	}
 </style>

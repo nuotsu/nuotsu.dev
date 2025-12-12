@@ -25,11 +25,14 @@
 	}}
 />
 
-<ol class="[&_a]:transition-opacity">
+<ol
+	id="table-of-contents"
+	class="whitespace-nowrap [&_a]:transition-[opacity,color] scrolled:[&_a]:opacity-50"
+>
 	{#each sections as section}
 		<li>
 			<a
-				class="transition-colors after:text-foreground-subdued at-bottom:after:text-white/50"
+				class="after:text-foreground-subdued hover:opacity-100! at-bottom:after:text-white/50"
 				href={`#${section.id}`}>{section.title}</a
 			>
 		</li>
@@ -37,7 +40,7 @@
 </ol>
 
 <style>
-	ol:has(a:hover) a:not(:hover) {
+	ol:has(a:hover) a:is(:not(:hover), :global(.is-active)) {
 		opacity: 0.5;
 	}
 
@@ -45,15 +48,45 @@
 		counter-increment: item;
 		display: grid;
 		grid-template-columns: subgrid;
+
+		&:has(:global(.is-active)):not(:has(:global(.is-active)) ~ &)
+			:global(.is-active) {
+			opacity: 1;
+
+			&::before {
+				content: '';
+				clip-path: inset(0);
+			}
+		}
 	}
 
 	a {
-		display: grid;
-		grid-template-columns: 1fr auto;
+		display: flex;
+		align-items: center;
 		gap: 1ch;
+
+		&::before {
+			content: '';
+			clip-path: inset(0 100% 0 0);
+			background-image: linear-gradient(
+				270deg,
+				currentColor 1px,
+				transparent 1px
+			);
+			background-position: 50%;
+			background-repeat: repeat-x;
+			background-size: 3px 30%;
+			width: 100%;
+			height: 2px;
+			order: 1;
+			flex-grow: 1;
+			transition: clip-path 0.2s ease-in-out;
+		}
 
 		&::after {
 			content: counter(item, upper-roman);
+			order: 2;
+			margin-left: auto;
 			font-family: var(--font-serif);
 		}
 	}

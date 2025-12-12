@@ -7,7 +7,7 @@
 	<h2 class="sr-only">Testimonials</h2>
 
 	{@render testimonial(
-		"This is sick dude. [...] Love seeing all the <strong>great work</strong> you're doing for <strong>the Sanity Community</strong>",
+		"This is sick dude. [...] Love seeing all the <strong>great work</strong> you're doing for <strong>the Sanity Community</strong>.",
 		'Jono',
 		'Founder of Roboto Studio',
 		'https://github.com/nuotsu/sanitypress/discussions/65#discussioncomment-12237198',
@@ -19,7 +19,7 @@
 		'https://www.sanity.io/blog/community-digest-may-24-edition#84fd322ef040',
 	)}
 	{@render testimonial(
-		"Dude, Mitchell's a <strong>crazy dev</strong>. Check out his <strong>MLB app</strong>.",
+		"Dude, Mitchell's a <strong>crazy dev</strong> 🤯. Check out his <strong>MLB app</strong>.",
 		'Shota',
 		'Senior Software Engineer @ Salesforce',
 		'https://sb3.theohtani.com',

@@ -9,7 +9,9 @@
 		class="pointer-events-auto my-auto flex w-full max-w-(--toc-width) flex-col gap-ch p-ch transition-[margin-left] duration-800 max-md:mx-auto md:not-scrolled:ml-(--distance)"
 	>
 		<hgroup>
-			<h1 class="text-foreground-subdued italic at-bottom:text-white/50">
+			<h1
+				class="text-foreground-subdued italic transition-colors at-bottom:text-white/50"
+			>
 				<a href="/">nuotsu</a>
 			</h1>
 			<h2>Mitchell Christ</h2>

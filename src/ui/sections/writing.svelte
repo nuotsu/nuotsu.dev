@@ -9,6 +9,7 @@
 
 	<p>
 		Meanwhile, check out the
-		<a href="https://typed.sanitypress.dev/blog">SanityPress Blog</a>.
+		<a href="https://sanitypress.dev/blog">this blog</a> or
+		<a href="https://typed.sanitypress.dev/blog">this blog</a>.
 	</p>
 </Section>
