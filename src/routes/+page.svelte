@@ -26,7 +26,7 @@
 <AboveTheFold />
 
 <main
-	class="gap-[] relative flex flex-col md:mt-lh md:ml-(--toc-width)"
+	class="relative flex flex-col md:mt-lh md:ml-(--toc-width)"
 	{@attach intersecting({ 'data-is-intersecting': true })}
 >
 	<Abstract />

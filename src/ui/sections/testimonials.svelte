@@ -43,12 +43,12 @@
 		</blockquote>
 
 		<figcaption>
-			<dl class="flex flex-wrap gap-ch">
+			<dl class="gap-x-ch">
 				<dt>{author}</dt>
-				<dd>{title}</dd>
+				<dd class="text-foreground-subdued">{title}</dd>
 			</dl>
 			<cite>
-				<a class="absolute inset-0 text-[0px]" href={source}> Source </a>
+				<a class="absolute inset-0 text-transparent" href={source}>Source</a>
 			</cite>
 		</figcaption>
 	</figure>
@@ -76,11 +76,7 @@
 		}
 	}
 
-	dd {
-		color: var(--color-foreground-subdued);
-
-		&::before {
-			content: '// ';
-		}
+	dd::before {
+		content: '// ';
 	}
 </style>

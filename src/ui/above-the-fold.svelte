@@ -3,10 +3,10 @@
 </script>
 
 <header
-	class="top-0 grid min-h-dvh transition-colors md:sticky at-bottom:text-white"
+	class="top-0 z-1 grid min-h-dvh transition-colors md:sticky md:w-0 at-bottom:text-white"
 >
 	<nav
-		class="pointer-events-auto my-auto flex w-full max-w-(--toc-width) flex-col gap-ch p-ch transition-[margin-left] duration-800 max-md:mx-auto md:not-scrolled:ml-(--distance)"
+		class="my-auto flex w-(--toc-width) flex-col gap-ch p-ch transition-[margin-left] duration-800 max-md:mx-auto md:not-scrolled:ml-(--distance)"
 	>
 		<hgroup>
 			<h1

@@ -8,9 +8,7 @@
 <Section id="about" class="prose">
 	<h2 class="manuscript h1">About</h2>
 
-	<dl
-		class="grid grid-cols-[auto_1fr] items-baseline gap-x-lh gap-y-2 leading-tight"
-	>
+	<dl class="leading-tight">
 		<dt>Name</dt>
 		<dd>Mitchell <ruby>Kazumaru<rt lang="ja">和丸</rt></ruby> Christ</dd>
 

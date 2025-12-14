@@ -28,6 +28,13 @@
 		@apply bg-foreground text-background;
 	}
 
+	dl {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: baseline;
+		gap: 0.5rem 1lh;
+	}
+
 	rt {
 		ruby-align: center;
 	}
@@ -43,6 +50,10 @@
 	@apply text-3xl leading-tight md:text-5xl;
 }
 
+@utility h3 {
+	@apply text-lg leading-tight;
+}
+
 @utility manuscript {
 	@apply first-letter:font-serif first-letter:italic;
 }
@@ -56,7 +67,7 @@
 @utility prose {
 	@apply space-y-rlh;
 
-	& a {
+	& a:not([class]) {
 		@apply link;
 	}
 

@@ -5,6 +5,7 @@
 		'Frontend Web Dev',
 		'CSS Nerd',
 		'Webmaster',
+		// 'Sanity MVP',
 		'Next.js Guru',
 		'Svelte enthusiast',
 		'Shopify expert',
