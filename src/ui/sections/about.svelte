@@ -5,9 +5,7 @@
 	const age = new Date().getFullYear() - new Date(dob).getFullYear()
 </script>
 
-<Section id="about" class="prose">
-	<h2 class="manuscript h1">About</h2>
-
+<Section id="about" heading="About" class="prose">
 	<dl class="leading-tight">
 		<dt>Name</dt>
 		<dd>Mitchell <ruby>Kazumaru<rt lang="ja">和丸</rt></ruby> Christ</dd>

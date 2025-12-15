@@ -10,7 +10,7 @@
 	>
 		<hgroup>
 			<h1
-				class="text-foreground-subdued italic transition-colors at-bottom:text-white/50"
+				class="font-serif text-foreground-subdued italic transition-colors at-bottom:text-white/50"
 			>
 				<a href="/">nuotsu</a>
 			</h1>

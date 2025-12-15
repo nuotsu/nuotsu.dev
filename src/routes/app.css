@@ -38,6 +38,10 @@
 	rt {
 		ruby-align: center;
 	}
+
+	::marker {
+		color: var(--color-foreground-subdued);
+	}
 }
 
 /* typography */
@@ -51,7 +55,7 @@
 }
 
 @utility h3 {
-	@apply text-lg leading-tight;
+	@apply text-xl leading-tight;
 }
 
 @utility manuscript {
@@ -61,7 +65,7 @@
 /* components */
 
 @utility link {
-	@apply underline decoration-foreground-subdued hover:decoration-2;
+	@apply underline decoration-foreground-subdued/20 transition-colors hover:decoration-foreground-subdued;
 }
 
 @utility prose {
@@ -71,12 +75,9 @@
 		@apply link;
 	}
 
-	& ul {
-		list-style: disc;
+	& :is(ul, ol) {
+		list-style: revert;
 		padding-left: 1lh;
-	}
-
-	& ::marker {
-		color: var(--color-foreground-subdued);
+		@apply space-y-2;
 	}
 }

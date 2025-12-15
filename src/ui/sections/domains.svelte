@@ -2,9 +2,7 @@
 	import Section from './section.svelte'
 </script>
 
-<Section id="domains" class="prose">
-	<h2 class="manuscript h1">Domains</h2>
-
+<Section id="domains" heading="Domains" class="prose">
 	<ul>
 		<li>nuotsu.dev</li>
 		<li>theohtani.com</li>

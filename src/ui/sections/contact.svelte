@@ -2,13 +2,9 @@
 	import Section from './section.svelte'
 </script>
 
-<Section id="contact" class="prose">
-	<h2 class="manuscript h1">Shall we collaborate?</h2>
-
-	<p class="text-foreground-subdued">Coming soon...</p>
-
+<Section id="contact" heading="Shall we collaborate?" class="prose">
 	<p>
-		Meanwhile, find me on
+		Find me on
 		<a href="https://x.com/marutch">X</a> or
 		<a href="https://www.linkedin.com/in/nuotsu">LinkedIn</a>, or email me at
 		<a href="mailto:mitchell@nuotsu.dev">mitchell@nuotsu.dev</a>.

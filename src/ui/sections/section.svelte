@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { intersecting } from '$lib/intersection-observer'
+	import Heading from '$ui/heading.svelte'
 
-	let { id = '', class: className = '', children } = $props()
+	let { id = '', class: className = '', children, heading = '' } = $props()
 
 	let clientHeight: number = $state(0)
 	let windowHeight: number = $state(0)
@@ -37,6 +38,10 @@
 		toggleTableOfContents,
 	)}
 >
+	{#if heading}
+		<Heading value={heading} />
+	{/if}
+
 	{@render children()}
 </section>
 
