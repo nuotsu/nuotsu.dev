@@ -27,6 +27,48 @@
 		}
 	}
 
+	function getWeightedPosition(
+		mousePos: number,
+		windowSize: number,
+		elemCenterPercent: number,
+	) {
+		if (!elem || windowSize === 0) return 0
+
+		const mousePercent = (mousePos / windowSize) * 100
+
+		// Calculate weighted position based on figure's placement
+		// The space to the left of the figure center maps to 0-45% of background-position
+		// The space to the right of the figure center maps to 45-100% of background-position
+		if (mousePercent <= elemCenterPercent) {
+			// Mouse is at or to the left of the figure center
+			// Map 0% to elemCenterPercent% of viewport to 0% to 45% of background-position
+			const ratio = elemCenterPercent > 0 ? mousePercent / elemCenterPercent : 0
+			return ratio * 45
+		} else {
+			// Mouse is to the right of the figure center
+			// Map elemCenterPercent% to 100% of viewport to 45% to 100% of background-position
+			const remainingSpace = 100 - elemCenterPercent
+			const ratio =
+				remainingSpace > 0
+					? (mousePercent - elemCenterPercent) / remainingSpace
+					: 0
+			return 45 + ratio * 55
+		}
+	}
+
+	function getBackgroundX() {
+		if (!elem || window_w === 0) return 0
+		const weightedPercent = getWeightedPosition(mouse_x, window_w, elem_x)
+		return Math.floor((weightedPercent / 100) * 11)
+	}
+
+	function getBackgroundY() {
+		if (!elem || window_h === 0) return 0
+		const weightedPercent = getWeightedPosition(mouse_y, window_h, elem_y)
+		// Invert Y axis (mouse at top = background at top)
+		return Math.floor((1 - weightedPercent / 100) * 11)
+	}
+
 	$effect(() => {
 		elem_x = updateElement().x
 		elem_y = updateElement().y
@@ -50,12 +92,10 @@
 <figure
 	id="face"
 	class="aspect-square size-[4lh]"
-	style:--x={Math.floor((mouse_x / window_w) * 11)}
-	style:--y={Math.floor(1 - (mouse_y / window_h) * 11 - 1)}
+	style:--x={getBackgroundX()}
+	style:--y={getBackgroundY()}
 	bind:this={elem}
 ></figure>
-
-<output>{elem_x}%, {elem_y}%</output>
 
 <style>
 	figure {

@@ -6,7 +6,7 @@
 	const age = new Date().getFullYear() - new Date(dob).getFullYear()
 </script>
 
-<Section id="about" heading="About" class="prose">
+<Section id="about" heading="About" class="space-y-rlh">
 	<dl class="leading-tight">
 		<dt>Name</dt>
 		<dd>Mitchell <ruby>Kazumaru<rt lang="ja">和丸</rt></ruby> Christ</dd>
@@ -22,12 +22,13 @@
 		<dd>Irvine, California</dd>
 	</dl>
 
-	<p>
-		Outside of crafting beautiful websites, I enjoy watching baseball, playing
-		[pickleball, tennis, golf], and driving <a
-			href="https://www.instagram.com/24and95">my Supra</a
-		>.
-	</p>
+	<article class="max-w-xl prose">
+		<p>
+			Outside of crafting beautiful websites, I enjoy watching baseball, playing
+			[pickleball, tennis, golf], and driving
+			<a class="link" href="https://www.instagram.com/24and95">my Supra</a>.
+		</p>
+	</article>
 
 	<Face />
 </Section>
