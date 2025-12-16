@@ -25,7 +25,7 @@
 			'SanityPress with Typegen',
 			'https://typed.sanitypress.dev',
 			typegenImg,
-			'Improved successor to SanityPress, now automatic type generation. Featured on Sanity.io',
+			'Improved successor to SanityPress, now with automatic type generation. Featured on Sanity.io',
 		)}
 	</div>
 </Section>
@@ -45,8 +45,8 @@
 				</figcaption>
 			</figure>
 
-			<h3>
-				<a class="h3 italic transition-opacity not-hover:opacity-50" {href}>
+			<h3 class="manuscript">
+				<a class=" h3 italic transition-opacity not-hover:opacity-50" {href}>
 					{title}
 					<span class="absolute inset-0"></span>
 				</a>

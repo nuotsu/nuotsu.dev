@@ -29,4 +29,8 @@
 	footer :global(img) {
 		height: calc(100lvh + 1px);
 	}
+
+	a {
+		padding-bottom: max(1ch, env(safe-area-inset-bottom));
+	}
 </style>

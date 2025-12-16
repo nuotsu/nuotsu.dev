@@ -91,7 +91,7 @@
 
 <figure
 	id="face"
-	class="aspect-square size-[4lh]"
+	class="aspect-square size-[6lh] shadow-lg"
 	style:--x={getBackgroundX()}
 	style:--y={getBackgroundY()}
 	bind:this={elem}
