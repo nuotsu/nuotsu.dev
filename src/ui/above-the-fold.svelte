@@ -3,7 +3,7 @@
 </script>
 
 <header
-	class="top-0 z-1 grid min-h-dvh transition-colors md:sticky md:w-0 at-bottom:text-white"
+	class="top-0 z-1 grid transition-colors max-md:[--offset:2lh] md:sticky md:w-0 at-bottom:text-white"
 >
 	<nav
 		class="my-auto flex w-(--toc-width) flex-col gap-ch p-ch transition-[margin-left] duration-800 max-md:mx-auto md:not-scrolled:ml-(--distance)"
@@ -22,6 +22,10 @@
 </header>
 
 <style>
+	header {
+		min-height: calc(100lvh + var(--offset, -1lh));
+	}
+
 	nav {
 		--distance: calc(50vw - var(--toc-width) / 2);
 		will-change: margin-left;

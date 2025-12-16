@@ -80,6 +80,10 @@
 		mouse_x = e.clientX
 		mouse_y = e.clientY
 	}}
+	on:touchmove={(e) => {
+		mouse_x = e.touches[0].clientX
+		mouse_y = e.touches[0].clientY
+	}}
 	on:scroll={() => {
 		const { x, y } = updateElement()
 		elem_x = x
@@ -91,10 +95,11 @@
 
 <figure
 	id="face"
-	class="aspect-square size-[6lh] shadow-lg"
+	class="aspect-square size-[6lh] shadow-lg max-md:mx-auto"
 	style:--x={getBackgroundX()}
 	style:--y={getBackgroundY()}
 	bind:this={elem}
+	on:touchmove={(e) => e.preventDefault()}
 ></figure>
 
 <style>
