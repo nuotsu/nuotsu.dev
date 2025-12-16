@@ -1,26 +1,61 @@
 <script lang="ts">
-	let width = $state(0),
-		height = $state(0)
-	let pos_x = $state(0),
-		pos_y = $state(0)
+	let window_w = $state(0),
+		window_h = $state(0)
+	let mouse_x = $state(0),
+		mouse_y = $state(0)
+
+	let elem = $state<any>()
+	let elem_x = $state(updateElement().x)
+	let elem_y = $state(updateElement().y)
+
+	function updateElement() {
+		return {
+			x:
+				Math.round(
+					((elem?.getBoundingClientRect()?.left +
+						elem?.getBoundingClientRect().width / 2) /
+						window_w) *
+						100,
+				) || 0,
+			y:
+				Math.round(
+					((elem?.getBoundingClientRect()?.top +
+						elem?.getBoundingClientRect().height / 2) /
+						window_h) *
+						100,
+				) || 0,
+		}
+	}
+
+	$effect(() => {
+		elem_x = updateElement().x
+		elem_y = updateElement().y
+	})
 </script>
 
 <svelte:window
 	on:mousemove={(e) => {
-		pos_x = e.clientX
-		pos_y = e.clientY
+		mouse_x = e.clientX
+		mouse_y = e.clientY
 	}}
-	bind:innerWidth={width}
-	bind:innerHeight={height}
+	on:scroll={() => {
+		const { x, y } = updateElement()
+		elem_x = x
+		elem_y = y
+	}}
+	bind:innerWidth={window_w}
+	bind:innerHeight={window_h}
 />
 
 <figure
+	id="face"
 	class="aspect-square size-[4lh]"
-	style:--x={Math.floor((pos_x / width) * 11)}
-	style:--y={Math.floor(1 - (pos_y / height) * 11 - 1)}
+	style:--x={Math.floor((mouse_x / window_w) * 11)}
+	style:--y={Math.floor(1 - (mouse_y / window_h) * 11 - 1)}
+	bind:this={elem}
 ></figure>
 
-<!-- <output>({pos_x}, {pos_y})</output> -->
+<output>{elem_x}%, {elem_y}%</output>
 
 <style>
 	figure {
