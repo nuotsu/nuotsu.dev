@@ -99,7 +99,7 @@
 	style:--x={getBackgroundX()}
 	style:--y={getBackgroundY()}
 	bind:this={elem}
-	ontouchmove={(e) => e.preventDefault()}
+	on:touchmove={(e) => e.preventDefault()}
 ></figure>
 
 <style>
