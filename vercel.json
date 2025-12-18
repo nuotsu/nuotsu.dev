@@ -1,4 +1,6 @@
 {
-	"includeFiles": ["src/**"]
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"functions": {
+		"includeFiles": ["src/ui/**"]
+	}
 }
-

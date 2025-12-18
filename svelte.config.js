@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			includeFiles: ['src/**'],
+			includeFiles: ['src/ui/**'],
 		}),
 		alias: {
 			$ui: 'src/ui',
