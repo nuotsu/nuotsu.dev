@@ -11,16 +11,17 @@
 				<span class="inline-block">
 					{#if i === 0 && j === 0}
 						<span class="group grid *:col-span-full *:row-span-full">
-							<span class="font-serif italic group-hover:text-transparent"
+							<span
+								class="font-serif italic group-not-hover:text-shadow-lg group-hover:text-transparent"
 								>{letter}</span
 							>
 							<span
-								class=" font-sans group-not-hover:text-transparent"
+								class=" font-sans group-not-hover:text-transparent group-hover:text-shadow-lg"
 								aria-hidden="true">{letter}</span
 							>
 						</span>
 					{:else}
-						<span class="hover:font-serif">{letter}</span>
+						<span class="text-shadow-lg hover:font-serif">{letter}</span>
 					{/if}
 				</span>
 			{/each}

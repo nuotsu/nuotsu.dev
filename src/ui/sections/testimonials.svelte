@@ -19,7 +19,7 @@
 		'https://www.sanity.io/blog/community-digest-may-24-edition#84fd322ef040',
 	)}
 	{@render testimonial(
-		"Dude, Mitchell's a <strong>crazy dev</strong> 🤯. Check out his <strong>MLB app</strong>.",
+		"Dude, Mitchell's a <strong><em>crazy</em> dev</strong> 🤯. Check out his <strong>MLB app</strong>.",
 		'Shota',
 		'Senior Software Engineer @ Salesforce',
 		'https://sb3.theohtani.com',
@@ -33,7 +33,7 @@
 	source: string,
 )}
 	<figure
-		class="relative space-y-4 not-data-is-intersecting:[&_strong]:font-normal"
+		class="relative space-y-4 not-data-is-intersecting:[&_strong]:font-normal data-is-intersecting:[&_strong]:text-shadow-lg"
 		{@attach intersecting({ 'data-is-intersecting': true }, { threshold: 1 })}
 	>
 		<blockquote class="h2">
@@ -60,7 +60,9 @@
 		animation-timeline: view();
 
 		& :global(strong) {
-			transition: font-weight 0.8s ease-in-out;
+			transition:
+				font-weight 0.8s ease-in-out,
+				text-shadow 0.8s ease-in-out;
 		}
 	}
 

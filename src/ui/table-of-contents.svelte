@@ -15,8 +15,8 @@
 </script>
 
 <svelte:window
-	on:keydown={(e) => {
-		if (!e.key.match(/^[0-9]$/)) return
+	onkeydown={(e) => {
+		if (!e.key.match(/^[0-9]$/) || e.ctrlKey || e.metaKey || e.altKey) return
 
 		if (e.key === '0') goto('/')
 

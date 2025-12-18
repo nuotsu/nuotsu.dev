@@ -76,15 +76,15 @@
 </script>
 
 <svelte:window
-	on:mousemove={(e) => {
+	onmousemove={(e) => {
 		mouse_x = e.clientX
 		mouse_y = e.clientY
 	}}
-	on:touchmove={(e) => {
+	ontouchmove={(e) => {
 		mouse_x = e.touches[0].clientX
 		mouse_y = e.touches[0].clientY
 	}}
-	on:scroll={() => {
+	onscroll={() => {
 		const { x, y } = updateElement()
 		elem_x = x
 		elem_y = y
@@ -99,7 +99,7 @@
 	style:--x={getBackgroundX()}
 	style:--y={getBackgroundY()}
 	bind:this={elem}
-	on:touchmove={(e) => e.preventDefault()}
+	ontouchmove={(e) => e.preventDefault()}
 ></figure>
 
 <style>

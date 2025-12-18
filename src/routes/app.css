@@ -55,6 +55,10 @@
 }
 
 @utility h3 {
+	@apply text-2xl leading-tight;
+}
+
+@utility h4 {
 	@apply text-xl leading-tight;
 }
 

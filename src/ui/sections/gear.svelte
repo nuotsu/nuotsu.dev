@@ -26,7 +26,7 @@
 <Section id="gear" heading="Gear" class="space-y-rlh">
 	<div class="grid grid-cols-[auto_1fr] gap-x-lh gap-y-2">
 		{#each Object.entries(gear) as [category, items]}
-			<h3 class="col-span-full mb-ch manuscript h3">{category}</h3>
+			<h3 class="h4 col-span-full mb-ch manuscript">{category}</h3>
 
 			<dl class="contents leading-tight">
 				{#each Object.entries(items) as [name, value]}
