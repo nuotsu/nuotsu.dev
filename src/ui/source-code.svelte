@@ -1,8 +1,8 @@
 <script lang="ts">
-	let { file } = $props()
+	let { path } = $props()
 
 	async function getSourceCode() {
-		const response = await fetch(`/api/source-code?file=${file}`)
+		const response = await fetch(`/api/source-code?file=${path}`)
 		return response.json()
 	}
 </script>

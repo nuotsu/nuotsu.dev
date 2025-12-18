@@ -8,9 +8,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter({
-			includeFiles: ['src/ui/**'],
-		}),
+		adapter: adapter(),
 		alias: {
 			$ui: 'src/ui',
 			$assets: 'src/assets',

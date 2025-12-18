@@ -1,14 +1,27 @@
 import type { RequestHandler } from './$types'
-import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
 
 export const GET: RequestHandler = async ({ url }) => {
 	const file = url.searchParams.get('file')
 
-	const filePath = join(process.cwd(), file!)
-	const code = await readFile(filePath, 'utf-8')
+	if (!file) {
+		return new Response(JSON.stringify({ error: 'File path is required' }), {
+			status: 400,
+			headers: { 'Content-Type': 'application/json' },
+		})
+	}
 
-	return new Response(JSON.stringify(code), {
+	const rawUrl = `https://raw.githubusercontent.com/nuotsu/nuotsu.dev/thirty/${file}`
+	const response = await fetch(rawUrl)
+
+	if (!response.ok) {
+		return new Response(JSON.stringify({ error: 'File not found' }), {
+			status: response.status,
+			headers: { 'Content-Type': 'application/json' },
+		})
+	}
+
+	const fileContent = await response.text()
+	return new Response(JSON.stringify(fileContent), {
 		headers: { 'Content-Type': 'application/json' },
 	})
 }

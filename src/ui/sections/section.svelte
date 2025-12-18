@@ -48,7 +48,7 @@
 	)}
 >
 	{#if inspect}
-		<SourceCode file={inspect} />
+		<SourceCode path={inspect} />
 	{/if}
 
 	{#if heading}
