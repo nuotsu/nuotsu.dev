@@ -30,13 +30,17 @@
 
 {#snippet work(title: string, href: string, src: string, alt: string)}
 	<article>
-		<figure class="grid items-end gap-x-[2lh] gap-y-lh lg:grid-cols-2">
-			<a class="relative z-1 block" {href} aria-label={title}>
-				<enhanced:img class="w-full shadow-xl" {src} {alt} loading="lazy" />
+		<figure class="relative grid items-end gap-x-[2lh] gap-y-lh lg:grid-cols-2">
+			<a
+				{href}
+				class="relative z-1 block overflow-clip shadow-xl after:bg-foreground/80 after:backdrop-blur-lg"
+				aria-label={title}
+			>
+				<enhanced:img class="w-full" {src} {alt} loading="lazy" />
 			</a>
 
 			<figcaption
-				class="sticky bottom-lh max-w-sm space-y-ch border-l border-foreground-subdued/20 py-[.5ch] pl-lh leading-tight"
+				class="sticky bottom-[20svh] max-w-sm space-y-ch border-l border-foreground-subdued/20 py-[.5ch] pl-lh leading-tight lg:bottom-lh"
 			>
 				<h3 class="manuscript h3">
 					<a {href}>
@@ -54,7 +58,26 @@
 {/snippet}
 
 <style>
-	figcaption::before {
-		mask: linear-gradient(to top, #000 10%, transparent);
+	@supports (animation-timeline: view()) {
+		a:has(:global(img))::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			box-shadow: 0.5lh 0 1lh #0004;
+			animation: reveal ease-in-out;
+			animation-fill-mode: backwards;
+			animation-timeline: view();
+		}
+
+		@keyframes reveal {
+			0% {
+				translate: 0 0;
+			}
+
+			50%,
+			100% {
+				translate: calc(-100% - 1lh) 0;
+			}
+		}
 	}
 </style>

@@ -33,7 +33,7 @@
 	source: string,
 )}
 	<figure
-		class="relative space-y-4 not-data-is-intersecting:[&_strong]:font-normal data-is-intersecting:[&_strong]:text-shadow-lg"
+		class="relative space-y-4 [&_strong]:text-shadow-lg"
 		{@attach intersecting({ 'data-is-intersecting': true }, { threshold: 1 })}
 	>
 		<blockquote class="h2">
@@ -45,7 +45,7 @@
 		<figcaption>
 			<dl class="gap-x-ch">
 				<dt>{author}</dt>
-				<dd class="text-foreground-subdued">{title}</dd>
+				<dd class="flex gap-ch text-foreground-subdued">{title}</dd>
 			</dl>
 			<cite>
 				<a class="absolute inset-0 text-transparent" href={source}>Source</a>
@@ -56,17 +56,15 @@
 
 <style>
 	figure {
-		animation: appear ease-in-out;
+		animation: figure ease-in-out;
 		animation-timeline: view();
 
-		& :global(strong) {
-			transition:
-				font-weight 0.8s ease-in-out,
-				text-shadow 0.8s ease-in-out;
+		:global(strong) {
+			animation: strong ease-in-out;
 		}
 	}
 
-	@keyframes appear {
+	@keyframes figure {
 		0% {
 			opacity: 0;
 			translate: 4lh 0;
@@ -78,7 +76,15 @@
 		}
 	}
 
+	@keyframes strong {
+		50%,
+		100% {
+			font-weight: 700;
+			text-shadow: 0 0 1lh #0004;
+		}
+	}
+
 	dd::before {
-		content: '// ';
+		content: '//';
 	}
 </style>

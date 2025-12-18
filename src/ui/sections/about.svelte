@@ -30,11 +30,27 @@
 		</p>
 	</article>
 
-	<Face />
+	<article class="face md:animation-[move_ease-in-out] overflow-x-clip">
+		<Face />
+	</article>
 </Section>
 
 <style>
 	dt {
 		color: var(--color-foreground-subdued);
+	}
+
+	.face :global(figure) {
+		animation-timeline: view();
+	}
+
+	@keyframes move {
+		0% {
+			translate: 50vw 4lh;
+		}
+
+		50% {
+			translate: 0 0;
+		}
 	}
 </style>

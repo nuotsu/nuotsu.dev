@@ -75,11 +75,11 @@
 @utility prose {
 	@apply space-y-rlh;
 
-	& a:not([class]) {
+	a:not([class]) {
 		@apply link;
 	}
 
-	& :is(ul, ol) {
+	:is(ul, ol) {
 		list-style: revert;
 		padding-left: 1lh;
 		@apply space-y-2;
