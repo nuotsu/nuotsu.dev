@@ -6,8 +6,13 @@
 	const age = new Date().getFullYear() - new Date(dob).getFullYear()
 </script>
 
-<Section id="about" heading="About" class="space-y-rlh">
-	<dl class="leading-tight">
+<Section
+	id="about"
+	heading="About"
+	class="space-y-rlh"
+	inspect="src/ui/sections/about.svelte"
+>
+	<dl class="leading-tight [&_dt]:text-foreground-subdued">
 		<dt>Name</dt>
 		<dd>Mitchell <ruby>Kazumaru<rt lang="ja">和丸</rt></ruby> Christ</dd>
 
@@ -36,10 +41,6 @@
 </Section>
 
 <style>
-	dt {
-		color: var(--color-foreground-subdued);
-	}
-
 	.face :global(figure) {
 		animation-timeline: view();
 	}

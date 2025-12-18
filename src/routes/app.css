@@ -42,6 +42,10 @@
 	::marker {
 		color: var(--color-foreground-subdued);
 	}
+
+	pre {
+		tab-size: 2;
+	}
 }
 
 /* typography */

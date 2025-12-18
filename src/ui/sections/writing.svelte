@@ -13,7 +13,12 @@
 	}
 </script>
 
-<Section id="writing" heading="Writing" class="prose">
+<Section
+	id="writing"
+	heading="Writing"
+	class="prose"
+	inspect="src/ui/sections/writing.svelte"
+>
 	<ul>
 		{#each Object.entries(writings) as [title, href]}
 			<li>

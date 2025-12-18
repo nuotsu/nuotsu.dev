@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { intersecting } from '$lib/intersection-observer'
+	import SourceCode from '$ui/source-code.svelte'
 	import Heading from '$ui/heading.svelte'
 
-	let { id = '', class: className = '', children, heading = '' } = $props()
+	let {
+		id = '',
+		class: className = '',
+		children,
+		heading = '',
+		inspect = undefined as string | undefined,
+	} = $props()
 
 	let clientHeight: number = $state(0)
 	let windowHeight: number = $state(0)
@@ -30,7 +37,9 @@
 <section
 	{id}
 	style:--section-height="{clientHeight}px"
-	class="p-lh {isShort ? 'md:scroll-mt-(--offset)' : ''} {className}"
+	class="relative max-w-6xl p-lh {isShort
+		? 'md:scroll-mt-(--offset)'
+		: ''} {className}"
 	bind:clientHeight
 	{@attach intersecting(
 		{ 'data-is-intersecting': true },
@@ -38,6 +47,10 @@
 		toggleTableOfContents,
 	)}
 >
+	{#if inspect}
+		<SourceCode file={inspect} />
+	{/if}
+
 	{#if heading}
 		<Heading value={heading} />
 	{/if}

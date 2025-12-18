@@ -2,7 +2,12 @@
 	import Section from './section.svelte'
 </script>
 
-<Section id="domains" heading="Domains" class="prose">
+<Section
+	id="domains"
+	heading="Domains"
+	class="prose"
+	inspect="src/ui/sections/domains.svelte"
+>
 	<ul>
 		<li>nuotsu.dev</li>
 		<li>theohtani.com</li>

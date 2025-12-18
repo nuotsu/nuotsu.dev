@@ -26,7 +26,7 @@
 <AboveTheFold />
 
 <main
-	class="relative flex flex-col md:mt-[2lh] md:ml-(--toc-width)"
+	class="relative flex flex-col overflow-clip md:mt-[2lh] md:ml-(--toc-width)"
 	{@attach intersecting({ 'data-is-intersecting': true })}
 >
 	<Abstract />

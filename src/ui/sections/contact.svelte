@@ -2,7 +2,12 @@
 	import Section from './section.svelte'
 </script>
 
-<Section id="contact" heading="Shall we collaborate?" class="prose">
+<Section
+	id="contact"
+	heading="Shall we collaborate?"
+	class="prose"
+	inspect="src/ui/sections/contact.svelte"
+>
 	<p>
 		Find me on
 		<a href="https://x.com/marutch">X</a> or

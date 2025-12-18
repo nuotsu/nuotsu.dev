@@ -3,7 +3,11 @@
 	import { intersecting } from '$lib/intersection-observer'
 </script>
 
-<Section id="testimonials" class="space-y-[3lh] overflow-x-clip">
+<Section
+	id="testimonials"
+	class="space-y-[3lh]"
+	inspect="src/ui/sections/testimonials.svelte"
+>
 	<h2 class="sr-only">Testimonials</h2>
 
 	{@render testimonial(
@@ -45,7 +49,9 @@
 		<figcaption>
 			<dl class="gap-x-ch">
 				<dt>{author}</dt>
-				<dd class="flex gap-ch text-foreground-subdued">{title}</dd>
+				<dd class="flex gap-ch text-foreground-subdued before:content-['//']">
+					{title}
+				</dd>
 			</dl>
 			<cite>
 				<a class="absolute inset-0 text-transparent" href={source}>Source</a>
@@ -58,10 +64,6 @@
 	figure {
 		animation: figure ease-in-out;
 		animation-timeline: view();
-
-		:global(strong) {
-			animation: strong ease-in-out;
-		}
 	}
 
 	@keyframes figure {
@@ -74,17 +76,5 @@
 			opacity: 1;
 			translate: 0 0;
 		}
-	}
-
-	@keyframes strong {
-		50%,
-		100% {
-			font-weight: 700;
-			text-shadow: 0 0 1lh #0004;
-		}
-	}
-
-	dd::before {
-		content: '//';
 	}
 </style>

@@ -5,7 +5,12 @@
 	import typegenImg from '$assets/typegen.jpeg'
 </script>
 
-<Section id="notable-works" class="space-y-[3rlh]" heading="Notable Works">
+<Section
+	id="notable-works"
+	class="space-y-[3rlh] "
+	heading="Notable Works"
+	inspect="src/ui/sections/notable-works.svelte"
+>
 	{@render work(
 		'SanityPress',
 		'https://github.com/nuotsu/sanitypress',
