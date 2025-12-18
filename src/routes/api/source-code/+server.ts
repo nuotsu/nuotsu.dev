@@ -8,6 +8,8 @@ export const GET: RequestHandler = async ({ url }) => {
 	const filePath = join(process.cwd(), file!)
 	const code = await readFile(filePath, 'utf-8')
 
+	console.log({ filePath, code })
+
 	return new Response(JSON.stringify(code), {
 		headers: { 'Content-Type': 'application/json' },
 	})
