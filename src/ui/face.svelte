@@ -37,22 +37,18 @@
 		const mousePercent = (mousePos / windowSize) * 100
 
 		// Calculate weighted position based on figure's placement
-		// The space to the left of the figure center maps to 0-45% of background-position
-		// The space to the right of the figure center maps to 45-100% of background-position
 		if (mousePercent <= elemCenterPercent) {
 			// Mouse is at or to the left of the figure center
-			// Map 0% to elemCenterPercent% of viewport to 0% to 45% of background-position
 			const ratio = elemCenterPercent > 0 ? mousePercent / elemCenterPercent : 0
-			return ratio * 45
+			return ratio * 50
 		} else {
 			// Mouse is to the right of the figure center
-			// Map elemCenterPercent% to 100% of viewport to 45% to 100% of background-position
 			const remainingSpace = 100 - elemCenterPercent
 			const ratio =
 				remainingSpace > 0
 					? (mousePercent - elemCenterPercent) / remainingSpace
 					: 0
-			return 45 + ratio * 55
+			return 50 + ratio * 50
 		}
 	}
 
@@ -93,17 +89,17 @@
 	bind:innerHeight={window_h}
 />
 
-<figure
-	id="face"
+<object
+	title="Face"
 	class="aspect-square size-[6lh] shadow-lg max-md:mx-auto"
 	style:--x={getBackgroundX()}
 	style:--y={getBackgroundY()}
 	bind:this={elem}
 	on:touchmove={(e) => e.preventDefault()}
-></figure>
+></object>
 
 <style>
-	figure {
+	object {
 		background: url($assets/mitchell-sprite.webp);
 		background-size: calc(100% * 11);
 		background-position: calc(100% * var(--x, 0) / 10)

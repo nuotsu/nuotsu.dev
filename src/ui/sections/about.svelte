@@ -52,5 +52,15 @@
 		</p>
 	</article>
 
-	<Face />
+	<figure
+		class="no-scrollbar flex snap-x snap-mandatory items-end gap-lh overflow-x-auto drop-shadow-xl *:shrink-0 *:snap-start max-md:full-bleed max-md:px-lh max-md:*:scroll-ml-lh"
+	>
+		<Face />
+
+		<enhanced:img
+			class="max-w-[12lh]"
+			src="$assets/mitchell.jpg"
+			alt="Mitchell Christ"
+		/>
+	</figure>
 </Section>

@@ -119,3 +119,17 @@
 		@apply space-y-2;
 	}
 }
+
+/* utilities */
+
+@utility full-bleed {
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
+}
+
+@utility no-scrollbar {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
