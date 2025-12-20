@@ -3,8 +3,8 @@
 	import About from '$ui/sections/about.svelte'
 	import Abstract from '$ui/sections/abstract.svelte'
 	import Contact from '$ui/sections/contact.svelte'
-	import Domains from '$ui/sections/domains.svelte'
 	import Gear from '$ui/sections/gear.svelte'
+	import Inspiration from '$ui/sections/inspiration.svelte'
 	import NotableWorks from '$ui/sections/notable-works.svelte'
 	import Projects from '$ui/sections/projects.svelte'
 	import Testimonials from '$ui/sections/testimonials.svelte'
@@ -29,7 +29,7 @@
 	<Projects />
 	<Writing />
 	<Testimonials />
-	<Domains />
+	<Inspiration />
 	<Gear />
 	<About />
 	<Contact />

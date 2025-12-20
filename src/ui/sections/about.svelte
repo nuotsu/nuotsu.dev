@@ -37,12 +37,12 @@
 		</p>
 		<p>
 			I value scalability and maintainability in my work. I'm an advocate for
-			using native web platform. <em>The Web is King.</em>
+			using native web platform.
+			<em>The Web is King.</em>
 		</p>
 		<p>
-			My dream is to <em
-				>make the world a better place, one great website at a time.</em
-			>
+			My dream is to
+			<em>make the world a better place, one great website at a time.</em>
 		</p>
 		<p>
 			Outside of writing code, I enjoy watching baseball, playing [pickleball,
@@ -53,7 +53,7 @@
 	</article>
 
 	<figure
-		class="no-scrollbar flex snap-x snap-mandatory items-end gap-lh overflow-x-auto drop-shadow-xl *:shrink-0 *:snap-start max-md:full-bleed max-md:px-lh max-md:*:scroll-ml-lh"
+		class="mt-[2lh] no-scrollbar flex snap-x snap-mandatory items-end gap-lh overflow-x-auto drop-shadow-xl *:shrink-0 *:snap-start max-md:full-bleed max-md:px-lh max-md:*:scroll-ml-lh"
 	>
 		<Face />
 

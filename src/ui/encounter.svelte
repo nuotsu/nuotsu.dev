@@ -2,7 +2,9 @@
 	const { views = 0 } = $props()
 </script>
 
-<aside class="fixed bottom-0 left-0 z-1 md:max-w-(--toc-width)">
+<aside
+	class="bottom-0 left-0 z-1 max-md:text-right md:fixed md:max-w-(--toc-width)"
+>
 	<small class="block p-ch text-foreground-subdued opacity-20">
 		{views.toLocaleString()} views
 	</small>

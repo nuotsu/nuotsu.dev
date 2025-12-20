@@ -1,6 +1,6 @@
 import type { RequestHandler } from './$types'
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ url, fetch }) => {
 	const file = url.searchParams.get('file')
 
 	if (!file) {

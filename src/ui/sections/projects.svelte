@@ -27,6 +27,15 @@
 		{/each}
 	</ul>
 
+	<h2 class="font-serif h2 text-shadow-lg">Domains</h2>
+
+	<ul>
+		<li>nuotsu.dev</li>
+		<li>theohtani.com</li>
+		<li>sanitypress.dev</li>
+		<li>ic0n.dev</li>
+	</ul>
+
 	<p>
 		Check out my
 		<a class="link" href="https://github.com/nuotsu">GitHub</a> for all projects and

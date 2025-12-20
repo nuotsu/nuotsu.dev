@@ -26,5 +26,5 @@
 
 {@render children()}
 
-<Footer />
 <Encounter {views} />
+<Footer />

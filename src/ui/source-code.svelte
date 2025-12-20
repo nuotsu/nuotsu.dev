@@ -9,7 +9,7 @@
 
 {#await getSourceCode() then code}
 	<div
-		class="pointer-events-none absolute top-0 left-280 ml-auto bg-background px-lh before:bg-linear-to-t before:from-background"
+		class="pointer-events-none absolute top-0 left-280 -z-1 ml-auto bg-background px-lh before:bg-linear-to-t before:from-background"
 	>
 		<pre class="text-xs opacity-5 md:opacity-10">{code}</pre>
 	</div>

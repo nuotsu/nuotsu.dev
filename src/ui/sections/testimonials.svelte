@@ -37,7 +37,7 @@
 	source: string,
 )}
 	<figure
-		class="relative space-y-4 [&_strong]:text-shadow-lg"
+		class="relative space-y-4 [&_strong]:font-semibold [&_strong]:text-shadow-lg"
 		{@attach intersecting({ 'data-is-intersecting': true }, { threshold: 1 })}
 	>
 		<blockquote class="h2">

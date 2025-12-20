@@ -7,7 +7,7 @@
 		{ id: 'projects', title: 'Projects' },
 		{ id: 'writing', title: 'Writing' },
 		{ id: 'testimonials', title: 'Testimonials' },
-		{ id: 'domains', title: 'Domains' },
+		{ id: 'inspiration', title: 'Inspiration' },
 		{ id: 'gear', title: 'Gear' },
 		{ id: 'about', title: 'About' },
 		{ id: 'contact', title: 'Contact' },
