@@ -1,11 +1,12 @@
-import posthog from 'posthog-js'
-import { browser, dev } from '$app/environment'
-import { PUBLIC_POSTHOG_KEY, PUBLIC_POSTHOG_HOST } from '$env/static/public'
 import { injectAnalytics } from '@vercel/analytics/sveltekit'
+import { browser, dev } from '$app/environment'
+import { PUBLIC_POSTHOG_HOST, PUBLIC_POSTHOG_KEY } from '$env/static/public'
+import posthog from 'posthog-js'
+import type { LayoutLoad } from './$types'
 
 injectAnalytics({ mode: dev ? 'development' : 'production' })
 
-export const load = async () => {
+export const load: LayoutLoad = async () => {
 	if (browser) {
 		posthog.init(PUBLIC_POSTHOG_KEY, {
 			api_host: PUBLIC_POSTHOG_HOST,
@@ -14,5 +15,4 @@ export const load = async () => {
 			capture_exceptions: true, // This enables capturing exceptions using Error Tracking, set to false if you don't want this
 		})
 	}
-	return
 }

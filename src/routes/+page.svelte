@@ -1,18 +1,14 @@
 <script lang="ts">
-	import AboveTheFold from '$ui/above-the-fold.svelte'
+	import { intersecting } from '$lib/intersection-observer'
+	import About from '$ui/sections/about.svelte'
 	import Abstract from '$ui/sections/abstract.svelte'
-	import NotableWorks from '$ui/sections/notable-works.svelte'
-	import Projects from '$ui/sections/projects.svelte'
-	import Writing from '$ui/sections/writing.svelte'
-	import Testimonials from '$ui/sections/testimonials.svelte'
+	import Contact from '$ui/sections/contact.svelte'
 	import Domains from '$ui/sections/domains.svelte'
 	import Gear from '$ui/sections/gear.svelte'
-	import About from '$ui/sections/about.svelte'
-	import Contact from '$ui/sections/contact.svelte'
-	import Footer from '$ui/footer.svelte'
-	import Encounter from '$ui/encounter.svelte'
-
-	import { intersecting } from '$lib/intersection-observer'
+	import NotableWorks from '$ui/sections/notable-works.svelte'
+	import Projects from '$ui/sections/projects.svelte'
+	import Testimonials from '$ui/sections/testimonials.svelte'
+	import Writing from '$ui/sections/writing.svelte'
 </script>
 
 <svelte:head>
@@ -23,8 +19,6 @@
 	/>
 	<meta name="theme-color" content="#ddddd1" />
 </svelte:head>
-
-<AboveTheFold />
 
 <main
 	class="relative flex flex-col overflow-clip md:mt-[2lh] md:ml-(--toc-width)"
@@ -40,9 +34,6 @@
 	<About />
 	<Contact />
 </main>
-
-<Footer />
-<Encounter />
 
 <style>
 	main {

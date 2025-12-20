@@ -1,12 +1,16 @@
 <script lang="ts">
-	import './app.css'
-	import favicon from '$assets/favicon.png'
-
 	import { browser } from '$app/environment'
-	import { beforeNavigate, afterNavigate } from '$app/navigation'
+	import { afterNavigate, beforeNavigate } from '$app/navigation'
+	import favicon from '$assets/favicon.png'
+	import AboveTheFold from '$ui/above-the-fold.svelte'
+	import Encounter from '$ui/encounter.svelte'
+	import Footer from '$ui/footer.svelte'
 	import posthog from 'posthog-js'
+	import type { LayoutProps, LayoutServerData } from './$types'
+	import './app.css'
 
-	let { children } = $props()
+	const { data, children }: LayoutProps = $props()
+	const views = $derived((data as LayoutServerData)?.views ?? 0)
 
 	if (browser) {
 		beforeNavigate(() => posthog.capture('$pageleave'))
@@ -18,4 +22,9 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
+<AboveTheFold />
+
 {@render children()}
+
+<Footer />
+<Encounter {views} />

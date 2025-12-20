@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Section from './section.svelte'
-	import sanitypressImg from '$assets/sanitypress.jpeg'
 	import scorebugImg from '$assets/mlb-scorebug.jpeg'
+	import sanitypressImg from '$assets/sanitypress.jpeg'
 	import typegenImg from '$assets/typegen.jpeg'
+	import Section from './section.svelte'
 </script>
 
 <Section

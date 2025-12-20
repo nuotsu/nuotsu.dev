@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Section from './section.svelte'
 	import Face from '$ui/face.svelte'
+	import Section from './section.svelte'
 
 	const dob = '1995-12-04'
 	const age = new Date().getFullYear() - new Date(dob).getFullYear()

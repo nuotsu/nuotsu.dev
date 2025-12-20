@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Section from './section.svelte'
 	import { intersecting } from '$lib/intersection-observer'
+	import Section from './section.svelte'
 </script>
 
 <Section
