@@ -1,10 +1,7 @@
-import { injectAnalytics } from '@vercel/analytics/sveltekit'
-import { browser, dev } from '$app/environment'
+import { browser } from '$app/environment'
 import { PUBLIC_POSTHOG_HOST, PUBLIC_POSTHOG_KEY } from '$env/static/public'
 import posthog from 'posthog-js'
 import type { LayoutLoad } from './$types'
-
-injectAnalytics({ mode: dev ? 'development' : 'production' })
 
 export const load: LayoutLoad = async () => {
 	if (browser) {
