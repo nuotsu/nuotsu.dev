@@ -28,7 +28,8 @@
 	</ul>
 
 	<p>
-		Meanwhile, check out my
-		<a class="link" href="https://github.com/nuotsu">GitHub</a>.
+		Check out my
+		<a class="link" href="https://github.com/nuotsu">GitHub</a> for all projects and
+		see source code.
 	</p>
 </Section>

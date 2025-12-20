@@ -15,7 +15,8 @@
 		'SanityPress',
 		'https://github.com/nuotsu/sanitypress',
 		sanitypressImg,
-		'Next.js + Sanity (headless CMS) developer-focused starter template with over 400 stars on GitHub. Featured on Sanity.io',
+		'Next.js + Sanity (headless CMS) developer-focused starter template with over 400 stars on GitHub.',
+		'https://www.sanity.io/templates/sanitypress',
 	)}
 
 	{@render work(
@@ -29,11 +30,18 @@
 		'SanityPress with Typegen',
 		'https://typed.sanitypress.dev',
 		typegenImg,
-		'Improved successor to SanityPress, now with automatic type generation. Featured on Sanity.io',
+		'Improved successor to SanityPress, now with automatic type generation.',
+		'https://www.sanity.io/templates/sanitypress-with-typegen',
 	)}
 </Section>
 
-{#snippet work(title: string, href: string, src: string, alt: string)}
+{#snippet work(
+	title: string,
+	href: string,
+	src: string,
+	alt: string,
+	sanityLink?: string,
+)}
 	<article>
 		<figure class="relative grid items-end gap-x-[2lh] gap-y-lh lg:grid-cols-2">
 			<a
@@ -45,18 +53,25 @@
 			</a>
 
 			<figcaption
-				class="sticky bottom-[20svh] max-w-sm space-y-ch border-l border-foreground-subdued/20 py-[.5ch] pl-lh leading-tight lg:bottom-lh"
+				class="sticky bottom-[20svh] max-w-sm space-y-ch border-l border-foreground-subdued/20 pl-lh leading-tight lg:bottom-lh"
 			>
-				<h3 class="manuscript h3">
+				<h3 class="font-serif h3">
 					<a {href}>
 						{title}
-						<span class="absolute inset-0"></span>
 					</a>
 				</h3>
 
-				<small>
-					{alt}
-				</small>
+				<p>
+					<small>
+						{alt}
+					</small>
+				</p>
+
+				{#if sanityLink}
+					<small class="mt-lh block">
+						<a href={sanityLink} class="action">Featured on Sanity.io</a>
+					</small>
+				{/if}
 			</figcaption>
 		</figure>
 	</article>

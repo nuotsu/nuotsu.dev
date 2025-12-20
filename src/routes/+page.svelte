@@ -10,6 +10,7 @@
 	import About from '$ui/sections/about.svelte'
 	import Contact from '$ui/sections/contact.svelte'
 	import Footer from '$ui/footer.svelte'
+	import Encounter from '$ui/encounter.svelte'
 
 	import { intersecting } from '$lib/intersection-observer'
 </script>
@@ -41,6 +42,7 @@
 </main>
 
 <Footer />
+<Encounter />
 
 <style>
 	main {

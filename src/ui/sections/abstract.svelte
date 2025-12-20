@@ -10,6 +10,7 @@
 		'Svelte enthusiast',
 		'Shopify expert',
 		'Designer-turned-developer',
+		'a.k.a. nuotsu',
 	]
 </script>
 

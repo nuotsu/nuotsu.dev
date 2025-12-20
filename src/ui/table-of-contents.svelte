@@ -25,14 +25,11 @@
 	}}
 />
 
-<ol
-	id="table-of-contents"
-	class="whitespace-nowrap [&_a]:transition-[opacity,color] scrolled:[&_a]:opacity-50"
->
+<ol id="table-of-contents" class="whitespace-nowrap scrolled:[&_a]:opacity-50">
 	{#each sections as section}
 		<li>
 			<a
-				class="after:text-foreground-subdued hover:opacity-100! at-bottom:after:text-white/50"
+				class="not-hover:transition-[opacity,color] after:text-foreground-subdued hover:opacity-100! at-bottom:after:text-white/50"
 				href={`#${section.id}`}>{section.title}</a
 			>
 		</li>
@@ -88,6 +85,7 @@
 			order: 2;
 			margin-left: auto;
 			font-family: var(--font-serif);
+			text-align: center;
 		}
 	}
 </style>

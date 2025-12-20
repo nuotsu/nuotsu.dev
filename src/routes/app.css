@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap');
+
 @import 'tailwindcss';
 
 @theme {
+	--font-sans: 'Geist', sans-serif;
+	--font-serif: 'Instrument Serif', serif;
+	--font-mono: 'Geist Mono', monospace;
+
 	--color-background: #ddddd1;
 	--color-background-light: #f5f5f5;
 	--color-foreground: #292919;
@@ -67,17 +73,41 @@
 }
 
 @utility manuscript {
-	@apply first-letter:font-serif first-letter:italic;
+	@apply font-serif;
 }
 
 /* components */
+
+@property --progress {
+	syntax: '<percentage>';
+	initial-value: 0%;
+	inherits: true;
+}
+
+@utility action {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5ch;
+	padding: 0.5ch 1ch;
+	background-image: linear-gradient(
+		to right,
+		#fff8 0%,
+		#fff8 var(--progress),
+		#fff4 var(--progress)
+	);
+	transition: --progress var(--default-transition-duration) ease-in-out;
+
+	&:hover {
+		--progress: 100%;
+	}
+}
 
 @utility link {
 	@apply underline decoration-foreground-subdued/20 transition-colors hover:decoration-foreground-subdued;
 }
 
 @utility prose {
-	@apply space-y-rlh;
+	@apply space-y-rlh tracking-tight;
 
 	a:not([class]) {
 		@apply link;

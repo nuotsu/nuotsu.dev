@@ -4,6 +4,8 @@
 
 	const dob = '1995-12-04'
 	const age = new Date().getFullYear() - new Date(dob).getFullYear()
+
+	const years = new Date().getFullYear() - new Date('2018-05-31').getFullYear()
 </script>
 
 <Section
@@ -29,29 +31,26 @@
 
 	<article class="max-w-xl prose">
 		<p>
-			Outside of crafting beautiful websites, I enjoy watching baseball, playing
-			[pickleball, tennis, golf], and driving
+			I'm a frontend web developer with over {years} years of crafting digital experiences.
+			I current work for a digital marketing agency in Southern California, helping
+			brands grow their online presence.
+		</p>
+		<p>
+			I value scalability and maintainability in my work. I'm an advocate for
+			using native web platform. <em>The Web is King.</em>
+		</p>
+		<p>
+			My dream is to <em
+				>make the world a better place, one great website at a time.</em
+			>
+		</p>
+		<p>
+			Outside of writing code, I enjoy watching baseball, playing [pickleball,
+			tennis, golf], generating surreal visuals on Midjourney to spark
+			creativity, and driving
 			<a class="link" href="https://www.instagram.com/24and95">my Supra</a>.
 		</p>
 	</article>
 
-	<article class="face md:animation-[move_ease-in-out] overflow-x-clip">
-		<Face />
-	</article>
+	<Face />
 </Section>
-
-<style>
-	.face :global(figure) {
-		animation-timeline: view();
-	}
-
-	@keyframes move {
-		0% {
-			translate: 50vw 4lh;
-		}
-
-		50% {
-			translate: 0 0;
-		}
-	}
-</style>

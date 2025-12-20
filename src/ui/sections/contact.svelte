@@ -20,5 +20,9 @@
 		<a href="https://github.com/sponsors/nuotsu">sponsoring</a> me.
 	</p>
 
-	<p><ruby lang="ja">ありがとう<rt lang="en">Thank you</rt></ruby>!</p>
+	<p>
+		<ruby lang="ja"
+			>ありがとう<rt class="font-serif" lang="en">Thank you</rt></ruby
+		>!
+	</p>
 </Section>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { intersecting } from '$lib/intersection-observer'
 	import SourceCode from '$ui/source-code.svelte'
-	import Heading from '$ui/heading.svelte'
 
 	let {
 		id = '',
@@ -52,7 +51,7 @@
 	{/if}
 
 	{#if heading}
-		<Heading value={heading} />
+		<h2 class="font-serif h1 text-shadow-lg">{heading}</h2>
 	{/if}
 
 	{@render children()}

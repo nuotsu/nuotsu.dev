@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { intersecting } from '$lib/intersection-observer'
-	import '$lib/console'
 </script>
 
 <footer
