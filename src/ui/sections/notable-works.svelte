@@ -15,7 +15,7 @@
 		'SanityPress',
 		'https://github.com/nuotsu/sanitypress',
 		sanitypressImg,
-		'Next.js + Sanity starter template with over 400 stars on GitHub. Featured on Sanity.io',
+		'Next.js + Sanity (headless CMS) developer-focused starter template with over 400 stars on GitHub. Featured on Sanity.io',
 	)}
 
 	{@render work(

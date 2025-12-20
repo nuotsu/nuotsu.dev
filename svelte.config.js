@@ -13,6 +13,9 @@ const config = {
 			$ui: 'src/ui',
 			$assets: 'src/assets',
 		},
+		paths: {
+			relative: false, // Required for PostHog session replay to work correctly
+		},
 	},
 }
 
