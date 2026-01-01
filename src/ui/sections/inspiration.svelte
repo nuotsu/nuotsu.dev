@@ -4,9 +4,12 @@
 	const inspiration = {
 		People: {
 			'Adam Wathan': 'https://x.com/adamwathan',
+			'Adam Argyle': 'https://nerdy.dev',
 			'Ana Tudor': 'https://x.com/anatudor',
-			DHH: 'https://x.com/dhh',
+			'Rich Harris': 'https://x.com/Rich_Harris',
+			'Jhey Tompkins': 'https://x.com/jh3yy',
 			'Theo Browne': 'https://www.youtube.com/@t3dotgg',
+			DHH: 'https://x.com/dhh',
 			'Shohei Ohtani': 'https://www.instagram.com/shoheiohtani',
 		},
 		Sites: {

@@ -1,4 +1,4 @@
-import { type Attachment } from 'svelte/attachments'
+import type { Attachment } from 'svelte/attachments'
 
 export function intersecting(
 	attributes: Record<string, string | boolean>,
@@ -8,7 +8,7 @@ export function intersecting(
 	return (element) => {
 		let observer: IntersectionObserver | null = null
 
-		const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+		observer = new IntersectionObserver((entries) => {
 			for (const entry of entries) {
 				if (entry.isIntersecting) {
 					// Apply attributes when intersecting
@@ -29,9 +29,7 @@ export function intersecting(
 
 				callback(entry)
 			}
-		}
-
-		observer = new IntersectionObserver(handleIntersection, options)
+		}, options)
 		observer.observe(element)
 
 		return () => {
