@@ -1,44 +1,43 @@
 <script lang="ts">
-	import Section from './section.svelte'
+	import Headline from '$ui/headline.svelte'
 
-	const projects = {
-		SanityPress: 'https://sanitypress.dev',
-		'SanityPress with Typegen': 'https://typed.sanitypress.dev',
-		'MLB Live Scorebug': 'https://sb3.theohtani.com',
-		'icon.dev': 'https://icon.dev',
-		'GitHub iframe': 'https://github-iframe.vercel.app',
-		'Attention Monsters': 'https://attentionmonsters.com',
-		'Human Marketing': 'https://human.marketing',
-		'CUSCO USA': 'https://cuscousainc.com',
-	}
+	const projects: {
+		title: string
+		href: string
+		client?: true
+	}[] = [
+		{ title: 'human.marketing', href: 'https://human.marketing', client: true },
+		{ title: 'CUSCO USA', href: 'https://cuscousainc.com', client: true },
+		{
+			title: 'SanityPress (original)',
+			href: 'https://github.com/nuotsu/sanitypress',
+		},
+		{
+			title: 'SvelteKit + Sanity template ',
+			href: 'https://github.com/nuotsu/sveltekit-sanity',
+		},
+		{ title: 'things', href: 'https://things.nuotsu.dev' },
+		{ title: 'ic0n.dev', href: 'https://ic0n.dev' },
+		{ title: 'GitHub iframe', href: 'https://github-iframe.vercel.app' },
+	]
 </script>
 
-<Section
-	id="projects"
-	heading="Projects"
-	class="prose"
-	inspect="src/ui/sections/projects.svelte"
->
+<section>
+	<Headline>Projects</Headline>
+
 	<ul>
-		{#each Object.entries(projects) as [name, href]}
-			<li>
-				<a {href}>{name}</a>
+		{#each projects as { title, href, client }}
+			<li class="relative">
+				<a class="flex items-center gap-ch" {href}>
+					<span class="line-clamp-1 break-all">{title}</span>
+
+					{#if client}
+						<small class="text-current/50">Client</small>
+					{/if}
+
+					<span class="absolute inset-0 text-transparent"></span>
+				</a>
 			</li>
 		{/each}
 	</ul>
-
-	<h2 class="font-serif h2 text-shadow-lg">Domains</h2>
-
-	<ul>
-		<li>nuotsu.dev</li>
-		<li>theohtani.com</li>
-		<li>sanitypress.dev</li>
-		<li>ic0n.dev</li>
-	</ul>
-
-	<p>
-		Check out my
-		<a class="link" href="https://github.com/nuotsu">GitHub</a> for all projects and
-		see source code.
-	</p>
-</Section>
+</section>

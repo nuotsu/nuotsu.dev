@@ -10,8 +10,8 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$ui: 'src/ui',
 			$assets: 'src/assets',
+			$ui: 'src/ui',
 		},
 		paths: {
 			relative: false, // Required for PostHog session replay to work correctly

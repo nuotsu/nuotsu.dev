@@ -1,80 +1,65 @@
 <script lang="ts">
-	import { intersecting } from '$lib/intersection-observer'
-	import Section from './section.svelte'
+	import Headline from '$ui/headline.svelte'
+
+	const testimonials: {
+		quote: string
+		author: {
+			name: string
+			title: string
+		}
+		source: string
+	}[] = [
+		{
+			quote:
+				"This is sick dude. [...] Love seeing all the <strong>great work</strong> you're doing for <strong>the Sanity Community</strong>.",
+			author: {
+				name: 'Jono',
+				title: 'Founder of Roboto Studio',
+			},
+			source:
+				'https://github.com/nuotsu/sanitypress/discussions/65#discussioncomment-12237198',
+		},
+		{
+			quote:
+				'A really cool Sanity + Next.js starter template. Go check it out! 🔥 <strong>Really great work</strong>, Mitchell.',
+			author: {
+				name: 'Kapehe',
+				title: 'Head of Developer Community @ Vercel',
+			},
+			source:
+				'https://www.sanity.io/blog/community-digest-may-24-edition#84fd322ef040',
+		},
+		{
+			quote:
+				"Dude, Mitchell's a <em>crazy</em> dev 🤯. Check out his <strong>MLB app</strong>.",
+			author: {
+				name: 'Shota',
+				title: 'Senior Software Engineer @ Salesforce',
+			},
+			source: 'https://sb3.theohtani.com',
+		},
+	]
 </script>
 
-<Section
-	id="testimonials"
-	class="space-y-[3lh]"
-	inspect="src/ui/sections/testimonials.svelte"
->
-	<h2 class="sr-only">Testimonials</h2>
+<section>
+	<Headline>Testimonials</Headline>
 
-	{@render testimonial(
-		"This is sick dude. [...] Love seeing all the <strong>great work</strong> you're doing for <strong>the Sanity Community</strong>.",
-		'Jono',
-		'Founder of Roboto Studio',
-		'https://github.com/nuotsu/sanitypress/discussions/65#discussioncomment-12237198',
-	)}
-	{@render testimonial(
-		'A really cool Sanity + Next.js starter template. Go check it out! 🔥 <strong>Really great work</strong>, Mitchell.',
-		'Kapehe',
-		'Head of Developer Community @ Vercel',
-		'https://www.sanity.io/blog/community-digest-may-24-edition#84fd322ef040',
-	)}
-	{@render testimonial(
-		"Dude, Mitchell's a <strong><em>crazy</em> dev</strong> 🤯. Check out his <strong>MLB app</strong>.",
-		'Shota',
-		'Senior Software Engineer @ Salesforce',
-		'https://sb3.theohtani.com',
-	)}
-</Section>
+	{#each testimonials as { quote, author, source }}
+		<figure class="group relative grid">
+			<blockquote>{@html quote}</blockquote>
 
-{#snippet testimonial(
-	quote: string,
-	author: string,
-	title: string,
-	source: string,
-)}
-	<figure
-		class="relative space-y-4 [&_strong]:font-semibold [&_strong]:text-shadow-lg"
-		{@attach intersecting({ 'data-is-intersecting': true }, { threshold: 1 })}
-	>
-		<blockquote class="h2">
-			<p>
-				{@html quote}
-			</p>
-		</blockquote>
+			<figcaption class="ml-auto inline-flex">
+				<dl class="flex flex-wrap gap-x-[.5ch] group-hover:bg-current/10">
+					<dt>{author.name},</dt>
+					<dd>{author.title}</dd>
+				</dl>
 
-		<figcaption>
-			<dl class="gap-x-ch">
-				<dt>{author}</dt>
-				<dd class="flex gap-ch text-foreground-subdued before:content-['//']">
-					{title}
-				</dd>
-			</dl>
-			<cite>
-				<a class="absolute inset-0 text-transparent" href={source}>Source</a>
-			</cite>
-		</figcaption>
-	</figure>
-{/snippet}
-
-<style>
-	figure {
-		animation: figure ease-in-out;
-		animation-timeline: view();
-	}
-
-	@keyframes figure {
-		0% {
-			opacity: 0;
-			translate: 4lh 0;
-		}
-
-		50% {
-			opacity: 1;
-			translate: 0 0;
-		}
-	}
-</style>
+				<cite>
+					<a class="absolute inset-0 text-transparent" href={source}>
+						Source
+					</a>
+				</cite>
+			</figcaption>
+		</figure>
+	{/each}
+</section>

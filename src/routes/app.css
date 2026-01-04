@@ -7,117 +7,44 @@
 	--font-serif: 'Instrument Serif', serif;
 	--font-mono: 'Geist Mono', monospace;
 
-	--color-background: #ddddd1;
-	--color-background-light: #f5f5f5;
-	--color-foreground: #292919;
-	--color-foreground-subdued: #5c5c4e;
+	--color-background: #f5f5f5;
+	--color-foreground: #171717;
 
 	--spacing-ch: 1ch;
 	--spacing-lh: 1lh;
 	--spacing-rlh: 1rlh;
-
-	--toc-width: var(--container-3xs);
 }
 
 @custom-variant hover (&:hover);
 
-@variant scrolled (body:has(main[data-is-intersecting]) &);
-@variant at-bottom (body:has(footer[data-is-intersecting]) &);
-
 @layer base {
-	:root {
-		interpolate-size: allow-keywords;
-		scroll-behavior: smooth;
+	html {
+		@apply no-scrollbar;
 	}
 
-	::selection {
-		@apply bg-foreground text-background;
+	body {
+		margin-bottom: max(0.5px, env(safe-area-inset-bottom));
+
+		@apply lines mx-auto max-w-2xl bg-background px-lh text-foreground before:full-bleed before:border-y-[.5px];
 	}
 
-	dl {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: baseline;
-		gap: 0.5rem 1lh;
+	main {
+		@apply lines before:border-x-[.5px];
 	}
 
-	rt {
-		ruby-align: center;
+	section {
+		@apply lines before:full-bleed before:border-t-[.5px] last:before:border-b-[.5px];
 	}
 
-	::marker {
-		color: var(--color-foreground-subdued);
+	a {
+		@apply hover:bg-current/10;
 	}
-
-	pre {
-		tab-size: 2;
-	}
-}
-
-/* typography */
-
-@utility h1 {
-	@apply text-5xl md:text-7xl;
-}
-
-@utility h2 {
-	@apply text-3xl leading-tight md:text-5xl;
-}
-
-@utility h3 {
-	@apply text-2xl leading-tight;
-}
-
-@utility h4 {
-	@apply text-xl leading-tight;
-}
-
-@utility manuscript {
-	@apply font-serif;
 }
 
 /* components */
 
-@property --progress {
-	syntax: '<percentage>';
-	initial-value: 0%;
-	inherits: true;
-}
-
-@utility action {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5ch;
-	padding: 0.5ch 1ch;
-	background-image: linear-gradient(
-		to right,
-		#fff8 0%,
-		#fff8 var(--progress),
-		#fff4 var(--progress)
-	);
-	transition: --progress var(--default-transition-duration) ease-in-out;
-
-	&:hover {
-		--progress: 100%;
-	}
-}
-
-@utility link {
-	@apply underline decoration-foreground-subdued/20 transition-colors hover:decoration-foreground-subdued;
-}
-
-@utility prose {
-	@apply space-y-rlh tracking-tight;
-
-	a:not([class]) {
-		@apply link;
-	}
-
-	:is(ul, ol) {
-		list-style: revert;
-		padding-left: 1lh;
-		@apply space-y-2;
-	}
+@utility lines {
+	@apply relative before:pointer-events-none before:absolute before:inset-0 before:border-current/25;
 }
 
 /* utilities */
