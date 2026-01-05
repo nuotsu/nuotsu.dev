@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 
-	let { file } = $props()
+	let { file, lines = 0 } = $props()
 
 	async function fetchSourceCode() {
-		const res = await fetch(`/api/source-code?file=${file}`)
-		const data = await res.json()
+		const res = await fetch(`/api/source-code?file=${file}&lines=${lines}`)
+		const data = await res.text()
 		return data satisfies string
 	}
 </script>
@@ -13,17 +13,17 @@
 {#if browser && file}
 	{#await fetchSourceCode() then code}
 		<aside
-			class="absolute inset-y-0 left-full no-scrollbar w-full overflow-x-clip overflow-y-auto border-r-[.5px] border-current/25 transition-opacity duration-400 starting:opacity-0"
+			class="absolute inset-y-0 left-full w-full border-r-[.5px] border-current/25 transition-opacity duration-400 starting:opacity-0"
 		>
-			<pre class="text-current/25">{code}</pre>
+			<pre class="pointer-events-none text-current/25">{code}</pre>
 		</aside>
 	{/await}
 {/if}
 
 <style>
-	/* :global(section):has(> aside) {
+	:global(section):has(> aside) {
 		overflow-y: clip;
-	} */
+	}
 
 	aside {
 		max-width: max(1lh, calc(50vw - (var(--container-2xl) / 2) + 1lh));

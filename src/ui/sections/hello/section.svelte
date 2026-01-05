@@ -21,5 +21,5 @@
 		]}
 	/>
 
-	<SourceCode file="src/ui/sections/hello/sphere.svelte" />
+	<SourceCode file="src/ui/sections/hello/section.svelte" />
 </section>
