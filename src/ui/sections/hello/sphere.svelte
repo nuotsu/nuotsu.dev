@@ -8,59 +8,79 @@
 		word: string
 	}
 
+	interface ProjectedPoint extends Point3D {
+		scale: number
+	}
+
+	type Vector2D = { x: number; y: number }
+
 	let canvas: HTMLCanvasElement
 	let ctx: CanvasRenderingContext2D
 	let points: Point3D[] = []
-	let rotationX = 0
-	let rotationY = 0
-	let autoRotateX = 0.002
-	let autoRotateY = 0.003
-	let isDragging = false
-	let lastMouseX = 0
-	let lastMouseY = 0
 	let logicalWidth = 0
 
+	// Rotation state
+	let rotation: Vector2D = { x: 0, y: 0 }
+	const autoRotate: Vector2D = { x: 0.002, y: 0.003 }
+
+	// Interaction state
+	let isDragging = false
+	let lastPointer: Vector2D = { x: 0, y: 0 }
+	let velocity: Vector2D = { x: 0, y: 0 }
+	let lastMoveTime = 0
+
+	// Constants
 	const radius = 100
+	const perspective = 600
+	const rotationSensitivity = 0.005
+	const friction = 0.95
+	const minVelocity = 0.001
+	const targetFPS = 60
+	const frameTime = 1000 / targetFPS
+	const minFontSize = 12
+	const baseFontSize = 16
 
-	// Fibonacci sphere algorithm for even distribution
-	function createSpherePoints() {
-		points = []
+	function createSpherePoint(
+		word: string,
+		index: number,
+		total: number,
+	): Point3D {
 		const goldenRatio = (1 + Math.sqrt(5)) / 2
-		const angleIncrement = Math.PI * 2 * goldenRatio
+		const t = index / total
+		const inclination = Math.acos(1 - 2 * t)
+		const azimuth = Math.PI * 2 * goldenRatio * index
 
-		words.forEach((word, i) => {
-			const t = i / words.length
-			const inclination = Math.acos(1 - 2 * t)
-			const azimuth = angleIncrement * i
-
-			const x = radius * Math.sin(inclination) * Math.cos(azimuth)
-			const y = radius * Math.sin(inclination) * Math.sin(azimuth)
-			const z = radius * Math.cos(inclination)
-
-			points.push({ x, y, z, word })
-		})
+		return {
+			x: radius * Math.sin(inclination) * Math.cos(azimuth),
+			y: radius * Math.sin(inclination) * Math.sin(azimuth),
+			z: radius * Math.cos(inclination),
+			word,
+		}
 	}
 
-	function rotatePoint(point: Point3D, angleX: number, angleY: number) {
+	function createSpherePoints() {
+		points = words.map((word, i) => createSpherePoint(word, i, words.length))
+	}
+
+	function rotatePoint(point: Point3D, rotation: Vector2D): Point3D {
 		// Rotate around X axis
-		let y = point.y * Math.cos(angleX) - point.z * Math.sin(angleX)
-		let z = point.y * Math.sin(angleX) + point.z * Math.cos(angleX)
+		let y = point.y * Math.cos(rotation.x) - point.z * Math.sin(rotation.x)
+		let z = point.y * Math.sin(rotation.x) + point.z * Math.cos(rotation.x)
 
 		// Rotate around Y axis
-		const x = point.x * Math.cos(angleY) - z * Math.sin(angleY)
-		z = point.x * Math.sin(angleY) + z * Math.cos(angleY)
+		const x = point.x * Math.cos(rotation.y) - z * Math.sin(rotation.y)
+		z = point.x * Math.sin(rotation.y) + z * Math.cos(rotation.y)
 
 		return { x, y, z, word: point.word }
 	}
 
-	function project(point: Point3D) {
-		const perspective = 600
+	function project(point: Point3D): ProjectedPoint {
 		const scale = perspective / (perspective + point.z)
 		return {
+			...point,
 			x: point.x * scale + logicalWidth / 2,
 			y: point.y * scale + height / 2,
 			scale,
-			z: point.z,
 		}
 	}
 
@@ -70,93 +90,98 @@
 		ctx.clearRect(0, 0, logicalWidth, height)
 
 		// Rotate and project all points
-		const rotatedPoints = points.map((point) => {
-			const rotated = rotatePoint(point, rotationX, rotationY)
-			const projected = project(rotated)
-			return { ...rotated, ...projected }
-		})
+		const rotatedPoints = points
+			.map((point) => rotatePoint(point, rotation))
+			.map((point) => project(point))
 
 		// Sort by z-index (back to front)
 		rotatedPoints.sort((a, b) => a.z - b.z)
 
 		// Draw words
-		rotatedPoints.forEach((point) => {
-			// Calculate opacity based on z position (closer = more visible)
-			const opacity = Math.max(0, (point.z + radius) / (radius * 2))
+		rotatedPoints.forEach((point) => drawWord(ctx, point))
 
-			// Scale based on perspective
-			const fontSize = Math.max(12, 16 * point.scale)
-
-			ctx.font = `${fontSize}px 'Geist', sans-serif`
-			ctx.textAlign = 'center'
-			ctx.textBaseline = 'middle'
-			ctx.fillStyle = `rgba(0, 0, 0, ${1 - opacity})`
-
-			ctx.fillText(point.word, point.x, point.y)
-		})
-
-		// Continue rotation if not dragging
+		// Apply momentum or auto-rotation
 		if (!isDragging) {
-			rotationX += autoRotateX
-			rotationY += autoRotateY
+			updateRotation()
 		}
 
 		requestAnimationFrame(render)
 	}
 
-	function handleMouseDown(e: MouseEvent) {
+	function onpointerdown(e: PointerEvent) {
+		e.preventDefault()
 		isDragging = true
-		lastMouseX = e.clientX
-		lastMouseY = e.clientY
-
-		// Add window listeners for mousemove and mouseup to track dragging outside canvas
-		window.addEventListener('mousemove', handleMouseMove)
-		window.addEventListener('mouseup', handleMouseUp)
+		lastPointer = { x: e.clientX, y: e.clientY }
+		velocity = { x: 0, y: 0 }
+		lastMoveTime = performance.now()
+		canvas.setPointerCapture(e.pointerId)
 	}
 
-	function handleMouseMove(e: MouseEvent) {
+	function onpointermove(e: PointerEvent) {
 		if (!isDragging) return
 
-		const deltaX = e.clientX - lastMouseX
-		const deltaY = e.clientY - lastMouseY
+		const currentTime = performance.now()
+		const deltaTime = currentTime - lastMoveTime || frameTime
+		const delta: Vector2D = {
+			x: e.clientX - lastPointer.x,
+			y: e.clientY - lastPointer.y,
+		}
 
-		rotationY += deltaX * 0.005
-		rotationX += deltaY * 0.005
+		// Apply rotation (swap x/y for natural feel)
+		const rotationDelta: Vector2D = {
+			x: delta.y * rotationSensitivity,
+			y: delta.x * rotationSensitivity,
+		}
+		rotation.x += rotationDelta.x
+		rotation.y += rotationDelta.y
 
-		lastMouseX = e.clientX
-		lastMouseY = e.clientY
+		// Calculate velocity (normalized by time for consistent momentum)
+		const timeScale = deltaTime / frameTime
+		velocity = {
+			x: rotationDelta.y / timeScale,
+			y: rotationDelta.x / timeScale,
+		}
+
+		lastPointer = { x: e.clientX, y: e.clientY }
+		lastMoveTime = currentTime
 	}
 
-	function handleMouseUp() {
+	function onpointerup(e: PointerEvent) {
 		isDragging = false
+		canvas.releasePointerCapture(e.pointerId)
 	}
 
-	function handleTouchStart(e: TouchEvent) {
-		e.preventDefault()
-		const touch = e.touches[0]
-		isDragging = true
-		lastMouseX = touch.clientX
-		lastMouseY = touch.clientY
+	function drawWord(ctx: CanvasRenderingContext2D, point: ProjectedPoint) {
+		const opacity = Math.max(0, (point.z + radius) / (radius * 2))
+		const fontSize = Math.max(minFontSize, baseFontSize * point.scale)
+
+		ctx.font = `${fontSize}px 'Geist', sans-serif`
+		ctx.textAlign = 'center'
+		ctx.textBaseline = 'middle'
+		ctx.fillStyle = `rgba(0, 0, 0, ${1 - opacity})`
+		ctx.fillText(point.word, point.x, point.y)
 	}
 
-	function handleTouchMove(e: TouchEvent) {
-		e.preventDefault()
-		if (!isDragging) return
-
-		const touch = e.touches[0]
-		const deltaX = touch.clientX - lastMouseX
-		const deltaY = touch.clientY - lastMouseY
-
-		rotationY += deltaX * 0.005
-		rotationX += deltaY * 0.005
-
-		lastMouseX = touch.clientX
-		lastMouseY = touch.clientY
+	function hasMomentum(v: Vector2D): boolean {
+		return Math.abs(v.x) > minVelocity || Math.abs(v.y) > minVelocity
 	}
 
-	function handleTouchEnd(e: TouchEvent) {
-		e.preventDefault()
-		isDragging = false
+	function applyFriction(v: Vector2D): Vector2D {
+		return {
+			x: Math.abs(v.x) < minVelocity ? 0 : v.x * friction,
+			y: Math.abs(v.y) < minVelocity ? 0 : v.y * friction,
+		}
+	}
+
+	function updateRotation() {
+		if (hasMomentum(velocity)) {
+			rotation.y += velocity.x
+			rotation.x += velocity.y
+			velocity = applyFriction(velocity)
+		} else {
+			rotation.x += autoRotate.x
+			rotation.y += autoRotate.y
+		}
 	}
 
 	function resizeCanvas() {
@@ -164,13 +189,10 @@
 
 		const dpr = window.devicePixelRatio || 1
 		logicalWidth = canvas.clientWidth
-		height = height
 
-		// Set actual canvas size accounting for device pixel ratio
 		canvas.width = logicalWidth * dpr
 		canvas.height = height * dpr
 
-		// Reset transform and scale context to match device pixel ratio
 		ctx.setTransform(1, 0, 0, 1, 0, 0)
 		ctx.scale(dpr, dpr)
 	}
@@ -190,10 +212,9 @@
 		bind:this={canvas}
 		style:height="{height}px"
 		class="w-full cursor-grab touch-none active:cursor-grabbing"
-		onmousedown={handleMouseDown}
-		ontouchstart={handleTouchStart}
-		ontouchmove={handleTouchMove}
-		ontouchend={handleTouchEnd}
+		{onpointerdown}
+		{onpointermove}
+		{onpointerup}
 	>
 	</canvas>
 </div>
