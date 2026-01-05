@@ -8,7 +8,7 @@
 	import Writing from '$ui/sections/writing.svelte'
 </script>
 
-<!-- <Hero /> -->
+<Hero />
 <Featured />
 <Projects />
 <Writing />
