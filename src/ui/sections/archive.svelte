@@ -59,7 +59,9 @@
 	<ol class="grid text-center tabular-nums">
 		{#each archive as { date, href }}
 			<li>
-				<a class="block" {href}>{date}</a>
+				<a class="block" {href}>
+					<time datetime={date}>{date}</time>
+				</a>
 			</li>
 		{/each}
 	</ol>
