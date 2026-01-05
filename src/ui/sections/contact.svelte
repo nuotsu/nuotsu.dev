@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 
 	const links: { label: string; href: string }[] = [
 		{ label: 'GitHub', href: 'https://github.com/nuotsu' },
@@ -20,4 +21,6 @@
 			</li>
 		{/each}
 	</ul>
+
+	<SourceCode file="src/ui/sections/contact.svelte" />
 </section>

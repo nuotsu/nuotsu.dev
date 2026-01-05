@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 
 	const testimonials: {
 		quote: string
@@ -66,4 +67,6 @@
 			</figure>
 		{/each}
 	</div>
+
+	<SourceCode file="src/ui/sections/testimonials.svelte" />
 </section>

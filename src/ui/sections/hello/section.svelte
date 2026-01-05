@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 	import Sphere from './sphere.svelte'
 </script>
 
@@ -19,4 +20,6 @@
 			'a.k.a. nuotsu',
 		]}
 	/>
+
+	<SourceCode file="src/ui/sections/hello/sphere.svelte" />
 </section>

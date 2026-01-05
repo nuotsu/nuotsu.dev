@@ -211,7 +211,7 @@
 	<canvas
 		bind:this={canvas}
 		style:height="{height}px"
-		class="w-full cursor-grab touch-none active:cursor-grabbing"
+		class="w-full cursor-crosshair touch-none"
 		{onpointerdown}
 		{onpointermove}
 		{onpointerup}

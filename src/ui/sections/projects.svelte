@@ -2,6 +2,7 @@
 	import { other } from '$lib/projects'
 	import GitHub from '$ui/github.svelte'
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 </script>
 
 <section>
@@ -26,4 +27,6 @@
 			</li>
 		{/each}
 	</ul>
+
+	<SourceCode file="src/ui/sections/projects.svelte" />
 </section>

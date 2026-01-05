@@ -4,9 +4,7 @@
 	const views = $derived(page.data.views ?? 0)
 </script>
 
-<footer
-	class="lines flex justify-between gap-ch text-right before:border-x-[.5px]"
->
+<footer class="lines-x flex justify-between gap-ch">
 	<span>{views} views</span>
 
 	<p>&copy; {new Date().getFullYear()}</p>

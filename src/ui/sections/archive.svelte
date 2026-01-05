@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 
 	const archive: {
 		date: string
@@ -62,6 +63,8 @@
 			</li>
 		{/each}
 	</ul>
+
+	<SourceCode file="src/ui/sections/archive.svelte" />
 </section>
 
 <style>

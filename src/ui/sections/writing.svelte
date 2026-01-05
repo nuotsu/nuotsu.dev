@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 
 	const writing: {
 		title: string
@@ -34,4 +35,6 @@
 			</li>
 		{/each}
 	</ul>
+
+	<SourceCode file="src/ui/sections/writing.svelte" />
 </section>

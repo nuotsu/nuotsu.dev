@@ -2,6 +2,7 @@
 	import { featured } from '$lib/projects'
 	import GitHub from '$ui/github.svelte'
 	import Headline from '$ui/headline.svelte'
+	import SourceCode from '$ui/source-code.svelte'
 
 	const bgs = Object.entries(
 		import.meta.glob('/src/assets/bg/*.jpeg', {
@@ -50,4 +51,6 @@
 			</figure>
 		</article>
 	{/each}
+
+	<SourceCode file="src/ui/sections/featured.svelte" />
 </section>

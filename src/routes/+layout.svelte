@@ -17,8 +17,16 @@
 
 <Metadata />
 
-<Header />
-<main>
-	{@render children()}
-</main>
-<Footer />
+<div class="lines-b lines-t mx-auto max-w-2xl px-lh">
+	<Header />
+	<main class="lines-x *:lines-t *:last:lines-b">
+		{@render children()}
+	</main>
+	<Footer />
+</div>
+
+<style>
+	div {
+		margin-bottom: max(0.5px, env(safe-area-inset-bottom));
+	}
+</style>

@@ -19,21 +19,12 @@
 
 @layer base {
 	html {
-		@apply no-scrollbar;
+		overflow-x: clip;
+		@apply no-scrollbar bg-background text-foreground;
 	}
 
 	body {
-		margin-bottom: max(0.5px, env(safe-area-inset-bottom));
-
-		@apply lines mx-auto max-w-2xl bg-background px-lh text-foreground before:full-bleed before:border-y-[.5px];
-	}
-
-	main {
-		@apply lines before:border-x-[.5px];
-	}
-
-	section {
-		@apply lines before:full-bleed before:border-t-[.5px] last:before:border-b-[.5px];
+		overflow-x: clip;
 	}
 
 	a {
@@ -45,6 +36,18 @@
 
 @utility lines {
 	@apply relative before:pointer-events-none before:absolute before:inset-0 before:border-current/25;
+}
+
+@utility lines-x {
+	@apply lines before:border-x-[.5px];
+}
+
+@utility lines-t {
+	@apply lines before:full-bleed before:border-t-[.5px];
+}
+
+@utility lines-b {
+	@apply lines before:full-bleed before:border-y-[.5px];
 }
 
 /* utilities */
