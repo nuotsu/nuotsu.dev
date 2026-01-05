@@ -58,7 +58,7 @@
 	<ul class="grid text-center tabular-nums">
 		{#each archive as { date, href }}
 			<li>
-				<a class="block" {href} target="_blank">{date}</a>
+				<a class="block" {href}>{date}</a>
 			</li>
 		{/each}
 	</ul>

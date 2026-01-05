@@ -1,3 +1,13 @@
-<footer class="lines text-right before:border-x-[.5px]">
-	<p>&copy; {new Date().getFullYear()} Mitchell Christ</p>
+<script lang="ts">
+	import { page } from '$app/state'
+
+	const views = $derived(page.data.views ?? 0)
+</script>
+
+<footer
+	class="lines flex justify-between gap-ch text-right before:border-x-[.5px]"
+>
+	<span>{views} views</span>
+
+	<p>&copy; {new Date().getFullYear()}</p>
 </footer>

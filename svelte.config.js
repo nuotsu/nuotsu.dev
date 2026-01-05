@@ -17,6 +17,12 @@ const config = {
 			relative: false, // Required for PostHog session replay to work correctly
 		},
 	},
+
+	compilerOptions: {
+		experimental: {
+			async: true,
+		},
+	},
 }
 
 export default config

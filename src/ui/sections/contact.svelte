@@ -1,20 +1,23 @@
 <script lang="ts">
 	import Headline from '$ui/headline.svelte'
+
+	const links: { label: string; href: string }[] = [
+		{ label: 'GitHub', href: 'https://github.com/nuotsu' },
+		{ label: 'LinkedIn', href: 'https://linkedin.com/in/nuotsu' },
+		{ label: 'X', href: 'https://x.com/marutchell' },
+		{ label: 'Midjourney', href: 'https://www.midjourney.com/@nuotsu' },
+		{ label: 'Email', href: 'mailto:mitchell@nuotsu.dev' },
+	]
 </script>
 
 <section>
 	<Headline>Contact</Headline>
 
-	<ul>
-		<li><a href="https://github.com/nuotsu">GitHub</a></li>
-		<li><a href="https://linkedin.com/in/nuotsu">LinkedIn</a></li>
-		<li><a href="https://x.com/marutchell">X</a></li>
-		<li><a href="mailto:mitchell@nuotsu.dev">Email</a></li>
+	<ul class="grid grid-cols-2 text-center">
+		{#each links as { label, href }}
+			<li>
+				<a class="line-clamp-1 break-all" {href}>{label}</a>
+			</li>
+		{/each}
 	</ul>
 </section>
-
-<style>
-	a {
-		display: block;
-	}
-</style>

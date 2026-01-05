@@ -1,32 +1,7 @@
 <script lang="ts">
-	import sanitypress from '$assets/projects/sanitypress.png?enhanced'
-	import sb3 from '$assets/projects/sb3.png?enhanced'
-	import theOhtani from '$assets/projects/theohtani.png?enhanced'
+	import { featured } from '$lib/projects'
+	import GitHub from '$ui/github.svelte'
 	import Headline from '$ui/headline.svelte'
-
-	const projects: {
-		hidden?: true
-		title: string
-		href: string
-		image: any
-	}[] = [
-		{
-			title: 'SanityPress',
-			href: 'https://typegen.sanitypress.dev',
-			image: sanitypress,
-		},
-		{
-			title: 'MLB Live Scorebug',
-			href: 'https://sb3.theohtani.com',
-			image: sb3,
-		},
-		{
-			hidden: true,
-			title: 'The Ohtani',
-			href: 'https://theohtani.com',
-			image: theOhtani,
-		},
-	]
 
 	const bgs = Object.entries(
 		import.meta.glob('/src/assets/bg/*.jpeg', {
@@ -39,16 +14,21 @@
 <section>
 	<Headline>Featured</Headline>
 
-	{#each projects.filter((p) => !p.hidden) as { title, href, image }, i}
+	{#each featured as { title, href, image, repo }, i}
 		<article class="relative grid grid-cols-2 items-end">
 			<h3>
-				<a class="block px-ch" {href}>
-					{title}
+				<a class="flex items-center gap-ch pl-ch" {href}>
+					<span class="line-clamp-1 grow break-all">{title}</span>
+
+					{#if repo}
+						<GitHub {repo} />
+					{/if}
+
 					<span class="absolute inset-0 text-transparent">Link</span>
 				</a>
 			</h3>
 
-			<figure class="relative order-first p-ch md:p-lh">
+			<figure class="relative order-first p-ch text-transparent md:p-lh">
 				<enhanced:img
 					class="pointer-events-none absolute inset-0 -z-1 size-full object-cover"
 					src={bgs[i % bgs.length]}
@@ -58,13 +38,15 @@
 					draggable="false"
 				/>
 
-				<enhanced:img
-					src={image}
-					alt={title}
-					loading="eager"
-					fetchpriority="high"
-					draggable="false"
-				/>
+				{#if image}
+					<enhanced:img
+						src={image}
+						alt={title}
+						loading="eager"
+						fetchpriority="high"
+						draggable="false"
+					/>
+				{/if}
 			</figure>
 		</article>
 	{/each}

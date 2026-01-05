@@ -5,7 +5,7 @@ import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
 	const response = await fetch(
-		`${PUBLIC_POSTHOG_HOST}/api/projects/275041/query/`,
+		`${PUBLIC_POSTHOG_HOST}/api/projects/268828/query/`,
 		{
 			method: 'POST',
 			headers: {
@@ -15,10 +15,9 @@ export const GET: RequestHandler = async () => {
 			body: JSON.stringify({
 				query: {
 					kind: 'HogQLQuery',
-					query: `SELECT count() AS views 
-					FROM events 
-					WHERE event = '$pageview' 
-					AND properties.$host = 'theohtani.com'`,
+					query: `SELECT count() AS total_page_views
+						FROM events
+						WHERE event = '$pageview'`,
 				},
 			}),
 		},

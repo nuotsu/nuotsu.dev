@@ -108,6 +108,10 @@
 		isDragging = true
 		lastMouseX = e.clientX
 		lastMouseY = e.clientY
+
+		// Add window listeners for mousemove and mouseup to track dragging outside canvas
+		window.addEventListener('mousemove', handleMouseMove)
+		window.addEventListener('mouseup', handleMouseUp)
 	}
 
 	function handleMouseMove(e: MouseEvent) {
@@ -176,28 +180,17 @@
 		resizeCanvas()
 		createSpherePoints()
 		render()
-
-		window.addEventListener('resize', resizeCanvas)
-
-		return () => {
-			window.removeEventListener('resize', resizeCanvas)
-		}
 	})
 </script>
 
-<svelte:window
-	onmousedown={handleMouseDown}
-	onmousemove={handleMouseMove}
-	onmouseup={handleMouseUp}
-/>
+<svelte:window onresize={resizeCanvas} />
 
 <div class="overflow-hidden" style:max-height={height}>
 	<canvas
-		style:height
-		width={672}
-		{height}
-		class="w-full cursor-grab touch-none active:cursor-grabbing"
 		bind:this={canvas}
+		style:height="{height}px"
+		class="w-full cursor-grab touch-none active:cursor-grabbing"
+		onmousedown={handleMouseDown}
 		ontouchstart={handleTouchStart}
 		ontouchmove={handleTouchMove}
 		ontouchend={handleTouchEnd}

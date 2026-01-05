@@ -2,4 +2,7 @@
 
 ## TODO
 
-- use native syntax highlighting API for `<SourceCode>`
+- about
+- eye tracker
+- show source code to the right of each section (easter egg)
+  - use native syntax highlighting API
