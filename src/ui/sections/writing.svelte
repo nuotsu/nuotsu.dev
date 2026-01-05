@@ -36,5 +36,5 @@
 		{/each}
 	</ul>
 
-	<SourceCode file="src/ui/sections/writing.svelte" />
+	<SourceCode file="src/ui/sections/writing.svelte" lines={7} />
 </section>

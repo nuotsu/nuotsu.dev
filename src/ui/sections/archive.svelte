@@ -64,7 +64,7 @@
 		{/each}
 	</ul>
 
-	<SourceCode file="src/ui/sections/archive.svelte" />
+	<SourceCode file="src/ui/sections/archive.svelte" lines={4} />
 </section>
 
 <style>

@@ -58,6 +58,26 @@ const projects: {
 		repo: 'github-iframe',
 	},
 	{
+		title: 'Numeration',
+		href: 'https://numeration.vercel.app',
+		repo: 'numeration',
+	},
+	// {
+	// 	title: 'One Piece Chapters',
+	// 	href: 'https://onepiece-chapters.vercel.app',
+	// 	repo: 'onepiece-chapters',
+	// },
+	{
+		title: 'Timeless Shopify Theme',
+		href: 'https://timeless-docs.vercel.app',
+		repo: 'timeless-shopify-theme',
+	},
+	{
+		title: 'Shopify App Comparer',
+		href: 'https://shopify-compare.vercel.app',
+		repo: 'mitchuman/shopify-compare-apps',
+	},
+	{
 		// featured: true,
 		title: 'human.marketing',
 		href: 'https://human.marketing',

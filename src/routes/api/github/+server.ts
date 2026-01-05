@@ -2,13 +2,11 @@ import { json } from '@sveltejs/kit'
 import { GITHUB_TOKEN } from '$env/static/private'
 import type { RequestHandler } from './$types'
 
-const OWNER = 'nuotsu'
-
 export const GET: RequestHandler = async ({ url }) => {
 	const repo = url.searchParams.get('repo')
 
 	const response = await fetch(
-		`https://api.github.com/repos/${OWNER}/${repo}`,
+		`https://api.github.com/repos/${repo?.includes('/') ? repo : `nuotsu/${repo}`}`,
 		{
 			headers: {
 				Accept: 'application/vnd.github.v3+json',

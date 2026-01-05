@@ -12,21 +12,19 @@
 		{#each other as { title, href, repo, client }}
 			<li class="relative">
 				<a class="flex items-center gap-ch" {href}>
-					<span class="line-clamp-1 break-all">{title}</span>
+					<span class="line-clamp-1 grow break-all">{title}</span>
 
 					{#if client}
-						<small class="text-current/50 lowercase">Client</small>
+						<small class="text-current/25 lowercase">Client</small>
 					{/if}
 
 					{#if repo}
-						<GitHub {repo} class="ml-auto" />
+						<GitHub {repo} />
 					{/if}
-
-					<span class="absolute inset-0 text-transparent"></span>
 				</a>
 			</li>
 		{/each}
 	</ul>
 
-	<SourceCode file="src/ui/sections/projects.svelte" />
+	<SourceCode file="src/ui/sections/projects.svelte" lines={23} />
 </section>

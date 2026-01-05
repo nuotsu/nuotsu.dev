@@ -68,5 +68,5 @@
 		{/each}
 	</div>
 
-	<SourceCode file="src/ui/sections/testimonials.svelte" />
+	<SourceCode file="src/ui/sections/testimonials.svelte" lines={15} />
 </section>

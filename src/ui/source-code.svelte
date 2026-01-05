@@ -13,20 +13,16 @@
 {#if browser && file}
 	{#await fetchSourceCode() then code}
 		<aside
-			class="absolute inset-y-0 left-full w-full border-r-[.5px] border-current/25 transition-opacity duration-400 starting:opacity-0"
+			class="absolute inset-y-0 left-full overflow-clip border-r-[.5px] border-current/25 pl-rlh transition-opacity duration-400 starting:opacity-0"
 		>
-			<pre class="pointer-events-none text-current/25">{code}</pre>
+			<pre class="pointer-events-none text-current/10 select-none">{code}</pre>
 		</aside>
 	{/await}
 {/if}
 
 <style>
-	:global(section):has(> aside) {
-		overflow-y: clip;
-	}
-
 	aside {
-		max-width: max(1lh, calc(50vw - (var(--container-2xl) / 2) + 1lh));
+		width: calc(var(--container-2xl) - 1lh);
 	}
 
 	pre {
