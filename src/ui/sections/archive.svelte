@@ -56,19 +56,19 @@
 <section>
 	<Headline>Archive</Headline>
 
-	<ul class="grid text-center tabular-nums">
+	<ol class="grid text-center tabular-nums">
 		{#each archive as { date, href }}
 			<li>
 				<a class="block" {href}>{date}</a>
 			</li>
 		{/each}
-	</ul>
+	</ol>
 
 	<SourceCode file="src/ui/sections/archive.svelte" lines={4} />
 </section>
 
 <style>
-	ul {
+	ol {
 		grid-template-columns: repeat(auto-fill, minmax(9ch, 1fr));
 	}
 </style>

@@ -216,5 +216,10 @@
 		{onpointermove}
 		{onpointerup}
 	>
+		<ul>
+			{#each words as word}
+				<li>{word}</li>
+			{/each}
+		</ul>
 	</canvas>
 </div>

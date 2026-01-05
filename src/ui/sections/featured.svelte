@@ -1,10 +1,11 @@
 <script lang="ts">
+	import imageSet, { type Picture } from '$lib/image-set'
 	import { featured } from '$lib/projects'
 	import GitHub from '$ui/github.svelte'
 	import Headline from '$ui/headline.svelte'
 	import SourceCode from '$ui/source-code.svelte'
 
-	const bgs = Object.entries(
+	const bgs: Picture[] = Object.entries(
 		import.meta.glob('/src/assets/bg/*.jpeg', {
 			eager: true,
 			query: { enhanced: true },
@@ -31,17 +32,8 @@
 
 			<figure
 				class="relative order-first overflow-hidden bg-current/5 p-rlh text-[0px]"
+				style:background-image={imageSet(bgs[i % bgs.length])}
 			>
-				<enhanced:img
-					class="pointer-events-none absolute inset-0 -z-1 size-full object-cover"
-					src={bgs[i % bgs.length]}
-					alt={title}
-					sizes="min(312px, 50vw)"
-					loading="eager"
-					fetchpriority="high"
-					draggable="false"
-				/>
-
 				{#if image}
 					<enhanced:img
 						class="translate-y-2 opacity-0 transition-[opacity,translate] duration-600"
@@ -67,5 +59,9 @@
 <style>
 	article + article {
 		padding-top: 1px;
+	}
+
+	figure {
+		background: center/cover no-repeat;
 	}
 </style>

@@ -30,6 +30,11 @@
 	a {
 		@apply hover:bg-current/10;
 	}
+
+	:focus-visible {
+		outline: 0.5px solid currentColor;
+		@apply bg-current/10;
+	}
 }
 
 /* components */

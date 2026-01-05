@@ -7,5 +7,5 @@
 <footer class="lines-x flex justify-between gap-ch">
 	<span>{views} views</span>
 
-	<p>&copy; {new Date().getFullYear()}</p>
+	<small class="text-base">&copy; {new Date().getFullYear()}</small>
 </footer>
