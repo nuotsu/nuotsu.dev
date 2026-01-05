@@ -1,16 +1,5 @@
 <script lang="ts">
-	import Headline from '$ui/headline.svelte'
-
-	const keywords = [
-		'Frontend Web Dev.',
-		'CSS Nerd.',
-		'Webmaster.',
-		'Next.js Guru.',
-		'Svelte enthusiast.',
-		'Shopify expert.',
-		'Designer-turned-developer.',
-		'a.k.a. nuotsu.',
-	]
+	let { words = [], height = 280 } = $props()
 
 	interface Point3D {
 		x: number
@@ -30,7 +19,6 @@
 	let lastMouseX = 0
 	let lastMouseY = 0
 	let logicalWidth = 0
-	let logicalHeight = 300
 
 	const radius = 100
 
@@ -40,8 +28,8 @@
 		const goldenRatio = (1 + Math.sqrt(5)) / 2
 		const angleIncrement = Math.PI * 2 * goldenRatio
 
-		keywords.forEach((word, i) => {
-			const t = i / keywords.length
+		words.forEach((word, i) => {
+			const t = i / words.length
 			const inclination = Math.acos(1 - 2 * t)
 			const azimuth = angleIncrement * i
 
@@ -70,7 +58,7 @@
 		const scale = perspective / (perspective + point.z)
 		return {
 			x: point.x * scale + logicalWidth / 2,
-			y: point.y * scale + logicalHeight / 2,
+			y: point.y * scale + height / 2,
 			scale,
 			z: point.z,
 		}
@@ -79,7 +67,7 @@
 	function render() {
 		if (!ctx || !canvas) return
 
-		ctx.clearRect(0, 0, logicalWidth, logicalHeight)
+		ctx.clearRect(0, 0, logicalWidth, height)
 
 		// Rotate and project all points
 		const rotatedPoints = points.map((point) => {
@@ -172,11 +160,11 @@
 
 		const dpr = window.devicePixelRatio || 1
 		logicalWidth = canvas.clientWidth
-		logicalHeight = 300
+		height = height
 
 		// Set actual canvas size accounting for device pixel ratio
 		canvas.width = logicalWidth * dpr
-		canvas.height = logicalHeight * dpr
+		canvas.height = height * dpr
 
 		// Reset transform and scale context to match device pixel ratio
 		ctx.setTransform(1, 0, 0, 1, 0, 0)
@@ -203,16 +191,16 @@
 	onmouseup={handleMouseUp}
 />
 
-<section>
-	<Headline>Hero</Headline>
-
-	<div class="overflow-hidden">
-		<canvas
-			class="h-[300px] w-full cursor-grab touch-none active:cursor-grabbing"
-			bind:this={canvas}
-			ontouchstart={handleTouchStart}
-			ontouchmove={handleTouchMove}
-			ontouchend={handleTouchEnd}
-		></canvas>
-	</div>
-</section>
+<div class="overflow-hidden" style:max-height={height}>
+	<canvas
+		style:height
+		width={672}
+		{height}
+		class="w-full cursor-grab touch-none active:cursor-grabbing"
+		bind:this={canvas}
+		ontouchstart={handleTouchStart}
+		ontouchmove={handleTouchMove}
+		ontouchend={handleTouchEnd}
+	>
+	</canvas>
+</div>

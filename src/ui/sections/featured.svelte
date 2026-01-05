@@ -1,14 +1,14 @@
 <script lang="ts">
-	import sanitypress from '$assets/projects/sanitypress.png'
-	import sb3 from '$assets/projects/sb3.png'
-	import theOhtani from '$assets/projects/theohtani.png'
+	import sanitypress from '$assets/projects/sanitypress.png?enhanced'
+	import sb3 from '$assets/projects/sb3.png?enhanced'
+	import theOhtani from '$assets/projects/theohtani.png?enhanced'
 	import Headline from '$ui/headline.svelte'
 
 	const projects: {
 		hidden?: true
 		title: string
 		href: string
-		image: string
+		image: any
 	}[] = [
 		{
 			title: 'SanityPress',
@@ -42,7 +42,7 @@
 	{#each projects.filter((p) => !p.hidden) as { title, href, image }, i}
 		<article class="relative grid grid-cols-2 items-end">
 			<h3>
-				<a {href}>
+				<a class="block px-ch" {href}>
 					{title}
 					<span class="absolute inset-0 text-transparent">Link</span>
 				</a>

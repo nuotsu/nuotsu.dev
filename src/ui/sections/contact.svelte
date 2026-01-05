@@ -12,3 +12,9 @@
 		<li><a href="mailto:mitchell@nuotsu.dev">Email</a></li>
 	</ul>
 </section>
+
+<style>
+	a {
+		display: block;
+	}
+</style>

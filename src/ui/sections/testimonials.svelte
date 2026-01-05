@@ -44,22 +44,26 @@
 <section>
 	<Headline>Testimonials</Headline>
 
-	{#each testimonials as { quote, author, source }}
-		<figure class="group relative grid">
-			<blockquote>{@html quote}</blockquote>
+	<div class="grid gap-ch">
+		{#each testimonials as { quote, author, source }}
+			<figure class="group relative grid">
+				<blockquote class="text-pretty group-hover:bg-current/10">
+					{@html quote}
+				</blockquote>
 
-			<figcaption class="ml-auto inline-flex">
-				<dl class="flex flex-wrap gap-x-[.5ch] group-hover:bg-current/10">
-					<dt>{author.name},</dt>
-					<dd>{author.title}</dd>
-				</dl>
+				<figcaption class="inline-flex text-[small] text-current/50">
+					<dl class="flex flex-wrap gap-x-[.5ch]">
+						<dt>{author.name},</dt>
+						<dd>{author.title}</dd>
+					</dl>
 
-				<cite>
-					<a class="absolute inset-0 text-transparent" href={source}>
-						Source
-					</a>
-				</cite>
-			</figcaption>
-		</figure>
-	{/each}
+					<cite>
+						<a class="absolute inset-0 text-transparent" href={source}>
+							Source
+						</a>
+					</cite>
+				</figcaption>
+			</figure>
+		{/each}
+	</div>
 </section>
