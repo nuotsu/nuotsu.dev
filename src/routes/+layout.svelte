@@ -5,6 +5,7 @@
 	import Header from '$ui/header.svelte'
 	import Metadata from '$ui/metadata.svelte'
 	import posthog from 'posthog-js'
+	import '$lib/console'
 	import './app.css'
 
 	const { children } = $props()

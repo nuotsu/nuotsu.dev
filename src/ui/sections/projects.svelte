@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { other } from '$lib/projects'
+	import { other } from '$lib/constants'
 	import GitHub from '$ui/github.svelte'
 	import Headline from '$ui/headline.svelte'
 	import SourceCode from '$ui/source-code.svelte'

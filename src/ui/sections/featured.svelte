@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { featured } from '$lib/constants'
 	import imageSet, { type Picture } from '$lib/image-set'
-	import { featured } from '$lib/projects'
 	import GitHub from '$ui/github.svelte'
 	import Headline from '$ui/headline.svelte'
 	import SourceCode from '$ui/source-code.svelte'
@@ -31,7 +31,7 @@
 			</h3>
 
 			<figure
-				class="relative order-first overflow-hidden bg-current/5 p-rlh text-[0px]"
+				class="relative -z-1 order-first overflow-hidden bg-current/5 p-rlh text-[0px]"
 				style:background-image={imageSet(bgs[i % bgs.length])}
 			>
 				{#if image}

@@ -1,14 +1,7 @@
 <script lang="ts">
+	import { links } from '$lib/constants'
 	import Headline from '$ui/headline.svelte'
 	import SourceCode from '$ui/source-code.svelte'
-
-	const links: { label: string; href: string }[] = [
-		{ label: 'GitHub', href: 'https://github.com/nuotsu' },
-		{ label: 'LinkedIn', href: 'https://linkedin.com/in/nuotsu' },
-		{ label: 'X', href: 'https://x.com/marutchell' },
-		{ label: 'Midjourney', href: 'https://www.midjourney.com/@nuotsu' },
-		{ label: 'Email', href: 'mailto:mitchell@nuotsu.dev' },
-	]
 </script>
 
 <section>
