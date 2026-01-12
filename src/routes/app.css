@@ -19,11 +19,12 @@
 @layer base {
 	html {
 		overflow-x: clip;
-		@apply no-scrollbar bg-background text-foreground;
+		@apply no-scrollbar;
 	}
 
 	body {
 		overflow-x: clip;
+		@apply bg-background text-foreground;
 	}
 
 	a {

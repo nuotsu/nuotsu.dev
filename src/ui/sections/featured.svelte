@@ -13,7 +13,7 @@
 	).map(([_path, module]) => (module as any).default)
 </script>
 
-<section>
+<section class="isolate">
 	<Headline>Featured</Headline>
 
 	{#each featured as { title, href, image, repo }, i}
