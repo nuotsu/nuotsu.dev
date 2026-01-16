@@ -53,7 +53,7 @@
 		</article>
 	{/each}
 
-	<SourceCode file="src/ui/sections/featured.svelte" lines={32} />
+	<SourceCode file="src/ui/sections/featured.svelte" lines={48} />
 </section>
 
 <style>

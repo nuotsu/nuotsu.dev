@@ -17,6 +17,10 @@
 @custom-variant hover (&:hover);
 
 @layer base {
+	::selection {
+		@apply bg-foreground text-background;
+	}
+
 	html {
 		overflow-x: clip;
 		@apply no-scrollbar;
