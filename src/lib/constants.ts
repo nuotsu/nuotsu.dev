@@ -33,7 +33,7 @@ const projects: {
 		title: 'MLB Stats API Playground',
 		href: 'https://mlb.theohtani.com',
 		image: mlb,
-		repo: 'mlb.theohtani.com',
+		repo: 'mlb',
 	},
 	{
 		// featured: true,
