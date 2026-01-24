@@ -26,5 +26,5 @@
 		{/each}
 	</ul>
 
-	<SourceCode file="src/ui/sections/projects.svelte" lines={23} />
+	<SourceCode file="src/ui/sections/projects.svelte" lines={25} />
 </section>

@@ -23,17 +23,17 @@ const projects: {
 	},
 	{
 		featured: true,
-		title: 'MLB Live Scorebug',
-		href: 'https://sb3.theohtani.com',
-		image: sb3,
-		repo: 'sb3.theohtani.com',
-	},
-	{
-		featured: true,
-		title: 'MLB Stats API Playground',
+		title: 'MLB Scorebug & API Playground (2026)',
 		href: 'https://mlb.theohtani.com',
 		image: mlb,
 		repo: 'mlb',
+	},
+	{
+		// featured: true,
+		title: 'MLB Scorebug (2025)',
+		href: 'https://sb3.theohtani.com',
+		image: sb3,
+		repo: 'sb3.theohtani.com',
 	},
 	{
 		// featured: true,
@@ -43,7 +43,7 @@ const projects: {
 		repo: 'sanitypress',
 	},
 	{
-		// featured: true,
+		featured: true,
 		title: 'The Ohtani',
 		href: 'https://theohtani.com',
 		image: theOhtani,
@@ -84,6 +84,10 @@ const projects: {
 		title: 'Shopify App Comparer',
 		href: 'https://shopify-compare.vercel.app',
 		repo: 'mitchuman/shopify-compare-apps',
+	},
+	{
+		title: 'Midjourney',
+		href: 'https://www.midjourney.com/@nuotsu',
 	},
 	{
 		// featured: true,
@@ -234,6 +238,6 @@ export const links: { label: string; href: string }[] = [
 	{ label: 'GitHub', href: 'https://github.com/nuotsu' },
 	{ label: 'LinkedIn', href: 'https://linkedin.com/in/nuotsu' },
 	{ label: 'X', href: 'https://x.com/marutchell' },
-	{ label: 'Midjourney', href: 'https://www.midjourney.com/@nuotsu' },
 	{ label: 'Email', href: 'mailto:mitchell@nuotsu.dev' },
+	{ label: 'What\s my rate?', href: 'https://quote.nuotsu.dev' },
 ]

@@ -19,7 +19,7 @@
 	{#each featured as { title, href, image, repo }, i}
 		<article class="relative grid items-end sm:grid-cols-2">
 			<h3>
-				<a class="flex flex-wrap items-center gap-x-ch sm:pl-ch" {href}>
+				<a class="flex items-center gap-x-ch sm:pl-ch" {href}>
 					<span class="line-clamp-1 grow break-all">{title}</span>
 
 					{#if repo}
