@@ -20,7 +20,10 @@
 	let logicalWidth = 0
 
 	// Rotation state
-	let rotation: Vector2D = { x: 0, y: 0 }
+	let rotation: Vector2D = {
+		x: Math.random() * Math.PI * 2,
+		y: Math.random() * Math.PI * 2,
+	}
 	const autoRotate: Vector2D = { x: 0.002, y: 0.003 }
 
 	// Interaction state
@@ -155,7 +158,7 @@
 		const opacity = Math.max(0, (point.z + radius) / (radius * 2))
 		const fontSize = Math.max(minFontSize, baseFontSize * point.scale)
 
-		ctx.font = `${fontSize}px 'Geist', sans-serif`
+		ctx.font = `${fontSize}px 'Mozilla Headline', sans-serif`
 		ctx.textAlign = 'center'
 		ctx.textBaseline = 'middle'
 		ctx.fillStyle = `rgba(0, 0, 0, ${1 - opacity})`
