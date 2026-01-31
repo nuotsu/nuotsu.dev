@@ -13,6 +13,7 @@ const projects: {
 	repo?: string
 	client?: true
 	image?: any
+	tags?: string[]
 }[] = [
 	{
 		featured: true,
@@ -20,6 +21,7 @@ const projects: {
 		href: 'https://typed.sanitypress.dev',
 		image: sanitypressWithTypegen,
 		repo: 'sanitypress-with-typegen',
+		tags: ['Next.js', 'Sanity', 'TypeScript', 'Tailwind'],
 	},
 	{
 		featured: true,
@@ -27,6 +29,7 @@ const projects: {
 		href: 'https://mlb.theohtani.com',
 		image: mlb,
 		repo: 'mlb',
+		tags: ['SvelteKit', 'MLB API', 'Tailwind'],
 	},
 	{
 		// featured: true,
@@ -48,6 +51,7 @@ const projects: {
 		href: 'https://theohtani.com',
 		image: theOhtani,
 		repo: 'theohtani.com',
+		tags: ['SvelteKit', 'GSAP', 'Tailwind'],
 	},
 	{
 		title: 'SvelteKit + Sanity template ',

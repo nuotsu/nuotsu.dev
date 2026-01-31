@@ -16,8 +16,8 @@
 <section class="isolate">
 	<Headline>Featured</Headline>
 
-	{#each featured as { title, href, image, repo }, i}
-		<article class="relative grid items-end sm:grid-cols-2">
+	{#each featured as { title, href, image, repo, tags }, i}
+		<article class="group/featured relative grid items-end sm:grid-cols-2">
 			<h3>
 				<a class="flex items-center gap-x-ch sm:pl-ch" {href}>
 					<span class="line-clamp-1 grow break-all">{title}</span>
@@ -28,6 +28,16 @@
 
 					<span class="absolute inset-0 text-transparent">Link</span>
 				</a>
+
+				{#if tags}
+					<ul
+						class="flex flex-wrap gap-[.5ch] px-[.5px] pb-[.5ch] text-xs group-hover/featured:bg-current/10 sm:px-rch"
+					>
+						{#each tags as tag}
+							<li class="bg-white px-ch">{tag}</li>
+						{/each}
+					</ul>
+				{/if}
 			</h3>
 
 			<figure
@@ -53,7 +63,7 @@
 		</article>
 	{/each}
 
-	<SourceCode file="src/ui/sections/featured.svelte" lines={48} />
+	<SourceCode file="src/ui/sections/featured.svelte" lines={49} />
 </section>
 
 <style>
