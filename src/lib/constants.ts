@@ -234,7 +234,7 @@ export const testimonials: {
 			name: 'Shota',
 			title: 'Senior Software Engineer @ Salesforce',
 		},
-		source: 'https://sb3.theohtani.com',
+		source: 'https://mlb.theohtani.com',
 	},
 ]
 
