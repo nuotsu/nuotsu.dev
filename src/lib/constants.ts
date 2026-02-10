@@ -25,7 +25,7 @@ const projects: {
 	},
 	{
 		featured: true,
-		title: 'MLB Scorebug & API Playground (2026)',
+		title: 'MLB Live Scorebug (2026)',
 		href: 'https://mlb.theohtani.com',
 		image: mlb,
 		repo: 'mlb',
@@ -33,7 +33,7 @@ const projects: {
 	},
 	{
 		// featured: true,
-		title: 'MLB Scorebug (2025)',
+		title: 'MLB Live Scorebug (2025)',
 		href: 'https://sb3.theohtani.com',
 		image: sb3,
 		repo: 'sb3.theohtani.com',
