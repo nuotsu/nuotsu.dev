@@ -49,10 +49,10 @@
 						class="translate-y-2 opacity-0 transition-[opacity,translate] duration-600"
 						src={image}
 						alt={title}
+						draggable="false"
 						sizes="min(312px, 50vw)"
 						loading="eager"
 						fetchpriority="high"
-						draggable="false"
 						onload={(e) => {
 							e.currentTarget.classList.remove('opacity-0')
 							e.currentTarget.classList.remove('translate-y-2')
