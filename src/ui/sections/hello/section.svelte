@@ -12,7 +12,7 @@
 			'Frontend web dev',
 			'CSS Nerd',
 			'Webmaster',
-			// 'Sanity MVP',
+			'2025 Sanity Pioneer',
 			'Next.js Guru',
 			'Svelte enthusiast',
 			'Shopify expert',
