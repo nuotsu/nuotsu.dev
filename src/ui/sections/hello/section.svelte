@@ -18,6 +18,7 @@
 			'Shopify expert',
 			'Designer-turned-developer',
 			'a.k.a. nuotsu',
+			'CSS Design Awards Winner',
 		]}
 	/>
 

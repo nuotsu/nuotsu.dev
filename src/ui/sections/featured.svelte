@@ -16,7 +16,7 @@
 <section class="isolate">
 	<Headline>Featured</Headline>
 
-	{#each featured as { title, href, image, repo, tags }, i}
+	{#each featured as { title, href, image, repo, tags, awards }, i}
 		<article class="group/featured relative grid items-end sm:grid-cols-2">
 			<h3>
 				<a class="flex items-center gap-x-ch sm:pl-ch" {href}>
@@ -28,6 +28,16 @@
 
 					<span class="absolute inset-0 text-transparent">Link</span>
 				</a>
+
+				{#if awards?.title}
+					<p
+						class=" pb-[.5ch] italic group-hover/featured:bg-current/10 sm:px-ch"
+					>
+						<span class="line-clamp-1 text-xs break-all text-yellow-600">
+							{awards.title}
+						</span>
+					</p>
+				{/if}
 
 				{#if tags}
 					<ul
@@ -58,6 +68,26 @@
 							e.currentTarget.classList.remove('translate-y-2')
 						}}
 					/>
+				{/if}
+
+				{#if awards?.images}
+					<div class="absolute right-rch bottom-rch flex *:not-first:-ml-rch">
+						{#each awards?.images as image}
+							<enhanced:img
+								class="-translate-x-2 opacity-0 transition-[opacity,translate] delay-400 duration-600"
+								width="40"
+								height="40"
+								src={image}
+								alt={title}
+								draggable="false"
+								loading="lazy"
+								onload={(e) => {
+									e.currentTarget.classList.remove('opacity-0')
+									e.currentTarget.classList.remove('-translate-x-2')
+								}}
+							/>
+						{/each}
+					</div>
 				{/if}
 			</figure>
 		</article>

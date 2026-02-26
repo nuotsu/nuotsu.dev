@@ -1,3 +1,8 @@
+import type { Picture } from '@sveltejs/enhanced-img'
+import cssdaBestInn from '$assets/awards/cssda-best-inn.png?enhanced'
+import cssdaBestUi from '$assets/awards/cssda-best-ui.png?enhanced'
+import cssdaBestUx from '$assets/awards/cssda-best-ux.png?enhanced'
+import cssdaSpecialKudos from '$assets/awards/cssda-special-kudos.png?enhanced'
 import cusco from '$assets/projects/cusco.png?enhanced'
 import human from '$assets/projects/human.png?enhanced'
 import mlb from '$assets/projects/mlb.png?enhanced'
@@ -12,8 +17,12 @@ const projects: {
 	href: string
 	repo?: string
 	client?: true
-	image?: any
+	image?: Picture
 	tags?: string[]
+	awards?: {
+		title: string
+		images?: Picture[]
+	}
 }[] = [
 	{
 		featured: true,
@@ -30,6 +39,10 @@ const projects: {
 		image: mlb,
 		repo: 'mlb',
 		tags: ['SvelteKit', 'MLB API', 'Tailwind'],
+		awards: {
+			title: 'CSS Design Awards: Best UI+UX+Inn & Special Kudos',
+			images: [cssdaBestUi, cssdaBestUx, cssdaBestInn, cssdaSpecialKudos],
+		},
 	},
 	{
 		// featured: true,
