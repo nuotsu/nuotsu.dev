@@ -7,15 +7,6 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
-
-		interface GithubResponse {
-			stars: number
-			forks: number
-		}
-
-		interface ViewsResponse {
-			views: number
-		}
 	}
 }
 

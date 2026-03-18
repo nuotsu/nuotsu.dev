@@ -1,8 +1,0 @@
-export function count<T = any>(
-	arr: T[] | number,
-	singular: string = 'item',
-	plural?: string,
-) {
-	const n = typeof arr === 'number' ? arr : (arr?.length ?? 0)
-	return `${n} ${n === 1 ? singular : plural || singular + 's'}`
-}

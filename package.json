@@ -4,34 +4,29 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "bun run --bun vite dev --host",
+		"dev": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"format": "prettier --write .",
-		"lint": "prettier --check ."
+		"lint": "prettier --check .",
+		"format": "prettier --write ."
 	},
 	"devDependencies": {
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-		"@sveltejs/adapter-vercel": "^6.3.3",
+		"@sveltejs/adapter-vercel": "^6.3.1",
 		"@sveltejs/enhanced-img": "^0.10.4",
-		"@sveltejs/kit": "^2.55.0",
-		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@tailwindcss/vite": "^4.2.1",
-		"@types/node": "^25.5.0",
+		"@sveltejs/kit": "^2.50.2",
+		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"@tailwindcss/vite": "^4.1.18",
 		"prettier": "^3.8.1",
-		"prettier-plugin-svelte": "^3.5.1",
+		"prettier-plugin-svelte": "^3.4.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
-		"svelte": "^5.54.0",
-		"svelte-check": "^4.4.5",
-		"tailwindcss": "^4.2.1",
+		"svelte": "^5.51.0",
+		"svelte-check": "^4.4.2",
+		"tailwindcss": "^4.1.18",
 		"typescript": "^5.9.3",
-		"vite": "^8.0.0"
-	},
-	"dependencies": {
-		"posthog-js": "^1.360.2",
-		"posthog-node": "^5.28.2"
+		"vite": "^7.3.1"
 	}
 }

@@ -1,24 +1,61 @@
 <script lang="ts">
-	import D from '$ui/divider.svelte'
-	import Archive from '$ui/sections/archive.svelte'
-	import Contact from '$ui/sections/contact.svelte'
-	import Featured from '$ui/sections/featured.svelte'
-	import Hello from '$ui/sections/hello/section.svelte'
-	import Projects from '$ui/sections/projects.svelte'
-	import Testimonials from '$ui/sections/testimonials.svelte'
-	import Writing from '$ui/sections/writing.svelte'
+	import { archive, projects } from '$lib/constants'
 </script>
 
-<D />
-<Hello />
-<D />
-<Featured />
-<Projects />
-<Archive />
-<D />
-<Writing />
-<D />
-<Testimonials />
-<D />
-<Contact />
-<D />
+<header class="relative">
+	<h1>Mitchell Christ</h1>
+	<p>nuotsu / XZ</p>
+</header>
+
+<main class="mt-ch grid gap-ch">
+	<section class="flex">
+		<h2 class="text-right sideways-lr">Projects</h2>
+		<ul>
+			{#each projects as project}
+				<li>
+					<a href={project.href}>
+						<span>
+							{project.title}
+							{#if project.year}
+								<time>({project.year})</time>
+							{/if}
+						</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</section>
+
+	<section class="flex">
+		<h2 class="text-right sideways-lr">Archive</h2>
+
+		<ul>
+			{#each archive as item}
+				<li>
+					<a href={item.href}>
+						<time datetime={item.date}>{item.date}</time>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</section>
+</main>
+
+<style>
+	header::before {
+		content: '';
+		display: block;
+		height: 2ch;
+		background-image: repeating-conic-gradient(currentColor 0% 25%, transparent 0% 50%);
+		background-size: 2ch 100%;
+	}
+
+	a {
+		display: block;
+
+		&:hover > * {
+			background-color: var(--color-foreground);
+			color: var(--color-background);
+		}
+	}
+</style>
