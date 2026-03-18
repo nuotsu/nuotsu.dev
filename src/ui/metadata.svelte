@@ -4,7 +4,7 @@
 	const metadata = {
 		title: 'Mitchell Christ | nuotsu',
 		description:
-			'Mitchell Christ is a frontend developer and CSS nerd, currently residing in Irvine, California.',
+			'Mitchell Christ is a frontend developer and CSS nerd, currently residing in Irvine, California.'
 	}
 </script>
 
@@ -22,8 +22,5 @@
 	<meta name="twitter:title" content={metadata.title} />
 	<meta name="twitter:description" content={metadata.description} />
 
-	<meta
-		name="viewport"
-		content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-	/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 </svelte:head>

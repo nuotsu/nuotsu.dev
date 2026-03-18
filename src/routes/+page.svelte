@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { archive, projects } from '$lib/constants'
+
+	let { data } = $props()
 </script>
 
 <header class="relative">
@@ -7,7 +9,7 @@
 	<p>nuotsu / XZ</p>
 </header>
 
-<main class="mt-ch grid gap-ch">
+<main class="my-ch grid gap-ch">
 	<section class="flex">
 		<h2 class="text-right sideways-lr">Projects</h2>
 		<ul>
@@ -40,6 +42,10 @@
 		</ul>
 	</section>
 </main>
+
+<footer>
+	<p>Visitors: {new Intl.NumberFormat().format(data.views)}</p>
+</footer>
 
 <style>
 	header::before {
