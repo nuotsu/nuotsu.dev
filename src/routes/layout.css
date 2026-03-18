@@ -5,8 +5,8 @@
 @theme {
 	--font-mono: 'Geist Mono', monospace;
 
-	--color-background: #faf8f1;
-	--color-foreground: #222222;
+	--color-background: #000;
+	--color-foreground: #faf8f1;
 
 	--spacing-ch: 1ch;
 	--spacing-rch: 1rch;

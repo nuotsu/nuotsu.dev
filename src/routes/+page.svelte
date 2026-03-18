@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { archive, projects } from '$lib/constants'
+	import QR from '$ui/qr.svelte'
 
 	let { data } = $props()
 </script>
@@ -43,8 +44,10 @@
 	</section>
 </main>
 
-<footer>
+<footer class="grid gap-ch">
 	<p>Visitors: {new Intl.NumberFormat().format(data.views)}</p>
+
+	<QR />
 </footer>
 
 <style>
