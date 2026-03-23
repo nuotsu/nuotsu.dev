@@ -13,6 +13,8 @@
 	--spacing-rlh: 1rlh;
 }
 
+@custom-variant hover (&:hover);
+
 @layer base {
 	@view-transition {
 		navigation: auto;
