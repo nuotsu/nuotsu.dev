@@ -7,7 +7,7 @@
 
 	<div class="grid gap-[1.5lh]">
 		{#each testimonials as testimonial}
-			<figure class="relative grid max-w-max items-end gap-[.5ch]">
+			<figure class="group/testimonial relative grid max-w-max items-end gap-[.5ch]">
 				<figcaption style:grid-area="caption">
 					<cite class="text-xs not-italic">
 						<a class="flex flex-wrap gap-x-ch pl-[1.5rch]" href={testimonial.source}>
@@ -24,7 +24,7 @@
 				>
 					{#each testimonial.quote as quote}
 						<p
-							class="max-w-fit rounded-[1lh] bg-foreground/10 px-[1.5ch] py-ch has-[+p]:rounded-bl [&+&]:rounded-tl"
+							class="max-w-fit rounded-[1lh] bg-foreground/10 px-[1.5ch] py-ch transition-colors group-hover/testimonial:bg-foreground/15 has-[+p]:rounded-bl [&+&]:rounded-tl"
 						>
 							{@html quote}
 						</p>

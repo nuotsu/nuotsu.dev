@@ -106,10 +106,10 @@ export const projects: {
 		href: 'https://shopify-compare.vercel.app',
 		repo: 'mitchuman/shopify-compare-apps'
 	},
-	{
-		title: 'Midjourney',
-		href: 'https://www.midjourney.com/@nuotsu'
-	},
+	// {
+	// 	title: 'Midjourney',
+	// 	href: 'https://www.midjourney.com/@nuotsu'
+	// },
 	{
 		// featured: true,
 		title: 'human.marketing',

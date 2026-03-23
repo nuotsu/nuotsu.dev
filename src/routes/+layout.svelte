@@ -19,9 +19,11 @@
 
 <Metadata />
 
-<div class="flex min-h-svh flex-col">
+<div class="flex min-h-svh flex-col gap-ch">
 	<header class="section grid gap-ch">
-		<Clouds class="h-[8lh] rounded" />
+		<Clouds
+			class="h-[8lh] rounded-md bg-sky outline-2 outline-sky/50 transition-opacity starting:opacity-0"
+		/>
 		<a href="/">Mitchell Christ <span class="text-subdued">// nuotsu</span></a>
 	</header>
 
