@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;700&display=swap');
-
 @import 'tailwindcss';
 
 @theme {
-	--font-mono: 'Geist Mono', monospace;
-
 	--color-background: #000;
-	--color-foreground: #faf8f1;
+	--color-foreground: #fff;
+
+	--color-sky: #0156cb;
+	--color-subdued: #aaa;
 
 	--spacing-ch: 1ch;
 	--spacing-rch: 1rch;
@@ -15,15 +14,44 @@
 }
 
 @layer base {
-	::selection {
-		@apply bg-foreground text-background;
+	@view-transition {
+		navigation: auto;
 	}
 
 	body {
-		@apply bg-background font-mono leading-[2ch] text-foreground;
+		@apply bg-background text-foreground;
 	}
 }
 
-@utility sideways-lr {
-	writing-mode: sideways-lr;
+/* typography */
+
+@utility link {
+	@apply text-foreground underline decoration-[.5px] hover:text-foreground;
+}
+
+@utility prose {
+	@apply space-y-ch;
+}
+
+@utility unordered-list {
+	@apply list-disc space-y-ch pl-[1em] leading-tight;
+
+	li:has(a:not(:hover))::marker {
+		@apply text-subdued;
+	}
+}
+
+/* layout */
+
+@utility section {
+	@apply mx-auto w-full max-w-3xl px-ch py-[.5lh];
+}
+
+@utility no-scrollbar {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }

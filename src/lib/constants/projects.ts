@@ -55,13 +55,13 @@ export const projects: {
 			images: [cssdaBestUi, cssdaBestUx, cssdaBestInn, cssdaSpecialKudos]
 		}
 	},
-	{
-		title: 'MLB Live Scorebug',
-		year: 2025,
-		href: 'https://sb3.theohtani.com',
-		image: sb3,
-		repo: 'sb3.theohtani.com'
-	},
+	// {
+	// 	title: 'MLB Live Scorebug',
+	// 	year: 2025,
+	// 	href: 'https://sb3.theohtani.com',
+	// 	image: sb3,
+	// 	repo: 'sb3.theohtani.com'
+	// },
 	{
 		featured: true,
 		title: 'The Ohtani',
@@ -70,27 +70,27 @@ export const projects: {
 		repo: 'theohtani.com',
 		tags: ['SvelteKit', 'GSAP', 'Tailwind']
 	},
-	{
-		title: 'SvelteKit + Sanity template ',
-		href: 'https://github.com/nuotsu/sveltekit-sanity',
-		repo: 'sveltekit-sanity'
-	},
+	// {
+	// 	title: 'SvelteKit + Sanity template ',
+	// 	href: 'https://github.com/nuotsu/sveltekit-sanity',
+	// 	repo: 'sveltekit-sanity'
+	// },
 	{
 		title: 'things',
 		href: 'https://things.nuotsu.dev',
 		repo: 'things.nuotsu.dev'
 	},
 	{ title: 'ic0n.dev', href: 'https://ic0n.dev', repo: 'ic0n.dev' },
-	{
-		title: 'GitHub iframe',
-		href: 'https://github-iframe.vercel.app',
-		repo: 'github-iframe'
-	},
-	{
-		title: 'Numeration',
-		href: 'https://numeration.vercel.app',
-		repo: 'numeration'
-	},
+	// {
+	// 	title: 'GitHub iframe',
+	// 	href: 'https://github-iframe.vercel.app',
+	// 	repo: 'github-iframe'
+	// },
+	// {
+	// 	title: 'Numeration',
+	// 	href: 'https://numeration.vercel.app',
+	// 	repo: 'numeration'
+	// },
 	// {
 	// 	title: 'One Piece Chapters',
 	// 	href: 'https://onepiece-chapters.vercel.app',
