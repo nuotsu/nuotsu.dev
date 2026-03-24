@@ -3,6 +3,10 @@ export const writing: {
 	href: string
 }[] = [
 	{
+		title: 'Why I Built My Own MLB App (And Why the Official One Frustrated Me)',
+		href: 'https://mlb.theohtani.com/blog/2026-03-23-why-i-built-my-own-mlb-app'
+	},
+	{
 		title: 'Shopify vs Sanity + Next.js: Choosing the Right Platform for Modern Websites',
 		href: 'https://typed.sanitypress.dev/blog/shopify-vs-sanity-nextjs-choosing-the-right-platform-for-modern-websites'
 	},
