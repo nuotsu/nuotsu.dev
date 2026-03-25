@@ -10,11 +10,11 @@ export const GET: RequestHandler = async () => {
 		body: JSON.stringify({
 			query: {
 				kind: 'HogQLQuery',
-				query: `SELECT count() AS total_page_views FROM events WHERE event = '$pageview'`
-			}
-		})
+				query: `SELECT count() AS total_page_views FROM events WHERE event = '$pageview'`,
+			},
+		}),
 	})
 	const data = await response.json()
-	const views = data.results?.[0]?.[0] ?? 0
-	return json({ views })
+	const visitors = data.results?.[0]?.[0] ?? 0
+	return json({ visitors })
 }

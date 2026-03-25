@@ -1,42 +1,62 @@
 <script lang="ts">
 	import './layout.css'
-	import { browser } from '$app/environment'
+	import { browser, dev } from '$app/environment'
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
-	import Clouds from '$ui/clouds.svelte'
 	import Metadata from '$ui/metadata.svelte'
-	import Nav from '$ui/nav.svelte'
-	import QR from '$ui/qr.svelte'
-	import VisitorCount from '$ui/visitor-count.svelte'
+	import PokémonTeam from '$ui/pokemon-team.svelte'
 	import posthog from 'posthog-js'
 
 	let { children } = $props()
 
-	if (browser) {
+	if (browser && !dev) {
 		beforeNavigate(() => posthog.capture('$pageleave'))
 		afterNavigate(() => posthog.capture('$pageview'))
+	}
+
+	async function fetchVisitors() {
+		const res = await fetch('/api/visitors')
+		return res.json()
 	}
 </script>
 
 <Metadata />
 
-<div class="flex min-h-svh flex-col gap-ch">
-	<header class="section grid gap-ch">
-		<Clouds
-			class="h-[8lh] rounded-md bg-sky outline-2 outline-sky/50 transition-opacity starting:opacity-0"
-		/>
-		<a href="/">Mitchell Christ <span class="text-subdued">// nuotsu</span></a>
-	</header>
+<header class="top-ch md:sticky">
+	<h1>Mitchell Christ</h1>
+	<p>a.k.a. <em>nuotsu</em></p>
 
-	<Nav />
+	<hr />
 
-	<main class="grow">{@render children()}</main>
+	<nav>
+		<ol style:list-style="upper-roman">
+			<li><a href="#about">About</a></li>
+			<li><a href="#projects">Projects</a></li>
+			<li><a href="#testimonials">Testimonials</a></li>
+			<li><a href="#writing">Writing</a></li>
+			<li><a href="#archive">Site Archive</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ol>
+	</nav>
+</header>
 
-	<footer class="section flex items-center justify-center gap-ch">
-		<QR />
+<main>
+	{@render children()}
+</main>
 
-		<div class="text-sm text-subdued">
-			<VisitorCount />
-			<p>&copy; {new Date().getFullYear()} Mitchell Christ</p>
-		</div>
-	</footer>
-</div>
+<hr class="col-span-full w-full" />
+
+<footer class="col-span-full">
+	<PokémonTeam />
+
+	<output>
+		{#await fetchVisitors()}
+			Counting visitors...
+		{:then { visitors }}
+			Visitors: {new Intl.NumberFormat().format(visitors)}
+		{/await}
+	</output>
+
+	<p style:font-family="Comic Sans MS, cursive">web dev is my passion.™</p>
+
+	<p>&copy; {new Date().getFullYear()} Mitchell Christ / nuotsu</p>
+</footer>

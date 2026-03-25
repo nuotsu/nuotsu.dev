@@ -1,10 +1,10 @@
 <script lang="ts">
 	import favicon from '$assets/favicon.png'
+	import { about } from '$lib/constants'
 
 	const metadata = {
 		title: 'Mitchell Christ | nuotsu',
-		description:
-			'Mitchell Christ is a frontend developer and CSS nerd, currently residing in Irvine, California.'
+		description: about.map(({ value }) => value).join('. '),
 	}
 </script>
 

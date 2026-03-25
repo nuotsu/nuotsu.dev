@@ -15,7 +15,7 @@ export const projects: {
 	featured?: true
 	title: string
 	year?: number
-	href: string
+	href?: string
 	repo?: string
 	client?: true
 	image?: Picture
@@ -32,7 +32,7 @@ export const projects: {
 		href: 'https://typed.sanitypress.dev',
 		image: sanitypressWithTypegen,
 		repo: 'sanitypress-with-typegen',
-		tags: ['Next.js', 'Sanity', 'TypeScript', 'Tailwind']
+		tags: ['Next.js', 'Sanity', 'TypeScript', 'Tailwind'],
 	},
 	{
 		// featured: true,
@@ -40,7 +40,7 @@ export const projects: {
 		year: 2024,
 		href: 'https://github.com/nuotsu/sanitypress',
 		image: sanitypress,
-		repo: 'sanitypress'
+		repo: 'sanitypress',
 	},
 	{
 		featured: true,
@@ -52,8 +52,8 @@ export const projects: {
 		tags: ['SvelteKit', 'MLB API', 'Tailwind'],
 		awards: {
 			title: 'CSS Design Awards: Best UI+UX+Inn & Special Kudos',
-			images: [cssdaBestUi, cssdaBestUx, cssdaBestInn, cssdaSpecialKudos]
-		}
+			images: [cssdaBestUi, cssdaBestUx, cssdaBestInn, cssdaSpecialKudos],
+		},
 	},
 	// {
 	// 	title: 'MLB Live Scorebug',
@@ -68,7 +68,7 @@ export const projects: {
 		href: 'https://theohtani.com',
 		image: theOhtani,
 		repo: 'theohtani.com',
-		tags: ['SvelteKit', 'GSAP', 'Tailwind']
+		tags: ['SvelteKit', 'GSAP', 'Tailwind'],
 	},
 	// {
 	// 	title: 'SvelteKit + Sanity template ',
@@ -78,7 +78,7 @@ export const projects: {
 	{
 		title: 'things',
 		href: 'https://things.nuotsu.dev',
-		repo: 'things.nuotsu.dev'
+		repo: 'things.nuotsu.dev',
 	},
 	{ title: 'ic0n.dev', href: 'https://ic0n.dev', repo: 'ic0n.dev' },
 	// {
@@ -99,12 +99,12 @@ export const projects: {
 	{
 		title: 'Timeless Shopify Theme',
 		href: 'https://timeless-docs.vercel.app',
-		repo: 'timeless-shopify-theme'
+		repo: 'timeless-shopify-theme',
 	},
 	{
 		title: 'Shopify App Comparer',
 		href: 'https://shopify-compare.vercel.app',
-		repo: 'mitchuman/shopify-compare-apps'
+		repo: 'mitchuman/shopify-compare-apps',
 	},
 	// {
 	// 	title: 'Midjourney',
@@ -115,23 +115,32 @@ export const projects: {
 		title: 'human.marketing',
 		href: 'https://human.marketing',
 		client: true,
-		image: human
+		image: human,
+	},
+	{
+		title: 'Armorblox (acquired by Cisco)',
+		client: true,
 	},
 	{
 		// featured: true,
 		title: 'CUSCO USA',
 		href: 'https://cuscousainc.com',
 		client: true,
-		image: cusco
+		image: cusco,
 	},
 	{
 		title: 'ECL Americas',
 		href: 'https://eclamericas.com',
-		client: true
+		client: true,
 	},
 	{
 		title: 'Attention Monsters',
 		href: 'https://attentionmonsters.com',
-		client: true
-	}
+		client: true,
+	},
+	{
+		title: 'Topspin Coach',
+		href: 'https://topspincoach.vercel.app/',
+		client: true,
+	},
 ] as const

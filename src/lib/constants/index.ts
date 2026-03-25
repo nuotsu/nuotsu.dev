@@ -1,3 +1,4 @@
+export { about } from './about'
 export { projects } from './projects'
 export { archive } from './archive'
 export { writing } from './writing'

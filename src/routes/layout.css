@@ -1,59 +1,41 @@
-@import 'tailwindcss';
+/* @import 'tailwindcss'; */
+
+@layer theme, base, components, utilities;
 
 @theme {
-	--color-background: #000;
-	--color-foreground: #fff;
-
-	--color-sky: #0156cb;
-	--color-subdued: #aaa;
-
 	--spacing-ch: 1ch;
-	--spacing-rch: 1rch;
 	--spacing-lh: 1lh;
-	--spacing-rlh: 1rlh;
 }
 
-@custom-variant hover (&:hover);
+@import 'tailwindcss/theme.css' layer(theme);
+/* @import 'tailwindcss/preflight.css' layer(base); */
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 @layer base {
-	@view-transition {
-		navigation: auto;
+	@media (prefers-color-scheme: dark) {
+		:root {
+			color-scheme: dark;
+		}
+	}
+
+	[id]:target {
+		scroll-margin-top: 1lh;
+
+		animation: target-highlight 2s ease-in-out forwards;
+	}
+
+	@keyframes target-highlight {
+		0%,
+		50% {
+			background-color: color-mix(in srgb, linkText 25%, transparent);
+		}
+	}
+
+	html {
+		scroll-behavior: smooth;
 	}
 
 	body {
-		@apply bg-background text-foreground;
-	}
-}
-
-/* typography */
-
-@utility link {
-	@apply text-foreground underline decoration-[.5px] hover:text-foreground;
-}
-
-@utility prose {
-	@apply space-y-ch;
-}
-
-@utility unordered-list {
-	@apply list-disc space-y-ch pl-[1em] leading-tight;
-
-	li:has(a:not(:hover))::marker {
-		@apply text-subdued;
-	}
-}
-
-/* layout */
-
-@utility section {
-	@apply mx-auto w-full max-w-3xl px-ch py-[.5lh];
-}
-
-@utility no-scrollbar {
-	-webkit-overflow-scrolling: touch;
-	scrollbar-width: none;
-
-	&::-webkit-scrollbar {
-		display: none;
+		@apply grid max-w-5xl items-start gap-x-lh md:grid-cols-[auto_1fr];
 	}
 }
