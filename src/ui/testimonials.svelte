@@ -14,7 +14,7 @@
 	</label>
 
 	{#each testimonials as { quote, author, source }}
-		<figure class="group/t" class:styled>
+		<figure class="group/t">
 			<blockquote class="group-not-[.styled]/t:italic">
 				{#if styled}
 					{#each quote.split(/(?<=[.!]) /gu) as sentence}
@@ -26,7 +26,7 @@
 			</blockquote>
 
 			<figcaption data-avatar={author.name.at(0)}>
-				<cite class="not-italic group-not-[.styled]/t:before:content-['—']">
+				<cite class="not-italic group-not-[.styled]/t:before:content-['—_']">
 					<a href={source}>
 						{author.name}
 					</a>
@@ -59,7 +59,7 @@
 		}
 	}
 
-	.styled {
+	label:has(:checked) ~ figure {
 		font-family: system-ui, sans-serif;
 		margin: 0;
 		display: grid;
