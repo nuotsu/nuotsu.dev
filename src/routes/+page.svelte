@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { about, archive, links, testimonials, writing } from '$lib/constants'
+	import { about, archive, links, writing } from '$lib/constants'
 	import Projects from '$ui/projects.svelte'
+	import Testimonials from '$ui/testimonials.svelte'
 </script>
 
 <section id="about">
@@ -28,29 +29,7 @@
 
 <Projects />
 
-<section id="testimonials">
-	<h2>Testimonials</h2>
-	<p>Real quotes by real people who have said some things about me.</p>
-	{#each testimonials as { quote, author, source }}
-		<figure>
-			<blockquote class="italic">
-				<p>{@html quote}</p>
-			</blockquote>
-			<figcaption>
-				<cite class="not-italic">
-					—
-					<a href={source}>
-						{author.name}
-					</a>
-
-					{#if author.title}
-						<span class="inline-block before:content-['//_']">{author.title}</span>
-					{/if}
-				</cite>
-			</figcaption>
-		</figure>
-	{/each}
-</section>
+<Testimonials />
 
 <section id="writing">
 	<h2>Writing</h2>
