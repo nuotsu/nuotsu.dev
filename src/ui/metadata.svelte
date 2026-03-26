@@ -4,7 +4,11 @@
 
 	const metadata = {
 		title: 'Mitchell Christ | nuotsu',
-		description: about.map(({ value }) => value).join('. '),
+		description:
+			about
+				.map(({ value }) => value)
+				.slice(0, 10)
+				.join('. ') + '.',
 	}
 </script>
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { testimonials } from '$lib/constants'
+	import ToggleCss from './toggle-css.svelte'
 
 	let styled = $state(false)
 </script>
@@ -8,14 +9,11 @@
 	<h2>Testimonials</h2>
 	<p>Real quotes by real people who have said some things about me.</p>
 
-	<label class="select-none">
-		<input type="checkbox" bind:checked={styled} />
-		Enable CSS
-	</label>
+	<ToggleCss bind:checked={styled} />
 
 	{#each testimonials as { quote, author, source }}
 		<figure class="group/t">
-			<blockquote class="group-not-[.styled]/t:italic">
+			<blockquote>
 				{#if styled}
 					{#each quote.split(/(?<=[.!]) /gu) as sentence}
 						<p>{@html sentence.replace('[...]', '').trim()}</p>
@@ -26,7 +24,7 @@
 			</blockquote>
 
 			<figcaption data-avatar={author.name.at(0)}>
-				<cite class="not-italic group-not-[.styled]/t:before:content-['—_']">
+				<cite class="not-italic">
 					<a href={source}>
 						{author.name}
 					</a>
@@ -42,13 +40,13 @@
 
 <style>
 	@media (pointer: fine) {
-		label:hover ~ figure {
+		:global(label:hover) ~ figure {
 			animation: pulse 1s ease-in-out forwards infinite;
 		}
 	}
 
 	@media (pointer: coarse) {
-		label:active ~ figure {
+		:global(label:active) ~ figure {
 			animation: pulse 1s ease-in-out forwards infinite;
 		}
 	}
@@ -59,7 +57,17 @@
 		}
 	}
 
-	label:has(:checked) ~ figure {
+	:global(label:not(:has(:checked))) ~ figure {
+		blockquote {
+			font-style: italic;
+		}
+
+		cite::before {
+			content: '— ';
+		}
+	}
+
+	:global(label:has(:checked)) ~ figure {
 		font-family: system-ui, sans-serif;
 		margin: 0;
 		display: grid;

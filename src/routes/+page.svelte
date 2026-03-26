@@ -25,6 +25,17 @@
 			</li>
 		{/each}
 	</ul>
+
+	<h3>My Mission & Philosophy</h3>
+	<p>My mission is to make the world a better place, one great website at a time.</p>
+	<p>My philosophy is:</p>
+	<ul>
+		<li><strong>utilize the platform</strong>; the Web is king</li>
+		<li>
+			<strong>maximize CSS, minimize JavaScript</strong>; you can do a lot with just CSS nowadays
+			and not have to rely on external dependencies
+		</li>
+	</ul>
 </section>
 
 <Projects />
