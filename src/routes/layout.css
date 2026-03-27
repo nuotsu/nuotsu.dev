@@ -27,7 +27,7 @@
 	@keyframes target-highlight {
 		0%,
 		50% {
-			background-color: color-mix(in srgb, linkText 25%, transparent);
+			background-color: color-mix(in srgb, LinkText 25%, transparent);
 		}
 	}
 
@@ -37,5 +37,12 @@
 
 	body {
 		@apply grid max-w-5xl items-start gap-x-lh md:grid-cols-[auto_1fr];
+	}
+
+	h2::before {
+		content: '## ';
+	}
+	h3::before {
+		content: '### ';
 	}
 }

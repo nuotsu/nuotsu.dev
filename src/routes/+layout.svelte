@@ -56,7 +56,7 @@
 		{/await}
 	</output>
 
-	<p style:font-family="Comic Sans MS, cursive">web dev is my passion.™</p>
+	<p style:font-family="Comic Sans MS, Papyrus, cursive">web dev is my passion.™</p>
 
 	<p>&copy; {new Date().getFullYear()} Mitchell Christ / nuotsu</p>
 </footer>

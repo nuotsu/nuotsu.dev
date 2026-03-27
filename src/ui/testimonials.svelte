@@ -52,8 +52,13 @@
 	}
 
 	@keyframes pulse {
+		0%,
+		100% {
+			outline: 1px dashed transparent;
+		}
+
 		50% {
-			opacity: 0.5;
+			outline: 1px dashed color-mix(in srgb, currentColor 50%, transparent);
 		}
 	}
 
@@ -68,7 +73,7 @@
 	}
 
 	:global(label:has(:checked)) ~ figure {
-		font-family: system-ui, sans-serif;
+		font-family: var(--font-sans);
 		margin: 0;
 		display: grid;
 		grid-template:

@@ -13,5 +13,4 @@ export const about: { value: string; href?: string }[] = [
 	},
 	{ value: 'Designer-turned-developer' },
 	{ value: 'Supra driver' },
-	{ value: 'MLB nerd' },
 ]

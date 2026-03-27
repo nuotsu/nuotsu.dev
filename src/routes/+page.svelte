@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { about, archive, links, writing } from '$lib/constants'
+	import DodgersScorebug from '$ui/dodgers-scorebug.svelte'
 	import Projects from '$ui/projects.svelte'
 	import Testimonials from '$ui/testimonials.svelte'
 </script>
@@ -15,7 +16,7 @@
 	</p>
 
 	<p>TLDR; I am all of the following:</p>
-	<ul class="columns-[24ch] *:break-inside-avoid marker:content-['✔︎_']">
+	<ul class="columns-[24ch] *:break-inside-avoid [&>::marker]:content-['✔︎_']">
 		{#each about as { value, href }}
 			<li>
 				{value}
@@ -24,6 +25,11 @@
 				{/if}
 			</li>
 		{/each}
+
+		<li>
+			<div class="relative z-1">MLB nerd</div>
+			<DodgersScorebug />
+		</li>
 	</ul>
 
 	<h3>My Mission & Philosophy</h3>
