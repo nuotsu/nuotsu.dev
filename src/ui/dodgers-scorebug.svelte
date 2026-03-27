@@ -41,8 +41,6 @@
 	{#await fetchMLB()}
 		#ITFDB...
 	{:then { liveData }}
-		{$inspect(liveData)}
-
 		<div class="mb-lh inline-grid grid-cols-2 items-stretch text-white">
 			<dl class="m-0 grid -translate-y-[1.5lh] skew-y-15">
 				{#each ['away', 'home'] as side}
