@@ -2,6 +2,7 @@
 	import './layout.css'
 	import { browser, dev } from '$app/environment'
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
+	import DodgersScorebug from '$ui/dodgers-scorebug.svelte'
 	import Metadata from '$ui/metadata.svelte'
 	import PokémonTeam from '$ui/pokemon-team.svelte'
 	import posthog from 'posthog-js'
@@ -46,7 +47,10 @@
 <hr class="col-span-full w-full" />
 
 <footer class="col-span-full">
-	<PokémonTeam />
+	<div class="flex flex-wrap items-center">
+		<PokémonTeam />
+		<DodgersScorebug />
+	</div>
 
 	<output>
 		{#await fetchVisitors()}

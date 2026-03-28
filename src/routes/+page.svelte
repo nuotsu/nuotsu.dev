@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { about, archive, links, writing } from '$lib/constants'
-	import DodgersScorebug from '$ui/dodgers-scorebug.svelte'
 	import Projects from '$ui/projects.svelte'
 	import Testimonials from '$ui/testimonials.svelte'
 </script>
@@ -9,10 +8,11 @@
 	<h2>About</h2>
 	<p>
 		I'm a web dev who loves to build things with code. I'm the Senior Developer at
-		<a href="https://human.marketing">Human Marketing</a> by day, and a freelancer by night working
-		on
+		<a href="https://human.marketing">Human Marketing</a> by day, and a freelancer by night,
+		building
 		<a href="https://typed.sanitypress.dev">SanityPress</a>
-		and <a href="https://mlb.theohtani.com">an MLB scorebug</a>.
+		and <a href="https://mlb.theohtani.com">an MLB scorebug</a> that nobody asked for but a specific niche
+		of nerds in the world secretly need.
 	</p>
 
 	<p>TLDR; I am all of the following:</p>
@@ -25,21 +25,18 @@
 				{/if}
 			</li>
 		{/each}
-
-		<li>
-			<div class="relative z-1">MLB nerd</div>
-			<DodgersScorebug />
-		</li>
 	</ul>
 
 	<h3>My Mission & Philosophy</h3>
-	<p>My mission is to make the world a better place, one great website at a time.</p>
-	<p>My philosophy is:</p>
+	<p>My mission is to <em>make the world a better place, one great website at a time</em>.</p>
+	<p>Philosophy bullets:</p>
 	<ul>
-		<li><strong>utilize the platform</strong>; the Web is king</li>
 		<li>
-			<strong>maximize CSS, minimize JavaScript</strong>; you can do a lot with just CSS nowadays
-			and not have to rely on external dependencies
+			<strong>Utilize the platform</strong>; the Web is king and all shall respect its authority.
+		</li>
+		<li>
+			<strong>Optimize for CSS, minimize JavaScript</strong>; if you're reaching for a dependency to
+			do what CSS can already do, we need to talk.
 		</li>
 	</ul>
 </section>
@@ -51,8 +48,8 @@
 <section id="writing">
 	<h2>Writing</h2>
 	<p>
-		I don't write much, but when I do, it's usually about niche web dev topics
-		<del>and AI-generated</del>.
+		I don't write much, but when I do, it's usually about niche web dev topics. By yours truly
+		<del>and the help of AI</del>.
 	</p>
 	<ul>
 		{#each writing as { href, title }}
@@ -65,7 +62,7 @@
 
 <section id="archive">
 	<h2>Site Archive</h2>
-	<p>I update this site way too frequently. Here's a record of all the previous versions.</p>
+	<p>I update this site compulsively. Here lies the evidence.</p>
 	<ul>
 		{#each archive as { href, date, emoji }}
 			<li>
@@ -78,7 +75,7 @@
 
 <section id="contact">
 	<h2>Contact</h2>
-	<p>Shall we collaborate? Reach out via:</p>
+	<p>Shall we collaborate? Reach out:</p>
 	<ul>
 		{#each links as { label, href }}
 			<li>

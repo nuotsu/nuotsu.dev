@@ -7,7 +7,7 @@
 
 <section id="testimonials">
 	<h2>Testimonials</h2>
-	<p>Real quotes by real people who have said some things about me.</p>
+	<p>Real quotes by real people.</p>
 
 	<ToggleCss bind:checked={styled} />
 

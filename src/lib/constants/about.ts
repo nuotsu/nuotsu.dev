@@ -4,7 +4,7 @@ export const about: { value: string; href?: string }[] = [
 	{ value: 'Webmaster' },
 	{ value: 'Next.js guru' },
 	{ value: 'Tailwind aficionado' },
-	{ value: 'Svelte enthusiast' },
+	{ value: 'Svelte evangelist' },
 	{ value: 'Sanity Pioneer' },
 	{ value: 'Shopify Expert' },
 	{
@@ -13,4 +13,5 @@ export const about: { value: string; href?: string }[] = [
 	},
 	{ value: 'Designer-turned-developer' },
 	{ value: 'Supra driver' },
+	{ value: 'MLB nerd' },
 ]
