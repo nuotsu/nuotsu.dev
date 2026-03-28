@@ -18,6 +18,10 @@
 		}
 	}
 
+	* {
+		min-width: 0;
+	}
+
 	[id]:target {
 		scroll-margin-top: 1lh;
 
@@ -33,10 +37,6 @@
 
 	html {
 		scroll-behavior: smooth;
-	}
-
-	body {
-		@apply grid max-w-5xl items-start gap-x-lh md:grid-cols-[auto_1fr];
 	}
 
 	h2::before {

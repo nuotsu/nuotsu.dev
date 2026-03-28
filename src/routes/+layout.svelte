@@ -22,31 +22,33 @@
 
 <Metadata />
 
-<header class="top-ch md:sticky">
-	<h1>Mitchell Christ</h1>
-	<p>a.k.a. <em>nuotsu</em></p>
+<div class="grid max-w-5xl items-start gap-x-lh md:grid-cols-[auto_1fr]">
+	<header class="top-ch ml-[env(safe-area-inset-left)] md:sticky">
+		<h1>Mitchell Christ</h1>
+		<p>a.k.a. <em>nuotsu</em></p>
 
-	<hr />
+		<hr />
 
-	<nav>
-		<ol style:list-style="upper-roman">
-			<li><a href="#about">About</a></li>
-			<li><a href="#projects">Projects</a></li>
-			<li><a href="#testimonials">Testimonials</a></li>
-			<li><a href="#writing">Writing</a></li>
-			<li><a href="#archive">Site Archive</a></li>
-			<li><a href="#contact">Contact</a></li>
-		</ol>
-	</nav>
-</header>
+		<nav>
+			<ol style:list-style="upper-roman">
+				<li><a href="#about">About</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#testimonials">Testimonials</a></li>
+				<li><a href="#writing">Writing</a></li>
+				<li><a href="#archive">Site Archive</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ol>
+		</nav>
+	</header>
 
-<main>
-	{@render children()}
-</main>
+	<main class="mr-[env(safe-area-inset-right)]">
+		{@render children()}
+	</main>
+</div>
 
-<hr class="col-span-full w-full" />
+<hr class="mr-[env(safe-area-inset-right)] ml-[env(safe-area-inset-left)]" />
 
-<footer class="col-span-full">
+<footer class="ml-[env(safe-area-inset-left)]">
 	<div class="flex flex-wrap items-center">
 		<PokémonTeam />
 		<DodgersScorebug />

@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { about, archive, links, writing } from '$lib/constants'
+	import { about, archive, links } from '$lib/constants'
 	import Projects from '$ui/projects.svelte'
 	import Testimonials from '$ui/testimonials.svelte'
+	import Writing from '$ui/writing.svelte'
 </script>
 
 <section id="about">
@@ -42,23 +43,8 @@
 </section>
 
 <Projects />
-
 <Testimonials />
-
-<section id="writing">
-	<h2>Writing</h2>
-	<p>
-		I don't write much, but when I do, it's usually about niche web dev topics. By yours truly
-		<del>and the help of AI</del>.
-	</p>
-	<ul>
-		{#each writing as { href, title }}
-			<li>
-				<a {href}>{title}</a>
-			</li>
-		{/each}
-	</ul>
-</section>
+<Writing />
 
 <section id="archive">
 	<h2>Site Archive</h2>

@@ -12,7 +12,7 @@
 	<ToggleCss bind:checked={styled} />
 
 	{#each testimonials as { quote, author, source }}
-		<figure class="group/t">
+		<figure class="group/testimonials" data-css-target>
 			<blockquote>
 				{#if styled}
 					{#each quote.split(/(?<=[.!]) /gu) as sentence}
@@ -39,29 +39,6 @@
 </section>
 
 <style>
-	@media (pointer: fine) {
-		:global(label:hover) ~ figure {
-			animation: pulse 1s ease-in-out forwards infinite;
-		}
-	}
-
-	@media (pointer: coarse) {
-		:global(label:active) ~ figure {
-			animation: pulse 1s ease-in-out forwards infinite;
-		}
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			outline: 1px dashed transparent;
-		}
-
-		50% {
-			outline: 1px dashed color-mix(in srgb, currentColor 50%, transparent);
-		}
-	}
-
 	:global(label:not(:has(:checked))) ~ figure {
 		blockquote {
 			font-style: italic;
@@ -97,17 +74,22 @@
 				margin: 0;
 				padding: 0.3lh 0.8lh;
 				border-radius: 1lh;
-				background-color: light-dark(var(--quote-light), var(--quote-dark));
+				background-color: var(--quote-light);
 				transition: 0.2s ease-in-out;
 				transition-property: background-color, color;
+
+				@media (prefers-color-scheme: dark) {
+					background-color: var(--quote-dark);
+				}
 			}
 		}
 
 		&:hover p {
-			background-color: light-dark(
-				oklch(from var(--quote-light) calc(l * 0.95) c h),
-				oklch(from var(--quote-dark) calc(l * 1.2) c h)
-			);
+			background-color: oklch(from var(--quote-light) calc(l * 0.95) c h);
+
+			@media (prefers-color-scheme: dark) {
+				background-color: oklch(from var(--quote-dark) calc(l * 1.2) c h);
+			}
 		}
 
 		figcaption {
@@ -125,7 +107,7 @@
 			}
 
 			&::before {
-				--avatar-color: light-dark(#8997c7, #41365c);
+				--avatar-color: #8997c7;
 				grid-area: avatar;
 				content: attr(data-avatar);
 				display: grid;
@@ -142,6 +124,10 @@
 				text-transform: uppercase;
 				font-weight: bold;
 				color: white;
+
+				@media (prefers-color-scheme: dark) {
+					--avatar-color: #41365c;
+				}
 			}
 		}
 	}
