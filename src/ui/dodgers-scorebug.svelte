@@ -21,10 +21,15 @@
 		feedLiveParams.set('fields', '')
 
 		const feedLiveResponse = await fetch(
-			`https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live?${feedLiveParams.toString()}`,
+			`https://statsapi.mlb.com/api/v1.1/game/${'823973'}/feed/live?${feedLiveParams.toString()}`,
 		)
 		return feedLiveResponse.json()
 	}
+
+	const { format } = new Intl.DateTimeFormat('en-US', {
+		hour: 'numeric',
+		minute: '2-digit',
+	})
 </script>
 
 <svelte:head>
@@ -40,9 +45,9 @@
 >
 	{#await fetchMLB()}
 		#ITFDB...
-	{:then { liveData }}
+	{:then { liveData, gameData }}
 		<div class="mb-lh inline-grid grid-cols-2 items-stretch text-white">
-			<dl class="m-0 grid -translate-y-[1.5lh] skew-y-15">
+			<dl class="m-0 grid -translate-y-[1.25lh] skew-y-15">
 				{#each ['away', 'home'] as side}
 					{@const { team } = liveData.boxscore.teams[side]}
 					{@const logo = `https://midfield.mlbstatic.com/v1/team/${team.id}/spots/64`}
@@ -70,7 +75,17 @@
 					{/each}
 				</div>
 
-				<span class="translate-y-1/3">{liveData.linescore.currentInningOrdinal}</span>
+				<span class="translate-y-1/2">
+					{#if gameData.status.abstractGameState === 'In Progress'}
+						{liveData.linescore.currentInningOrdinal}
+					{:else if gameData.status.abstractGameState === 'Preview'}
+						<time class="text-sm" datetime={gameData.datetime.dateTime}>
+							{format(new Date(gameData.datetime.dateTime))}
+						</time>
+					{:else}
+						{gameData.status.abstractGameState}
+					{/if}
+				</span>
 			</figure>
 
 			{#snippet count(length: number, count: number)}
@@ -87,7 +102,7 @@
 				</dd>
 			{/snippet}
 
-			<div class="grid -translate-y-[1.5lh] -skew-y-15 place-items-center bg-black">
+			<div class="grid -translate-y-[1.25lh] -skew-y-15 place-items-center bg-black">
 				<dl
 					class="m-0 grid max-w-max grid-cols-[auto_1fr] items-center gap-[2px] [&_dt]:text-[calc(1lh-5px)]"
 				>

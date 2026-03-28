@@ -67,9 +67,10 @@
 	<h2>Site Archive</h2>
 	<p>I update this site way too frequently. Here's a record of all the previous versions.</p>
 	<ul>
-		{#each archive as { href, date }}
+		{#each archive as { href, date, emoji }}
 			<li>
 				<a {href}>{date}</a>
+				{#if emoji}{emoji}{/if}
 			</li>
 		{/each}
 	</ul>
