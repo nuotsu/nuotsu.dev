@@ -14,7 +14,7 @@
 		and <a href="https://mlb.theohtani.com">an MLB scorebug</a>.
 	</p>
 
-	<p>I am all of the following:</p>
+	<p>In no particular order, I am:</p>
 	<ul class="anchored-indicator hover-list">
 		{#each about as { value }, i}
 			<li style:margin-left="{i}ch">

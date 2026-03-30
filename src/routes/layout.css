@@ -36,13 +36,16 @@
 
 	html {
 		scroll-behavior: smooth;
+		scrollbar-color: var(--color-accent) transparent;
+		scrollbar-width: thin;
 		font-variant-ligatures: none;
 
 		@apply bg-background font-mono text-sm text-foreground uppercase;
 	}
 
 	body {
-		@apply mx-auto grid max-w-2xl gap-lh px-ch py-lh;
+		padding-inline: max(1ch, env(safe-area-inset-left)) max(1ch, env(safe-area-inset-right));
+		@apply mx-auto grid max-w-2xl gap-lh py-lh;
 	}
 
 	section,
@@ -87,6 +90,10 @@
 		100% {
 			content: '✻';
 		}
+	}
+
+	abbr {
+		text-decoration: none;
 	}
 }
 

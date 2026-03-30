@@ -58,5 +58,5 @@
 		{/await}
 	</output>
 
-	<p class="text-current/50">&copy; {new Date().getFullYear()} nuotsu</p>
+	<p class="text-current/50">&copy; {new Date().getFullYear()} nuotsu. Web Dev is my passion.</p>
 </footer>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { projects } from '$lib/constants'
+	import { count } from '$lib/utils'
 
 	async function fetchGitHub(repo: string) {
 		const response = await fetch(`/api/github?repo=${repo}`)
@@ -14,18 +15,25 @@
 	<ul class="anchored-indicator hover-list">
 		{#each projects.filter((p) => !p.client) as { title, href, year, repo }}
 			<li>
-				<a class="group/p flex gap-ch" {href}>
+				<a class="flex gap-ch" {href}>
 					<span class="line-clamp-1 break-all">{title}</span>
 					{#if year}<time class="text-current/50" datetime={year.toString()}>{year}</time>{/if}
 
 					{#if repo}
-						<span class="ml-auto shrink-0">
+						<span class="ml-auto flex shrink-0 gap-ch">
 							{#await fetchGitHub(repo)}
 								<loading></loading>
-							{:then { stars, forks }}
-								<span class="transition-opacity group-not-hover/p:grayscale starting:opacity-0">
-									{[forks && `🍴${forks}`, stars && `⭐️${stars}`].filter(Boolean).join(' ')}
-								</span>
+							{:then data}
+								{#each ['forks', 'stars'] as key}
+									{#if data[key]}
+										<span
+											class="transition-opacity starting:opacity-0"
+											title={count(data[key], key.slice(0, -1))}
+										>
+											<abbr class="text-current/50" title={key}>{key.charAt(0)}</abbr>{data[key]}
+										</span>
+									{/if}
+								{/each}
 							{/await}
 						</span>
 					{/if}
@@ -34,7 +42,7 @@
 		{/each}
 	</ul>
 
-	<h3 class="h3 text-current/50">Client Work</h3>
+	<h3 class="h3 text-current/50">Client Websites</h3>
 	<ul class="anchored-indicator hover-list">
 		{#each projects.filter((p) => p.client) as { title, href, label }}
 			<li>
