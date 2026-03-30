@@ -2,6 +2,7 @@
 	import './layout.css'
 	import { browser, dev } from '$app/environment'
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
+	import favicon from '$assets/favicon.png?enhanced'
 	import Metadata from '$ui/metadata.svelte'
 	import posthog from 'posthog-js'
 
@@ -23,19 +24,39 @@
 <Metadata />
 
 <header class="space-y-lh">
-	<h1 class="h1 mb-0">Mitchell Christ</h1>
-	<p class="text-current/50 before:content-['@_']">
-		{#each aliases as alias, i}
-			<em>{alias}</em>{#if i < aliases.length - 1}{' / '}{/if}
-		{/each}
-	</p>
+	<div class="flex gap-ch">
+		<hgroup class="grow">
+			<h1 class="h1 mb-0">Mitchell Christ</h1>
+			<p class="text-current/50 before:content-['@_']">
+				{#each aliases as alias, i}
+					<em>{alias}</em>{#if i < aliases.length - 1}{' / '}{/if}
+				{/each}
+			</p>
+		</hgroup>
+
+		<enhanced:img
+			class="size-[2lh] shrink-0 rounded-full text-transparent opacity-0 transition-opacity"
+			src={favicon}
+			alt="Mitchell Christ"
+			width="40"
+			height="40"
+			loading="eager"
+			draggable={false}
+			onload={() => {
+				const img = document.querySelector('img')
+				if (img) {
+					img.classList.remove('text-transparent', 'opacity-0')
+				}
+			}}
+		/>
+	</div>
 
 	<nav>
 		<ol class="list-[lower-roman] pl-[5ch] hover-list marker:text-current/50 [&_a]:block">
 			<li><a href="#about">About</a></li>
 			<li><a href="#projects">Projects</a></li>
-			<li><a href="#testimonials">Testimonials</a></li>
 			<li><a href="#writing">Writing</a></li>
+			<li><a href="#testimonials">Testimonials</a></li>
 			<li><a href="#archive">Archive</a></li>
 			<li><a href="#contact">Contact</a></li>
 		</ol>

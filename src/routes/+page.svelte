@@ -9,7 +9,7 @@
 		I'm a web dev who loves to build things with code. I'm the Senior Developer at <a
 			href="https://human.marketing">Human Marketing</a
 		>
-		by day, and a freelancer by night, building
+		by day; a freelancer by night, building
 		<a href="https://typed.sanitypress.dev">SanityPress</a>
 		and <a href="https://mlb.theohtani.com">an MLB scorebug</a>.
 	</p>
@@ -39,6 +39,20 @@
 
 <Projects />
 
+<section id="writing">
+	<h2>Writing</h2>
+	<ul class="anchored-indicator hover-list">
+		{#each writing as { title, href, date }}
+			<li>
+				<a class="flex gap-ch" {href}>
+					<time class="shrink-0 text-current/50" datetime={date}>{date}</time>
+					<span class="line-clamp-1 break-all">{title}</span>
+				</a>
+			</li>
+		{/each}
+	</ul>
+</section>
+
 <section id="testimonials">
 	<h2>Testimonials</h2>
 
@@ -66,20 +80,6 @@
 	</div>
 </section>
 
-<section id="writing">
-	<h2>Writing</h2>
-	<ul class="anchored-indicator hover-list">
-		{#each writing as { title, href, date }}
-			<li>
-				<a class="flex gap-ch" {href}>
-					<time class="shrink-0 text-current/50" datetime={date}>{date}</time>
-					<span class="line-clamp-1 break-all">{title}</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-</section>
-
 <section id="archive">
 	<h2>Archive</h2>
 	<ul class="anchored-indicator columns-[14ch] hover-list *:break-inside-avoid">
@@ -97,8 +97,15 @@
 <section id="contact">
 	<h2>Contact</h2>
 	<ul class="anchored-indicator hover-list">
-		{#each links as { label, href }}
-			<li><a class="block" {href}>{label}</a></li>
+		{#each links as { title, href, label }}
+			<li>
+				<a class="flex" class:gap-ch={!href.startsWith('mailto:')} {href}>
+					{title}
+					{#if label}
+						<span class="text-current/50">{label}</span>
+					{/if}
+				</a>
+			</li>
 		{/each}
 	</ul>
 </section>
