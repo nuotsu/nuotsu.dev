@@ -1,95 +1,48 @@
 <script lang="ts">
-	import { projects } from '$lib/constants/projects'
-	import { count } from '$lib/utils'
+	import { projects } from '$lib/constants'
 
-	async function fetchGithub(repo: string) {
-		const res = await fetch(`/api/github?repo=${repo}`)
-		return res.json()
+	async function fetchGitHub(repo: string) {
+		const response = await fetch(`/api/github?repo=${repo}`)
+		return response.json()
 	}
 </script>
 
-<section id="projects">
+<section id="projects" class="space-y-lh">
 	<h2>Projects</h2>
 
-	<fieldset class="flex flex-wrap gap-x-ch">
-		<legend>Some of my notable works:</legend>
-
-		<label>
-			<input name="projects" type="radio" checked />
-			Personal side quests
-		</label>
-
-		<dl class="pl-[2.5em]">
-			{#each projects.filter((p) => !p.client) as { title, href, year, repo }}
-				<div class="flex flex-wrap items-center gap-ch not-hover:transition-opacity">
-					<dt class="list-item list-disc">
-						<a {href}>
-							{title}
-						</a>
-
-						{#if year}
-							<time datetime={year.toString()}>({year})</time>
-						{/if}
-					</dt>
+	<h3 class="text-current/50">Personal Side Quests</h3>
+	<ul class="anchored-indicator hover-list">
+		{#each projects.filter((p) => !p.client) as { title, href, year, repo }}
+			<li>
+				<a class="group/p flex gap-ch" {href}>
+					<span class="line-clamp-1 break-all">{title}</span>
+					{#if year}<time class="text-current/50" datetime={year.toString()}>{year}</time>{/if}
 
 					{#if repo}
-						{#await fetchGithub(repo) then { stars, forks }}
-							{#if stars || forks}
-								<dd class="order-last m-0 shrink-0 transition-opacity starting:opacity-0">
-									{[stars && count(stars, 'star'), forks && count(forks, 'fork')]
-										.filter(Boolean)
-										.join(', ')}
-								</dd>
-							{/if}
-						{/await}
+						<span class="ml-auto shrink-0">
+							{#await fetchGitHub(repo)}
+								<loading></loading>
+							{:then { stars, forks }}
+								<span class="transition-opacity group-not-hover/p:grayscale starting:opacity-0">
+									{[forks && `🍴${forks}`, stars && `⭐️${stars}`].filter(Boolean).join(' ')}
+								</span>
+							{/await}
+						</span>
 					{/if}
-				</div>
-			{/each}
-		</dl>
+				</a>
+			</li>
+		{/each}
+	</ul>
 
-		<label>
-			<input name="projects" type="radio" />
-			Client websites
-		</label>
-
-		<ul>
-			{#each projects.filter((p) => p.client) as { title, href }}
-				<li>
-					<a {href}>{title}</a>
-				</li>
-			{/each}
-		</ul>
-	</fieldset>
+	<h3 class="h3 text-current/50">Client Work</h3>
+	<ul class="anchored-indicator hover-list">
+		{#each projects.filter((p) => p.client) as { title, href, label }}
+			<li>
+				<a class="flex gap-ch" {href}>
+					{title}
+					{#if label}<span class="line-clamp-1 break-all text-current/50">{label}</span>{/if}
+				</a>
+			</li>
+		{/each}
+	</ul>
 </section>
-
-<style>
-	label {
-		order: -1;
-
-		&:not(:has(:checked)) + * {
-			display: none;
-		}
-
-		& + * {
-			width: 100%;
-		}
-	}
-
-	dl {
-		& > div:has(dd)::before {
-			content: '';
-			order: 1;
-			flex-grow: 1;
-			border-bottom: 1px dotted;
-			transition: opacity var(--default-transition-duration) ease-in-out;
-
-			@starting-style {
-				opacity: 0;
-			}
-		}
-
-		&:has(:hover) > div:not(:hover) {
-			opacity: 0.5;
-		}
-	}
-</style>

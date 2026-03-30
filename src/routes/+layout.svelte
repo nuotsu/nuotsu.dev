@@ -2,9 +2,7 @@
 	import './layout.css'
 	import { browser, dev } from '$app/environment'
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
-	import DodgersScorebug from '$ui/dodgers-scorebug.svelte'
 	import Metadata from '$ui/metadata.svelte'
-	import PokémonTeam from '$ui/pokemon-team.svelte'
 	import posthog from 'posthog-js'
 
 	let { children } = $props()
@@ -14,55 +12,51 @@
 		afterNavigate(() => posthog.capture('$pageview'))
 	}
 
+	const aliases = ['nuotsu', 'XZ', 'Kazumaru']
+
 	async function fetchVisitors() {
-		const res = await fetch('/api/visitors')
-		return res.json()
+		const response = await fetch('/api/visitors')
+		return response.json()
 	}
 </script>
 
 <Metadata />
 
-<div class="grid max-w-5xl items-start gap-x-lh md:grid-cols-[auto_1fr]">
-	<header class="top-ch ml-[env(safe-area-inset-left)] md:sticky">
-		<h1>Mitchell Christ</h1>
-		<p>a.k.a. <em>nuotsu</em></p>
+<header class="space-y-lh">
+	<h1 class="h1 mb-0">Mitchell Christ</h1>
+	<p class="text-current/50 before:content-['@_']">
+		{#each aliases as alias, i}
+			<em>{alias}</em>{#if i < aliases.length - 1}{' / '}{/if}
+		{/each}
+	</p>
 
-		<hr />
+	<nav>
+		<ol class="list-[lower-roman] pl-[5ch] hover-list marker:text-current/50 [&_a]:block">
+			<li><a href="#about">About</a></li>
+			<li><a href="#projects">Projects</a></li>
+			<li><a href="#testimonials">Testimonials</a></li>
+			<li><a href="#writing">Writing</a></li>
+			<li><a href="#archive">Archive</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ol>
+	</nav>
+</header>
 
-		<nav>
-			<ol style:list-style="upper-roman">
-				<li><a href="#about">About</a></li>
-				<li><a href="#projects">Projects</a></li>
-				<li><a href="#testimonials">Testimonials</a></li>
-				<li><a href="#writing">Writing</a></li>
-				<li><a href="#archive">Site Archive</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ol>
-		</nav>
-	</header>
+<main class="space-y-lh">{@render children()}</main>
 
-	<main class="mr-[env(safe-area-inset-right)]">
-		{@render children()}
-	</main>
-</div>
-
-<hr class="mr-[env(safe-area-inset-right)] ml-[env(safe-area-inset-left)]" />
-
-<footer class="ml-[env(safe-area-inset-left)]">
-	<div class="flex flex-wrap items-center">
-		<PokémonTeam />
-		<DodgersScorebug />
-	</div>
+<footer>
+	<h2>Footer</h2>
 
 	<output>
+		Visitors:
 		{#await fetchVisitors()}
-			Counting visitors...
+			<loading></loading>
 		{:then { visitors }}
-			Visitors: {new Intl.NumberFormat().format(visitors)}
+			<span class="transition-opacity starting:opacity-0">
+				{new Intl.NumberFormat().format(visitors)}
+			</span>
 		{/await}
 	</output>
 
-	<p style:font-family="Comic Sans MS, Papyrus, cursive">web dev is my passion.™</p>
-
-	<p>&copy; {new Date().getFullYear()} Mitchell Christ / nuotsu</p>
+	<p class="text-current/50">&copy; {new Date().getFullYear()} nuotsu</p>
 </footer>

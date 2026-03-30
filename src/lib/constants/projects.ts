@@ -14,6 +14,7 @@ import theOhtani from '$assets/projects/theohtani.png?enhanced'
 export const projects: {
 	featured?: true
 	title: string
+	label?: string
 	year?: number
 	href?: string
 	repo?: string
@@ -118,7 +119,8 @@ export const projects: {
 		image: human,
 	},
 	{
-		title: 'Armorblox (acquired by Cisco)',
+		title: 'Armorblox',
+		label: 'Acquired by Cisco',
 		client: true,
 	},
 	{

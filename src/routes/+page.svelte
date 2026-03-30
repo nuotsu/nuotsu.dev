@@ -1,34 +1,29 @@
 <script lang="ts">
-	import { about, archive, links } from '$lib/constants'
+	import { about, archive, links, testimonials, writing } from '$lib/constants'
 	import Projects from '$ui/projects.svelte'
-	import Testimonials from '$ui/testimonials.svelte'
-	import Writing from '$ui/writing.svelte'
 </script>
 
-<section id="about">
+<section id="about" class="space-y-lh [&_a]:link">
 	<h2>About</h2>
 	<p>
-		I'm a web dev who loves to build things with code. I'm the Senior Developer at
-		<a href="https://human.marketing">Human Marketing</a> by day, and a freelancer by night,
-		building
+		I'm a web dev who loves to build things with code. I'm the Senior Developer at <a
+			href="https://human.marketing">Human Marketing</a
+		>
+		by day, and a freelancer by night, building
 		<a href="https://typed.sanitypress.dev">SanityPress</a>
-		and <a href="https://mlb.theohtani.com">an MLB scorebug</a> that nobody asked for but a specific niche
-		of nerds in the world secretly need.
+		and <a href="https://mlb.theohtani.com">an MLB scorebug</a>.
 	</p>
 
-	<p>TLDR; I am all of the following:</p>
-	<ul class="columns-[24ch] *:break-inside-avoid [&>::marker]:content-['✔︎_']">
-		{#each about as { value, href }}
-			<li>
+	<p>I am all of the following:</p>
+	<ul class="anchored-indicator hover-list">
+		{#each about as { value }, i}
+			<li style:margin-left="{i}ch">
 				{value}
-				{#if href}
-					<a {href}>*</a>
-				{/if}
 			</li>
 		{/each}
 	</ul>
 
-	<h3>My Mission & Philosophy</h3>
+	<h3>Mission & Philosophy</h3>
 	<p>My mission is to <em>make the world a better place, one great website at a time</em>.</p>
 	<p>Philosophy bullets:</p>
 	<ul>
@@ -43,17 +38,57 @@
 </section>
 
 <Projects />
-<Testimonials />
-<Writing />
+
+<section id="testimonials">
+	<h2>Testimonials</h2>
+
+	<div class="anchored-indicator hover-list">
+		{#each testimonials as { quote, author, source }}
+			<figure class="relative not-last:pb-lh">
+				<blockquote>
+					<p class="[&_a]:link">{@html quote}</p>
+				</blockquote>
+
+				<cite class="text-current/50 before:content-['—_']">
+					<a href={source}>
+						{author.name}
+						{#if source}
+							<span class="absolute inset-0"></span>
+						{/if}
+					</a>
+
+					{#if author.title}
+						<span class="before:content-['//_']">{author.title}</span>
+					{/if}
+				</cite>
+			</figure>
+		{/each}
+	</div>
+</section>
+
+<section id="writing">
+	<h2>Writing</h2>
+	<ul class="anchored-indicator hover-list">
+		{#each writing as { title, href, date }}
+			<li>
+				<a class="flex gap-ch" {href}>
+					<time class="shrink-0 text-current/50" datetime={date}>{date}</time>
+					<span class="line-clamp-1 break-all">{title}</span>
+				</a>
+			</li>
+		{/each}
+	</ul>
+</section>
 
 <section id="archive">
-	<h2>Site Archive</h2>
-	<p>I update this site compulsively. Here lies the evidence.</p>
-	<ul>
-		{#each archive as { href, date, emoji }}
+	<h2>Archive</h2>
+	<ul class="anchored-indicator columns-[14ch] hover-list *:break-inside-avoid">
+		{#each archive as { date, href, emoji }}
 			<li>
-				<a {href}>{date}</a>
-				{#if emoji}{emoji}{/if}
+				<a class="flex gap-ch not-hover:grayscale" {href}>
+					<time class="shrink-0 text-current/50" datetime={date}>{date}</time>
+					{emoji}
+				</a>
 			</li>
 		{/each}
 	</ul>
@@ -61,12 +96,9 @@
 
 <section id="contact">
 	<h2>Contact</h2>
-	<p>Shall we collaborate? Reach out:</p>
-	<ul>
+	<ul class="anchored-indicator hover-list">
 		{#each links as { label, href }}
-			<li>
-				<a {href}>{label}</a>
-			</li>
+			<li><a class="block" {href}>{label}</a></li>
 		{/each}
 	</ul>
 </section>
