@@ -15,12 +15,12 @@ export const links: { title: string; label?: string; href: string }[] = [
 		href: 'https://github.com/mitchuman',
 	},
 	{
-		title: 'LinkedIn',
-		href: 'https://linkedin.com/in/nuotsu',
-	},
-	{
 		title: 'X',
 		label: '@marutchell',
 		href: 'https://x.com/marutchell',
+	},
+	{
+		title: 'LinkedIn',
+		href: 'https://linkedin.com/in/nuotsu',
 	},
 ]

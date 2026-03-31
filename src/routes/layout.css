@@ -131,9 +131,10 @@
 	&:has(> *:hover)::before {
 		content: '>';
 		position: absolute;
+		position-anchor: --anchored-indicator;
 		top: anchor(top);
 		left: calc(anchor(left) - 1ch);
-		position-anchor: --anchored-indicator;
+		@apply text-accent;
 	}
 
 	> *:hover {

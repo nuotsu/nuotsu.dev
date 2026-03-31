@@ -4,5 +4,5 @@
 
 ## TODO
 
-- emojis in archives
-- claude TUI as a new styles
+- Claude Code ascii
+- Claude Code floating agent to send messages? easter eggs?

@@ -3,6 +3,7 @@
 	import { browser, dev } from '$app/environment'
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import favicon from '$assets/favicon.png?enhanced'
+	import ASCII from '$ui/ascii.svelte'
 	import Metadata from '$ui/metadata.svelte'
 	import posthog from 'posthog-js'
 
@@ -81,3 +82,5 @@
 
 	<p class="text-current/50">&copy; {new Date().getFullYear()} nuotsu. Web Dev is my passion.</p>
 </footer>
+
+<ASCII />

@@ -24,8 +24,12 @@
 	</ul>
 
 	<h3>Mission & Philosophy</h3>
-	<p>My mission is to <em>make the world a better place, one great website at a time</em>.</p>
-	<p>Philosophy bullets:</p>
+	<p class="text-center text-balance">
+		My mission is to:
+		<em class="block">
+			make the world a better place,<br />one great website at a time.
+		</em>
+	</p>
 	<ul>
 		<li>
 			<strong>Utilize the platform</strong>; the Web is king and all shall respect its authority.
