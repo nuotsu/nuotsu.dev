@@ -89,9 +89,9 @@
 	<ul class="anchored-indicator columns-[14ch] hover-list *:break-inside-avoid">
 		{#each archive as { date, href, emoji }}
 			<li>
-				<a class="flex gap-ch not-hover:grayscale" {href}>
+				<a class="group/a flex gap-ch" {href}>
 					<time class="shrink-0 text-current/50" datetime={date}>{date}</time>
-					{emoji}
+					<span class="group-not-hover/a:grayscale group-focus-visible/a:grayscale-0">{emoji}</span>
 				</a>
 			</li>
 		{/each}

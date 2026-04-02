@@ -34,6 +34,10 @@
 		}
 	}
 
+	:focus-visible {
+		@apply bg-accent/25 outline-[.5px] outline-accent outline-dashed;
+	}
+
 	html {
 		scroll-behavior: smooth;
 		scrollbar-color: var(--color-accent) transparent;
