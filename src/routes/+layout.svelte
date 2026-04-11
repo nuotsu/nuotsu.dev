@@ -104,7 +104,9 @@
 		</dd>
 	</dl>
 
-	<p class="text-current/50">&copy; {new Date().getFullYear()} nuotsu. Web Dev is my passion.</p>
+	<p class="mt-lh text-center text-current/50">
+		&copy; {new Date().getFullYear()} nuotsu. Web Dev is my passion.
+	</p>
 </footer>
 
 <ASCII />

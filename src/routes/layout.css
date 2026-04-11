@@ -7,7 +7,7 @@
 		'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
 		'Courier New', monospace;
 
-	--color-background: var(--color-neutral-800);
+	--color-background: #1b1913;
 	--color-foreground: #fff;
 
 	--color-accent: dodgerblue;
