@@ -30,7 +30,7 @@
 		"vite": "^8.0.8"
 	},
 	"dependencies": {
-		"posthog-js": "^1.367.0",
+		"posthog-js": "^1.368.0",
 		"posthog-node": "^5.29.2",
 		"tailwind-merge": "^3.5.0",
 		"uqr": "^0.1.3"

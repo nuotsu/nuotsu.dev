@@ -32,11 +32,16 @@
 	</p>
 	<ul>
 		<li>
-			<strong>Utilize the platform</strong>; the Web is king and all shall respect its authority.
+			<strong>Utilize the platform</strong>; W3C standards are the foundation of the Web. They know
+			best.
 		</li>
 		<li>
 			<strong>Optimize for CSS, minimize JavaScript</strong>; if you're reaching for a dependency to
 			do what CSS can already do, we need to talk.
+		</li>
+		<li>
+			<strong>Future-proofing</strong>; always expect change. Because clients don't know what they
+			want until they see it.
 		</li>
 	</ul>
 </section>
