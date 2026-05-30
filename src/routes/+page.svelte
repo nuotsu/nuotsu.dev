@@ -10,7 +10,7 @@
 			href="https://human.marketing">Human Marketing</a
 		>
 		by day; a freelancer by night, building
-		<a href="https://typed.sanitypress.dev">SanityPress</a>
+		<a href="https://sanitypress.dev">SanityPress</a>
 		and <a href="https://mlb.theohtani.com">an MLB scorebug</a>.
 	</p>
 

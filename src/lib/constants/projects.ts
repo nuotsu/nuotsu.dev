@@ -8,7 +8,7 @@ import human from '$assets/projects/human.png?enhanced'
 import mlb from '$assets/projects/mlb.png?enhanced'
 import sanitypressWithTypegen from '$assets/projects/sanitypress-with-typegen.png?enhanced'
 import sanitypress from '$assets/projects/sanitypress.png?enhanced'
-import sb3 from '$assets/projects/sb3.png?enhanced'
+// import sb3 from '$assets/projects/sb3.png?enhanced'
 import theOhtani from '$assets/projects/theohtani.png?enhanced'
 
 export const projects: {
@@ -30,18 +30,18 @@ export const projects: {
 		featured: true,
 		title: 'SanityPress with Typegen',
 		year: 2025,
-		href: 'https://typed.sanitypress.dev',
+		href: 'https://sanitypress.dev',
 		image: sanitypressWithTypegen,
-		repo: 'sanitypress-with-typegen',
+		repo: 'sanitypress',
 		tags: ['Next.js', 'Sanity', 'TypeScript', 'Tailwind'],
 	},
 	{
 		// featured: true,
 		title: 'SanityPress',
 		year: 2024,
-		href: 'https://github.com/nuotsu/sanitypress',
+		href: 'https://github.com/nuotsu/sanitypress-2023',
 		image: sanitypress,
-		repo: 'sanitypress',
+		repo: 'sanitypress-2023',
 	},
 	{
 		featured: true,
