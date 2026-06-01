@@ -1,29 +1,12 @@
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-vercel';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		adapter: adapter(),
-		alias: {
-			$assets: 'src/assets',
-			$ui: 'src/ui',
-		},
-
-		paths: {
-			relative: false, // Required for PostHog session replay to work correctly
-		},
-	},
-
 	compilerOptions: {
-		experimental: {
-			async: true,
-		},
+		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
+	kit: { adapter: adapter() }
+};
 
-	vitePlugin: {
-		dynamicCompileOptions: ({ filename }) =>
-			filename.includes('node_modules') ? undefined : { runes: true },
-	},
-}
-
-export default config
+export default config;
