@@ -1,0 +1,97 @@
+@import url('./fonts.css');
+
+@import 'tailwindcss';
+
+@theme {
+	--font-sans: 'Geist', sans-serif;
+	--font-mono: 'Geist Mono', ui-monospace, monospace;
+	--font-pixel: 'Geist Pixel', sans-serif;
+
+	--color-background: #09090b;
+	--color-foreground: #fff;
+
+	--spacing-ch: 1ch;
+	--spacing-lh: 1lh;
+}
+
+@custom-variant hover (&:hover);
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		max-width: 50ch;
+		padding: 2lh 1ch;
+
+		@apply mx-auto bg-background font-sans text-foreground/60;
+	}
+
+	:is(h1, h2, h3, h4, h5, h6) {
+		@apply mb-ch font-pixel text-foreground before:font-mono before:text-current/50;
+	}
+
+	h1::before {
+		content: '# ';
+	}
+
+	h2::before {
+		content: '## ';
+	}
+
+	h3::before {
+		content: '### ';
+	}
+
+	h4::before {
+		content: '#### ';
+	}
+
+	h5::before {
+		content: '##### ';
+	}
+
+	h6::before {
+		content: '###### ';
+	}
+
+	ul li {
+		@apply before:font-mono before:text-current/50 before:content-['-_'];
+	}
+
+	a {
+		@apply text-foreground;
+
+		&:hover {
+			text-decoration: underline
+				color-mix(in srgb, var(--color-foreground) 50%, transparent);
+			text-decoration-thickness: 0.5px;
+			text-underline-offset: 0.2lh;
+		}
+	}
+
+	loading::before {
+		content: '*';
+		color: var(--color-accent);
+		animation: loading 0.6s infinite alternate;
+	}
+
+	@keyframes loading {
+		0% {
+			content: '✢';
+		}
+		25% {
+			content: '✳';
+		}
+		50% {
+			content: '✶';
+		}
+		75% {
+			content: '✽';
+		}
+		100% {
+			content: '✻';
+		}
+	}
+}
