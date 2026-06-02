@@ -72,26 +72,26 @@
 	}
 
 	loading::before {
-		content: '*';
+		content: '*\FE0E';
 		color: var(--color-accent);
 		animation: loading 0.6s infinite alternate;
 	}
 
 	@keyframes loading {
 		0% {
-			content: '✢';
+			content: '✢\FE0E';
 		}
 		25% {
-			content: '✳';
+			content: '✳\FE0E';
 		}
 		50% {
-			content: '✶';
+			content: '✶\FE0E';
 		}
 		75% {
-			content: '✽';
+			content: '✽\FE0E';
 		}
 		100% {
-			content: '✻';
+			content: '✻\FE0E';
 		}
 	}
 }
