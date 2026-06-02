@@ -1,13 +1,11 @@
 <script lang="ts">
 	import './app.css'
-	import favicon from '$lib/assets/favicon.svg'
+	import Metadata from '$ui/metadata.svelte'
 
 	let { children } = $props()
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<Metadata />
 
 <header>
 	<h1>Mitchell Christ</h1>
