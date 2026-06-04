@@ -5,7 +5,7 @@
 @theme {
 	--font-sans: 'Geist', sans-serif;
 	--font-mono: 'Geist Mono', ui-monospace, monospace;
-	--font-pixel: 'Geist Pixel', sans-serif;
+	--font-pixel: 'Geist Pixel Square', sans-serif;
 
 	--color-background: #09090b;
 	--color-foreground: #fff;
