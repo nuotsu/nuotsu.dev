@@ -37,7 +37,12 @@
 					{#await getStars(project.repo)}
 						<loading></loading>
 					{:then stars}
-						{stars} stars
+						{stars}
+						{#if stars == 1}
+							star
+						{:else}
+							stars
+						{/if}
 					{/await}
 				{/if}
 			</li>
@@ -62,24 +67,28 @@
 <section class="space-y-ch">
 	<h2>Testimonials</h2>
 	<div class="space-y-[.75lh]">
-	{#each testimonials as testimonial}
-		<figure
-			class="relative flex flex-col gap-[2px] [&_a]:before:absolute [&_a]:before:inset-0"
-		>
-			<cite class="text-[smaller] not-italic pl-[1.5rch]">
-				<b class="text-foreground">{testimonial.author.name}</b>,
-				{testimonial.author.title}
-			</cite>
+		{#each testimonials as testimonial}
+			<figure
+				class="relative flex flex-col gap-0.5 [&_a]:before:absolute [&_a]:before:inset-0"
+			>
+				<cite class="pl-[1.5rch] text-[smaller] not-italic">
+					<b class="text-foreground">{testimonial.author.name}</b>,
+					{testimonial.author.title}
+				</cite>
 
-			<blockquote class="flex flex-col items-start gap-[3px] [&_strong]:font-normal [&_strong]:text-foreground text-pretty">
-				{const sentences = testimonial.quote.split('\n')}
-				{#each sentences as sentence, i}
-					<p class="rounded-[.75lh] bg-foreground/7 px-[1.5ch] py-[.5ch]">{@html sentence}</p>
-				{/each}
-			</blockquote>
-		</figure>
-	{/each}
-</div>
+				<blockquote
+					class="flex flex-col items-start gap-0.75 text-pretty [&_strong]:font-normal [&_strong]:text-foreground"
+				>
+					{const sentences = testimonial.quote.split('\n')}
+					{#each sentences as sentence, i}
+						<p class="rounded-[.75lh] bg-foreground/7 px-[1.5ch] py-[.5ch]">
+							{@html sentence}
+						</p>
+					{/each}
+				</blockquote>
+			</figure>
+		{/each}
+	</div>
 </section>
 
 <section class="space-y-ch">
