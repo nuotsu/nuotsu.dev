@@ -18,9 +18,9 @@
 	<div class="shrink-0">
 		<enhanced:img
 			class="size-[3lh] rounded-full border border-foreground/5 object-cover"
-			src="$assets/portrait.jpg"
+			src="$assets/portrait.jpg?quality=90"
 			alt="Mitchell Christ"
-			width="144"
+			width="216"
 		/>
 	</div>
 </header>
