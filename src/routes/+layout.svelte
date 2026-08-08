@@ -17,7 +17,7 @@
 	     the class below lands on the inner <img>, so shrink-0 has to go here -->
 	<div class="shrink-0">
 		<enhanced:img
-			class="size-[3lh] rounded-full border border-foreground/20 object-cover"
+			class="size-[3lh] rounded-full border border-foreground/5 object-cover"
 			src="$assets/portrait.jpg"
 			alt="Mitchell Christ"
 			width="144"
