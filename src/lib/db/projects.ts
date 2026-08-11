@@ -23,6 +23,12 @@ export const projects: {
 		year: 2026,
 		repo: ['storefront-macos-menubar'],
 	},
+	{
+		title: 'Studiofront',
+		url: 'https://studiofront.nuotsu.dev',
+		year: 2026,
+		repo: ['studiofront'],
+	},
 	// {
 	// 	title: "MLB Live Scorebug ('25)",
 	// 	url: 'https://sb3.theohtani.com',
