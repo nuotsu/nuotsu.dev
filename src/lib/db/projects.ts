@@ -18,7 +18,7 @@ export const projects: {
 		repo: ['mlb'],
 	},
 	{
-		title: 'Storefront (macOS Menu Bar App)',
+		title: 'Storefront',
 		url: 'https://storefront.nuotsu.dev',
 		year: 2026,
 		repo: ['storefront-macos-menubar'],
