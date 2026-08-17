@@ -17,7 +17,7 @@
 			href="https://sanitypress.dev">SanityPress</a
 		>
 		and an
-		<a href="https://mlb.theohtani.com">MLB live scorebug</a>.
+		<a href="https://mlb.theohtani.com">MLB live scorebug</a>, while vibe-coding macOS apps.
 	</p>
 </section>
 

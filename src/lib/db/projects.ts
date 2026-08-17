@@ -18,16 +18,16 @@ export const projects: {
 		repo: ['mlb'],
 	},
 	{
-		title: 'Storefront',
-		url: 'https://storefront.nuotsu.dev',
-		year: 2026,
-		repo: ['storefront-macos-menubar'],
-	},
-	{
 		title: 'Studiofront',
 		url: 'https://studiofront.nuotsu.dev',
 		year: 2026,
 		repo: ['studiofront'],
+	},
+	{
+		title: 'Storefront',
+		url: 'https://storefront.nuotsu.dev',
+		year: 2026,
+		repo: ['storefront-macos-menubar'],
 	},
 	// {
 	// 	title: "MLB Live Scorebug ('25)",
@@ -51,11 +51,6 @@ export const projects: {
 	},
 
 	// freelance
-	{
-		title: 'CUSCO USA',
-		url: 'https://cuscousainc.com',
-		year: 2021,
-	},
 	// {
 	// 	title: 'ECL Americas',
 	// 	url: 'https://eclamericas.com',
@@ -73,11 +68,6 @@ export const projects: {
 	// },
 
 	// Human
-	{
-		title: 'Human Marketing',
-		url: 'https://human.marketing',
-		year: 2024,
-	},
 	// {
 	// 	title: 'Vibrant Health',
 	// 	url: 'https://vibranthealth.com',
