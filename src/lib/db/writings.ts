@@ -4,6 +4,11 @@ export const writings: {
 	date: string
 }[] = [
 	{
+		title: 'SanityPress Earns a Sanity Pioneer Spot',
+		href: 'https://sanitypress.dev/blog/sanitypress-earns-a-sanity-pioneer-spot',
+		date: '2026/08',
+	},
+	{
 		title: 'Building Websites with Modules That Convert',
 		href: 'https://sanitypress.dev/blog/building-websites-with-modules-that-convert',
 		date: '2026/05',
