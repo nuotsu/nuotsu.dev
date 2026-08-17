@@ -18,16 +18,16 @@ export const projects: {
 		repo: ['mlb'],
 	},
 	{
-		title: 'Storefront',
-		url: 'https://storefront.nuotsu.dev',
-		year: 2026,
-		repo: ['storefront-macos-menubar'],
-	},
-	{
 		title: 'Studiofront',
 		url: 'https://studiofront.nuotsu.dev',
 		year: 2026,
 		repo: ['studiofront'],
+	},
+	{
+		title: 'Storefront',
+		url: 'https://storefront.nuotsu.dev',
+		year: 2026,
+		repo: ['storefront-macos-menubar'],
 	},
 	// {
 	// 	title: "MLB Live Scorebug ('25)",

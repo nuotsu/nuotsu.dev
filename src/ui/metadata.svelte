@@ -6,7 +6,7 @@
 	const metadata = {
 		title: 'Mitchell Christ | nuotsu',
 		description:
-			'Frontend Web Developer based in Irvine, California. Currently building SanityPress and an MLB live scorebug.',
+			'Frontend Web Developer based in Irvine, California. Currently building SanityPress and an MLB live scorebug, while vibe-coding macOS apps.',
 		imageAlt: 'Portrait of Mitchell Christ',
 	}
 </script>
