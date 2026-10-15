@@ -44,11 +44,6 @@ export const projects: {
 	// 	url: 'https://sb2.theohtani.com',
 	// 	year: 2023,
 	// },
-	{
-		title: 'The Ohtani',
-		url: 'https://theohtani.com',
-		year: 2025,
-	},
 
 	// freelance
 	// {

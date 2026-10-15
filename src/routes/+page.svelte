@@ -104,5 +104,8 @@
 		<li>
 			<a href="https://linkedin.com/in/nuotsu">LinkedIn</a>
 		</li>
+		<li>
+			<a href="mailto:mitchell@mail.grokbot.com">My bot</a>
+		</li>
 	</ul>
 </section>
