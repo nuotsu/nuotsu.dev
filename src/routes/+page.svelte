@@ -2,7 +2,6 @@
 	import { projects } from '$lib/db/projects'
 	import { testimonials } from '$lib/db/testimonials'
 	import { writings } from '$lib/db/writings'
-	import GlowLink from '$ui/glow-link.svelte'
 
 	async function getStars(repo: string[]) {
 		const response = await fetch(`/api/stars?repo=${repo.join(',')}`)
@@ -14,14 +13,11 @@
 <section class="space-y-ch">
 	<h2>About</h2>
 	<p>
-		Frontend Web Developer based in Irvine, California. Currently building <GlowLink
-			href="https://sanitypress.dev"
-			color="#f97316">SanityPress</GlowLink
+		Frontend Web Developer based in Irvine, California. Currently building <a
+			href="https://sanitypress.dev">SanityPress</a
 		>
 		and an
-		<GlowLink href="https://mlb.theohtani.com" color="#72f088"
-			>MLB live scorebug</GlowLink
-		>, while vibe-coding macOS apps.
+		<a href="https://mlb.theohtani.com">MLB live scorebug</a>, while vibe-coding macOS apps.
 	</p>
 </section>
 
