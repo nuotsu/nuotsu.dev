@@ -15,7 +15,21 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
-bun x sv@0.15.3 create --template minimal --types ts --add prettier tailwindcss="plugins:none" sveltekit-adapter="adapter:vercel" mcp="ide:cursor,claude-code+setup:remote" --install bun ./
+bun x sv@1.3.0 create --template minimal --types ts --add prettier tailwindcss="plugins:none" enhanced-img sveltekit-adapter="adapter:vercel" --install bun ./
+```
+
+## Adding features
+
+Add features to your project with `sv add`:
+
+```sh
+npx sv add
+```
+
+For example, to add Tailwind CSS:
+
+```sh
+npx sv add tailwindcss
 ```
 
 ## Developing
@@ -38,5 +52,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

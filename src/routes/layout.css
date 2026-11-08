@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #000;
+  --color-foreground: #fff;
+
+  --color-cp-red: var(--color-orange-700);
+  --color-cp-cyan: var(--color-cyan-300);
+  --color-cp-amber: var(--color-amber-300);
+
+  --spacing-lh: 1lh;
+  --spacing-ch: 1ch;
+}
+
+@layer base {
+  html {
+    @apply bg-background text-foreground;
+  }
+
+  body {
+    @apply cursor-crosshair;
+  }
+}

@@ -1,30 +1,13 @@
 <script lang="ts">
-	import './app.css'
-	import Metadata from '$ui/metadata.svelte'
+	import './layout.css';
+	import favicon from '#lib/assets/favicon.svg';
+	import type { LayoutProps } from './$types';
 
-	let { children } = $props()
+	let { children }: LayoutProps = $props();
 </script>
 
-<Metadata />
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
 
-<header class="flex flex-nowrap items-center justify-between gap-ch">
-	<div>
-		<h1>Mitchell Christ</h1>
-		<p>alias: <i>nuotsu</i>, <i>kazumaru</i>, <i>XZ</i></p>
-	</div>
-
-	<!-- enhanced:img renders a <picture>, and that wrapper is the flex item -
-	     the class below lands on the inner <img>, so shrink-0 has to go here -->
-	<div class="shrink-0">
-		<enhanced:img
-			class="size-[3lh] rounded-full border border-foreground/5 object-cover"
-			src="$assets/portrait.jpg?quality=90"
-			alt="Mitchell Christ"
-			width="216"
-		/>
-	</div>
-</header>
-
-<main class="mt-[2lh] space-y-[2lh]">
-	{@render children()}
-</main>
+{@render children()}
