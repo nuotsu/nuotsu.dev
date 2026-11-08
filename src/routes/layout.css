@@ -1,23 +1,48 @@
+@import 'https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;600&text=0123456789&display=swap';
+
 @import 'tailwindcss';
 
 @theme {
-  --color-background: #000;
-  --color-foreground: #fff;
+	--font-sans: 'Rajdhani', ui-sans-serif, system-ui, sans-serif;
+	--font-numeric: 'M PLUS 1 Code', ui-monospace, monospace;
 
-  --color-cp-red: var(--color-orange-700);
-  --color-cp-cyan: var(--color-cyan-300);
-  --color-cp-amber: var(--color-amber-300);
+	--color-background: #000;
+	--color-foreground: #fff;
 
-  --spacing-lh: 1lh;
-  --spacing-ch: 1ch;
+	--color-cp-red: var(--color-orange-700);
+	--color-cp-cyan: var(--color-cyan-300);
+	--color-cp-amber: var(--color-amber-300);
+
+	--spacing-lh: 1lh;
+	--spacing-ch: 1ch;
+
+	--border-width-sm: 0.5px;
 }
 
 @layer base {
-  html {
-    @apply bg-background text-foreground;
-  }
+	::selection {
+		@apply bg-cp-red text-cp-cyan;
+	}
 
-  body {
-    @apply cursor-crosshair;
-  }
+	html {
+		@apply bg-background leading-none text-cp-red;
+	}
+
+	body {
+		@apply min-h-svh cursor-crosshair;
+	}
+}
+
+/* typography */
+
+@utility text-glow {
+	text-shadow: 0 0 1ch currentColor;
+}
+
+/* utilities */
+
+@utility full-bleed {
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
 }
