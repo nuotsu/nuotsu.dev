@@ -27,12 +27,18 @@
 		@apply bg-cp-red text-cp-cyan;
 	}
 
+	@media (pointer: fine) {
+		* {
+			cursor: none;
+		}
+	}
+
 	html {
 		@apply bg-background leading-none text-cp-red;
 	}
 
 	body {
-		@apply min-h-svh cursor-crosshair;
+		@apply min-h-svh;
 	}
 
 	hr {
