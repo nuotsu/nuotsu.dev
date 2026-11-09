@@ -17,7 +17,7 @@
 	--spacing-lh: 1lh;
 	--spacing-ch: 1ch;
 
-	--border-width-sm: 0.5px;
+	--border-width-sm: 0.75px;
 }
 
 @custom-variant hover (&:hover);
