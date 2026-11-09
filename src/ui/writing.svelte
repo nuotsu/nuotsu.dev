@@ -1,39 +1,43 @@
 <script lang="ts">
-	const WRITING: { title: string; href: string; date: Temporal.PlainDate }[] = [
+	const WRITING: { title: string; href: string; date: string }[] = [
 		{
 			title: 'Welcome to the age of personalized software',
 			href: 'https://sanitypress.dev/blog/welcome-to-the-age-of-personalized-software',
-			date: new Temporal.PlainDate(2026, 10, 19)
+			date: '2026-10-19'
 		},
 		{
 			title: 'SanityPress Earns a Sanity Pioneer Spot',
 			href: 'https://sanitypress.dev/blog/sanitypress-earns-a-sanity-pioneer-spot',
-			date: new Temporal.PlainDate(2026, 8, 4)
+			date: '2026-08-04'
 		},
 		{
 			title: 'Building Websites with Modules That Convert',
 			href: 'https://sanitypress.dev/blog/building-websites-with-modules-that-convert',
-			date: new Temporal.PlainDate(2026, 5, 25)
+			date: '2026-05-25'
 		},
 		{
 			title: 'Why I Built My Own MLB App (And Why the Official One Frustrated Me)',
 			href: 'https://mlb.theohtani.com/blog/2026-03-23-why-i-built-my-own-mlb-app',
-			date: new Temporal.PlainDate(2026, 3, 23)
+			date: '2026-03-23'
 		},
 		{
 			title: 'How Sanity MCP Transformed My Coding Experiences',
 			href: 'https://sanitypress.dev/blog/how-sanity-mcp-transformed-my-coding-experience',
-			date: new Temporal.PlainDate(2026, 11, 12)
+			date: '2026-11-12'
 		}
 	]
 
 	let active = $state('')
 	let url = $derived(active.replace(/^(https?:\/\/(www\.)?)/, ''))
 
-	function format(date: Temporal.PlainDate) {
-		const month = date.toLocaleString('en-US', { month: 'short' })
-		return `${month} ${date.day}, ${date.year}`
-	}
+	const formatter = new Intl.DateTimeFormat('en-US', {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		timeZone: 'UTC'
+	})
+
+	const format = (date: string) => formatter.format(new Date(date))
 </script>
 
 <section class="section">
@@ -52,7 +56,7 @@
 						onpointerup={() => (active = '')}
 					>
 						<strong class="line-clamp-3 uppercase">{title}</strong>
-						<time class="text-[.8em]" datetime={date.toString()}>
+						<time class="text-[.8em]" datetime={date}>
 							{format(date)}
 						</time>
 					</a>

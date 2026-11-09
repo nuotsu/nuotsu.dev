@@ -8,6 +8,12 @@
 	const INTERACTIVE = ':is(a[href], button, input, select, textarea, summary, label):not(:disabled)'
 	const DURATION = 100 // ms
 
+	function moveTo({ clientX, clientY }: { clientX: number; clientY: number }) {
+		x = clientX
+		y = clientY
+		visible = true
+	}
+
 	function onpointerout({ target, relatedTarget }: PointerEvent) {
 		const from = (target as Element | null)?.closest?.(INTERACTIVE)
 		const to = (relatedTarget as Element | null)?.closest?.(INTERACTIVE)
@@ -20,11 +26,9 @@
 </script>
 
 <svelte:window
-	onpointermove={({ clientX, clientY }) => {
-		x = clientX
-		y = clientY
-		visible = true
-	}}
+	onpointermove={moveTo}
+	onpointerdown={moveTo}
+	ontouchmove={({ touches }) => touches[0] && moveTo(touches[0])}
 	{onpointerout}
 />
 
