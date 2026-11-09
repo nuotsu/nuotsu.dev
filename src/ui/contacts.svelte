@@ -7,22 +7,22 @@
 		{ href: 'mailto:mitchell@mail.grokbot.com', label: "Mitchell's Bot" }
 	]
 
-	let activeContact = $state('')
-	let url = $derived(activeContact.replace(/^(https?:\/\/(www\.)?|mailto:)/, ''))
+	let active = $state('')
+	let url = $derived(active.replace(/^(https?:\/\/(www\.)?|mailto:)/, ''))
 </script>
 
-<section class=" px-lh">
+<section class="section">
 	<div class="relative max-w-max">
-		<ul class="grid button-list gap-[.5ch] border-b-sm pr-[2ch] pb-[.5ch]">
+		<ul class="mb-lh grid button-list gap-[.5ch] pr-[2ch] pb-[.5ch]">
 			{#each CONTACTS as { href, label }}
 				<li>
 					<a
 						{href}
 						class="button"
-						onmouseenter={() => (activeContact = href)}
-						onmouseleave={() => (activeContact = '')}
-						onpointerdown={() => (activeContact = href)}
-						onpointerup={() => (activeContact = '')}
+						onmouseenter={() => (active = href)}
+						onmouseleave={() => (active = '')}
+						onpointerdown={() => (active = href)}
+						onpointerup={() => (active = '')}
 					>
 						<strong class="uppercase">{label}</strong>
 					</a>
@@ -30,6 +30,9 @@
 			{/each}
 		</ul>
 
-		<output class="absolute top-full right-0 pt-[.25ch] text-[.75em]">{url}</output>
+		<output
+			class="absolute top-full right-0 line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-right text-[.75em] break-all"
+			>{url}</output
+		>
 	</div>
 </section>

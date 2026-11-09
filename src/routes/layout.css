@@ -102,6 +102,60 @@
 	margin-inline: calc(50% - 50vw);
 }
 
+@utility no-scrollbar {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* components */
+
+@utility section {
+	@apply px-ch md:px-lh;
+}
+
+@utility carousel {
+	--anchor-name: attr(data-anchor-name type(<custom-ident>), --carousel);
+	anchor-name: var(--anchor-name);
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: min(var(--container-xs), 80vw);
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+
+	@apply *:snap-center *:md:snap-start;
+}
+
+@utility carousel-scroll-marker {
+	--size: 12px;
+	scroll-marker-group: after;
+
+	&::scroll-marker-group {
+		position: absolute;
+		position-anchor: var(--anchor-name);
+		top: calc(anchor(bottom) + 1rem);
+		justify-self: center;
+		display: flex;
+		align-items: center;
+		gap: 0.5ch;
+	}
+
+	& > * {
+		&::scroll-marker {
+			content: '';
+			@apply block size-1 rounded-full bg-foreground/25;
+		}
+
+		&::scroll-marker:target-current {
+			@apply w-[2ch] bg-foreground opacity-100;
+		}
+	}
+}
+
 /* anims */
 
 @utility fade-out {
