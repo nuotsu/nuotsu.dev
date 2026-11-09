@@ -20,6 +20,8 @@
 	--border-width-sm: 0.5px;
 }
 
+@custom-variant hover (&:hover);
+
 @layer base {
 	::selection {
 		@apply bg-cp-red text-cp-cyan;
@@ -32,6 +34,11 @@
 	body {
 		@apply min-h-svh cursor-crosshair;
 	}
+
+	hr {
+		border: none;
+		border-bottom: 0.5px solid;
+	}
 }
 
 /* typography */
@@ -40,9 +47,57 @@
 	text-shadow: 0 0 1ch currentColor;
 }
 
+/* actions */
+
+@utility link {
+	@apply fade-out hover:text-cp-cyan;
+}
+
+@utility button {
+	--bevel: 1ch;
+	padding: 0.5ch 1ch;
+	border: 0.5px solid currentColor;
+	border-bottom-right-radius: var(--bevel);
+	corner-shape: bevel;
+
+	@apply relative block fade-out hover:bg-current/20 hover:text-cp-cyan active:bg-current/40;
+
+	&:hover::before {
+		content: '';
+		@apply absolute inset-x-0 inset-y-[calc(-.5ch-.5px)] block;
+	}
+}
+
+@utility button-list {
+	.button {
+		transition:
+			color var(--duration, 0.2s),
+			translate 0.2s;
+
+		&:not(:hover) {
+			--duration: 0.8s;
+		}
+	}
+
+	*:has(> .button):hover > .button {
+		@apply translate-x-[2ch];
+	}
+
+	*:has(+ *:hover) > .button,
+	*:hover + * > .button {
+		@apply translate-x-ch;
+	}
+}
+
 /* utilities */
 
 @utility full-bleed {
 	width: 100vw;
 	margin-inline: calc(50% - 50vw);
+}
+
+/* anims */
+
+@utility fade-out {
+	@apply transition-all not-hover:duration-800 hover:duration-200;
 }
