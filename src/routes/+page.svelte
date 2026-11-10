@@ -20,7 +20,7 @@
 </header>
 
 <main
-	class="mx-auto mt-[2lh] grid max-w-7xl gap-[2lh] md:grid-cols-6 md:items-end md:*:col-span-full"
+	class="m-auto grid max-w-7xl auto-rows-auto gap-[2lh] md:grid-cols-6 md:items-end md:*:col-span-full"
 >
 	<Intro />
 	<Projects />

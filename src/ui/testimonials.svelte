@@ -38,14 +38,12 @@
 	const preview = createLinkPreview()
 </script>
 
-<Section title="Testimonials" class="text-cp-cyan md:col-span-3!">
+<Section title="Testimonials" class="group/root text-cp-cyan md:col-span-3!">
 	<div class="grid grid-cols-[auto_1fr] gap-lh">
 		{#each TESTIMONIALS as { quote, author, source }}
 			{@const [name, title] = author.split(',')}
 
-			<figure
-				class="group/testimonial col-span-full grid grid-cols-subgrid items-start gap-y-[.5ch]"
-			>
+			<figure class="group/t col-span-full grid grid-cols-subgrid items-start gap-y-[.5ch]">
 				<blockquote class="order-last space-y-[.5lh] [&_a]:link-underline">
 					{#each quote as line}
 						<p>{@html line}</p>
@@ -53,7 +51,9 @@
 				</blockquote>
 
 				<cite class="contents text-cp-red not-italic">
-					<strong class="ml-auto bevel-bl uppercase group-hover/testimonial:text-glow">
+					<strong
+						class="ml-auto bevel-bl uppercase transition-opacity group-hover/root:group-not-hover/t:opacity-60 group-hover/t:text-glow"
+					>
 						{name}:
 					</strong>
 

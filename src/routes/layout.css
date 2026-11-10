@@ -101,7 +101,8 @@
 
 	&:hover::after {
 		content: '';
-		@apply absolute inset-x-0 inset-y-[calc(-.5ch-.5px)] block;
+		inset: calc(-0.5ch - 0.5px);
+		@apply absolute block;
 	}
 }
 

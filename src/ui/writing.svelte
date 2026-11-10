@@ -58,9 +58,7 @@
 			</li>
 		{/each}
 
-		<li class="bevel grid place-content-center bevel-tr border-dashed uppercase opacity-50">
-			Stay tuned...
-		</li>
+		<li class="bevel grid place-content-center bevel-tr uppercase opacity-50">Stay tuned...</li>
 	</ul>
 
 	<LinkOutput {preview} stagger={12} />

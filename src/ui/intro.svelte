@@ -9,7 +9,7 @@
 
 <Section
 	title="Intro"
-	class="root order-first grid grid-cols-2 items-start gap-x-ch text-pretty md:col-span-4!"
+	class="root order-first grid grid-cols-2 items-start gap-x-ch text-pretty md:col-span-4! md:gap-x-[2lh]"
 >
 	<div class="top-ch space-y-[.5lh]">
 		<h1 class="font-bold text-cp-cyan uppercase text-glow">
@@ -39,7 +39,7 @@
 	</div>
 
 	<figure
-		class="bevel sticky top-ch grid aspect-square overflow-hidden bevel-br p-0 [--bevel:2lh] *:col-span-full *:row-span-full"
+		class="bevel sticky top-ch grid aspect-square overflow-clip bevel-br p-0 [--bevel:2lh] *:col-span-full *:row-span-full"
 	>
 		<enhanced:img
 			class="size-full object-cover"
@@ -79,6 +79,39 @@
 		}
 		dd {
 			color: var(--color-cp-cyan);
+		}
+	}
+
+	figure {
+		&::after {
+			content: '?';
+			display: grid;
+			place-content: center;
+			grid-column: 1 / -1;
+			grid-row: 1 / -1;
+			font-weight: bold;
+		}
+
+		:global(picture) {
+			filter: brightness(0) invert(1);
+			clip-path: inset(calc(50% - 0.5px) 50% calc(50% - 0.5px) 50%);
+			animation: appear 1s ease-in-out 1s forwards;
+		}
+	}
+
+	@keyframes appear {
+		20% {
+			filter: brightness(0) invert(1);
+			clip-path: inset(calc(50% - 0.5px) 0 calc(50% - 0.5px) 0);
+		}
+
+		60% {
+			clip-path: inset(calc(50% - 0.5px) 0 calc(50% - 0.5px) 0);
+		}
+
+		100% {
+			filter: brightness(1);
+			clip-path: inset(0 0 0 0);
 		}
 	}
 </style>

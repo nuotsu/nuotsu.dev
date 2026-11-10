@@ -62,13 +62,13 @@
 			<div class="col-span-full grid grid-cols-subgrid">
 				<a
 					{href}
-					class="group/project button col-span-full ml-[.5ch] grid grid-cols-subgrid bevel-br p-0 hover:text-cp-amber"
+					class="group/p button col-span-full ml-[.5ch] grid grid-cols-subgrid bevel-br p-0 hover:text-cp-amber"
 					{@attach preview.attach}
 				>
 					<div class="px-ch py-[.5ch] text-cp-cyan">
 						<dt>
 							<strong
-								class="fade-out group-hover/project:text-cp-amber group-hover/project:duration-200 group-hover/project:text-glow"
+								class="fade-out group-hover/p:text-cp-amber group-hover/p:duration-200 group-hover/p:text-glow"
 							>
 								{title}
 							</strong>
@@ -81,7 +81,7 @@
 
 					{#if repo}
 						<dd
-							class="flex items-center justify-center gap-[.5ch] bevel-br px-ch py-[.5ch] text-right group-not-hover/project:duration-800 group-hover/project:bg-cp-amber group-hover/project:text-background group-hover/project:duration-200"
+							class="flex items-center justify-center gap-[.5ch] bevel-br px-ch py-[.5ch] text-right group-not-hover/p:duration-800 group-hover/p:bg-cp-amber group-hover/p:text-background group-hover/p:duration-200"
 						>
 							{#if stars}
 								{#await stars then count}
