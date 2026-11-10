@@ -14,7 +14,7 @@
 </script>
 
 <section class="section">
-	<ul class="button-list">
+	<ul class="button-list-to-r">
 		{#each CONTACTS as { href, label }}
 			<li>
 				<a {href} class="button bevel-br hover:text-glow" {@attach preview.attach}>

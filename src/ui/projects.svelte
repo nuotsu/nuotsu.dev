@@ -56,7 +56,7 @@
 </script>
 
 <section class="section">
-	<dl class="button-list grid grid-cols-[1fr_auto]">
+	<dl class="grid grid-cols-[1fr_auto] button-list-to-l">
 		{#each entries as { title, href, year, repo, stars }}
 			<div class="col-span-full grid grid-cols-subgrid">
 				<a

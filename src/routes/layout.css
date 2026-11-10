@@ -101,20 +101,33 @@
 }
 
 @utility button-list {
-	@apply grid gap-[.5ch] pr-[2ch];
+	@apply grid gap-[.5ch];
+	padding-left: calc(max(0, -1 * var(--button-list-dir, 1)) * 2ch);
+	padding-right: calc(max(0, var(--button-list-dir, 1)) * 2ch);
 
 	.button {
 		@apply button-list-transition;
 	}
 
 	*:has(> .button):hover > .button {
-		@apply translate-x-[2ch];
+		translate: calc(var(--button-list-dir, 1) * 2ch) 0;
 	}
 
 	*:has(+ *:hover) > .button,
 	*:hover + * > .button {
-		@apply translate-x-ch;
+		translate: calc(var(--button-list-dir, 1) * 1ch) 0;
 	}
+}
+
+/* direction modifiers for button-list (to-r is the default) */
+@utility button-list-to-r {
+	--button-list-dir: 1;
+	@apply button-list;
+}
+
+@utility button-list-to-l {
+	--button-list-dir: -1;
+	@apply button-list;
 }
 
 @utility button-list-transition {
