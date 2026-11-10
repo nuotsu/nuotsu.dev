@@ -148,7 +148,7 @@
 /* components */
 
 @utility section {
-	@apply px-ch md:px-lh;
+	@apply px-lh;
 }
 
 @utility bevel {

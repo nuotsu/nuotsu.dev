@@ -61,7 +61,7 @@
 			<div class="col-span-full grid grid-cols-subgrid">
 				<a
 					{href}
-					class="group/project button col-span-full grid grid-cols-subgrid bevel-br p-0 text-cp-amber hover:text-cp-amber"
+					class="group/project button col-span-full ml-[.5ch] grid grid-cols-subgrid bevel-br p-0 text-cp-amber hover:text-cp-amber"
 					{@attach preview.attach}
 				>
 					<div class="px-ch py-[.5ch] text-cp-cyan">
@@ -108,3 +108,60 @@
 
 	<LinkOutput {preview} class="text-cp-amber" />
 </section>
+
+<style>
+	a::before {
+		content: '';
+		position: absolute;
+		inset-block: -0.5px;
+		inset-inline: -0.5ch 100%;
+		background-color: currentColor;
+		width: 0.5ch;
+
+		--l: 0.25ch;
+		--r: 0;
+		--t: 45%;
+		--b: 85%;
+		clip-path: polygon(
+			var(--r) 0,
+			100% 0,
+			100% 100%,
+			var(--r) 100%,
+			var(--r) var(--b),
+			var(--l) var(--b),
+			var(--l) var(--t),
+			var(--r) var(--t)
+		);
+		transition-property: --l, --r, --t, --b;
+		transition-duration: 200ms;
+	}
+
+	dl:has(a:hover) a:not(:hover)::before {
+		--t: 0%;
+		--b: 100%;
+
+		--l: 0.5ch;
+		--r: 0;
+	}
+
+	@property --l {
+		syntax: '<length-percentage>';
+		inherits: false;
+		initial-value: 0px;
+	}
+	@property --r {
+		syntax: '<length-percentage>';
+		inherits: false;
+		initial-value: 0px;
+	}
+	@property --t {
+		syntax: '<length-percentage>';
+		inherits: false;
+		initial-value: 0%;
+	}
+	@property --b {
+		syntax: '<length-percentage>';
+		inherits: false;
+		initial-value: 100%;
+	}
+</style>
