@@ -10,7 +10,7 @@
 	--color-background: #000;
 	--color-foreground: #fff;
 
-	--color-cp-red: var(--color-orange-700);
+	--color-cp-red: var(--color-orange-600);
 	--color-cp-cyan: var(--color-cyan-300);
 	--color-cp-amber: var(--color-amber-300);
 
@@ -60,13 +60,7 @@
 }
 
 @utility button {
-	--bevel: 1ch;
-	padding: 0.5ch 1ch;
-	border: 0.5px solid currentColor;
-	border-bottom-right-radius: var(--bevel);
-	corner-shape: bevel;
-
-	@apply relative block fade-out hover:bg-current/20 hover:text-cp-cyan active:bg-current/40;
+	@apply bevel fade-out hover:bg-current/20 hover:text-cp-cyan active:bg-current/40;
 
 	&:hover::before {
 		content: '';
@@ -117,6 +111,31 @@
 	@apply px-ch md:px-lh;
 }
 
+@utility bevel {
+	--bevel: 1ch;
+	padding: 0.5ch 1ch;
+	border: 0.5px solid currentColor;
+	corner-shape: bevel;
+
+	@apply relative block;
+}
+
+@utility bevel-tl {
+	border-top-left-radius: var(--bevel);
+}
+
+@utility bevel-tr {
+	border-top-right-radius: var(--bevel);
+}
+
+@utility bevel-br {
+	border-bottom-right-radius: var(--bevel);
+}
+
+@utility bevel-bl {
+	border-bottom-left-radius: var(--bevel);
+}
+
 @utility carousel {
 	--anchor-name: attr(data-anchor-name type(<custom-ident>), --carousel);
 	anchor-name: var(--anchor-name);
@@ -159,5 +178,5 @@
 /* anims */
 
 @utility fade-out {
-	@apply transition-all not-hover:duration-800 hover:duration-200;
+	@apply transition-colors not-hover:duration-800 hover:duration-200;
 }

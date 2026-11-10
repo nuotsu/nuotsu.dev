@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Scramble from './scramble.svelte'
+
 	const CONTACTS: { href: string; label: string }[] = [
 		{ href: 'https://github.com/nuotsu', label: '@nuotsu' },
 		{ href: 'https://github.com/mitchuman', label: '@mitchuman' },
@@ -18,7 +20,7 @@
 				<li>
 					<a
 						{href}
-						class="button"
+						class="button bevel-br"
 						onmouseenter={() => (active = href)}
 						onmouseleave={() => (active = '')}
 						onpointerdown={() => (active = href)}
@@ -32,7 +34,8 @@
 
 		<output
 			class="absolute top-full right-0 line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-right text-[.75em] break-all"
-			>{url}</output
 		>
+			<Scramble text={url} />
+		</output>
 	</div>
 </section>

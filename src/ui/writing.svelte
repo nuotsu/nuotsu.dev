@@ -49,7 +49,7 @@
 				<li>
 					<a
 						{href}
-						class="button h-full rounded-tr-(--bevel) rounded-br-none"
+						class="button h-full bevel-tr"
 						onmouseenter={() => (active = href)}
 						onmouseleave={() => (active = '')}
 						onpointerdown={() => (active = href)}
