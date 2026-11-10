@@ -1,0 +1,36 @@
+<script lang="ts">
+	import type { Snippet } from 'svelte'
+	import { cn } from '#lib/utils.ts'
+	import Scramble from '#ui/scramble.svelte'
+
+	let {
+		title,
+		class: className,
+		children
+	}: {
+		title?: string
+		class?: string
+		children: Snippet
+	} = $props()
+
+	const binary = $derived(
+		(title &&
+			Array.from(new TextEncoder().encode(title), (byte) => byte.toString(2).padStart(8, '0'))
+				.join('')
+				.slice(0, 16)) ??
+			''
+	)
+</script>
+
+<section class={cn('relative section', className)}>
+	{#if title}
+		<Scramble
+			class="absolute top-0 right-[calc(100%-1rlh)] block w-[2lh] font-numeric text-[.5em] break-all opacity-30 select-none"
+			text={binary}
+			chars="01"
+			trigger={['hover', 'view']}
+		/>
+	{/if}
+
+	{@render children()}
+</section>

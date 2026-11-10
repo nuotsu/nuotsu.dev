@@ -5,7 +5,8 @@
 	let leaving = $state(false)
 	let timer: ReturnType<typeof setTimeout>
 
-	const INTERACTIVE = ':is(a[href], button, input, select, textarea, summary, label):not(:disabled)'
+	const INTERACTIVE =
+		':is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(:disabled)'
 	const DURATION = 100 // ms
 
 	function moveTo({ clientX, clientY }: { clientX: number; clientY: number }) {
@@ -81,12 +82,20 @@
 		}
 	}
 
-	:global(:is(a[href], button, input, select, textarea, summary, label):not(:disabled):hover) {
+	:global(
+		:is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(
+				:disabled
+			):hover
+	) {
 		anchor-name: --cursor;
 	}
 
 	:global(
-			:root:has(:is(a[href], button, input, select, textarea, summary, label):not(:disabled):hover)
+			:root:has(
+				:is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(
+						:disabled
+					):hover
+			)
 		)
 		span {
 		--offset: 0.5ch;

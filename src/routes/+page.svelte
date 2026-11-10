@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Intro from '#ui/intro.svelte'
 	import Projects from '#ui/projects.svelte'
 	import Contacts from '#ui/contacts.svelte'
 	import Scramble from '#ui/scramble.svelte'
@@ -10,13 +11,16 @@
 	<div class="border-b-sm pt-ch">
 		<a href="/" class="link">
 			<strong class="uppercase text-glow">
-				<Scramble text="nuotsu" trigger="hover" />
+				<Scramble text="nuotsu" trigger={['hover', 'view']} />
 			</strong>
 		</a>
 	</div>
 </header>
 
-<Projects />
-<Contacts />
-<Writing />
-<Testimonials />
+<main class="mt-[2lh] space-y-[2lh]">
+	<Intro />
+	<Projects />
+	<Contacts />
+	<Writing />
+	<Testimonials />
+</main>

@@ -2,36 +2,39 @@
 	import { onDestroy, onMount, untrack } from 'svelte'
 	import { intersectionObserver } from '#lib/attachments.ts'
 
-	// wide glyphs only, so the width doesn't jitter in proportional fonts
-	const CHARS = 'ABCDEGHKMNOPQRSUVWXYZ023456789@#$%&*+=?<>~'
-
 	let {
 		text,
+		chars = 'ABCDEGHKMNOPQRSUVWXYZ023456789@#$%&*+=?<>~',
 		stagger = 60, // ms between each letter starting to scramble
 		delay = 300, // ms each letter scrambles before settling
 		tick = 50, // ms between random char swaps
-		trigger = 'load', // 'load' = on mount (pair with {#key}), 'hover' = on pointer enter, 'view' = when scrolled into view
+		trigger = 'load', // 'load' = on mount (pair with {#key}), 'hover' = on pointer enter, 'view' = when scrolled into view; pass an array to combine
 		class: className
 	}: {
 		text: string
+		chars?: string
 		stagger?: number
 		delay?: number
 		tick?: number
-		trigger?: 'load' | 'hover' | 'view'
+		trigger?: Trigger | Trigger[]
 		class?: string
 	} = $props()
+
+	type Trigger = 'load' | 'hover' | 'view'
+
+	const triggers = $derived(new Set(Array.isArray(trigger) ? trigger : [trigger]))
 
 	let scrambled = $state<string | null>(null)
 	let frame = 0
 	let el: HTMLElement
 	let touching = false
 
-	const random = () => CHARS[Math.floor(Math.random() * CHARS.length)]
+	const random = () => chars[Math.floor(Math.random() * chars.length)]
 
-	// load/view hide the text until the animation starts, then every letter
-	// scrambles right away and settles in order; hover scrambles letters in order
-	const reveal = $derived(trigger !== 'hover')
-	let hidden = $state(untrack(() => reveal))
+	// load/view hide the text until the first animation starts, then every letter
+	// scrambles right away and settles in order; later runs (e.g. hover)
+	// scramble letters in order
+	let hidden = $state(untrack(() => triggers.has('load') || triggers.has('view')))
 
 	function scramble() {
 		if (frame) return
@@ -40,6 +43,7 @@
 			return
 		}
 
+		const reveal = hidden
 		const start = performance.now()
 		const end = (text.length - 1) * stagger + delay
 		let last = -Infinity
@@ -77,7 +81,7 @@
 	// touch drags are captured by the element they start on, so pointerenter
 	// never fires here — hit-test the finger position instead
 	function ontouchmove(e: TouchEvent) {
-		if (trigger !== 'hover') return
+		if (!triggers.has('hover')) return
 		const { clientX, clientY } = e.touches[0]
 		const over = el.contains(document.elementFromPoint(clientX, clientY))
 		if (over && !touching) scramble()
@@ -85,7 +89,7 @@
 	}
 
 	onMount(() => {
-		if (trigger === 'load') scramble()
+		if (triggers.has('load')) scramble()
 	})
 
 	onDestroy(() => {
@@ -99,8 +103,8 @@
 <span
 	bind:this={el}
 	class={className}
-	onpointerenter={trigger === 'hover' ? scramble : undefined}
-	{@attach trigger === 'view'
+	onpointerenter={triggers.has('hover') ? scramble : undefined}
+	{@attach triggers.has('view')
 		? intersectionObserver((entry) => entry.isIntersecting && scramble())
 		: undefined}
 	aria-label={text}

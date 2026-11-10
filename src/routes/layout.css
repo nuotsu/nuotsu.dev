@@ -1,5 +1,5 @@
-@import 'https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;600&text=0123456789&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600';
+@import 'https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;600&text=0123456789';
 
 @import 'tailwindcss';
 
@@ -10,9 +10,9 @@
 	--color-background: #000;
 	--color-foreground: #fff;
 
-	--color-cp-red: var(--color-orange-600);
-	--color-cp-cyan: var(--color-cyan-300);
-	--color-cp-amber: var(--color-amber-300);
+	--color-cp-red: #f75049;
+	--color-cp-cyan: #5ef6ff;
+	--color-cp-amber: #f0b537;
 
 	--spacing-lh: 1lh;
 	--spacing-rlh: 1rlh;
@@ -91,10 +91,14 @@
 	@apply fade-out hover:text-cp-cyan;
 }
 
+@utility link-underline {
+	@apply underline decoration-[.5px] underline-offset-2 fade-out hover:text-cp-cyan hover:text-glow;
+}
+
 @utility button {
 	@apply bevel fade-out hover:bg-current/20 hover:text-cp-cyan active:bg-current/40;
 
-	&:hover::before {
+	&:hover::after {
 		content: '';
 		@apply absolute inset-x-0 inset-y-[calc(-.5ch-.5px)] block;
 	}
@@ -234,5 +238,5 @@
 /* anims */
 
 @utility fade-out {
-	@apply transition-colors not-hover:duration-800 hover:duration-200;
+	@apply transition-[color,text-shadow] not-hover:duration-800 hover:duration-200;
 }

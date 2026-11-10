@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/env'
 	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import Section from '#ui/section.svelte'
 	import LinkOutput from '#ui/link-output.svelte'
 	import Scramble from '#ui/scramble.svelte'
 
@@ -55,13 +56,13 @@
 	const preview = createLinkPreview()
 </script>
 
-<section class="section">
-	<dl class="grid grid-cols-[1fr_auto] button-list-to-l">
+<Section title="Projects" class="text-cp-amber">
+	<dl class="button-list-to-l grid grid-cols-[1fr_auto]">
 		{#each entries as { title, href, year, repo, stars }}
 			<div class="col-span-full grid grid-cols-subgrid">
 				<a
 					{href}
-					class="group/project button col-span-full ml-[.5ch] grid grid-cols-subgrid bevel-br p-0 text-cp-amber hover:text-cp-amber"
+					class="group/project button col-span-full ml-[.5ch] grid grid-cols-subgrid bevel-br p-0 hover:text-cp-amber"
 					{@attach preview.attach}
 				>
 					<div class="px-ch py-[.5ch] text-cp-cyan">
@@ -72,6 +73,7 @@
 								{title}
 							</strong>
 						</dt>
+
 						<dd class="text-[.75em] text-white/60">
 							<time datetime={year.toString()}>{year}</time>
 						</dd>
@@ -106,8 +108,8 @@
 		{/each}
 	</dl>
 
-	<LinkOutput {preview} class="text-cp-amber" />
-</section>
+	<LinkOutput {preview} />
+</Section>
 
 <style>
 	a::before {

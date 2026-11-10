@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import Section from '#ui/section.svelte'
 	import LinkOutput from '#ui/link-output.svelte'
 
 	const CONTACTS: { href: string; label: string }[] = [
@@ -13,7 +14,7 @@
 	const preview = createLinkPreview()
 </script>
 
-<section class="section">
+<Section title="Contacts">
 	<ul class="button-list-to-r">
 		{#each CONTACTS as { href, label }}
 			<li>
@@ -25,4 +26,4 @@
 	</ul>
 
 	<LinkOutput {preview} />
-</section>
+</Section>

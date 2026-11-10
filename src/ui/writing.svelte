@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import Section from '#ui/section.svelte'
 	import LinkOutput from '#ui/link-output.svelte'
 
 	const WRITING: { title: string; href: string; date: string }[] = [
@@ -42,7 +43,7 @@
 	const format = (date: string) => formatter.format(new Date(date))
 </script>
 
-<section class="section">
+<Section title="Writing">
 	<ul class="full-bleed carousel auto-cols-[20ch] gap-[.5ch] overflow-y-clip section pb-[.25ch]">
 		{#each WRITING as { title, href, date }}
 			<li>
@@ -57,4 +58,4 @@
 	</ul>
 
 	<LinkOutput {preview} stagger={12} />
-</section>
+</Section>

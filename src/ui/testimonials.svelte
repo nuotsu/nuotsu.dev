@@ -1,4 +1,9 @@
 <script lang="ts">
+	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import { cn } from '#lib/utils.ts'
+	import Section from '#ui/section.svelte'
+	import LinkOutput from '#ui/link-output.svelte'
+
 	const TESTIMONIALS: {
 		quote: string[]
 		author: string
@@ -29,9 +34,11 @@
 			author: 'Shota, Senior Software Engineer @ Salesforce'
 		}
 	]
+
+	const preview = createLinkPreview()
 </script>
 
-<section class="section">
+<Section title="Testimonials" class="text-cp-cyan">
 	<div class="grid grid-cols-[auto_1fr] gap-lh">
 		{#each TESTIMONIALS as { quote, author, source }}
 			{@const [name, title] = author.split(',')}
@@ -39,29 +46,32 @@
 			<figure
 				class="group/testimonial col-span-full grid grid-cols-subgrid items-start gap-y-[.5ch]"
 			>
-				<blockquote
-					class="order-last space-y-[.5ch] text-cp-cyan [&_a]:transition-colors [&_a:hover]:text-glow"
-				>
+				<blockquote class="order-last space-y-[.5ch] [&_a]:link-underline">
 					{#each quote as line}
 						<p>{@html line}</p>
 					{/each}
 				</blockquote>
 
-				<cite class="contents not-italic">
+				<cite class="contents text-cp-red not-italic">
 					<strong class="ml-auto bevel-bl uppercase group-hover/testimonial:text-glow">
 						{name}:
 					</strong>
 
 					{#if title}
 						<small
-							class="relative order-first col-span-full max-w-max bevel-tl text-[.7em] {source
-								? 'button hover:text-cp-amber'
-								: 'bevel'}"
+							class={cn(
+								'relative order-first col-span-full max-w-max bevel-tl text-[.7em]',
+								source ? 'button hover:text-cp-amber' : 'bevel'
+							)}
 						>
 							{title}
 
 							{#if source}
-								<a href={source} class="absolute inset-0 text-transparent">
+								<a
+									href={source}
+									class="absolute inset-0 z-1 text-transparent"
+									{@attach preview.attach}
+								>
 									{source}
 								</a>
 							{/if}
@@ -71,13 +81,15 @@
 			</figure>
 		{/each}
 	</div>
-</section>
+
+	<LinkOutput {preview} stagger={12} />
+</Section>
 
 <style>
 	blockquote :global(a) {
 		text-decoration: 0.5px underline;
 		text-underline-offset: 2px;
-		font-weight: 700;
+		font-weight: bold;
 
 		&:hover {
 			color: var(--color-cp-amber);
