@@ -14,7 +14,7 @@
 	const preview = createLinkPreview()
 </script>
 
-<Section title="Contacts">
+<Section title="Contacts" class="md:order-first md:col-span-2!">
 	<ul class="button-list-to-r">
 		{#each CONTACTS as { href, label }}
 			<li>

@@ -13,6 +13,7 @@
 	--color-cp-red: #f75049;
 	--color-cp-cyan: #5ef6ff;
 	--color-cp-amber: #f0b537;
+	--color-cp-green: #1ded83;
 
 	--spacing-lh: 1lh;
 	--spacing-rlh: 1rlh;
@@ -64,9 +65,9 @@
 	}
 
 	html {
-		@apply bg-background leading-none text-cp-red;
 		scrollbar-gutter: stable;
-		overflow-x: clip; /* full-bleed's 100vw includes the scrollbar width */
+		overflow-x: clip;
+		@apply bg-background bg-linear-to-b from-cp-red/10 leading-none text-cp-red;
 	}
 
 	body {
@@ -163,10 +164,6 @@
 }
 
 /* components */
-
-@utility section {
-	@apply px-lh;
-}
 
 @utility bevel {
 	--bevel: 1ch;

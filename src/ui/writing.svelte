@@ -43,8 +43,10 @@
 	const format = (date: string) => formatter.format(new Date(date))
 </script>
 
-<Section title="Writing">
-	<ul class="full-bleed carousel auto-cols-[20ch] gap-[.5ch] overflow-y-clip section pb-[.25ch]">
+<Section title="Writing" class="text-cp-green">
+	<ul
+		class="section carousel auto-cols-[20ch] gap-[.5ch] overflow-y-clip pb-[.25ch] max-xl:full-bleed max-xl:pr-lh max-xl:pl-[calc(1lh+.5ch)]"
+	>
 		{#each WRITING as { title, href, date }}
 			<li>
 				<a {href} class="button h-full bevel-tr" {@attach preview.attach}>
@@ -55,6 +57,10 @@
 				</a>
 			</li>
 		{/each}
+
+		<li class="bevel grid place-content-center bevel-tr border-dashed uppercase opacity-50">
+			Stay tuned...
+		</li>
 	</ul>
 
 	<LinkOutput {preview} stagger={12} />

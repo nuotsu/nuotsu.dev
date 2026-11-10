@@ -1,9 +1,7 @@
 <script lang="ts">
-	import './layout.css'
-	import favicon from '#lib/assets/favicon.svg'
 	import type { LayoutProps } from './$types'
-	import Cursor from '#ui/cursor.svelte'
-	import Viewport from '#ui/viewport.svelte'
+	import favicon from '#lib/assets/favicon.svg'
+	import './layout.css'
 
 	let { children }: LayoutProps = $props()
 </script>
@@ -16,6 +14,3 @@
 </svelte:head>
 
 {@render children()}
-
-<Cursor />
-<Viewport />

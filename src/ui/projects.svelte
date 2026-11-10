@@ -56,7 +56,7 @@
 	const preview = createLinkPreview()
 </script>
 
-<Section title="Projects" class="text-cp-amber">
+<Section title="Projects" class="text-cp-amber md:col-span-3!">
 	<dl class="button-list-to-l grid grid-cols-[1fr_auto]">
 		{#each entries as { title, href, year, repo, stars }}
 			<div class="col-span-full grid grid-cols-subgrid">

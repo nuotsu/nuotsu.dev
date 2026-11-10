@@ -1,10 +1,12 @@
 <script lang="ts">
+	import Scramble from '#ui/scramble.svelte'
 	import Intro from '#ui/intro.svelte'
 	import Projects from '#ui/projects.svelte'
-	import Contacts from '#ui/contacts.svelte'
-	import Scramble from '#ui/scramble.svelte'
-	import Writing from '#ui/writing.svelte'
 	import Testimonials from '#ui/testimonials.svelte'
+	import Writing from '#ui/writing.svelte'
+	import Contacts from '#ui/contacts.svelte'
+	import Cursor from '#ui/cursor.svelte'
+	import Viewport from '#ui/viewport.svelte'
 </script>
 
 <header class="section">
@@ -17,10 +19,21 @@
 	</div>
 </header>
 
-<main class="mt-[2lh] space-y-[2lh]">
+<main
+	class="mx-auto mt-[2lh] grid max-w-7xl gap-[2lh] md:grid-cols-6 md:items-end md:*:col-span-full"
+>
 	<Intro />
 	<Projects />
-	<Contacts />
-	<Writing />
 	<Testimonials />
+	<Writing />
+	<Contacts />
 </main>
+
+<Cursor />
+<Viewport />
+
+<style>
+	header {
+		padding-inline: calc(1lh + 0.5ch) 1lh;
+	}
+</style>

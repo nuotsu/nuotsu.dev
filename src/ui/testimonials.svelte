@@ -38,7 +38,7 @@
 	const preview = createLinkPreview()
 </script>
 
-<Section title="Testimonials" class="text-cp-cyan">
+<Section title="Testimonials" class="text-cp-cyan md:col-span-3!">
 	<div class="grid grid-cols-[auto_1fr] gap-lh">
 		{#each TESTIMONIALS as { quote, author, source }}
 			{@const [name, title] = author.split(',')}
@@ -46,7 +46,7 @@
 			<figure
 				class="group/testimonial col-span-full grid grid-cols-subgrid items-start gap-y-[.5ch]"
 			>
-				<blockquote class="order-last space-y-[.5ch] [&_a]:link-underline">
+				<blockquote class="order-last space-y-[.5lh] [&_a]:link-underline">
 					{#each quote as line}
 						<p>{@html line}</p>
 					{/each}

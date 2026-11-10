@@ -7,7 +7,10 @@
 	)
 </script>
 
-<Section title="Intro" class="root grid grid-cols-2 items-start gap-ch text-pretty">
+<Section
+	title="Intro"
+	class="root order-first grid grid-cols-2 items-start gap-x-ch text-pretty md:col-span-4!"
+>
 	<div class="top-ch space-y-[.5lh]">
 		<h1 class="font-bold text-cp-cyan uppercase text-glow">
 			<Scramble text="Mitchell Christ" trigger="hover" stagger={20} />

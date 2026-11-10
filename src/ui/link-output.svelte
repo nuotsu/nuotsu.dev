@@ -13,10 +13,8 @@
 	} = $props()
 </script>
 
-<output
-	class="mt-[.5rch] line-clamp-1 h-rlh border-t-sm pt-[.25ch] text-[.75em] break-all {className}"
->
+<output class="mt-[.5rch] block h-rlh border-t-sm pt-[.25ch] text-[.75em] break-all {className}">
 	{#key preview.url}
-		<Scramble trigger="load" text={preview.url} {stagger} delay={100} />
+		<Scramble class="line-clamp-1" trigger="load" text={preview.url} {stagger} delay={100} />
 	{/key}
 </output>
