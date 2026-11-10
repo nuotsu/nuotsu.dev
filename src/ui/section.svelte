@@ -28,6 +28,7 @@
 			class="absolute top-0 right-[calc(100%-1rlh)] block w-[2lh] font-numeric text-[.5em] break-all opacity-30 select-none"
 			text={binary}
 			chars="01"
+			delay={1000}
 			trigger={['view', 'hover']}
 		/>
 

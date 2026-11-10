@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Section from '#ui/section.svelte'
 	import Scramble from './scramble.svelte'
+	import portraitSize from '#lib/assets/portrait-variants/02-neon-netrunner.png?size'
 
 	let age_in_days = $derived(
 		Math.floor((Date.now() - new Date('1995-12-04').getTime()) / (1000 * 60 * 60 * 24))
@@ -43,7 +44,7 @@
 	>
 		<enhanced:img
 			class="size-full object-cover"
-			src="#lib/assets/portrait.jpg"
+			src="#lib/assets/portrait-variants/02-neon-netrunner.png"
 			alt="Mitchell Christ"
 			draggable="false"
 			data-cursor
@@ -52,9 +53,9 @@
 		<figcaption class="pointer-events-none mt-auto p-ch text-[.5em] opacity-40">
 			<dl class="grid grid-cols-[auto_1fr] gap-x-ch">
 				<dt>Image type:</dt>
-				<dt>.JPG</dt>
+				<dt>.PNG</dt>
 				<dt>File size:</dt>
-				<dt>{Number(40_336).toLocaleString()} bytes</dt>
+				<dt>{portraitSize.toLocaleString()} bytes</dt>
 			</dl>
 		</figcaption>
 	</figure>
