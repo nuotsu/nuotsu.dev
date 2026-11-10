@@ -2,10 +2,9 @@
 	import './layout.css'
 	import favicon from '#lib/assets/favicon.svg'
 	import type { LayoutProps } from './$types'
-	import Cursor from '$ui/cursor.svelte'
+	import Cursor from '#ui/cursor.svelte'
 
-	let { children }: LayoutProps = $props()
-</script>
+	let { children }: LayoutProps = $props()</script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />

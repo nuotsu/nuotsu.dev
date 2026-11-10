@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { browser } from '$app/env'
-	import Scramble from '$ui/scramble.svelte'
+	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import LinkOutput from '#ui/link-output.svelte'
+	import Scramble from '#ui/scramble.svelte'
 
 	const PROJECTS: {
 		title: string
@@ -49,6 +51,8 @@
 		...project,
 		stars: project.repo && browser ? getStars(project.repo) : null
 	}))
+
+	const preview = createLinkPreview()
 </script>
 
 <section class="section">
@@ -56,8 +60,9 @@
 		{#each entries as { title, href, year, repo, stars }}
 			<div class="col-span-full grid grid-cols-subgrid">
 				<a
-					class="group/project button col-span-full grid grid-cols-subgrid bevel-br p-0 text-cp-amber hover:text-cp-amber"
 					{href}
+					class="group/project button col-span-full grid grid-cols-subgrid bevel-br p-0 text-cp-amber hover:text-cp-amber"
+					{@attach preview.attach}
 				>
 					<div class="px-ch py-[.5ch] text-cp-cyan">
 						<dt>
@@ -80,6 +85,8 @@
 								{#await stars then count}
 									<svg
 										class="inline-block h-lh w-ch"
+										width="12"
+										height="16"
 										viewBox="0 0 12 16"
 										fill="currentColor"
 										aria-hidden="true"
@@ -98,4 +105,6 @@
 			</div>
 		{/each}
 	</dl>
+
+	<LinkOutput {preview} class="text-cp-amber" />
 </section>

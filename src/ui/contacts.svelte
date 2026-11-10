@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Scramble from './scramble.svelte'
+	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import LinkOutput from '#ui/link-output.svelte'
 
 	const CONTACTS: { href: string; label: string }[] = [
 		{ href: 'https://github.com/nuotsu', label: '@nuotsu' },
@@ -9,35 +10,19 @@
 		{ href: 'mailto:mitchell@mail.grokbot.com', label: "Mitchell's Bot" }
 	]
 
-	let active = $state('')
-	let url = $derived(active.replace(/^(https?:\/\/(www\.)?|mailto:)/, ''))
+	const preview = createLinkPreview()
 </script>
 
 <section class="section">
-	<div class="relative max-w-max">
-		<ul class="mb-lh button-list pb-[.5ch]">
-			{#each CONTACTS as { href, label }}
-				<li>
-					<a
-						{href}
-						class="button bevel-br hover:text-glow"
-						onmouseenter={() => (active = href)}
-						onmouseleave={() => (active = '')}
-						onpointerdown={() => (active = href)}
-						onpointerup={() => (active = '')}
-					>
-						<strong class="uppercase">{label}</strong>
-					</a>
-				</li>
-			{/each}
-		</ul>
+	<ul class="button-list">
+		{#each CONTACTS as { href, label }}
+			<li>
+				<a {href} class="button bevel-br hover:text-glow" {@attach preview.attach}>
+					<strong class="uppercase">{label}</strong>
+				</a>
+			</li>
+		{/each}
+	</ul>
 
-		<output
-			class="absolute top-full right-0 line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-[.75em] break-all"
-		>
-			{#key url}
-				<Scramble trigger="load" text={url} stagger={30} delay={100} />
-			{/key}
-		</output>
-	</div>
+	<LinkOutput {preview} />
 </section>

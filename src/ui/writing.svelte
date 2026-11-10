@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Scramble from './scramble.svelte'
+	import { createLinkPreview } from '#lib/link-preview.svelte.ts'
+	import LinkOutput from '#ui/link-output.svelte'
 
 	const WRITING: { title: string; href: string; date: string }[] = [
 		{
@@ -29,8 +30,7 @@
 		}
 	]
 
-	let active = $state('')
-	let url = $derived(active.replace(/^(https?:\/\/(www\.)?)/, ''))
+	const preview = createLinkPreview()
 
 	const formatter = new Intl.DateTimeFormat('en-US', {
 		month: 'short',
@@ -43,35 +43,18 @@
 </script>
 
 <section class="section">
-	<div class="relative">
-		<ul
-			class="full-bleed mb-lh carousel no-scrollbar auto-cols-[20ch] gap-[.5ch] overflow-y-clip section"
-		>
-			{#each WRITING as { title, href, date }}
-				<li>
-					<a
-						{href}
-						class="button h-full bevel-tr"
-						onmouseenter={() => (active = href)}
-						onmouseleave={() => (active = '')}
-						onpointerdown={() => (active = href)}
-						onpointerup={() => (active = '')}
-					>
-						<strong class="line-clamp-3 uppercase">{title}</strong>
-						<time class="text-[.75em]" datetime={date}>
-							{format(date)}
-						</time>
-					</a>
-				</li>
-			{/each}
-		</ul>
+	<ul class="full-bleed carousel auto-cols-[20ch] gap-[.5ch] overflow-y-clip section pb-[.25ch]">
+		{#each WRITING as { title, href, date }}
+			<li>
+				<a {href} class="button h-full bevel-tr" {@attach preview.attach}>
+					<strong class="line-clamp-3 uppercase">{title}</strong>
+					<time class="text-[.75em]" datetime={date}>
+						{format(date)}
+					</time>
+				</a>
+			</li>
+		{/each}
+	</ul>
 
-		<output
-			class="absolute top-full right-0 mt-[.5ch] line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-[.75em] break-all"
-		>
-			{#key url}
-				<Scramble trigger="load" text={url} stagger={12} delay={100} />
-			{/key}
-		</output>
-	</div>
+	<LinkOutput {preview} stagger={12} />
 </section>

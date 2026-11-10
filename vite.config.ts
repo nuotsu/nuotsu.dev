@@ -14,9 +14,6 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			alias: {
-				$ui: 'src/ui'
-			},
 			adapter: adapter()
 		})
 	]

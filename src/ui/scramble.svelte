@@ -10,13 +10,15 @@
 		stagger = 60, // ms between each letter starting to scramble
 		delay = 300, // ms each letter scrambles before settling
 		tick = 50, // ms between random char swaps
-		trigger = 'load' // 'load' = on mount (pair with {#key}), 'hover' = on pointer enter, 'view' = when scrolled into view
+		trigger = 'load', // 'load' = on mount (pair with {#key}), 'hover' = on pointer enter, 'view' = when scrolled into view
+		class: className
 	}: {
 		text: string
 		stagger?: number
 		delay?: number
 		tick?: number
 		trigger?: 'load' | 'hover' | 'view'
+		class?: string
 	} = $props()
 
 	let scrambled = $state<string | null>(null)
@@ -96,6 +98,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <span
 	bind:this={el}
+	class={className}
 	onpointerenter={trigger === 'hover' ? scramble : undefined}
 	{@attach trigger === 'view'
 		? intersectionObserver((entry) => entry.isIntersecting && scramble())
