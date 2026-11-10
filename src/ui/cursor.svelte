@@ -36,7 +36,7 @@
 <svelte:document onmouseleave={() => (visible = false)} />
 
 <span
-	class="pointer-events-none fixed z-9999 border-sm border-cp-cyan"
+	class="cursor pointer-events-none fixed z-9999 border-sm border-cp-cyan"
 	class:invisible={!visible}
 	class:leaving
 	style:--duration="{DURATION}ms"
@@ -46,7 +46,7 @@
 ></span>
 
 <style>
-	span {
+	.cursor {
 		--size: 1ch;
 		--r: calc(var(--size) / 2);
 		inset: calc(var(--y) - var(--r)) calc(100% - var(--x) - var(--r))

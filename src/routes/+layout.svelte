@@ -3,8 +3,10 @@
 	import favicon from '#lib/assets/favicon.svg'
 	import type { LayoutProps } from './$types'
 	import Cursor from '#ui/cursor.svelte'
+	import Viewport from '#ui/viewport.svelte'
 
-	let { children }: LayoutProps = $props()</script>
+	let { children }: LayoutProps = $props()
+</script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
@@ -16,3 +18,4 @@
 {@render children()}
 
 <Cursor />
+<Viewport />
