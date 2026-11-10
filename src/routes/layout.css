@@ -69,14 +69,10 @@
 }
 
 @utility button-list {
-	.button {
-		transition:
-			color var(--duration, 0.2s),
-			translate 0.2s;
+	@apply grid gap-[.5ch] pr-[2ch];
 
-		&:not(:hover) {
-			--duration: 0.8s;
-		}
+	.button {
+		@apply button-list-transition;
 	}
 
 	*:has(> .button):hover > .button {
@@ -86,6 +82,16 @@
 	*:has(+ *:hover) > .button,
 	*:hover + * > .button {
 		@apply translate-x-ch;
+	}
+}
+
+@utility button-list-transition {
+	transition:
+		color var(--duration, 0.2s),
+		translate 0.2s;
+
+	&:not(:hover) {
+		--duration: 0.8s;
 	}
 }
 
@@ -115,24 +121,27 @@
 	--bevel: 1ch;
 	padding: 0.5ch 1ch;
 	border: 0.5px solid currentColor;
-	corner-shape: bevel;
 
 	@apply relative block;
 }
 
 @utility bevel-tl {
+	corner-shape: bevel;
 	border-top-left-radius: var(--bevel);
 }
 
 @utility bevel-tr {
+	corner-shape: bevel;
 	border-top-right-radius: var(--bevel);
 }
 
 @utility bevel-br {
+	corner-shape: bevel;
 	border-bottom-right-radius: var(--bevel);
 }
 
 @utility bevel-bl {
+	corner-shape: bevel;
 	border-bottom-left-radius: var(--bevel);
 }
 

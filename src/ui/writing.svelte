@@ -45,7 +45,7 @@
 <section class="section">
 	<div class="relative">
 		<ul
-			class="full-bleed mb-lh carousel no-scrollbar auto-cols-[20ch] gap-[.5ch] overflow-y-clip px-ch md:px-lh"
+			class="full-bleed mb-lh carousel no-scrollbar auto-cols-[20ch] gap-[.5ch] overflow-y-clip section"
 		>
 			{#each WRITING as { title, href, date }}
 				<li>
@@ -58,7 +58,7 @@
 						onpointerup={() => (active = '')}
 					>
 						<strong class="line-clamp-3 uppercase">{title}</strong>
-						<time class="text-[.8em]" datetime={date}>
+						<time class="text-[.75em]" datetime={date}>
 							{format(date)}
 						</time>
 					</a>

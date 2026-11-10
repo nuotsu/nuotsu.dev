@@ -10,7 +10,7 @@
 				'Love seeing all the <a href="https://www.sanity.io/exchange/community/nuotsu">great work</a> you\'re doing for the Sanity Community.'
 			],
 			author: 'Jono, Founder of Roboto Studio',
-			source: 'https://github.com/nuotsu/sanitypress/discussions/65#discussioncomment-12237198'
+			source: 'https://github.com/nuotsu/sanitypress-2023/discussions/65#discussioncomment-12237198'
 		},
 		{
 			quote: [
@@ -31,25 +31,41 @@
 	]
 </script>
 
-<section class="px-ch md:px-lh">
+<section class="section">
 	<div class="grid grid-cols-[auto_1fr] gap-lh">
 		{#each TESTIMONIALS as { quote, author, source }}
 			{@const [name, title] = author.split(',')}
 
-			<figure class="col-span-full grid grid-cols-subgrid items-start gap-y-[.5lh]">
-				<blockquote class="order-last space-y-[.5ch] text-cp-cyan [&_a:hover]:text-glow">
+			<figure
+				class="group/testimonial col-span-full grid grid-cols-subgrid items-start gap-y-[.5ch]"
+			>
+				<blockquote
+					class="order-last space-y-[.5ch] text-cp-cyan [&_a]:transition-colors [&_a:hover]:text-glow"
+				>
 					{#each quote as line}
 						<p>{@html line}</p>
 					{/each}
 				</blockquote>
 
-				<cite class="contents">
-					<strong class="ml-auto bevel-bl uppercase not-italic text-glow">
+				<cite class="contents not-italic">
+					<strong class="ml-auto bevel-bl uppercase group-hover/testimonial:text-glow">
 						{name}:
 					</strong>
 
 					{#if title}
-						<small class="order-first col-span-full text-[.7em]">{title}</small>
+						<small
+							class="relative order-first col-span-full max-w-max bevel-tl text-[.7em] {source
+								? 'button hover:text-cp-amber'
+								: 'bevel'}"
+						>
+							{title}
+
+							{#if source}
+								<a href={source} class="absolute inset-0 text-transparent">
+									{source}
+								</a>
+							{/if}
+						</small>
 					{/if}
 				</cite>
 			</figure>
@@ -59,8 +75,12 @@
 
 <style>
 	blockquote :global(a) {
-		text-decoration: 0.5px dashed underline;
+		text-decoration: 0.5px underline;
 		text-underline-offset: 2px;
 		font-weight: 700;
+
+		&:hover {
+			color: var(--color-cp-amber);
+		}
 	}
 </style>

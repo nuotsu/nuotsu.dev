@@ -15,12 +15,12 @@
 
 <section class="section">
 	<div class="relative max-w-max">
-		<ul class="mb-lh grid button-list gap-[.5ch] pr-[2ch] pb-[.5ch]">
+		<ul class="mb-lh button-list pb-[.5ch]">
 			{#each CONTACTS as { href, label }}
 				<li>
 					<a
 						{href}
-						class="button bevel-br"
+						class="button bevel-br hover:text-glow"
 						onmouseenter={() => (active = href)}
 						onmouseleave={() => (active = '')}
 						onpointerdown={() => (active = href)}
