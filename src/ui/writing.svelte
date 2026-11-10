@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Scramble from './scramble.svelte'
+
 	const WRITING: { title: string; href: string; date: string }[] = [
 		{
 			title: 'Welcome to the age of personalized software',
@@ -65,8 +67,11 @@
 		</ul>
 
 		<output
-			class="absolute top-full right-0 mt-[.5ch] line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-right text-[.75em] break-all"
-			>{url}</output
+			class="absolute top-full right-0 mt-[.5ch] line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-[.75em] break-all"
 		>
+			{#key url}
+				<Scramble trigger="load" text={url} stagger={12} delay={100} />
+			{/key}
+		</output>
 	</div>
 </section>

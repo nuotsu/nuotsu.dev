@@ -33,9 +33,11 @@
 		</ul>
 
 		<output
-			class="absolute top-full right-0 line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-right text-[.75em] break-all"
+			class="absolute top-full right-0 line-clamp-1 h-lh w-full border-t-sm pt-[.25ch] text-[.75em] break-all"
 		>
-			<Scramble text={url} />
+			{#key url}
+				<Scramble trigger="load" text={url} stagger={30} delay={100} />
+			{/key}
 		</output>
 	</div>
 </section>

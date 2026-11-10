@@ -8,7 +8,7 @@
 <header class="mx-lh border-b-sm pt-ch">
 	<a href="/" class="link">
 		<strong class="uppercase text-glow">
-			<Scramble text="nuotsu" />
+			<Scramble text="nuotsu" trigger="hover" />
 		</strong>
 	</a>
 </header>
