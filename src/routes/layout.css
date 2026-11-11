@@ -23,7 +23,8 @@
 	--border-width-sm: 0.75px;
 }
 
-@custom-variant hover (&:hover);
+/* keyboard focus counts as hover; like :hover, it also applies to ancestors of the focused element */
+@custom-variant hover (&:is(:hover, :focus-visible, :has(:focus-visible)));
 
 @layer base {
 	::selection {
@@ -56,6 +57,10 @@
 		::-webkit-scrollbar-thumb:hover {
 			background: var(--color-cp-cyan);
 		}
+	}
+
+	:focus {
+		outline: none;
 	}
 
 	* {
@@ -102,10 +107,14 @@
 @utility button {
 	@apply bevel fade-out hover:bg-current/20 hover:text-cp-cyan active:bg-current/40;
 
-	&:hover::after {
+	&::after {
 		content: '';
 		inset: calc(-0.5ch - 0.5px);
 		@apply absolute block;
+	}
+
+	&:not(:hover)::after {
+		pointer-events: none;
 	}
 }
 
@@ -118,12 +127,15 @@
 		@apply button-list-transition;
 	}
 
-	*:has(> .button):hover > .button {
+	*:has(> .button):hover > .button,
+	*:has(> .button:focus-visible) > .button {
 		translate: calc(var(--button-list-dir, 1) * 2ch) 0;
 	}
 
 	*:has(+ *:hover) > .button,
-	*:hover + * > .button {
+	*:hover + * > .button,
+	*:has(+ * > .button:focus-visible) > .button,
+	*:has(> .button:focus-visible) + * > .button {
 		translate: calc(var(--button-list-dir, 1) * 1ch) 0;
 	}
 }
@@ -144,7 +156,7 @@
 		color var(--duration, 0.2s),
 		translate 0.2s;
 
-	&:not(:hover) {
+	&:not(:hover, :focus-visible) {
 		--duration: 0.8s;
 	}
 }

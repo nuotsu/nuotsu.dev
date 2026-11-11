@@ -5,6 +5,7 @@
 	let leaving = $state(false)
 	let pressed = $state(false) // pointer down on a non-interactive target
 	let dragging = $state(false)
+	let focused = $state(false) // an interactive element has keyboard (:focus-visible) focus
 	let origin = { x: 0, y: 0 }
 	let timer: ReturnType<typeof setTimeout>
 
@@ -48,6 +49,12 @@
 		clearTimeout(timer)
 		timer = setTimeout(() => (leaving = false), DURATION)
 	}
+
+	// focusout + focusin fire in the same task when tabbing, so the focus cursor
+	// stays mounted (and animates) between elements, and mounts in place on first focus
+	function onfocusin({ target }: FocusEvent) {
+		focused = !!(target as Element | null)?.matches?.(`${INTERACTIVE}:focus-visible`)
+	}
 </script>
 
 <svelte:window
@@ -58,13 +65,15 @@
 	onblur={release}
 	ontouchmove={({ touches }) => touches[0] && moveTo(touches[0])}
 	{onpointerout}
+	{onfocusin}
+	onfocusout={() => (focused = false)}
 />
 
 <svelte:document onmouseleave={() => (visible = false)} />
 
 <span
 	class={[
-		'cursor pointer-events-none fixed z-9999 border-sm border-current',
+		'cursor mouse pointer-events-none fixed z-9999 border-sm border-current',
 		dragging ? 'text-cp-amber' : 'text-cp-cyan',
 		pressed && 'bg-current/30'
 	]}
@@ -76,12 +85,18 @@
 	aria-hidden="true"
 ></span>
 
+{#if focused}
+	<span
+		class="cursor focus pointer-events-none fixed z-9998 border-sm border-current text-cp-amber"
+		style:--duration="{DURATION}ms"
+		aria-hidden="true"
+	></span>
+{/if}
+
 <style>
 	.cursor {
 		--size: 1ch;
-		--r: calc(var(--size) / 2);
-		inset: calc(var(--y) - var(--r)) calc(100% - var(--x) - var(--r))
-			calc(100% - var(--y) - var(--r)) calc(var(--x) - var(--r));
+		--offset: 0.5ch;
 
 		--cursor-path: polygon(
 			evenodd,
@@ -107,6 +122,14 @@
 			0 var(--size)
 		);
 		clip-path: var(--cursor-path);
+	}
+
+	/* mouse: follows the mouse, locks onto hovered elements */
+
+	.mouse {
+		--r: calc(var(--size) / 2);
+		inset: calc(var(--y) - var(--r)) calc(100% - var(--x) - var(--r))
+			calc(100% - var(--y) - var(--r)) calc(var(--x) - var(--r));
 
 		&.leaving {
 			transition: inset var(--duration);
@@ -130,9 +153,26 @@
 					):hover
 			)
 		)
-		span {
-		--offset: 0.5ch;
+		.mouse {
 		position-anchor: --cursor;
+		inset: calc(anchor(top) - var(--offset)) calc(anchor(right) - var(--offset))
+			calc(anchor(bottom) - var(--offset)) calc(anchor(left) - var(--offset));
+		transition: inset var(--duration);
+	}
+
+	/* focus: locks onto the keyboard-focused element */
+
+	:global(
+		:is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(
+				:disabled,
+				[data-cursor='false']
+			):focus-visible
+	) {
+		anchor-name: --cursor-focus;
+	}
+
+	.focus {
+		position-anchor: --cursor-focus;
 		inset: calc(anchor(top) - var(--offset)) calc(anchor(right) - var(--offset))
 			calc(anchor(bottom) - var(--offset)) calc(anchor(left) - var(--offset));
 		transition: inset var(--duration);

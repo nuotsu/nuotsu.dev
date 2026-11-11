@@ -10,14 +10,14 @@
 
 <Section
 	title="Intro"
-	class="root order-first grid grid-cols-[3fr_2fr] items-start gap-lh text-pretty sm:grid-cols-2 md:col-span-4! md:gap-x-[2lh]"
+	class="root order-first grid grid-cols-[3fr_2fr] items-start gap-x-lh text-pretty sm:grid-cols-2 md:col-span-4! md:gap-x-[2lh]"
 >
 	<div class="top-ch space-y-[.5lh]">
 		<h1 class="font-bold text-cp-cyan uppercase text-glow">
 			<Scramble text="Mitchell Christ" trigger="hover" stagger={20} />
 		</h1>
 
-		<p class=" [&_a]:link-underline [&_a:hover]:text-cp-amber">
+		<p class=" [&_a]:link-underline">
 			Frontend Web Developer based in Irvine, California. Currently building <a
 				href="https://sanitypress.dev">SanityPress</a
 			>
@@ -52,6 +52,10 @@
 	a {
 		display: inline-block;
 		font-weight: bold;
+
+		&:is(:hover, :focus-visible) {
+			color: var(--color-cp-amber);
+		}
 	}
 
 	.data {

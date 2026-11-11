@@ -141,7 +141,7 @@
 		transition-duration: 200ms;
 	}
 
-	dl:has(a:hover) a:not(:hover)::before {
+	dl:has(a:is(:hover, :focus-visible)) a:not(:hover, :focus-visible)::before {
 		--t: 0%;
 		--b: 100%;
 
