@@ -172,7 +172,7 @@
 	padding: 0.5ch 1ch;
 	border: 0.5px solid currentColor;
 
-	@apply relative block;
+	@apply relative block bg-background/20 backdrop-blur-sm;
 }
 
 @utility bevel-tl {

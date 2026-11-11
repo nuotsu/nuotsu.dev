@@ -61,7 +61,9 @@
 						<small
 							class={cn(
 								'relative order-first col-span-full max-w-max bevel-tl text-[.7em]',
-								source ? 'button hover:text-cp-amber' : 'bevel'
+								source
+									? 'button transition-[background-color,color] hover:bg-cp-amber hover:text-background'
+									: 'bevel'
 							)}
 						>
 							{title}

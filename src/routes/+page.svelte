@@ -5,6 +5,7 @@
 	import Testimonials from '#ui/testimonials.svelte'
 	import Writing from '#ui/writing.svelte'
 	import Contacts from '#ui/contacts.svelte'
+	import Porygon from '#ui/porygon.svelte'
 	import Cursor from '#ui/cursor.svelte'
 	import Element from '#ui/element.svelte'
 	import Viewport from '#ui/viewport.svelte'
@@ -21,7 +22,7 @@
 </header>
 
 <main
-	class="m-auto grid max-w-7xl auto-rows-auto gap-[2lh] md:grid-cols-6 md:items-end md:*:col-span-full"
+	class="m-auto grid max-w-7xl auto-rows-auto gap-[2lh] *:z-1 md:grid-cols-6 md:items-end md:*:col-span-full"
 >
 	<Intro />
 
@@ -32,6 +33,7 @@
 
 	<Writing />
 	<Contacts />
+	<Porygon class="sticky bottom-[env(safe-area-inset-bottom)] z-0! order-last" />
 </main>
 
 <Cursor />
