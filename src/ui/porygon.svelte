@@ -2,8 +2,143 @@
 	import { cn } from '#lib/utils.ts'
 	import { onMount } from 'svelte'
 	import type * as THREE from 'three'
+	// imported (not in /static) so the URL is content-hashed and cached immutably
+	import modelUrl from '#lib/assets/models/porygon-z.glb?url'
+	import { cyberpsychosis } from '#lib/cyberpsychosis.svelte.ts'
 
 	let { class: className = '' }: { class?: string } = $props()
+
+	// the scene is lit dimmer than it's shown so highlights fit an 8-bit target without
+	// clipping; the shader's exposure makes up the difference
+	const LIGHT = 0.6
+
+	const VERTEX = /* glsl */ `
+		void main() {
+			gl_Position = vec4(position.xy, 0.0, 1.0);
+		}
+	`
+
+	// 4× downsample: each bilinear tap averages a 2×2 block, so four of them box-filter 4×4
+	const DOWNSAMPLE = /* glsl */ `
+		uniform sampler2D tSource;
+		uniform vec2 uSize; // output size in px
+		uniform vec2 uTexel; // one source texel
+
+		void main() {
+			vec2 uv = gl_FragCoord.xy / uSize;
+			gl_FragColor = 0.25 * (
+				texture2D(tSource, uv + uTexel) + texture2D(tSource, uv - uTexel)
+				+ texture2D(tSource, uv + vec2(uTexel.x, -uTexel.y)) + texture2D(tSource, uv + vec2(-uTexel.x, uTexel.y))
+			);
+		}
+	`
+
+	// post-process over the rendered model. Normally a cyan hologram (scanlines, rim light,
+	// flicker, the odd glitch tear); during cyberpsychosis a blood-red duotone with a cyan
+	// ghost, grain and constant tearing
+	const FRAGMENT = /* glsl */ `
+		uniform sampler2D tScene; // the model at full resolution
+		uniform sampler2D tGlow; // the same, downsampled 16×
+		uniform vec2 uRes; // canvas size in device px
+		uniform float uDpr;
+		uniform float uTime;
+		uniform float uGlitch; // 0 at rest, raised while a move plays
+		uniform float uPsycho; // 0 hologram → 1 cyberpsychosis
+
+		const vec3 CYAN = vec3(0.369, 0.965, 1.0); // --color-cp-cyan
+		const vec3 BLOOD = vec3(0.78, 0.05, 0.07);
+		const float EXPOSURE = ${(1.4 / LIGHT).toFixed(4)};
+
+		float hash(vec2 p) {
+			return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+		}
+
+		float peak(vec3 c) {
+			return max(c.r, max(c.g, c.b));
+		}
+
+		// linear premultiplied → display-space color (rgb) and coverage (a)
+		vec4 resolve(vec4 s) {
+			vec3 c = s.rgb / max(s.a, 0.001);
+			return vec4(pow(1.0 - exp(-c * EXPOSURE), vec3(1.0 / 2.2)), s.a);
+		}
+
+		vec4 scene(vec2 uv) {
+			return resolve(texture2D(tScene, uv));
+		}
+
+		// wide soft blur for glow
+		vec4 halo(vec2 uv) {
+			vec2 o = 8.0 * uDpr / uRes;
+			return resolve(0.25 * (
+				texture2D(tGlow, uv + o) + texture2D(tGlow, uv - o)
+				+ texture2D(tGlow, uv + vec2(o.x, -o.y)) + texture2D(tGlow, uv + vec2(-o.x, o.y))
+			));
+		}
+
+		// brightness that doesn't punish saturated reds and blues the way luma does
+		float value(vec3 c) {
+			float v = mix((c.r + c.g + c.b) / 3.0, peak(c), 0.6);
+			return smoothstep(0.15, 1.0, v);
+		}
+
+		// glitch patches: blocks (size in CSS px) that re-roll rate times a second, with the
+		// given share of them live. x: a random -0.5..0.5 inside live patches, y: 1 when live
+		vec2 patches(vec2 frag, vec2 size, float rate, float share) {
+			vec2 block = floor(frag / (size * uDpr));
+			float tick = floor(uTime * rate);
+			float live = step(hash(block + tick * 1.7), share);
+			return vec2((hash(block.yx - tick * 0.9) - 0.5) * live, live);
+		}
+
+		// both looks return premultiplied color; whatever is brighter than its alpha reads as light
+
+		vec4 hologram(vec2 frag, vec2 uv, vec2 px, vec4 glow) {
+			vec2 p = patches(frag, vec2(160.0, 6.0), 10.0, 0.004 + uGlitch * 0.5);
+			vec4 s = scene(uv + vec2(p.x * 30.0 * px.x, 0.0));
+			float l = value(s.rgb);
+			float scan = 0.78 + 0.22 * sin(frag.y / uDpr * 2.094 - uTime * 5.0);
+			float rim = s.a * (1.0 - glow.a);
+			float flicker = 0.9 + 0.1 * step(0.3, hash(vec2(floor(uTime * 20.0), 3.0)));
+			float a = s.a * scan * flicker * 0.62;
+			vec3 rgb = (mix(s.rgb, CYAN * (0.25 + 0.9 * l), 0.4) + CYAN * rim * 0.9) * a;
+			rgb += CYAN * glow.a * (1.0 - 0.7 * s.a) * 0.28 * flicker;
+			return vec4(rgb, a);
+		}
+
+		vec4 psychosis(vec2 frag, vec2 uv, vec2 px, vec4 glow) {
+			vec2 p = patches(frag, vec2(240.0, 5.0), 12.0, 0.1 + uGlitch * 0.5);
+			vec2 d = vec2(p.x * 40.0 * px.x, 0.0);
+			vec2 split = vec2((4.5 + 1.5 * sin(uTime * 1.3) + 12.0 * uGlitch) * px.x, 0.0);
+			vec4 s1 = scene(uv + d + split);
+			vec4 s2 = scene(uv + d - split);
+			float l = value(s1.rgb);
+			// crushed shadows, with only the hottest highlights burning toward orange
+			vec3 rgb = (BLOOD * (0.06 + 0.94 * l * l) + vec3(0.25, 0.1, 0.0) * smoothstep(0.75, 1.0, l)) * s1.a;
+			rgb += CYAN * value(s2.rgb) * s2.a * 0.22;
+			rgb *= 0.85 + 0.25 * hash(frag + fract(uTime) * 61.0);
+			rgb *= 0.75 + 0.25 * step(1.0, mod(frag.y / uDpr, 2.0));
+			// a slow, uneasy pulse
+			float pulse = 0.8 + 0.2 * sin(uTime * 2.4) * sin(uTime * 0.7);
+			rgb += BLOOD * glow.a * (1.0 - s1.a) * 0.6 * pulse;
+			return vec4(rgb, s1.a);
+		}
+
+		void main() {
+			vec2 frag = gl_FragCoord.xy;
+			vec2 uv = frag / uRes;
+			vec2 px = uDpr / uRes; // one CSS px
+			vec4 glow = halo(uv);
+
+			vec4 c;
+			if (uPsycho <= 0.0) c = hologram(frag, uv, px, glow);
+			else if (uPsycho >= 1.0) c = psychosis(frag, uv, px, glow);
+			else c = mix(hologram(frag, uv, px, glow), psychosis(frag, uv, px, glow), uPsycho);
+
+			vec3 rgb = min(c.rgb, vec3(1.0));
+			gl_FragColor = vec4(rgb, clamp(max(c.a, peak(rgb)), 0.0, 1.0));
+		}
+	`
 
 	// Porygon-Z (pm0474_00) from Pokémon Sword/Shield, converted to glTF with its
 	// battle animations. Tapping plays a random move animation; the head tracks the pointer.
@@ -27,28 +162,93 @@
 		let cleanup = () => {}
 
 		;(async () => {
-			const THREE = await import('three')
-			const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js')
+			// the model downloads (or resolves from the <link rel="preload">) while three.js loads
+			const [THREE, { GLTFLoader }, buffer] = await Promise.all([
+				import('three'),
+				import('three/addons/loaders/GLTFLoader.js'),
+				fetch(modelUrl).then((r) => r.arrayBuffer())
+			])
 			if (disposed) return
 
-			const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true })
-			renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
-			renderer.outputColorSpace = THREE.SRGBColorSpace
-			renderer.toneMapping = THREE.NeutralToneMapping
+			// the canvas only ever shows the post-process pass, so it needs neither MSAA nor a depth buffer
+			const renderer = new THREE.WebGLRenderer({
+				canvas,
+				alpha: true,
+				antialias: false,
+				depth: false,
+				stencil: false,
+				powerPreference: 'low-power'
+			})
+
+			// --- post-process pass ---------------------------------------------
+			// the scene renders into a target, which is downsampled twice (4× each) into a small
+			// blurred copy for the glow; a fullscreen shader then draws the look from both.
+			// Everything is 8-bit sRGB: half the memory traffic of float targets, and no
+			// per-frame mipmap generation, which some drivers do slowly
+			const target = new THREE.WebGLRenderTarget(1, 1, {
+				colorSpace: THREE.SRGBColorSpace,
+				samples: 4
+			})
+			const small = { colorSpace: THREE.SRGBColorSpace, depthBuffer: false }
+			const quarter = new THREE.WebGLRenderTarget(1, 1, small)
+			const glow = new THREE.WebGLRenderTarget(1, 1, small)
+
+			const downUniforms = {
+				tSource: { value: target.texture },
+				uSize: { value: new THREE.Vector2(1, 1) },
+				uTexel: { value: new THREE.Vector2(1, 1) }
+			}
+			const pass = { blending: THREE.NoBlending, depthTest: false, depthWrite: false }
+			const downsample = new THREE.ShaderMaterial({
+				uniforms: downUniforms,
+				vertexShader: VERTEX,
+				fragmentShader: DOWNSAMPLE,
+				...pass
+			})
+
+			function downsampleInto(to: THREE.WebGLRenderTarget, from: THREE.WebGLRenderTarget) {
+				downUniforms.tSource.value = from.texture
+				downUniforms.uSize.value.set(to.width, to.height)
+				downUniforms.uTexel.value.set(1 / from.width, 1 / from.height)
+				quad.material = downsample
+				renderer.setRenderTarget(to)
+				renderer.render(quad, quadCamera)
+			}
+
+			const uniforms = {
+				tScene: { value: target.texture },
+				tGlow: { value: glow.texture },
+				uRes: { value: new THREE.Vector2(1, 1) },
+				uDpr: { value: 1 },
+				uTime: { value: 0 },
+				uGlitch: { value: 0 },
+				uPsycho: { value: cyberpsychosis.active ? 1 : 0 }
+			}
+
+			const look = new THREE.ShaderMaterial({
+				uniforms,
+				vertexShader: VERTEX,
+				fragmentShader: FRAGMENT,
+				...pass
+			})
+			const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), look)
+			quad.frustumCulled = false
+			const quadCamera = new THREE.Camera()
+			const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
 
 			const scene = new THREE.Scene()
 			const camera = new THREE.PerspectiveCamera(30, 1, 0.01, 100)
 			camera.position.set(0, 0, 4)
 
-			scene.add(new THREE.HemisphereLight(0xffffff, 0x8090a0, 2.4))
-			const key = new THREE.DirectionalLight(0xffffff, 1.6)
+			scene.add(new THREE.HemisphereLight(0xffffff, 0x8090a0, 2.4 * LIGHT))
+			const key = new THREE.DirectionalLight(0xffffff, 1.6 * LIGHT)
 			key.position.set(1.5, 3, 4)
 			scene.add(key)
-			const rim = new THREE.DirectionalLight(0xbfefff, 1.2)
+			const rim = new THREE.DirectionalLight(0xbfefff, 1.2 * LIGHT)
 			rim.position.set(-3, 1, -2)
 			scene.add(rim)
 
-			const gltf = await new GLTFLoader().loadAsync('/models/porygon-z.glb')
+			const gltf = await new GLTFLoader().parseAsync(buffer, '')
 			if (disposed) return renderer.dispose()
 
 			const model = gltf.scene
@@ -99,8 +299,9 @@
 				const track = anim?.tracks.Eye
 				const f = anim ? Math.min(Math.floor(time * anim.fps), anim.num_frames - 1) : 0
 				// atlas is 2 columns × 4 rows: U = -0.5 picks the (angry) right column,
-				// V steps down the rows
-				eyeMap.offset.set(-(track?.ColorUVTranslateU?.[f] ?? 0), track?.ColorUVTranslateV?.[f] ?? 0)
+				// V steps down the rows. Cyberpsychosis pins the eyes to the angry column
+				const u = cyberpsychosis.active ? -0.5 : (track?.ColorUVTranslateU?.[f] ?? 0)
+				eyeMap.offset.set(-u, track?.ColorUVTranslateV?.[f] ?? 0)
 			}
 
 			// --- moves ---------------------------------------------------------
@@ -116,6 +317,7 @@
 				action.clampWhenFinished = true
 				action.crossFadeFrom(idle, 0.15, false).play()
 				current = action
+				if (!reducedMotion.matches) burst = 1
 			}
 
 			mixer.addEventListener('finished', ({ action }) => {
@@ -137,6 +339,7 @@
 			const wantDir = new THREE.Vector3(0, 0, 1)
 			const lookDir = new THREE.Vector3(0, 0, 1)
 			const parentQ = new THREE.Quaternion()
+			const toLocal = new THREE.Quaternion()
 			const aim = new THREE.Quaternion()
 			const delta = new THREE.Quaternion()
 			const identity = new THREE.Quaternion()
@@ -217,6 +420,9 @@
 			// --- loop ----------------------------------------------------------
 			const clock = new THREE.Clock()
 			let idleTime = 0
+			let burst = 0
+			let sustain = 0
+			let wasPsycho = cyberpsychosis.active
 
 			function loop() {
 				const dt = Math.min(clock.getDelta(), 0.1)
@@ -250,14 +456,49 @@
 				aim.setFromUnitVectors(beakDir, lookDir)
 				delta.slerpQuaternions(identity, aim, lookWeight)
 				head.parent!.getWorldQuaternion(parentQ)
-				head.quaternion.premultiply(parentQ.clone().invert().multiply(delta).multiply(parentQ))
+				head.quaternion.premultiply(
+					toLocal.copy(parentQ).invert().multiply(delta).multiply(parentQ)
+				)
 
+				uniforms.uTime.value += dt
+
+				// glitch: a sharp burst when a move starts or cyberpsychosis flips, then a
+				// sustained level for as long as the move plays
+				const psycho = cyberpsychosis.active
+				if (psycho !== wasPsycho && !reducedMotion.matches) burst = 1
+				wasPsycho = psycho
+				burst *= Math.exp(-dt * 5)
+				sustain += ((current && !reducedMotion.matches ? 0.4 : 0) - sustain) * ease
+				uniforms.uGlitch.value = Math.max(burst, sustain)
+
+				const blend =
+					uniforms.uPsycho.value + ((psycho ? 1 : 0) - uniforms.uPsycho.value) * ease * 1.5
+				uniforms.uPsycho.value =
+					Math.abs((psycho ? 1 : 0) - blend) < 0.004 ? (psycho ? 1 : 0) : blend
+
+				renderer.setRenderTarget(target)
 				renderer.render(scene, camera)
+				downsampleInto(quarter, target)
+				downsampleInto(glow, quarter)
+				quad.material = look
+				renderer.setRenderTarget(null)
+				renderer.render(quad, quadCamera)
 			}
 
 			function resize() {
 				const { clientWidth: w, clientHeight: h } = canvas
+				if (!w || !h) return
+				const dpr = Math.min(devicePixelRatio, 2)
+				renderer.setPixelRatio(dpr)
 				renderer.setSize(w, h, false)
+
+				const { width, height } = renderer.domElement
+				target.setSize(width, height)
+				quarter.setSize(Math.ceil(width / 4), Math.ceil(height / 4))
+				glow.setSize(Math.ceil(width / 16), Math.ceil(height / 16))
+				uniforms.uRes.value.set(width, height)
+				uniforms.uDpr.value = dpr
+
 				camera.aspect = w / h
 				camera.updateProjectionMatrix()
 			}
@@ -267,12 +508,10 @@
 				clock.getDelta()
 				renderer.setAnimationLoop(entry.isIntersecting ? loop : null)
 			})
-			io.observe(canvas)
 
 			const ro = new ResizeObserver(resize)
 			ro.observe(canvas)
 			resize()
-			loaded = true
 
 			cleanup = () => {
 				io.disconnect()
@@ -294,8 +533,28 @@
 						mat.dispose()
 					}
 				})
+				target.dispose()
+				quarter.dispose()
+				glow.dispose()
+				quad.geometry.dispose()
+				look.dispose()
+				downsample.dispose()
 				renderer.dispose()
 			}
+
+			// compile shaders off the main thread before the first frame, so the reveal doesn't hitch
+			// (the model's programs depend on where they draw, so compile them against the target)
+			renderer.setRenderTarget(target)
+			const compiling = [renderer.compileAsync(scene, camera)]
+			quad.material = downsample
+			compiling.push(renderer.compileAsync(quad, quadCamera))
+			renderer.setRenderTarget(null)
+			quad.material = look
+			compiling.push(renderer.compileAsync(quad, quadCamera))
+			await Promise.all(compiling)
+			if (disposed) return
+			io.observe(canvas)
+			loaded = true
 		})()
 
 		return () => {
@@ -305,9 +564,19 @@
 	})
 </script>
 
-<section
-	class={cn('relative mx-[calc(50%-50vw)] h-[min(24rem,100vw)] w-screen overflow-clip', className)}
->
+<svelte:head>
+	<!-- starts the download with the HTML, long before hydration; low priority since it's decorative -->
+	<link
+		rel="preload"
+		href={modelUrl}
+		as="fetch"
+		type="model/gltf-binary"
+		crossorigin="anonymous"
+		fetchpriority="low"
+	/>
+</svelte:head>
+
+<section class={cn('relative full-bleed h-[min(24rem,100cqw)] overflow-clip', className)}>
 	<button
 		type="button"
 		class="size-full touch-none select-none"
@@ -321,9 +590,12 @@
 		onpointercancel={() => endDrag()}
 		onclick={() => !dragged && trigger()}
 	>
+		<!-- only as wide as the model needs, not the full bleed: fewer pixels to shade, and less
+		     of the page to recomposite every frame. The button around it still takes input -->
 		<canvas
 			bind:this={canvas}
-			class="size-full transition-opacity duration-500"
+			class="mx-auto block h-full max-w-full transition-opacity duration-500"
+			style:aspect-ratio="3 / 2"
 			class:opacity-0={!loaded}
 		></canvas>
 	</button>

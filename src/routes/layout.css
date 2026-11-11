@@ -72,6 +72,8 @@
 	}
 
 	body {
+		/* lets full-bleed size against body (excludes the scrollbar, unlike vw) */
+		container-type: inline-size;
 		@apply flex min-h-svh flex-col gap-[2lh];
 	}
 
@@ -150,8 +152,8 @@
 /* utilities */
 
 @utility full-bleed {
-	width: 100vw;
-	margin-inline: calc(50% - 50vw);
+	width: 100cqw;
+	margin-inline: calc(50% - 50cqw);
 }
 
 @utility no-scrollbar {

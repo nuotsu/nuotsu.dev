@@ -1,12 +1,13 @@
 <script lang="ts">
 	import defaultSize from '#lib/assets/portrait-variants/netrunner.png?size'
 	import psychoSize from '#lib/assets/portrait-variants/netrunner-cyberpsychosis.png?size'
+	import { cyberpsychosis } from '#lib/cyberpsychosis.svelte.ts'
 
 	const CLICKS_TO_SWITCH = 10
 	const GLITCH_MS = 700
 
 	let clicks = $state(0)
-	let psycho = $state(false)
+	let psycho = $derived(cyberpsychosis.active)
 	let remaining = $derived(CLICKS_TO_SWITCH - (clicks % CLICKS_TO_SWITCH))
 	let glitching = $state(false)
 
@@ -21,7 +22,7 @@
 		if (++clicks % CLICKS_TO_SWITCH !== 0) return
 
 		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			psycho = !psycho
+			cyberpsychosis.active = !cyberpsychosis.active
 			return
 		}
 
@@ -43,7 +44,7 @@
 			}
 
 			if (!swapped && t >= 0.5) {
-				psycho = !psycho
+				cyberpsychosis.active = !cyberpsychosis.active
 				swapped = true
 			}
 
