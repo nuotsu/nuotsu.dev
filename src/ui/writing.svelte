@@ -45,7 +45,7 @@
 
 <Section title="Writing" class="text-cp-green">
 	<ul
-		class="section carousel auto-cols-[20ch] gap-[.5ch] overflow-y-clip pb-[.25ch] max-xl:full-bleed max-xl:pr-lh max-xl:pl-[calc(1lh+.5ch)]"
+		class="section carousel auto-cols-[20ch] gap-[.5ch] overflow-y-clip pb-[.25ch] max-xl:pr-lh max-xl:pl-[calc(1lh+.5ch)]"
 	>
 		{#each WRITING as { title, href, date }}
 			<li>
@@ -63,3 +63,17 @@
 
 	<LinkOutput {preview} stagger={12} />
 </Section>
+
+<style>
+	@media (width < 80rem) {
+		ul {
+			margin-left: calc(-1lh - 0.5ch - env(safe-area-inset-left));
+			margin-right: calc(-1lh - env(safe-area-inset-right));
+		}
+	}
+
+	li {
+		scroll-margin-left: calc(env(safe-area-inset-left) + 1lh + 0.5ch);
+		scroll-snap-align: start;
+	}
+</style>

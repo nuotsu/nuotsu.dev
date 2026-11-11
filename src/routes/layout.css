@@ -58,20 +58,21 @@
 		}
 	}
 
-	@media (pointer: fine) {
-		* {
+	* {
+		min-width: 0;
+
+		@media (pointer: fine) {
 			cursor: none;
 		}
 	}
 
 	html {
 		scrollbar-gutter: stable;
-		overflow-x: clip;
-		@apply bg-background bg-linear-to-b from-cp-red/10 leading-none text-cp-red;
+		@apply no-scrollbar bg-background bg-linear-to-b from-cp-red/10 leading-none text-cp-red;
 	}
 
 	body {
-		@apply min-h-svh;
+		@apply flex min-h-svh flex-col gap-[2lh];
 	}
 
 	hr {
@@ -204,33 +205,7 @@
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 
-	@apply no-scrollbar *:snap-center *:md:snap-start;
-}
-
-@utility carousel-scroll-marker {
-	--size: 12px;
-	scroll-marker-group: after;
-
-	&::scroll-marker-group {
-		position: absolute;
-		position-anchor: var(--anchor-name);
-		top: calc(anchor(bottom) + 1rem);
-		justify-self: center;
-		display: flex;
-		align-items: center;
-		gap: 0.5ch;
-	}
-
-	& > * {
-		&::scroll-marker {
-			content: '';
-			@apply block size-1 rounded-full bg-foreground/25;
-		}
-
-		&::scroll-marker:target-current {
-			@apply w-[2ch] bg-foreground opacity-100;
-		}
-	}
+	@apply no-scrollbar;
 }
 
 /* anims */

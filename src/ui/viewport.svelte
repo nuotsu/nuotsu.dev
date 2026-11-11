@@ -33,16 +33,7 @@
 	ontouchmove={({ touches }) => touches[0] && moveTo(touches[0])}
 />
 
-<output
-	class="pointer-events-none fixed top-0 right-0 -z-1 grid h-svh w-rlh items-start justify-end text-right font-numeric text-[.5em] opacity-30 select-none"
->
+<output class="grid shrink-0 text-right font-numeric">
 	<span>{x.toFixed(1)}° {y.toFixed(1)}°</span>
-	<span> {scrollPx}px {scrollPct.toFixed(1)}% </span>
+	<span> {scrollPx.toFixed(1)}px {scrollPct.toFixed(1)}%</span>
 </output>
-
-<style>
-	output {
-		writing-mode: vertical-lr;
-		padding-bottom: max(env(safe-area-inset-bottom), 0.5ch);
-	}
-</style>

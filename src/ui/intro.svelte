@@ -10,7 +10,7 @@
 
 <Section
 	title="Intro"
-	class="root order-first grid grid-cols-2 items-start gap-x-ch text-pretty md:col-span-4! md:gap-x-[2lh]"
+	class="root order-first grid grid-cols-[3fr_2fr] items-start gap-lh text-pretty sm:grid-cols-2 md:col-span-4! md:gap-x-[2lh]"
 >
 	<div class="top-ch space-y-[.5lh]">
 		<h1 class="font-bold text-cp-cyan uppercase text-glow">
