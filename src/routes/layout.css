@@ -209,6 +209,27 @@
 	border-bottom-left-radius: var(--bevel);
 }
 
+/* N slashes + (N - 1) gaps, so the last slash ends flush with no partial stripe */
+@utility slashes {
+	--slash-width: 0.25ch;
+	--slash-gap: 0.3ch;
+
+	z-index: 1;
+	display: inline-block;
+	width: calc(var(--slash-count, 10) * (var(--slash-width) + var(--slash-gap)) - var(--slash-gap));
+	height: var(--bevel, 1ch);
+	background-image: repeating-linear-gradient(
+		to right,
+		currentColor 0 var(--slash-width),
+		transparent 0 calc(var(--slash-width) + var(--slash-gap))
+	);
+	transform: skewX(-45deg);
+}
+
+@utility slashes-* {
+	--slash-count: --value(integer);
+}
+
 @utility carousel {
 	--anchor-name: attr(data-anchor-name type(<custom-ident>), --carousel);
 	anchor-name: var(--anchor-name);

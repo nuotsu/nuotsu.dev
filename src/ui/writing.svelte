@@ -49,9 +49,14 @@
 	>
 		{#each WRITING as { title, href, date }}
 			<li>
-				<a {href} class="button h-full bevel-tr" {@attach preview.attach}>
-					<strong class="line-clamp-3 uppercase">{title}</strong>
-					<time class="text-[.75em]" datetime={date}>
+				<a
+					{href}
+					class="button flex h-full flex-col gap-[.5lh] bevel-tr pt-lh before:slashes"
+					{@attach preview.attach}
+				>
+					<strong class="uppercase">{title}</strong>
+
+					<time class="mt-auto text-[.75em]" datetime={date}>
 						{format(date)}
 					</time>
 				</a>
@@ -75,5 +80,15 @@
 	li {
 		scroll-margin-left: calc(env(safe-area-inset-left) + 1lh + 0.5ch);
 		scroll-snap-align: start;
+	}
+
+	a::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: skewX(45deg);
+		margin-top: 0.3ch;
+		margin-right: 0.7ch;
+		height: 0.7ch;
 	}
 </style>

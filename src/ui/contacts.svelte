@@ -18,7 +18,11 @@
 	<ul class="button-list-to-r">
 		{#each CONTACTS as { href, label }}
 			<li>
-				<a {href} class="button bevel-br hover:text-glow" {@attach preview.attach}>
+				<a
+					{href}
+					class="button bevel-br slashes-8 before:slashes hover:text-glow"
+					{@attach preview.attach}
+				>
 					<strong class="uppercase">{label}</strong>
 				</a>
 			</li>
@@ -27,3 +31,14 @@
 
 	<LinkOutput {preview} />
 </Section>
+
+<style>
+	a::before {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		margin-bottom: 0.3ch;
+		margin-right: 0.7ch;
+		height: 0.7ch;
+	}
+</style>

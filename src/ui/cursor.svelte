@@ -73,7 +73,7 @@
 
 <span
 	class={[
-		'cursor mouse pointer-events-none fixed z-9999 border-sm border-current',
+		'cursor mouse pointer-events-none fixed z-9999 border-sm border-current select-none',
 		dragging ? 'text-cp-amber' : 'text-cp-cyan',
 		pressed && 'bg-current/30'
 	]}
@@ -87,7 +87,7 @@
 
 {#if focused}
 	<span
-		class="cursor focus pointer-events-none fixed z-9998 border-sm border-current text-cp-amber"
+		class="cursor focus pointer-events-none fixed z-9998 border-sm border-current text-cp-amber select-none"
 		style:--duration="{DURATION}ms"
 		aria-hidden="true"
 	></span>

@@ -272,7 +272,7 @@
 			// normalize size and center on the pivot
 			const box = new THREE.Box3().setFromObject(model, true)
 			const size = box.getSize(new THREE.Vector3())
-			const scale = 1.2 / Math.max(size.x, size.y, size.z)
+			const scale = 1.6 / Math.max(size.x, size.y, size.z)
 			model.scale.setScalar(scale)
 			model.position.copy(box.getCenter(new THREE.Vector3()).multiplyScalar(-scale))
 
@@ -576,7 +576,7 @@
 	/>
 </svelte:head>
 
-<section class={cn('relative full-bleed h-[min(24rem,100cqw)] overflow-clip', className)}>
+<section class={cn('relative full-bleed h-[min(18rem,75cqw)] overflow-clip', className)}>
 	<button
 		type="button"
 		class="size-full touch-none select-none"

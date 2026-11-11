@@ -64,7 +64,7 @@
 </script>
 
 <figure
-	class="bevel sticky top-ch grid aspect-square overflow-clip bevel-br p-0 [--bevel:2lh] *:col-span-full *:row-span-full"
+	class="bevel sticky top-ch grid aspect-square overflow-clip bevel-tl bevel-br rounded-br-[2lh] p-0 *:col-span-full *:row-span-full before:slashes sm:before:slashes-20"
 >
 	<svg class="pointer-events-none absolute size-0" aria-hidden="true">
 		<filter
@@ -157,6 +157,15 @@
 
 <style>
 	figure {
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin-top: 0.3ch;
+			margin-left: 0.7ch;
+			height: 0.7ch;
+		}
+
 		&::after {
 			content: '?';
 			display: grid;
