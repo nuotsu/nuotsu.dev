@@ -1,3 +1,14 @@
+<script lang="ts" module>
+	// live instances' teardowns, kept across hot reloads so old renderers get stopped
+	const live: Set<() => void> = import.meta.hot
+		? (import.meta.hot.data.porygon ??= new Set())
+		: new Set()
+
+	import.meta.hot?.dispose(() => {
+		for (const stop of [...live]) stop()
+	})
+</script>
+
 <script lang="ts">
 	import { cn } from '#lib/utils.ts'
 	import { onMount } from 'svelte'
@@ -161,6 +172,17 @@
 		let disposed = false
 		let cleanup = () => {}
 
+		// idempotent: runs on unmount or hot reload
+		const stop = () => {
+			if (disposed) return
+			disposed = true
+			live.delete(stop)
+			cleanup()
+		}
+		// stop leftovers from a previous module version
+		if (import.meta.hot) for (const prev of [...live]) prev()
+		live.add(stop)
+
 		;(async () => {
 			// the model downloads (or resolves from the <link rel="preload">) while three.js loads
 			const [THREE, { GLTFLoader }, buffer] = await Promise.all([
@@ -179,6 +201,11 @@
 				stencil: false,
 				powerPreference: 'low-power'
 			})
+			// replaced by the full teardown below
+			cleanup = () => {
+				renderer.dispose()
+				renderer.forceContextLoss()
+			}
 
 			// --- post-process pass ---------------------------------------------
 			// the scene renders into a target, which is downsampled twice (4× each) into a small
@@ -249,7 +276,7 @@
 			scene.add(rim)
 
 			const gltf = await new GLTFLoader().parseAsync(buffer, '')
-			if (disposed) return renderer.dispose()
+			if (disposed) return
 
 			const model = gltf.scene
 			const mixer = new THREE.AnimationMixer(model)
@@ -425,6 +452,7 @@
 			let wasPsycho = cyberpsychosis.active
 
 			function loop() {
+				if (disposed) return renderer.setAnimationLoop(null)
 				const dt = Math.min(clock.getDelta(), 0.1)
 				mixer.update(dt)
 
@@ -505,6 +533,7 @@
 
 			// only render while on screen
 			const io = new IntersectionObserver(([entry]) => {
+				if (disposed) return
 				clock.getDelta()
 				renderer.setAnimationLoop(entry.isIntersecting ? loop : null)
 			})
@@ -540,6 +569,8 @@
 				look.dispose()
 				downsample.dispose()
 				renderer.dispose()
+				// free the GL context immediately
+				renderer.forceContextLoss()
 			}
 
 			// compile shaders off the main thread before the first frame, so the reveal doesn't hitch
@@ -557,10 +588,7 @@
 			loaded = true
 		})()
 
-		return () => {
-			disposed = true
-			cleanup()
-		}
+		return stop
 	})
 </script>
 
