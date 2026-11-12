@@ -22,6 +22,7 @@
 	// the scene is lit dimmer than it's shown so highlights fit an 8-bit target without
 	// clipping; the shader's exposure makes up the difference
 	const LIGHT = 0.6
+	const TIME_LOOP = 20 * Math.PI
 
 	const VERTEX = /* glsl */ `
 		void main() {
@@ -488,7 +489,8 @@
 					toLocal.copy(parentQ).invert().multiply(delta).multiply(parentQ)
 				)
 
-				uniforms.uTime.value += dt
+				// wrapped so hash() keeps its float precision; every wave (5, 1.3, 2.4, 0.7 rad/s) loops on 20π
+				uniforms.uTime.value = (uniforms.uTime.value + dt) % TIME_LOOP
 
 				// glitch: a sharp burst when a move starts or cyberpsychosis flips, then a
 				// sustained level for as long as the move plays
