@@ -2,7 +2,7 @@ import type { Handle } from '@sveltejs/kit/hooks'
 
 // reverse proxy PostHog through /ingest so ad blockers don't drop events
 export const handle: Handle = async ({ event, resolve }) => {
-	const { pathname, search } = event.url
+	const { pathname } = event.url
 	if (!pathname.startsWith('/ingest')) return resolve(event)
 
 	const path = pathname.slice('/ingest'.length)
@@ -16,7 +16,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const clientIp = event.getClientAddress()
 	if (clientIp) headers.set('x-forwarded-for', clientIp)
 
-	const response = await fetch(`https://${host}${path}${search}`, {
+	const response = await fetch(`https://${host}${path}${event.url.search}`, {
 		method: event.request.method,
 		headers,
 		body: event.request.body,
