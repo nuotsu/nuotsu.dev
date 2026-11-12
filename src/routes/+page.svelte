@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Scramble from '#ui/scramble.svelte'
+	import QRcode from '#ui/qrcode.svelte'
 	import Intro from '#ui/intro.svelte'
 	import Projects from '#ui/projects.svelte'
 	import Testimonials from '#ui/testimonials.svelte'
 	import Writing from '#ui/writing.svelte'
 	import Contacts from '#ui/contacts.svelte'
 	import Usage from '#ui/usage.svelte'
-	import Tracking from '#ui/tracking.svelte'
+	import Analytics from '#ui/analytics.svelte'
 	import Porygon from '#ui/porygon.svelte'
 	import Cursor from '#ui/cursor.svelte'
 	import Element from '#ui/element.svelte'
@@ -14,12 +15,14 @@
 </script>
 
 <header class="section">
-	<div class="border-b-sm pt-ch">
+	<div class="flex justify-between gap-lh border-b-sm pt-ch">
 		<a href="/" class="link">
 			<strong class="uppercase text-glow">
 				<Scramble text="nuotsu" trigger={['hover', 'view']} />
 			</strong>
 		</a>
+
+		<QRcode />
 	</div>
 </header>
 
@@ -36,12 +39,12 @@
 	<Writing />
 	<Contacts />
 
-	<div class="*shrink:-0 col-span-full contents w-full justify-between gap-[inherit] md:flex">
+	<div class="col-span-full contents w-full justify-between gap-[inherit] *:z-1 *:shrink-0 md:flex">
 		<Usage />
-		<Tracking />
+		<Analytics />
 	</div>
 
-	<Porygon class="sticky bottom-[env(safe-area-inset-bottom)] z-0! order-last" />
+	<Porygon class="sticky bottom-[env(safe-area-inset-bottom)] z-0! order-last mt-[-2lh]" />
 </main>
 
 <Cursor />

@@ -82,11 +82,12 @@
 				{#each Array(10) as _, i}
 					<div
 						class={cn(
-							'h-lh w-[.5ch] transition-[background-color,box-shadow] duration-1000 starting:bg-current/10 starting:shadow-none',
+							'h-lh w-[.5ch] duration-0 starting:bg-current/10 starting:shadow-none',
 							used !== null && i < used / 10
 								? 'bg-current shadow-[0_0_1ch_.25ch] shadow-current/50 '
 								: 'bg-current/10'
 						)}
+						style:transition-delay="{(i + 1) * 50}ms"
 					></div>
 				{/each}
 			</div>
@@ -94,7 +95,7 @@
 			<strong class="text-right">
 				{#key selected}
 					{#if used === null}
-						<span class="inline-block w-[3ch]" aria-label="Usage unavailable">—</span>
+						<span class="inline-block w-[3ch]" aria-label="Usage unavailable">--</span>
 					{:else}
 						<Scramble text={used.toString()} chars="0123456789" class="inline-block w-[3ch]" />
 					{/if}

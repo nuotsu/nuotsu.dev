@@ -2,6 +2,7 @@ import adapter from '@sveltejs/adapter-vercel'
 import { enhancedImages } from '@sveltejs/enhanced-img'
 import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
+import { execSync } from 'node:child_process'
 import { statSync } from 'node:fs'
 import { defineConfig, type Plugin } from 'vite'
 
@@ -19,7 +20,19 @@ function fileSize(): Plugin {
 	}
 }
 
+// ISO date of the latest commit, read at build time (falls back to the build time if git is unavailable)
+function lastCommitDate() {
+	try {
+		return execSync('git log -1 --format=%cI', { encoding: 'utf8' }).trim()
+	} catch {
+		return new Date().toISOString()
+	}
+}
+
 export default defineConfig({
+	define: {
+		__LAST_COMMIT_DATE__: JSON.stringify(lastCommitDate())
+	},
 	plugins: [
 		fileSize(),
 		enhancedImages(),

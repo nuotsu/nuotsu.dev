@@ -38,6 +38,7 @@
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
+		"posthog-js": "^1.447.12",
 		"tailwind-merge": "^3.7.0",
 		"three": "0.183.0"
 	}
