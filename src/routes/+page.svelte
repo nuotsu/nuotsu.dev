@@ -14,8 +14,8 @@
 	import Viewport from '#ui/viewport.svelte'
 </script>
 
-<header class="section">
-	<div class="flex justify-between gap-lh border-b-sm pt-ch">
+<header class="section relative z-10">
+	<div class="flex items-end justify-between gap-lh border-b-sm pt-ch">
 		<a href="/" class="link">
 			<strong class="uppercase text-glow">
 				<Scramble text="nuotsu" trigger={['hover', 'view']} />

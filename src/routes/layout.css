@@ -81,6 +81,14 @@
 		@apply flex min-h-svh flex-col gap-[2lh];
 	}
 
+	summary {
+		display: block;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+	}
+
 	hr {
 		border: none;
 		border-bottom: 0.5px solid;
