@@ -5,6 +5,7 @@
 	import Testimonials from '#ui/testimonials.svelte'
 	import Writing from '#ui/writing.svelte'
 	import Contacts from '#ui/contacts.svelte'
+	import Usage from '#ui/usage.svelte'
 	import Porygon from '#ui/porygon.svelte'
 	import Cursor from '#ui/cursor.svelte'
 	import Element from '#ui/element.svelte'
@@ -33,6 +34,7 @@
 
 	<Writing />
 	<Contacts />
+	<Usage />
 	<Porygon class="sticky bottom-[env(safe-area-inset-bottom)] z-0! order-last" />
 </main>
 

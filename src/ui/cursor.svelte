@@ -10,7 +10,7 @@
 	let timer: ReturnType<typeof setTimeout>
 
 	const INTERACTIVE =
-		':is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(:disabled, [data-cursor="false"])'
+		':is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(:disabled, [data-cursor="false"], [data-cursor-disabled])'
 	const DURATION = 100 // ms
 	const DRAG_THRESHOLD = 4 // px
 
@@ -53,7 +53,11 @@
 	// focusout + focusin fire in the same task when tabbing, so the focus cursor
 	// stays mounted (and animates) between elements, and mounts in place on first focus
 	function onfocusin({ target }: FocusEvent) {
-		focused = !!(target as Element | null)?.matches?.(`${INTERACTIVE}:focus-visible`)
+		const el = target as Element | null
+		focused = !!(
+			el?.matches?.(`${INTERACTIVE}:focus-visible`) ||
+			(el?.matches?.('[data-cursor-disabled]:focus-visible') && el.parentElement?.closest(INTERACTIVE))
+		)
 	}
 </script>
 
@@ -139,7 +143,8 @@
 	:global(
 		:is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(
 				:disabled,
-				[data-cursor='false']
+				[data-cursor='false'],
+				[data-cursor-disabled]
 			):hover
 	) {
 		anchor-name: --cursor;
@@ -149,7 +154,8 @@
 			:root:has(
 				:is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(
 						:disabled,
-						[data-cursor='false']
+						[data-cursor='false'],
+						[data-cursor-disabled]
 					):hover
 			)
 		)
@@ -165,8 +171,9 @@
 	:global(
 		:is(a[href], button, input, select, textarea, summary, label, [data-cursor]):not(
 				:disabled,
-				[data-cursor='false']
-			):focus-visible
+				[data-cursor='false'],
+				[data-cursor-disabled]
+			):is(:focus-visible, :has([data-cursor-disabled]:focus-visible))
 	) {
 		anchor-name: --cursor-focus;
 	}
