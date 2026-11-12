@@ -1,5 +1,4 @@
-import { env } from '$env/dynamic/private'
-import { json } from '@sveltejs/kit'
+import { GITHUB_TOKEN } from '$app/env/private'
 import type { RequestHandler } from './$types'
 
 const normalizeRepo = (repo: string) => (repo.includes('/') ? repo : `nuotsu/${repo}`)
@@ -8,7 +7,7 @@ export const GET: RequestHandler = async ({ url }) => {
 	const repoParam = url.searchParams.get('repo')
 
 	if (!repoParam) {
-		return json({ stars: 0 })
+		return Response.json({ stars: 0 })
 	}
 
 	const repos = repoParam
@@ -21,8 +20,8 @@ export const GET: RequestHandler = async ({ url }) => {
 		'User-Agent': 'nuotsu.dev'
 	}
 
-	if (env.GITHUB_TOKEN) {
-		headers.Authorization = `Bearer ${env.GITHUB_TOKEN}`
+	if (GITHUB_TOKEN) {
+		headers.Authorization = `Bearer ${GITHUB_TOKEN}`
 	}
 
 	const counts = await Promise.all(
@@ -38,7 +37,7 @@ export const GET: RequestHandler = async ({ url }) => {
 		})
 	)
 
-	return json(
+	return Response.json(
 		{ stars: counts.reduce((sum, count) => sum + count, 0) },
 		{ headers: { 'cache-control': 'public, max-age=3600' } }
 	)

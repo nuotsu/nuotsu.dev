@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { browser } from '$app/env'
 	import Section from '#ui/section.svelte'
+	import type { Usage } from '#lib/server/usage.ts'
 
 	const SERVICES: {
 		id: string
@@ -12,6 +14,12 @@
 	]
 
 	let selected = $state(SERVICES[0].id)
+
+	const usage: Promise<Partial<Usage>> = browser
+		? fetch('/api/usage')
+				.then((response) => (response.ok ? response.json() : {}))
+				.catch(() => ({}))
+		: Promise.resolve({})
 </script>
 
 <Section title="Usage">
@@ -26,7 +34,7 @@
 					class="sr-only"
 					name="usage"
 					type="radio"
-					checked={id === id}
+					checked={id === selected}
 					onchange={() => (selected = id)}
 					data-cursor-disabled
 				/>
@@ -36,9 +44,14 @@
 		{/each}
 	</fieldset>
 
-	{#each SERVICES as { id, title }}
-		<article class="" hidden={id !== selected}>
-			{title}
+	{#each SERVICES as { id }}
+		<article hidden={id !== selected}>
+			{#await usage}
+				…
+			{:then data}
+				{@const used = data[id as keyof Usage]}
+				{used == null ? 'N/A' : `${used}% used`}
+			{/await}
 		</article>
 	{/each}
 </Section>
