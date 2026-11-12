@@ -9,9 +9,33 @@ export type ServiceId = 'claude' | 'codex' | 'cursor' | 'grokbot'
 export type Usage = Record<ServiceId, number | null>
 
 const TIMEOUT = 5000 // ms
+const TTL = 5 * 60_000 // ms to reuse a successful result before asking the service again
+
+/** thrown on 429 so the service can be left alone until it says to come back */
+class RateLimitError extends Error {
+	constructor(
+		host: string,
+		readonly retryAfter: number // ms
+	) {
+		super(`${host} rate limited for ${Math.round(retryAfter / 1000)}s`)
+	}
+}
+
+function hasToken(name: string, value: string | undefined): value is string {
+	if (value) return true
+	console.error(`[usage] Missing ${name}; configure it in this deployment's environment`)
+	return false
+}
 
 async function getJson(url: string, headers: HeadersInit, init: RequestInit = {}) {
 	const response = await fetch(url, { ...init, headers, signal: AbortSignal.timeout(TIMEOUT) })
+	if (response.status === 429) {
+		const seconds = Number(response.headers.get('retry-after'))
+		throw new RateLimitError(
+			new URL(url).host,
+			(Number.isFinite(seconds) && seconds > 0 ? seconds : 60) * 1000
+		)
+	}
 	// never include the response body in errors: it could echo request details
 	if (!response.ok) throw new Error(`${new URL(url).host} responded ${response.status}`)
 	return response.json()
@@ -31,19 +55,19 @@ const cursorHeaders = () => ({
 })
 
 const fetchers: Record<ServiceId, () => Promise<number | null>> = {
-	// Claude subscription: current 5-hour session window
+	// Claude subscription: weekly (7-day) limit across all models
 	async claude() {
-		if (!CLAUDE_OAUTH_TOKEN) return null
+		if (!hasToken('CLAUDE_OAUTH_TOKEN', CLAUDE_OAUTH_TOKEN)) return null
 		const data = await getJson('https://api.anthropic.com/api/oauth/usage', {
 			Authorization: `Bearer ${CLAUDE_OAUTH_TOKEN}`,
 			'anthropic-beta': 'oauth-2025-04-20'
 		})
-		return percent(data?.five_hour?.utilization)
+		return percent(data?.seven_day?.utilization)
 	},
 
-	// ChatGPT/Codex plan: primary rate limit window (length depends on plan)
+	// ChatGPT/Codex plan: the longest rate limit window (usually weekly)
 	async codex() {
-		if (!CODEX_ACCESS_TOKEN) return null
+		if (!hasToken('CODEX_ACCESS_TOKEN', CODEX_ACCESS_TOKEN)) return null
 		// the access token is a JWT that already carries the account id
 		const claims = JSON.parse(
 			Buffer.from(CODEX_ACCESS_TOKEN.split('.')[1] ?? '', 'base64url').toString()
@@ -55,12 +79,18 @@ const fetchers: Record<ServiceId, () => Promise<number | null>> = {
 			Authorization: `Bearer ${CODEX_ACCESS_TOKEN}`,
 			'ChatGPT-Account-Id': accountId
 		})
-		return percent(data?.rate_limit?.primary_window?.used_percent)
+		// plans report a short primary window plus a longer secondary one, or only one window
+		type Window = { used_percent?: number; limit_window_seconds?: number } | null | undefined
+		const windows = [data?.rate_limit?.primary_window, data?.rate_limit?.secondary_window]
+		const longest = (windows as Window[])
+			.filter((window) => window)
+			.sort((a, b) => (b!.limit_window_seconds ?? 0) - (a!.limit_window_seconds ?? 0))[0]
+		return percent(longest?.used_percent)
 	},
 
 	// Cursor: included usage for the current billing cycle
 	async cursor() {
-		if (!CURSOR_SESSION_TOKEN) return null
+		if (!hasToken('CURSOR_SESSION_TOKEN', CURSOR_SESSION_TOKEN)) return null
 		const data = await getJson('https://cursor.com/api/usage-summary', cursorHeaders())
 		const plan = data?.individualUsage?.plan
 		return percent(
@@ -70,7 +100,7 @@ const fetchers: Record<ServiceId, () => Promise<number | null>> = {
 
 	// Grok Bot: weekly included allowance (or trial), read with the Cursor session
 	async grokbot() {
-		if (!CURSOR_SESSION_TOKEN) return null
+		if (!hasToken('CURSOR_SESSION_TOKEN', CURSOR_SESSION_TOKEN)) return null
 		const data = await getJson(
 			'https://cursor.com/api/dashboard/get-sand-usage-status',
 			{ ...cursorHeaders(), 'Content-Type': 'application/json' },
@@ -85,16 +115,31 @@ const fetchers: Record<ServiceId, () => Promise<number | null>> = {
 	}
 }
 
+// in-memory, per server instance: survives between requests while the instance stays warm
+const cache = new Map<ServiceId, { value: number | null; at: number }>()
+const blockedUntil = new Map<ServiceId, number>()
+
+async function getServiceUsage(id: ServiceId): Promise<number | null> {
+	const now = Date.now()
+	const cached = cache.get(id)
+
+	if (cached && now - cached.at < TTL) return cached.value
+	if ((blockedUntil.get(id) ?? 0) > now) return cached?.value ?? null
+
+	try {
+		const value = await fetchers[id]()
+		cache.set(id, { value, at: now })
+		return value
+	} catch (error) {
+		if (error instanceof RateLimitError) blockedUntil.set(id, now + error.retryAfter)
+		console.error(`[usage] ${id}:`, (error as Error)?.message)
+		// keep showing the last good value rather than nothing
+		return cached?.value ?? null
+	}
+}
+
 export async function getUsage(): Promise<Usage> {
 	const ids = Object.keys(fetchers) as ServiceId[]
-	const results = await Promise.allSettled(ids.map((id) => fetchers[id]()))
-
-	return Object.fromEntries(
-		results.map((result, i) => {
-			if (result.status === 'rejected') {
-				console.error(`[usage] ${ids[i]}:`, (result.reason as Error)?.message)
-			}
-			return [ids[i], result.status === 'fulfilled' ? result.value : null]
-		})
-	) as Usage
+	const values = await Promise.all(ids.map(getServiceUsage))
+	return Object.fromEntries(ids.map((id, i) => [id, values[i]])) as Usage
 }

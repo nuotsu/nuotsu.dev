@@ -24,7 +24,7 @@
 		: Promise.resolve({})
 </script>
 
-<Section title="Usage">
+<Section title="Usage" class="mx-0 w-auto">
 	<fieldset class="-mt-ch mb-lh flex gap-[.5ch] text-center">
 		{#each SERVICES as { id, title }}
 			<label
@@ -51,16 +51,16 @@
 			{#await usage}
 				{@render bars(0)}
 			{:then data}
-				{@const used = data[id as keyof Usage] ?? 0}
-				{@render bars(used, true)}
+				{@const used = data[id as keyof Usage] ?? null}
+				{@render bars(used, used !== null)}
 			{/await}
 
-			<p class="text-[.5em] text-current/30">Token usage for the curent session</p>
+			<p class="text-[.5em] text-current/30">Mitchells' token usage for the curent session</p>
 		</article>
 	{/each}
 </Section>
 
-{#snippet bars(used: number, live: boolean = false)}
+{#snippet bars(used: number | null, live: boolean = false)}
 	<div class="flex items-center gap-[.25ch] *:duration-1000">
 		<small
 			class={cn(
@@ -75,7 +75,7 @@
 			class={cn(
 				'bevel inline-flex items-center bevel-br p-[.5ch] transition-colors starting:border-current/20',
 				!live && 'border-current/20',
-				used >= 100 && 'text-cp-red'
+				used !== null && used >= 100 && 'text-cp-red'
 			)}
 		>
 			<div class=" flex gap-[.5ch]">
@@ -83,7 +83,7 @@
 					<div
 						class={cn(
 							'h-lh w-[.5ch] transition-[background-color,box-shadow] duration-1000 starting:bg-current/10 starting:shadow-none',
-							i < used / 10
+							used !== null && i < used / 10
 								? 'bg-current shadow-[0_0_1ch_.25ch] shadow-current/50 '
 								: 'bg-current/10'
 						)}
@@ -93,7 +93,11 @@
 
 			<strong class="text-right">
 				{#key selected}
-					<Scramble text={used.toString()} chars="0123456789" class="inline-block w-[3ch]" />
+					{#if used === null}
+						<span class="inline-block w-[3ch]" aria-label="Usage unavailable">—</span>
+					{:else}
+						<Scramble text={used.toString()} chars="0123456789" class="inline-block w-[3ch]" />
+					{/if}
 				{/key}%
 			</strong>
 		</div>

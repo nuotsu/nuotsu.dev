@@ -23,7 +23,6 @@
 	--border-width-sm: 0.75px;
 }
 
-/* keyboard focus counts as hover; like :hover, it also applies to ancestors of the focused element */
 @custom-variant hover (&:is(:hover, :focus-visible, :has(:focus-visible)));
 
 @layer base {

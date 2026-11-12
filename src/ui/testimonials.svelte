@@ -93,7 +93,7 @@
 		text-underline-offset: 2px;
 		font-weight: bold;
 
-		&:is(:hover, :focus-visible) {
+		&:global(:is(:hover, :focus-visible)) {
 			color: var(--color-cp-amber);
 		}
 	}

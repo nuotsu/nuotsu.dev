@@ -25,7 +25,7 @@
 			apps.
 		</p>
 
-		<dl class="data grid grid-cols-[auto_1fr] gap-x-ch gap-y-[.25lh]">
+		<dl class="grid grid-cols-[auto_1fr] gap-x-ch gap-y-[.25lh]">
 			<dt>Alias</dt>
 			<dd>nuotsu, Kazumaru, XZ</dd>
 
@@ -58,7 +58,7 @@
 		}
 	}
 
-	.data {
+	dl {
 		dt {
 			text-align: right;
 			text-transform: uppercase;

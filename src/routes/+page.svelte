@@ -6,6 +6,7 @@
 	import Writing from '#ui/writing.svelte'
 	import Contacts from '#ui/contacts.svelte'
 	import Usage from '#ui/usage.svelte'
+	import Tracking from '#ui/tracking.svelte'
 	import Porygon from '#ui/porygon.svelte'
 	import Cursor from '#ui/cursor.svelte'
 	import Element from '#ui/element.svelte'
@@ -34,7 +35,12 @@
 
 	<Writing />
 	<Contacts />
-	<Usage />
+
+	<div class="*shrink:-0 col-span-full contents w-full justify-between gap-[inherit] md:flex">
+		<Usage />
+		<Tracking />
+	</div>
+
 	<Porygon class="sticky bottom-[env(safe-area-inset-bottom)] z-0! order-last" />
 </main>
 
