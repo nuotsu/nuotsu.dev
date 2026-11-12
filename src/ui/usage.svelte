@@ -4,6 +4,7 @@
 	import Scramble from '#ui/scramble.svelte'
 	import type { Usage } from '#lib/server/usage.ts'
 	import { cn } from '#lib/utils.ts'
+	import posthog from 'posthog-js'
 
 	const SERVICES: {
 		id: string
@@ -37,7 +38,10 @@
 					name="usage"
 					type="radio"
 					checked={id === selected}
-					onchange={() => (selected = id)}
+					onchange={() => {
+						selected = id
+						posthog.capture('usage_tab_clicked', { service: id })
+					}}
 					data-cursor-disabled
 				/>
 

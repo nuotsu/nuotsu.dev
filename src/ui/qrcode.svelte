@@ -2,6 +2,7 @@
 	import Scramble from '#ui/scramble.svelte'
 	import Barcode from '#ui/barcode.svelte'
 	import QR from '#ui/qr.svelte'
+	import posthog from 'posthog-js'
 
 	let open = $state(false)
 	let details: HTMLDetailsElement
@@ -16,7 +17,12 @@
 
 <svelte:window onkeydown={close} onclick={close} />
 
-<details class="group relative text-right" bind:open bind:this={details}>
+<details
+	class="group relative text-right"
+	bind:open
+	bind:this={details}
+	ontoggle={() => open && posthog.capture('qr_code_opened')}
+>
 	<summary
 		class="relative flex h-lh items-start gap-[.5ch] bg-cp-red px-[.5ch] pb-[.25ch] text-background select-none"
 		aria-label="QR code"

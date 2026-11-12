@@ -16,6 +16,7 @@
 	// imported (not in /static) so the URL is content-hashed and cached immutably
 	import modelUrl from '#lib/assets/models/porygon-z.glb?url'
 	import { cyberpsychosis } from '#lib/cyberpsychosis.svelte.ts'
+	import posthog from 'posthog-js'
 
 	let { class: className = '' }: { class?: string } = $props()
 
@@ -340,6 +341,7 @@
 				if (current) return
 				const options = MOVES.filter((m) => m !== last)
 				last = options[Math.floor(Math.random() * options.length)]
+				posthog.capture('porygon_tapped', { move: last, cyberpsychosis: cyberpsychosis.active })
 				const action = mixer.clipAction(clips[last])
 				action.reset().setLoop(THREE.LoopOnce, 1)
 				action.clampWhenFinished = true

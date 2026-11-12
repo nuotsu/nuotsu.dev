@@ -2,6 +2,7 @@
 	import defaultSize from '#lib/assets/portrait-variants/netrunner.png?size'
 	import psychoSize from '#lib/assets/portrait-variants/netrunner-cyberpsychosis.png?size'
 	import { cyberpsychosis } from '#lib/cyberpsychosis.svelte.ts'
+	import posthog from 'posthog-js'
 
 	const CLICKS_TO_SWITCH = 10
 	const GLITCH_MS = 700
@@ -20,6 +21,8 @@
 	function onclick() {
 		if (glitching) return
 		if (++clicks % CLICKS_TO_SWITCH !== 0) return
+
+		posthog.capture('cyberpsychosis_toggled', { active: !cyberpsychosis.active, clicks })
 
 		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
 			cyberpsychosis.active = !cyberpsychosis.active
