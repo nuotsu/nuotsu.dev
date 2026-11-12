@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/env'
 	import Section from '#ui/section.svelte'
+	import Scramble from '#ui/scramble.svelte'
 	import type { Usage } from '#lib/server/usage.ts'
+	import { cn } from '#lib/utils.ts'
 
 	const SERVICES: {
 		id: string
@@ -23,7 +25,7 @@
 </script>
 
 <Section title="Usage">
-	<fieldset class="-mt-ch mb-lh flex gap-[.5ch]">
+	<fieldset class="-mt-ch mb-lh flex gap-[.5ch] text-center">
 		{#each SERVICES as { id, title }}
 			<label
 				for="usage-{id}"
@@ -45,16 +47,58 @@
 	</fieldset>
 
 	{#each SERVICES as { id }}
-		<article hidden={id !== selected}>
+		<article class="space-y-[.5ch] text-cp-amber" hidden={id !== selected}>
 			{#await usage}
-				…
+				{@render bars(0)}
 			{:then data}
-				{@const used = data[id as keyof Usage]}
-				{used == null ? 'N/A' : `${used}% used`}
+				{@const used = data[id as keyof Usage] ?? 0}
+				{@render bars(used, true)}
 			{/await}
+
+			<p class="text-[.5em] text-current/30">Token usage for the curent session</p>
 		</article>
 	{/each}
 </Section>
+
+{#snippet bars(used: number, live: boolean = false)}
+	<div class="flex items-center gap-[.25ch] *:duration-1000">
+		<small
+			class={cn(
+				'block text-center font-bold uppercase transition-opacity [writing-mode:sideways-lr] starting:opacity-0',
+				!live && 'opacity-0'
+			)}
+		>
+			<span class="animate-pulse">Live</span>
+		</small>
+
+		<div
+			class={cn(
+				'bevel inline-flex items-center bevel-br p-[.5ch] transition-colors starting:border-current/20',
+				!live && 'border-current/20',
+				used >= 100 && 'text-cp-red'
+			)}
+		>
+			<div class=" flex gap-[.5ch]">
+				{#each Array(10) as _, i}
+					<div
+						class={cn(
+							'h-lh w-[.5ch] transition-[background-color,box-shadow] duration-1000 starting:bg-current/10 starting:shadow-none',
+							i < used / 10
+								? 'bg-current shadow-[0_0_1ch_.25ch] shadow-current/50 '
+								: 'bg-current/10'
+						)}
+					></div>
+				{/each}
+			</div>
+
+			<strong class="text-right">
+				{#key selected}
+					<Scramble text={used.toString()} chars="0123456789" class="inline-block w-[3ch]" />
+				{/key}%
+			</strong>
+		</div>
+	</div>
+{/snippet}
 
 <style>
 	label {
