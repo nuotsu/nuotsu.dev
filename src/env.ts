@@ -8,9 +8,18 @@ export const variables = defineEnvVars({
 		schema: optional,
 		description: 'GitHub token for higher rate limits on /api/stars'
 	},
-	CLAUDE_OAUTH_TOKEN: {
+	CLAUDE_REFRESH_TOKEN: {
 		schema: optional,
-		description: 'Claude OAuth access token for /api/usage'
+		description:
+			'Claude OAuth refresh token from a dedicated login, used once to seed /api/usage (rotated copies live in KV)'
+	},
+	KV_REST_API_URL: {
+		schema: optional,
+		description: 'Upstash Redis REST URL; stores the rotating Claude OAuth tokens'
+	},
+	KV_REST_API_TOKEN: {
+		schema: optional,
+		description: 'Upstash Redis REST token'
 	},
 	CODEX_ACCESS_TOKEN: {
 		schema: optional,

@@ -1,7 +1,8 @@
 // Server-only (SvelteKit refuses to bundle anything under lib/server into client code).
 // Credentials stay here; only rounded percentages leave the server.
 
-import { CLAUDE_OAUTH_TOKEN, CODEX_ACCESS_TOKEN, CURSOR_SESSION_TOKEN } from '$app/env/private'
+import { CODEX_ACCESS_TOKEN, CURSOR_SESSION_TOKEN } from '$app/env/private'
+import { expireClaudeAccessToken, getClaudeAccessToken } from './claude-auth.ts'
 
 export type ServiceId = 'claude' | 'codex' | 'cursor' | 'grokbot'
 
@@ -37,7 +38,10 @@ async function getJson(url: string, headers: HeadersInit, init: RequestInit = {}
 		)
 	}
 	// never include the response body in errors: it could echo request details
-	if (!response.ok) throw new Error(`${new URL(url).host} responded ${response.status}`)
+	if (!response.ok)
+		throw Object.assign(new Error(`${new URL(url).host} responded ${response.status}`), {
+			status: response.status
+		})
 	return response.json()
 }
 
@@ -57,12 +61,19 @@ const cursorHeaders = () => ({
 const fetchers: Record<ServiceId, () => Promise<number | null>> = {
 	// Claude subscription: weekly (7-day) limit across all models
 	async claude() {
-		if (!hasToken('CLAUDE_OAUTH_TOKEN', CLAUDE_OAUTH_TOKEN)) return null
-		const data = await getJson('https://api.anthropic.com/api/oauth/usage', {
-			Authorization: `Bearer ${CLAUDE_OAUTH_TOKEN}`,
-			'anthropic-beta': 'oauth-2025-04-20'
-		})
-		return percent(data?.seven_day?.utilization)
+		const token = await getClaudeAccessToken()
+		if (!token) return null
+		try {
+			const data = await getJson('https://api.anthropic.com/api/oauth/usage', {
+				Authorization: `Bearer ${token}`,
+				'anthropic-beta': 'oauth-2025-04-20'
+			})
+			return percent(data?.seven_day?.utilization)
+		} catch (error) {
+			// rejected token: make the next attempt refresh it
+			if ((error as { status?: number }).status === 401) await expireClaudeAccessToken()
+			throw error
+		}
 	},
 
 	// ChatGPT/Codex plan: the longest rate limit window (usually weekly)
@@ -131,7 +142,8 @@ async function getServiceUsage(id: ServiceId): Promise<number | null> {
 		cache.set(id, { value, at: now })
 		return value
 	} catch (error) {
-		if (error instanceof RateLimitError) blockedUntil.set(id, now + error.retryAfter)
+		// back off on any failure so a broken token doesn't hit the API on every page view
+		blockedUntil.set(id, now + (error instanceof RateLimitError ? error.retryAfter : TTL))
 		console.error(`[usage] ${id}:`, (error as Error)?.message)
 		// keep showing the last good value rather than nothing
 		return cached?.value ?? null
