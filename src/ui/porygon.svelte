@@ -167,7 +167,7 @@
 	let loaded = $state(false)
 	let trigger = () => {}
 	let startDrag = (_: PointerEvent) => {}
-	let endDrag = () => {}
+	let endDrag = (_: PointerEvent) => {}
 	let dragged = false // suppresses the tap after a drag
 
 	onMount(() => {
@@ -423,26 +423,65 @@
 			const spin = new THREE.Quaternion()
 			const step = new THREE.Quaternion()
 			const euler = new THREE.Euler()
-			let dragging: { x: number; y: number; moved: number } | null = null
+			let dragging: {
+				pointerId: number
+				pointerType: string
+				startX: number
+				startY: number
+				startedAt: number
+				x: number
+				y: number
+				moved: number
+				distance: number
+			} | null = null
 			let sinceDrag = Infinity
 
 			function onDrag(e: PointerEvent) {
-				if (!dragging) return
+				if (!dragging || e.pointerId !== dragging.pointerId) return
 				const dx = e.clientX - dragging.x
 				const dy = e.clientY - dragging.y
 				dragging.x = e.clientX
 				dragging.y = e.clientY
 				dragging.moved += Math.abs(dx) + Math.abs(dy)
+				dragging.distance += Math.hypot(dx, dy)
 				if (dragging.moved > 6) dragged = true
 				const k = (Math.PI * 2) / canvas.clientHeight
 				spin.premultiply(step.setFromEuler(euler.set(dy * k, dx * k, 0))).normalize()
 			}
 			startDrag = (e) => {
+				if (dragging) return
 				dragged = false
-				dragging = { x: e.clientX, y: e.clientY, moved: 0 }
+				dragging = {
+					pointerId: e.pointerId,
+					pointerType: e.pointerType,
+					startX: e.clientX,
+					startY: e.clientY,
+					startedAt: performance.now(),
+					x: e.clientX,
+					y: e.clientY,
+					moved: 0,
+					distance: 0
+				}
 				sinceDrag = 0
 			}
-			endDrag = () => {
+			endDrag = (e) => {
+				if (!dragging || e.pointerId !== dragging.pointerId) return
+				if (e.type === 'pointerup') {
+					onDrag(e)
+					if (dragged) {
+						posthog.capture('porygon_dragged', {
+							drag_distance_px: Math.round(dragging.distance),
+							duration_ms: Math.round(performance.now() - dragging.startedAt),
+							start_x: Math.round(dragging.startX),
+							start_y: Math.round(dragging.startY),
+							end_x: Math.round(e.clientX),
+							end_y: Math.round(e.clientY),
+							pointer_type: dragging.pointerType
+						})
+					}
+				} else {
+					dragged = true
+				}
 				dragging = null
 				sinceDrag = 0
 			}
@@ -547,6 +586,9 @@
 			resize()
 
 			cleanup = () => {
+				trigger = () => {}
+				startDrag = () => {}
+				endDrag = () => {}
 				io.disconnect()
 				ro.disconnect()
 				removeEventListener('pointermove', onpointermove)
@@ -618,8 +660,9 @@
 			e.currentTarget.setPointerCapture(e.pointerId)
 			startDrag(e)
 		}}
-		onpointerup={() => endDrag()}
-		onpointercancel={() => endDrag()}
+		onpointerup={(e) => endDrag(e)}
+		onpointercancel={(e) => endDrag(e)}
+		onlostpointercapture={(e) => endDrag(e)}
 		onclick={() => !dragged && trigger()}
 	>
 		<!-- only as wide as the model needs, not the full bleed: fewer pixels to shade, and less
