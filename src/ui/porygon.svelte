@@ -435,6 +435,13 @@
 				distance: number
 			} | null = null
 			let sinceDrag = Infinity
+			// slight momentum: drag velocity (px/s) is tracked while dragging, then bleeds off
+			// after release. Smoothed so a stalled pointer before letting go leaves no throw
+			const MOMENTUM_DECAY = 5
+			let pendX = 0
+			let pendY = 0
+			let velX = 0
+			let velY = 0
 
 			function onDrag(e: PointerEvent) {
 				if (!dragging || e.pointerId !== dragging.pointerId) return
@@ -442,15 +449,21 @@
 				const dy = e.clientY - dragging.y
 				dragging.x = e.clientX
 				dragging.y = e.clientY
+				pendX += dx
+				pendY += dy
 				dragging.moved += Math.abs(dx) + Math.abs(dy)
 				dragging.distance += Math.hypot(dx, dy)
 				if (dragging.moved > 6) dragged = true
+				rotate(dx, dy)
+			}
+			function rotate(dx: number, dy: number) {
 				const k = (Math.PI * 2) / canvas.clientHeight
 				spin.premultiply(step.setFromEuler(euler.set(dy * k, dx * k, 0))).normalize()
 			}
 			startDrag = (e) => {
 				if (dragging) return
 				dragged = false
+				pendX = pendY = velX = velY = 0
 				dragging = {
 					pointerId: e.pointerId,
 					pointerType: e.pointerType,
@@ -507,6 +520,18 @@
 				}
 
 				const ease = 1 - Math.exp(-dt * 6)
+
+				if (dragging) {
+					const a = 1 - Math.exp(-dt * 20)
+					velX += (pendX / dt - velX) * a
+					velY += (pendY / dt - velY) * a
+					pendX = pendY = 0
+				} else if (Math.abs(velX) + Math.abs(velY) > 1 && !reducedMotion.matches) {
+					rotate(velX * dt, velY * dt)
+					const f = Math.exp(-dt * MOMENTUM_DECAY)
+					velX *= f
+					velY *= f
+				}
 
 				if (!dragging) {
 					sinceDrag += dt
