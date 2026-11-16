@@ -112,11 +112,8 @@
 
 	onMount(() => {
 		function onpointerdown(e: PointerEvent) {
-			if (!avatar.contains(e.target as Node)) {
-				endStreak()
-				return
-			}
-			if (press) return
+			// clicks elsewhere on the page leave the streak untouched
+			if (!avatar.contains(e.target as Node) || press) return
 			dragged = false
 			pointerType = e.pointerType
 			press = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 }
